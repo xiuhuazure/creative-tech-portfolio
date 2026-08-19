@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Your Name] — Shopify Developer & Creative</title>
+  <meta name="description" content="Shopify developer, video editor, and graphic designer. I build stores that convert and the visuals that make them sell." />
+  <style>
+    :root {
+      --bg: #0e0e11;
+      --bg-soft: #16161b;
+      --surface: #1c1c23;
+      --border: #2a2a33;
+      --text: #f4f4f5;
+      --text-dim: #a1a1aa;
+      --accent: #7c5cff;
+      --accent-2: #22d3ee;
+      --radius: 14px;
+      --max: 1120px;
+      --font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- Header ---------- */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(14,14,17,0.72);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .logo { font-weight: 700; letter-spacing: -0.02em; font-size: 1.1rem; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--text-dim); font-size: 0.94rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent); color: #fff; padding: 9px 18px;
+      border-radius: 999px; font-weight: 600; font-size: 0.9rem;
+      transition: transform .15s, box-shadow .2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(124,92,255,0.35); }
+    .nav-toggle { display: none; background: none; border: 0; color: var(--text); font-size: 1.4rem; cursor: pointer; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 96px 0 88px;
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background:
+        radial-gradient(600px 400px at 80% 10%, rgba(124,92,255,0.18), transparent 60%),
+        radial-gradient(500px 400px at 10% 90%, rgba(34,211,238,0.12), transparent 60%);
+      pointer-events: none;
+    }
+    .hero .wrap { position: relative; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--accent-2); background: rgba(34,211,238,0.08);
+      border: 1px solid rgba(34,211,238,0.2); padding: 6px 14px; border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.05;
+      letter-spacing: -0.03em; font-weight: 800; max-width: 15ch;
+    }
+    .hero h1 .grad {
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero p.sub {
+      margin-top: 24px; font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      color: var(--text-dim); max-width: 52ch;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; border-radius: 999px; font-weight: 600; font-size: 0.98rem;
+      transition: transform .15s, box-shadow .2s, background .2s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(124,92,255,0.4); }
+    .btn-ghost { border: 1px solid var(--border); color: var(--text); background: var(--surface); }
+    .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    /* ---------- Trust strip ---------- */
+    .trust { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-soft); }
+    .trust .wrap { padding: 28px 24px; }
+    .trust-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); text-align: center; margin-bottom: 18px; }
+    .trust-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; align-items: center; }
+    .trust-logos span { color: var(--text-dim); font-weight: 700; font-size: 1.05rem; opacity: 0.65; letter-spacing: -0.01em; }
+
+    /* ---------- Stats ---------- */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 64px 0; }
+    .stat { text-align: center; }
+    .stat .num { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; }
+    .stat .num .grad { background: linear-gradient(120deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .stat .lbl { color: var(--text-dim); font-size: 0.92rem; margin-top: 4px; }
+
+    /* ---------- Sections ---------- */
+    section.block { padding: 80px 0; }
+    .section-head { max-width: 640px; margin-bottom: 44px; }
+    .section-head .kicker { color: var(--accent); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .section-head h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); letter-spacing: -0.02em; margin-top: 10px; font-weight: 800; }
+    .section-head p { color: var(--text-dim); margin-top: 12px; font-size: 1.05rem; }
+
+    /* ---------- What I do (dual offer) ---------- */
+    .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px; transition: transform .2s, border-color .2s;
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .card .ico { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; font-size: 1.4rem; margin-bottom: 16px; background: rgba(124,92,255,0.12); }
+    .card h3 { font-size: 1.2rem; letter-spacing: -0.01em; }
+    .card p { color: var(--text-dim); margin-top: 8px; font-size: 0.96rem; }
+    .card ul { list-style: none; margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .card ul li { font-size: 0.8rem; color: var(--text-dim); border: 1px solid var(--border); padding: 4px 10px; border-radius: 999px; }
+
+    /* ---------- Featured work ---------- */
+    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .work-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; transition: transform .2s, border-color .2s;
+    }
+    .work-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .work-thumb {
+      aspect-ratio: 16/9; display: grid; place-items: center;
+      background: linear-gradient(135deg, #23232c, #17171d);
+      color: var(--text-dim); font-size: 0.85rem; letter-spacing: 0.03em;
+      border-bottom: 1px solid var(--border);
+    }
+    .work-body { padding: 22px 24px 26px; }
+    .work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .work-tags span { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent-2); background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.18); padding: 3px 9px; border-radius: 999px; }
+    .work-body h3 { font-size: 1.25rem; letter-spacing: -0.01em; }
+    .work-body p { color: var(--text-dim); margin-top: 6px; font-size: 0.95rem; }
+    .work-metric { margin-top: 14px; font-weight: 700; color: var(--text); font-size: 0.95rem; }
+    .work-metric span { color: var(--accent-2); }
+    .work-more { text-align: center; margin-top: 40px; }
+
+    /* ---------- CTA banner ---------- */
+    .cta-banner {
+      position: relative; overflow: hidden;
+      border: 1px solid var(--border); border-radius: 24px;
+      background: linear-gradient(135deg, rgba(124,92,255,0.14), rgba(34,211,238,0.08));
+      padding: 56px 40px; text-align: center;
+    }
+    .cta-banner h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); letter-spacing: -0.02em; font-weight: 800; max-width: 20ch; margin: 0 auto; }
+    .cta-banner p { color: var(--text-dim); margin-top: 12px; max-width: 46ch; margin-inline: auto; }
+    .cta-banner .hero-actions { justify-content: center; }
+
+    /* ---------- Footer ---------- */
+    footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding: 48px 0 40px; margin-top: 80px; }
+    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: flex-start; }
+    .foot-links { display: flex; gap: 26px; flex-wrap: wrap; }
+    .foot-links a { color: var(--text-dim); font-size: 0.92rem; transition: color .2s; }
+    .foot-links a:hover { color: var(--text); }
+    .foot-social { display: flex; gap: 16px; }
+    .foot-social a { color: var(--text-dim); font-size: 0.92rem; }
+    .foot-social a:hover { color: var(--accent-2); }
+    .copyright { color: var(--text-dim); font-size: 0.85rem; margin-top: 28px; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 860px) {
+      .stats { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+      .offer-grid { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.open {
+        display: flex; position: absolute; top: 68px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--bg-soft);
+        border-bottom: 1px solid var(--border); padding: 8px 24px 20px;
+      }
+      .nav-links.open a { padding: 12px 0; width: 100%; }
+      .nav-links.open .nav-cta { text-align: center; margin-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="wrap nav">
+      <a href="#" class="logo">[Your<span>Name]</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="nav-cta">Let's talk</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">◆ Shopify Developer · Video · Design</span>
+      <h1>I build Shopify stores that convert — and the <span class="grad">visuals that make them sell.</span></h1>
+      <p class="sub">
+        [Your Name] here. Part developer, part creative — one person who can build your store,
+        edit your videos, and design the graphics that tie it all together.
+      </p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">See my work →</a>
+        <a href="#contact" class="btn btn-ghost">Book a call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Trust strip ===== -->
+  <div class="trust">
+    <div class="wrap">
+      <p class="trust-label">Trusted by / Built with</p>
+      <div class="trust-logos">
+        <span>[Client Logo]</span>
+        <span>[Client Logo]</span>
+        <span>Shopify Partner</span>
+        <span>Adobe CC</span>
+        <span>[Client Logo]</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Stats ===== -->
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="num"><span class="grad">[25+]</span></div><div class="lbl">Stores launched</div></div>
+      <div class="stat"><div class="num"><span class="grad">[5]</span> yrs</div><div class="lbl">Freelancing</div></div>
+      <div class="stat"><div class="num"><span class="grad">[3M+]</span></div><div class="lbl">Video views delivered</div></div>
+      <div class="stat"><div class="num"><span class="grad">[40%]</span></div><div class="lbl">Avg. conversion lift</div></div>
+    </div>
+  </div>
+
+  <!-- ===== What I do (dual offer) ===== -->
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">What I do</span>
+        <h2>One person, the full package.</h2>
+        <p>Most freelancers do one thing. I cover the store, the motion, and the design — so your brand looks and works like it should, end to end.</p>
+      </div>
+      <div class="offer-grid">
+        <div class="card">
+          <div class="ico">🛠️</div>
+          <h3>Shopify Development</h3>
+          <p>Custom themes, Liquid, app integrations, migrations, and speed optimization that turns browsers into buyers.</p>
+          <ul><li>Liquid</li><li>Theme dev</li><li>Speed</li><li>Headless</li><li>Apps</li></ul>
+        </div>
+        <div class="card">
+          <div class="ico">🎬</div>
+          <h3>Video Editing</h3>
+          <p>Short-form for Reels & TikTok, product videos, and motion graphics that stop the scroll and drive the click.</p>
+          <ul><li>Editing</li><li>Motion GFX</li><li>Short-form</li><li>Product video</li></ul>
+        </div>
+        <div class="card">
+          <div class="ico">🎨</div>
+          <h3>Graphic Design</h3>
+          <p>Brand assets, social templates, product imagery, and ad creative that keeps every touchpoint on-brand.</p>
+          <ul><li>Brand</li><li>Social</li><li>Ad creative</li><li>Imagery</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Featured work ===== -->
+  <section class="block" id="work" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Selected work</span>
+        <h2>Projects where dev meets design.</h2>
+        <p>A few builds where I handled the store, the visuals, or both. [Swap these for your real case studies.]</p>
+      </div>
+      <div class="work-grid">
+        <article class="work-card">
+          <div class="work-thumb">[Project thumbnail / video]</div>
+          <div class="work-body">
+            <div class="work-tags"><span>Shopify</span><span>Motion</span></div>
+            <h3>[Project Name]</h3>
+            <p>[One line on the problem you solved for this client.]</p>
+            <p class="work-metric"><span>+42%</span> conversion after rebuild & new product videos</p>
+          </div>
+        </article>
+        <article class="work-card">
+          <div class="work-thumb">[Project thumbnail / video]</div>
+          <div class="work-body">
+            <div class="work-tags"><span>Liquid</span><span>Speed</span></div>
+            <h3>[Project Name]</h3>
+            <p>[One line on the problem you solved for this client.]</p>
+            <p class="work-metric"><span>1.8s</span> load time, down from 6s+</p>
+          </div>
+        </article>
+        <article class="work-card">
+          <div class="work-thumb">[Project thumbnail / video]</div>
+          <div class="work-body">
+            <div class="work-tags"><span>Brand</span><span>Social</span></div>
+            <h3>[Project Name]</h3>
+            <p>[One line on the problem you solved for this client.]</p>
+            <p class="work-metric"><span>3.1M</span> organic views across campaign</p>
+          </div>
+        </article>
+        <article class="work-card">
+          <div class="work-thumb">[Project thumbnail / video]</div>
+          <div class="work-body">
+            <div class="work-tags"><span>Shopify</span><span>Design</span><span>Video</span></div>
+            <h3>[Project Name]</h3>
+            <p>[The full-package project — store + video + graphics for one brand.]</p>
+            <p class="work-metric"><span>End-to-end</span> store, content & launch</p>
+          </div>
+        </article>
+      </div>
+      <div class="work-more">
+        <a href="#" class="btn btn-ghost">View all projects →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA banner ===== -->
+  <section class="block" id="contact" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="cta-banner">
+        <h2>Got a store that needs building — or content that needs to sell?</h2>
+        <p>Tell me what you're working on. I'll come back with how I'd approach it and a rough plan.</p>
+        <div class="hero-actions">
+          <a href="mailto:[you@email.com]" class="btn btn-primary">Start a project →</a>
+          <a href="#" class="btn btn-ghost">Book a 20-min call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <div class="logo" style="font-size:1.2rem;">[Your<span style="color:var(--accent);">Name]</span></div>
+          <p style="color:var(--text-dim); font-size:0.92rem; margin-top:8px; max-width:36ch;">Shopify developer & creative. Building stores and the visuals that sell them.</p>
+        </div>
+        <nav class="foot-links">
+          <a href="#work">Work</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="foot-social">
+          <a href="#">Instagram</a>
+          <a href="#">Behance</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+      <p class="copyright">© 2026 [Your Name]. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') links.classList.remove('open');
+    });
+  </script>
+
+</body>
+</html>

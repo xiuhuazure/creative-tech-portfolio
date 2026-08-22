@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — [Your Name]</title>
+  <meta name="description" content="Selected Shopify builds, video edits, and design work by [Your Name] — a developer and creative in one." />
+  <style>
+    :root {
+      --bg: #0e0e11;
+      --bg-soft: #16161b;
+      --surface: #1c1c23;
+      --border: #2a2a33;
+      --text: #f4f4f5;
+      --text-dim: #a1a1aa;
+      --accent: #7c5cff;
+      --accent-2: #22d3ee;
+      --radius: 14px;
+      --max: 1120px;
+      --font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- Header ---------- */
+    header { position: sticky; top: 0; z-index: 50; background: rgba(14,14,17,0.72); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .logo { font-weight: 700; letter-spacing: -0.02em; font-size: 1.1rem; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--text-dim); font-size: 0.94rem; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-cta { background: var(--accent); color: #fff; padding: 9px 18px; border-radius: 999px; font-weight: 600; font-size: 0.9rem; transition: transform .15s, box-shadow .2s; }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(124,92,255,0.35); }
+    .nav-toggle { display: none; background: none; border: 0; color: var(--text); font-size: 1.4rem; cursor: pointer; }
+
+    /* ---------- Page hero ---------- */
+    .page-hero { position: relative; overflow: hidden; padding: 72px 0 48px; }
+    .page-hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(600px 360px at 85% 0%, rgba(124,92,255,0.16), transparent 60%); pointer-events: none; }
+    .page-hero .wrap { position: relative; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent-2); background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.2); padding: 6px 14px; border-radius: 999px; margin-bottom: 22px; }
+    .page-hero h1 { font-size: clamp(2rem, 5.5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.03em; font-weight: 800; max-width: 18ch; }
+    .page-hero h1 .grad { background: linear-gradient(120deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .page-hero p { margin-top: 18px; font-size: clamp(1.02rem, 2vw, 1.2rem); color: var(--text-dim); max-width: 54ch; }
+
+    /* ---------- Filters ---------- */
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; padding: 8px 0 40px; }
+    .filter-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text-dim); padding: 9px 18px; border-radius: 999px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: inherit; }
+    .filter-btn:hover { color: var(--text); border-color: var(--accent); }
+    .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    /* ---------- Featured case study ---------- */
+    .featured { margin-bottom: 44px; }
+    .featured-card { display: grid; grid-template-columns: 1.15fr 1fr; gap: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
+    .featured-media { aspect-ratio: auto; min-height: 320px; display: grid; place-items: center; background: linear-gradient(135deg, #26263040, #17171d), linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; font-size: 0.9rem; letter-spacing: 0.03em; }
+    .featured-body { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+    .featured-body .badge { align-self: flex-start; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; color: var(--accent-2); background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.2); padding: 5px 12px; border-radius: 999px; margin-bottom: 16px; }
+    .featured-body h2 { font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.02em; font-weight: 800; }
+    .featured-body p { color: var(--text-dim); margin-top: 12px; }
+    .featured-stats { display: flex; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+    .featured-stats .s .n { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; }
+    .featured-stats .s .n .grad { background: linear-gradient(120deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .featured-stats .s .l { color: var(--text-dim); font-size: 0.82rem; }
+    .featured-body .btn { align-self: flex-start; margin-top: 28px; }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 999px; font-weight: 600; font-size: 0.95rem; transition: transform .15s, box-shadow .2s; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(124,92,255,0.4); }
+    .btn-ghost { border: 1px solid var(--border); color: var(--text); background: var(--surface); }
+    .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    /* ---------- Work grid ---------- */
+    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-bottom: 40px; }
+    .work-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform .2s, border-color .2s; }
+    .work-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .work-thumb { aspect-ratio: 4/3; display: grid; place-items: center; background: linear-gradient(135deg, #23232c, #17171d); color: var(--text-dim); font-size: 0.82rem; letter-spacing: 0.03em; border-bottom: 1px solid var(--border); }
+    .work-body { padding: 20px 22px 24px; }
+    .work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .work-tags span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent-2); background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.18); padding: 3px 9px; border-radius: 999px; }
+    .work-body h3 { font-size: 1.18rem; letter-spacing: -0.01em; }
+    .work-body p { color: var(--text-dim); margin-top: 6px; font-size: 0.92rem; }
+    .work-metric { margin-top: 14px; font-weight: 700; font-size: 0.9rem; }
+    .work-metric span { color: var(--accent-2); }
+    .is-hidden { display: none; }
+
+    /* ---------- CTA ---------- */
+    .cta-banner { position: relative; overflow: hidden; border: 1px solid var(--border); border-radius: 24px; background: linear-gradient(135deg, rgba(124,92,255,0.14), rgba(34,211,238,0.08)); padding: 52px 40px; text-align: center; margin: 40px 0 0; }
+    .cta-banner h2 { font-size: clamp(1.5rem, 4vw, 2.1rem); letter-spacing: -0.02em; font-weight: 800; max-width: 22ch; margin: 0 auto; }
+    .cta-banner p { color: var(--text-dim); margin-top: 12px; max-width: 46ch; margin-inline: auto; }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+
+    /* ---------- Footer ---------- */
+    footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding: 48px 0 40px; margin-top: 72px; }
+    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: flex-start; }
+    .foot-links { display: flex; gap: 26px; flex-wrap: wrap; }
+    .foot-links a { color: var(--text-dim); font-size: 0.92rem; transition: color .2s; }
+    .foot-links a:hover { color: var(--text); }
+    .foot-social { display: flex; gap: 16px; }
+    .foot-social a { color: var(--text-dim); font-size: 0.92rem; }
+    .foot-social a:hover { color: var(--accent-2); }
+    .copyright { color: var(--text-dim); font-size: 0.85rem; margin-top: 28px; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 980px) { .work-grid { grid-template-columns: repeat(2, 1fr); } .featured-card { grid-template-columns: 1fr; } .featured-media { min-height: 220px; } }
+    @media (max-width: 720px) {
+      .work-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.open { display: flex; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg-soft); border-bottom: 1px solid var(--border); padding: 8px 24px 20px; }
+      .nav-links.open a { padding: 12px 0; width: 100%; }
+      .nav-links.open .nav-cta { text-align: center; margin-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="wrap nav">
+      <a href="index.html" class="logo">[Your<span>Name]</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="work.html" class="active">Work</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact" class="nav-cta">Let's talk</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <!-- ===== Page hero ===== -->
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">◆ Selected work</span>
+      <h1>Stores, video, and design — <span class="grad">often on the same project.</span></h1>
+      <p>A mix of Shopify builds, edits, and brand work. Filter by discipline, or look for the full-package projects where I did all three.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <!-- ===== Filters ===== -->
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="shopify">Shopify</button>
+      <button class="filter-btn" data-filter="video">Video</button>
+      <button class="filter-btn" data-filter="design">Design</button>
+      <button class="filter-btn" data-filter="full">Full package</button>
+    </div>
+
+    <!-- ===== Featured case study ===== -->
+    <div class="featured">
+      <div class="featured-card">
+        <div class="featured-media">[Featured project — hero image or video]</div>
+        <div class="featured-body">
+          <span class="badge">Featured case study</span>
+          <h2>[Flagship Project Name]</h2>
+          <p>[The one-project story that proves the whole pitch: I rebuilt the store, shot and edited the product videos, and designed the launch campaign — all as one person.]</p>
+          <div class="featured-stats">
+            <div class="s"><div class="n"><span class="grad">+42%</span></div><div class="l">Conversion rate</div></div>
+            <div class="s"><div class="n"><span class="grad">3.1M</span></div><div class="l">Campaign views</div></div>
+            <div class="s"><div class="n"><span class="grad">1.8s</span></div><div class="l">Page load</div></div>
+          </div>
+          <a href="#" class="btn btn-primary">Read the case study →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Work grid ===== -->
+    <div class="work-grid" id="workGrid">
+
+      <article class="work-card" data-cat="shopify full">
+        <div class="work-thumb">[Project thumbnail]</div>
+        <div class="work-body">
+          <div class="work-tags"><span>Shopify</span><span>Video</span><span>Design</span></div>
+          <h3>[Project Name]</h3>
+          <p>[Store + content, end to end for one brand.]</p>
+          <p class="work-metric"><span>End-to-end</span> store, content & launch</p>
+        </div>
+      </article>
+
+      <article class="work-card" data-cat="shopify">
+        <div class="work-thumb">[Project thumbnail]</div>
+        <div class="work-body">
+          <div class="work-tags"><span>Liquid</span><span>Speed</span></div>
+          <h3>[Project Name]</h3>
+          <p>[Theme rebuild + performance overhaul.]</p>
+          <p class="work-metric"><span>1.8s</span> load, down from 6s+</p>
+        </div>
+      </article>
+
+      <article class="work-card" data-cat="video">
+        <div class="work-thumb">[Video thumbnail]</div>
+        <div class="work-body">
+          <div class="work-tags"><span>Short-form</span><span>Motion</span></div>
+          <h3>[Project Name]</h3>
+          <p>[Reels/TikTok campaign for a product launch.]</p>
+          <p class="work-metric"><span>3.1M</span> organic views</p>
+        </div>
+      </article>
+
+      <article class="work-card" data-cat="design">
+        <div class="work-thumb">[Design thumbnail]</div>
+        <div class="work-body">
+          <div class="work-tags"><span>Brand</span><span>Social</span></div>
+          <h3>[Project Name]</h3>
+          <p>[Brand identity + social template system.]</p>
+          <p class="work-metric"><span>30+</span> reusable templates</p>
+        </div>
+      </article>
+
+      <article class="work-card" data-cat="shopify">
+        <div class="work-thumb">[Project thumbnail]</div>
+        <div class="work-body">
+          <div class="work-tags"><span>Shopify</span><span>Migration</span></div>
+          <h3>[Project Name]</h3>
+          <p>[Platform migration to Shopify with zero downtime.]</p>
+          <p class="work-metric"><span>0</span> hours downtime</p>
+        </div>
+      </article>
+
+      <article class="work-card" data-cat="video design">
+        <div class="work-thumb">[Project thumbnail]</div>
+        <div class="work-body">
+          <div class="work-tags"><span>Video</span><span>Design</span></div>
+          <h3>[Project Name]</h3>
+          <p>[Product photography + video for a catalog refresh.]</p>
+          <p class="work-metric"><span>50+</span> assets delivered</p>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ===== CTA ===== -->
+    <div class="cta-banner">
+      <h2>Like what you see? Let's build yours.</h2>
+      <p>Tell me about your store or campaign and I'll come back with how I'd approach it.</p>
+      <div class="cta-actions">
+        <a href="mailto:[you@email.com]" class="btn btn-primary">Start a project →</a>
+        <a href="index.html#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <div class="logo" style="font-size:1.2rem;">[Your<span style="color:var(--accent);">Name]</span></div>
+          <p style="color:var(--text-dim); font-size:0.92rem; margin-top:8px; max-width:36ch;">Shopify developer & creative. Building stores and the visuals that sell them.</p>
+        </div>
+        <nav class="foot-links">
+          <a href="work.html">Work</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+        <div class="foot-social">
+          <a href="#">Instagram</a>
+          <a href="#">Behance</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+      <p class="copyright">© 2026 [Your Name]. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.addEventListener('click', (e) => { if (e.target.tagName === 'A') links.classList.remove('open'); });
+
+    // Portfolio filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('#workGrid .work-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        cards.forEach(card => {
+          const match = f === 'all' || card.dataset.cat.split(' ').includes(f);
+          card.classList.toggle('is-hidden', !match);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

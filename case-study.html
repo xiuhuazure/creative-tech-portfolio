@@ -5,131 +5,157 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>[Project Name] — Case Study — [Your Name]</title>
   <meta name="description" content="Case study: how I rebuilt [Project Name]'s Shopify store, produced the videos, and designed the launch — as one person." />
+  <script>
+    (function(){ try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch(e){} })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0e0e11;
-      --bg-soft: #16161b;
-      --surface: #1c1c23;
-      --border: #2a2a33;
-      --text: #f4f4f5;
-      --text-dim: #a1a1aa;
-      --accent: #7c5cff;
-      --accent-2: #22d3ee;
-      --radius: 14px;
-      --max: 1120px;
-      --measure: 720px;
-      --font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --ink: #0c0f12; --ink-2: #12171c; --surface: #171d23; --surface-2: #1c242b;
+      --border: #2a343d; --border-gold: rgba(212,175,98,0.28);
+      --gold: #d4af62; --gold-bright: #f2d999; --cinnabar: #c8503a; --jade: #79c0a6; --cyan: #7fd7d0;
+      --text: #f4f0e7; --text-dim: #a6adb4; --text-mute: #6f7880;
+      --btn-ink: #17110a;
+      --header-bg: rgba(12,15,18,0.72); --panel-bg: rgba(18,23,28,0.6);
+      --thumb-a: #1e262d; --thumb-b: #12171c;
+      --glow-1: rgba(212,175,98,0.10); --glow-2: rgba(127,215,208,0.06); --glow-3: rgba(200,80,58,0.035);
+      --lantern-glow: drop-shadow(0 0 9px rgba(255,178,92,0.60));
+      --max: 1140px; --measure: 720px;
+      --serif: "Cormorant Garamond", "Noto Serif SC", Georgia, "Times New Roman", serif;
+      --brush: "Ma Shan Zheng", "Noto Serif SC", cursive;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
+    :root[data-theme="light"] {
+      --ink: #f3ead6; --ink-2: #ece0c7; --surface: #fbf5e6; --surface-2: #f5ecd7;
+      --border: #dccdae; --border-gold: rgba(156,118,32,0.40);
+      --gold: #9c7620; --gold-bright: #b6892f; --cinnabar: #bf3d29; --jade: #3f7d68; --cyan: #2b8079;
+      --text: #2b2418; --text-dim: #5e5648; --text-mute: #8a8070;
+      --header-bg: rgba(243,234,214,0.80); --panel-bg: rgba(246,238,217,0.72);
+      --thumb-a: #e7dbc2; --thumb-b: #f1e8d3;
+      --glow-1: rgba(212,175,98,0.20); --glow-2: rgba(43,128,121,0.08); --glow-3: rgba(191,61,41,0.06);
+      --lantern-glow: none;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--sans); background: var(--ink); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background .4s ease, color .4s ease; }
+    body::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; transition: background .4s ease; background: radial-gradient(900px 500px at 78% -8%, var(--glow-1), transparent 60%), radial-gradient(700px 500px at 8% 100%, var(--glow-2), transparent 60%), radial-gradient(1000px 700px at 50% 40%, var(--glow-3), transparent 70%); }
     a { color: inherit; text-decoration: none; }
-    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
     .measure { max-width: var(--measure); margin-inline: auto; }
 
-    /* ---------- Header ---------- */
-    header { position: sticky; top: 0; z-index: 50; background: rgba(14,14,17,0.72); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-    .logo { font-weight: 700; letter-spacing: -0.02em; font-size: 1.1rem; }
-    .logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 28px; align-items: center; }
-    .nav-links a { color: var(--text-dim); font-size: 0.94rem; transition: color .2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-cta { background: var(--accent); color: #fff; padding: 9px 18px; border-radius: 999px; font-weight: 600; font-size: 0.9rem; transition: transform .15s, box-shadow .2s; }
-    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(124,92,255,0.35); }
-    .nav-toggle { display: none; background: none; border: 0; color: var(--text); font-size: 1.4rem; cursor: pointer; }
+    .seal { display: inline-grid; place-items: center; width: 40px; height: 40px; flex: 0 0 40px; background: var(--cinnabar); color: #fff5ea; font-family: var(--brush); font-size: 1.5rem; line-height: 1; border-radius: 3px; box-shadow: 0 0 0 1px rgba(255,255,255,0.12) inset; transform: rotate(-2deg); }
+    .nav-right { display: flex; align-items: center; gap: 22px; }
+    .lantern { background: none; border: 0; padding: 0; cursor: pointer; width: 30px; height: 46px; display: grid; place-items: start center; }
+    .lantern svg { width: 30px; height: 46px; transform-origin: 50% 2px; animation: sway 6s ease-in-out infinite; filter: var(--lantern-glow); transition: filter .35s ease, opacity .35s ease; }
+    .lantern:hover svg { animation-duration: 2.4s; }
+    :root[data-theme="light"] .lantern svg { opacity: 0.82; }
+    @keyframes sway { 0%,100% { transform: rotate(-3.5deg); } 50% { transform: rotate(3.5deg); } }
+    @media (prefers-reduced-motion: reduce) { .lantern svg { animation: none; } }
 
-    /* ---------- Breadcrumb ---------- */
+    header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); transition: background .4s ease, border-color .4s ease; }
+    header::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand .name { font-family: var(--serif); font-weight: 700; font-size: 1.35rem; letter-spacing: 0.02em; }
+    .brand .name span { color: var(--gold); }
+    .nav-links { display: flex; gap: 30px; align-items: center; }
+    .nav-links a { color: var(--text-dim); font-size: 0.92rem; letter-spacing: 0.03em; transition: color .2s; position: relative; }
+    .nav-links a:not(.nav-cta)::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 0; height: 1px; background: var(--gold); transition: width .25s; }
+    .nav-links a:not(.nav-cta):hover::after, .nav-links a.active:not(.nav-cta)::after { width: 100%; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-cta { color: var(--gold); border: 1px solid var(--border-gold); padding: 9px 20px; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.04em; clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px); transition: all .2s; background: rgba(212,175,98,0.05); }
+    .nav-cta:hover { background: var(--gold); color: var(--btn-ink); }
+    .nav-toggle { display: none; background: none; border: 0; color: var(--gold); font-size: 1.5rem; cursor: pointer; }
+
+    .btn { display: inline-flex; align-items: center; gap: 9px; padding: 12px 24px; font-weight: 600; font-size: 0.95rem; letter-spacing: 0.03em; transition: all .2s; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); }
+    .btn-primary { background: linear-gradient(120deg, var(--gold), var(--gold-bright)); color: var(--btn-ink); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(212,175,98,0.32); }
+    .btn-ghost { border: 1px solid var(--border-gold); color: var(--gold); background: rgba(212,175,98,0.04); }
+    .btn-ghost:hover { border-color: var(--gold); background: rgba(212,175,98,0.1); transform: translateY(-2px); }
+    .grad { background: linear-gradient(100deg, var(--gold-bright), var(--gold) 40%, var(--cinnabar)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
     .crumb { padding: 26px 0 0; font-size: 0.88rem; color: var(--text-dim); }
-    .crumb a:hover { color: var(--text); }
+    .crumb a:hover { color: var(--gold); }
     .crumb .sep { margin: 0 8px; opacity: 0.5; }
 
-    /* ---------- Case hero ---------- */
-    .case-hero { padding: 30px 0 44px; position: relative; overflow: hidden; }
-    .case-hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(600px 340px at 82% 0%, rgba(124,92,255,0.14), transparent 60%); pointer-events: none; }
-    .case-hero .wrap { position: relative; }
+    .case-hero { padding: 30px 0 46px; position: relative; overflow: hidden; }
+    .case-hero .kanji-bg { position: absolute; right: 0; top: 55%; transform: translateY(-50%); font-family: var(--brush); font-size: clamp(12rem, 28vw, 24rem); line-height: 0.8; color: var(--glow-1); pointer-events: none; user-select: none; z-index: 0; }
+    .case-hero .wrap { position: relative; z-index: 2; }
     .case-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-    .case-tags span { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-2); background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.2); padding: 4px 11px; border-radius: 999px; }
-    .case-hero h1 { font-size: clamp(2rem, 5.5vw, 3.4rem); line-height: 1.06; letter-spacing: -0.03em; font-weight: 800; max-width: 20ch; }
-    .case-hero .lede { margin-top: 18px; font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--text-dim); max-width: 58ch; }
+    .case-tags span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); border: 1px solid var(--cyan); padding: 4px 11px; opacity: 0.9; }
+    .case-hero h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(2rem, 5.4vw, 3.5rem); line-height: 1.06; letter-spacing: -0.01em; max-width: 20ch; }
+    .case-hero .lede { margin-top: 18px; font-size: clamp(1.05rem, 2vw, 1.28rem); color: var(--text-dim); max-width: 58ch; }
+    .case-meta { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 34px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .case-meta .m .k { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-mute); }
+    .case-meta .m .v { font-weight: 600; margin-top: 4px; font-size: 0.98rem; font-family: var(--serif); font-size: 1.1rem; }
+    .case-media { aspect-ratio: 16/8; margin-top: 36px; border: 1px solid var(--border-gold); display: grid; place-items: center; color: var(--text); letter-spacing: 0.03em; font-size: 0.9rem; background: linear-gradient(135deg, rgba(200,80,58,0.22), rgba(212,175,98,0.16)); clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px); }
 
-    /* meta bar */
-    .case-meta { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border); }
-    .case-meta .m .k { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); }
-    .case-meta .m .v { font-weight: 600; margin-top: 4px; font-size: 0.98rem; }
-
-    /* hero media */
-    .case-media { aspect-ratio: 16/8; margin-top: 36px; border-radius: 20px; border: 1px solid var(--border); display: grid; place-items: center; color: #fff; letter-spacing: 0.03em; font-size: 0.9rem; background: linear-gradient(135deg, #26263060, #17171d), linear-gradient(135deg, var(--accent), var(--accent-2)); }
-
-    /* ---------- Results band ---------- */
-    .results { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-top: 8px; }
-    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 48px 0; }
+    .results { background: var(--panel-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-top: 10px; transition: background .4s ease; }
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 52px 0; }
     .result { text-align: center; }
-    .result .n { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; }
-    .result .n .grad { background: linear-gradient(120deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .result .n { font-family: var(--serif); font-size: clamp(2rem, 5vw, 2.9rem); font-weight: 700; letter-spacing: -0.01em; }
     .result .l { color: var(--text-dim); font-size: 0.92rem; margin-top: 4px; }
 
-    /* ---------- Article body ---------- */
-    article { padding: 64px 0 24px; }
-    article h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); letter-spacing: -0.02em; font-weight: 800; margin: 48px 0 14px; }
-    article h2:first-child { margin-top: 0; }
-    article h3 { font-size: 1.2rem; letter-spacing: -0.01em; margin: 28px 0 8px; }
-    article p { color: #d4d4d8; margin-bottom: 16px; }
-    article p.dim { color: var(--text-dim); }
+    article { padding: 66px 0 24px; }
+    article h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3.4vw, 2.1rem); letter-spacing: -0.01em; font-weight: 700; margin: 50px 0 14px; }
+    article h2:first-of-type { margin-top: 0; }
+    article h3 { font-family: var(--serif); font-size: 1.4rem; letter-spacing: -0.01em; margin: 30px 0 8px; font-weight: 700; }
+    article p { color: var(--text-dim); margin-bottom: 16px; }
     article ul { margin: 0 0 18px 0; padding-left: 0; list-style: none; }
-    article ul li { color: #d4d4d8; padding-left: 28px; position: relative; margin-bottom: 10px; }
-    article ul li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
-    .kicker { color: var(--accent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    article ul li { color: var(--text-dim); padding-left: 28px; position: relative; margin-bottom: 10px; }
+    article ul li::before { content: "→"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+    .kicker { color: var(--gold); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.16em; display: flex; align-items: center; gap: 10px; }
+    .kicker .zh { font-family: var(--brush); color: var(--cinnabar); font-size: 1.4rem; letter-spacing: 0; }
 
-    /* pull quote */
-    .quote { border-left: 3px solid var(--accent); padding: 6px 0 6px 24px; margin: 32px 0; }
-    .quote p { font-size: 1.25rem; line-height: 1.5; color: var(--text); font-weight: 500; }
+    .quote { border-left: 3px solid var(--gold); padding: 6px 0 6px 24px; margin: 34px 0; }
+    .quote p { font-family: var(--serif); font-size: 1.5rem; line-height: 1.4; color: var(--text); font-weight: 500; }
     .quote .cite { color: var(--text-dim); font-size: 0.92rem; margin-top: 10px; }
 
-    /* deliverables columns */
     .deliv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 24px 0 8px; }
-    .deliv .col { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
-    .deliv .col .ico { font-size: 1.4rem; margin-bottom: 10px; }
-    .deliv .col h4 { font-size: 1.02rem; margin-bottom: 6px; }
+    .deliv .col { position: relative; background: linear-gradient(160deg, var(--surface), var(--ink-2)); border: 1px solid var(--border); padding: 24px; clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px); }
+    .deliv .col .ico { font-size: 1.5rem; margin-bottom: 10px; }
+    .deliv .col h4 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 6px; }
     .deliv .col p { font-size: 0.9rem; color: var(--text-dim); margin: 0; }
 
-    /* gallery */
     .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0; }
-    .gallery .g { aspect-ratio: 4/3; border-radius: var(--radius); border: 1px solid var(--border); display: grid; place-items: center; color: var(--text-dim); font-size: 0.82rem; background: linear-gradient(135deg, #23232c, #17171d); }
+    .gallery .g { aspect-ratio: 4/3; border: 1px solid var(--border); display: grid; place-items: center; color: var(--text-mute); font-size: 0.82rem; background: linear-gradient(135deg, var(--thumb-a), var(--thumb-b)); }
     .gallery .g.wide { grid-column: 1 / -1; aspect-ratio: 16/7; }
 
-    /* video embed placeholder */
-    .video-embed { aspect-ratio: 16/9; border-radius: var(--radius); border: 1px solid var(--border); display: grid; place-items: center; color: var(--text-dim); font-size: 0.9rem; background: linear-gradient(135deg, #23232c, #17171d); margin: 24px 0; position: relative; }
-    .video-embed .play { width: 64px; height: 64px; border-radius: 999px; background: rgba(124,92,255,0.9); display: grid; place-items: center; color: #fff; font-size: 1.4rem; }
+    .video-embed { aspect-ratio: 16/9; border: 1px solid var(--border); display: grid; place-items: center; background: linear-gradient(135deg, var(--thumb-a), var(--thumb-b)); margin: 24px 0; }
+    .video-embed .play { width: 66px; height: 66px; border-radius: 999px; background: linear-gradient(120deg, var(--gold), var(--gold-bright)); display: grid; place-items: center; color: var(--btn-ink); font-size: 1.4rem; }
 
-    /* ---------- Next / CTA ---------- */
-    .case-cta { border: 1px solid var(--border); border-radius: 24px; background: linear-gradient(135deg, rgba(124,92,255,0.14), rgba(34,211,238,0.08)); padding: 52px 40px; text-align: center; margin: 56px 0 0; }
-    .case-cta h2 { font-size: clamp(1.5rem, 4vw, 2.1rem); letter-spacing: -0.02em; font-weight: 800; margin: 0 auto; max-width: 22ch; }
+    .divider { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 24px 0; }
+    .divider .l { height: 1px; width: 90px; background: linear-gradient(90deg, transparent, var(--border-gold)); }
+    .divider .l.r { background: linear-gradient(90deg, var(--border-gold), transparent); }
+    .divider .mark { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.3em; }
+
+    .case-cta { border: 1px solid var(--border-gold); background: linear-gradient(135deg, rgba(200,80,58,0.10), rgba(212,175,98,0.08)); padding: 58px 44px; text-align: center; margin: 58px 0 0; clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px); }
+    .case-cta .zh { font-family: var(--brush); color: var(--gold); font-size: 2rem; display: block; margin-bottom: 10px; }
+    .case-cta h2 { font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.3rem); letter-spacing: -0.01em; font-weight: 700; margin: 0 auto; max-width: 22ch; }
     .case-cta p { color: var(--text-dim); margin: 12px auto 0; max-width: 46ch; }
     .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 999px; font-weight: 600; font-size: 0.95rem; transition: transform .15s, box-shadow .2s; }
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(124,92,255,0.4); }
-    .btn-ghost { border: 1px solid var(--border); color: var(--text); background: var(--surface); }
-    .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
 
-    /* prev/next */
     .pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
     .pager a { color: var(--text-dim); font-size: 0.94rem; }
-    .pager a:hover { color: var(--text); }
+    .pager a:hover { color: var(--gold); }
 
-    /* ---------- Footer ---------- */
-    footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding: 48px 0 40px; margin-top: 72px; }
-    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: flex-start; }
-    .foot-links { display: flex; gap: 26px; flex-wrap: wrap; }
+    footer { border-top: 1px solid var(--border); background: var(--panel-bg); padding: 56px 0 44px; margin-top: 80px; position: relative; transition: background .4s ease; }
+    footer::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
+    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px; align-items: flex-start; }
+    .foot .brand { margin-bottom: 8px; }
+    .foot p.tag { color: var(--text-dim); font-size: 0.92rem; max-width: 34ch; }
+    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
     .foot-links a { color: var(--text-dim); font-size: 0.92rem; transition: color .2s; }
-    .foot-links a:hover { color: var(--text); }
-    .foot-social { display: flex; gap: 16px; }
-    .foot-social a { color: var(--text-dim); font-size: 0.92rem; }
-    .foot-social a:hover { color: var(--accent-2); }
-    .copyright { color: var(--text-dim); font-size: 0.85rem; margin-top: 28px; }
+    .foot-links a:hover { color: var(--gold); }
+    .foot-social { display: flex; gap: 18px; }
+    .foot-social a { color: var(--text-dim); font-size: 0.9rem; }
+    .foot-social a:hover { color: var(--cyan); }
+    .copyright { color: var(--text-mute); font-size: 0.84rem; margin-top: 32px; display: flex; align-items: center; gap: 10px; }
+    .copyright .zh { font-family: var(--brush); color: var(--cinnabar); font-size: 1.1rem; }
 
-    /* ---------- Responsive ---------- */
     @media (max-width: 860px) {
       .results-grid { grid-template-columns: 1fr; gap: 28px; }
       .deliv { grid-template-columns: 1fr; }
@@ -137,9 +163,9 @@
       .gallery .g.wide { aspect-ratio: 4/3; }
       .nav-links { display: none; }
       .nav-toggle { display: block; }
-      .nav-links.open { display: flex; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg-soft); border-bottom: 1px solid var(--border); padding: 8px 24px 20px; }
-      .nav-links.open a { padding: 12px 0; width: 100%; }
-      .nav-links.open .nav-cta { text-align: center; margin-top: 8px; }
+      .nav-links.open { display: flex; position: absolute; top: 74px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--ink-2); border-bottom: 1px solid var(--border-gold); padding: 8px 24px 22px; }
+      .nav-links.open a { padding: 13px 0; width: 100%; }
+      .nav-links.open .nav-cta { text-align: center; margin-top: 10px; }
     }
   </style>
 </head>
@@ -148,14 +174,33 @@
   <!-- ===== Header ===== -->
   <header>
     <div class="wrap nav">
-      <a href="index.html" class="logo">[Your<span>Name]</span></a>
-      <nav class="nav-links" id="navLinks">
-        <a href="work.html" class="active">Work</a>
-        <a href="index.html#services">Services</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#contact" class="nav-cta">Let's talk</a>
-      </nav>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+      <a href="index.html" class="brand">
+        <span class="seal">匠</span>
+        <span class="name">[Your <span>Name]</span></span>
+      </a>
+      <div class="nav-right">
+        <button class="lantern" id="lantern" aria-label="Switch to light mode" title="Toggle light / dark">
+          <svg viewBox="0 0 40 54" aria-hidden="true">
+            <line x1="20" y1="0" x2="20" y2="6" stroke="var(--gold)" stroke-width="1.6"/>
+            <rect x="13" y="5" width="14" height="4" rx="1.5" fill="var(--gold)"/>
+            <ellipse cx="20" cy="25" rx="13.5" ry="15.5" fill="var(--cinnabar)"/>
+            <path d="M20 9.5 C 8.5 16, 8.5 34, 20 40.5" stroke="rgba(0,0,0,0.16)" stroke-width="1" fill="none"/>
+            <path d="M20 9.5 C 31.5 16, 31.5 34, 20 40.5" stroke="rgba(0,0,0,0.16)" stroke-width="1" fill="none"/>
+            <line x1="20" y1="9.5" x2="20" y2="40.5" stroke="rgba(255,224,180,0.4)" stroke-width="1"/>
+            <ellipse cx="20" cy="25" rx="5" ry="7" fill="rgba(255,232,180,0.30)"/>
+            <rect x="13" y="39" width="14" height="4" rx="1.5" fill="var(--gold)"/>
+            <line x1="20" y1="43" x2="20" y2="49" stroke="var(--cinnabar)" stroke-width="2.2"/>
+            <path d="M16.5 49 h7 l-3.5 5 z" fill="var(--gold)"/>
+          </svg>
+        </button>
+        <nav class="nav-links" id="navLinks">
+          <a href="work.html" class="active">Work</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#contact" class="nav-cta">Let's talk</a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+      </div>
     </div>
   </header>
 
@@ -166,19 +211,18 @@
 
   <!-- ===== Case hero ===== -->
   <section class="case-hero">
+    <div class="kanji-bg" aria-hidden="true">境</div>
     <div class="wrap">
       <div class="case-tags"><span>Shopify</span><span>Video</span><span>Design</span></div>
       <h1>[How I rebuilt [Brand]'s store — and made the content that sells it.]</h1>
       <p class="lede">[One-paragraph summary: what the client needed, what you delivered end-to-end, and the headline outcome. This is the elevator pitch of the whole project.]</p>
-
       <div class="case-meta">
         <div class="m"><div class="k">Client</div><div class="v">[Brand Name]</div></div>
         <div class="m"><div class="k">Industry</div><div class="v">[e.g. Skincare / DTC]</div></div>
         <div class="m"><div class="k">Timeline</div><div class="v">[6 weeks]</div></div>
         <div class="m"><div class="k">My role</div><div class="v">Dev · Video · Design</div></div>
-        <div class="m"><div class="k">Live site</div><div class="v"><a href="#" style="color:var(--accent-2)">[brand.com ↗]</a></div></div>
+        <div class="m"><div class="k">Live site</div><div class="v"><a href="#" style="color:var(--cyan)">[brand.com ↗]</a></div></div>
       </div>
-
       <div class="case-media">[Hero image / cover video]</div>
     </div>
   </section>
@@ -187,36 +231,31 @@
   <div class="results">
     <div class="wrap">
       <div class="results-grid">
-        <div class="result"><div class="n"><span class="grad">+42%</span></div><div class="l">Conversion rate</div></div>
-        <div class="result"><div class="n"><span class="grad">3.1M</span></div><div class="l">Campaign video views</div></div>
-        <div class="result"><div class="n"><span class="grad">1.8s</span></div><div class="l">Page load (from 6s+)</div></div>
+        <div class="result"><div class="n grad">+42%</div><div class="l">Conversion rate</div></div>
+        <div class="result"><div class="n grad">3.1M</div><div class="l">Campaign video views</div></div>
+        <div class="result"><div class="n grad">1.8s</div><div class="l">Page load (from 6s+)</div></div>
       </div>
     </div>
   </div>
 
-  <!-- ===== Article body ===== -->
+  <!-- ===== Article ===== -->
   <div class="wrap">
     <article class="measure">
-
-      <span class="kicker">The challenge</span>
+      <span class="kicker"><span class="zh">難</span> The challenge</span>
       <h2>What the client came with</h2>
       <p>[Describe the starting point. What was broken or missing? Slow store, dated design, no video content, low conversion, disjointed branding? Set up the problem you were hired to solve.]</p>
-      <p class="dim">[Add the constraint or stakes — a launch deadline, a budget, a busy season they had to be ready for.]</p>
+      <p>[Add the constraint or stakes — a launch deadline, a budget, a busy season they had to be ready for.]</p>
 
-      <span class="kicker">The approach</span>
+      <span class="kicker"><span class="zh">謀</span> The approach</span>
       <h2>How I tackled it</h2>
       <p>[Explain your thinking. The key here is showing the advantage of one person owning dev + video + design: decisions stayed consistent, nothing got lost in handoffs, and the visuals were built for the exact store they'd live in.]</p>
-
       <h3>1. Rebuilt the store</h3>
       <p>[Technical work — theme, Liquid, structure, speed, integrations. Be specific about what you did.]</p>
-
       <h3>2. Produced the content</h3>
       <p>[Video + photography work — what you shot, edited, and why it fit the store and campaign.]</p>
-
       <h3>3. Unified the brand</h3>
       <p>[Design work — the system that tied store, video, and social together.]</p>
 
-      <!-- video showcase -->
       <div class="video-embed"><div class="play">▶</div></div>
 
       <div class="quote">
@@ -224,17 +263,19 @@
         <div class="cite">— [Client Name], [Title] at [Brand]</div>
       </div>
 
-      <span class="kicker">What I delivered</span>
+      <span class="kicker"><span class="zh">獻</span> What I delivered</span>
       <h2>The deliverables</h2>
       <div class="deliv">
-        <div class="col"><div class="ico">🛠️</div><h4>Development</h4><p>[Custom theme, speed pass, app integrations, X custom sections.]</p></div>
+        <div class="col"><div class="ico">⛩️</div><h4>Development</h4><p>[Custom theme, speed pass, app integrations, X custom sections.]</p></div>
         <div class="col"><div class="ico">🎬</div><h4>Video</h4><p>[Hero video + X product clips + X short-form cuts for social.]</p></div>
-        <div class="col"><div class="ico">🎨</div><h4>Design</h4><p>[Brand refresh, X social templates, product imagery, ad creative.]</p></div>
+        <div class="col"><div class="ico">🖌️</div><h4>Design</h4><p>[Brand refresh, X social templates, product imagery, ad creative.]</p></div>
       </div>
 
-      <span class="kicker">The work</span>
+      <div class="divider"><span class="l"></span><span class="mark">✦</span><span class="l r"></span></div>
+
+      <span class="kicker"><span class="zh">觀</span> The work</span>
       <h2>Selected visuals</h2>
-      <p class="dim">[Drop in screenshots, before/afters, video stills, and design frames. Show, don't just tell.]</p>
+      <p>[Drop in screenshots, before/afters, video stills, and design frames. Show, don't just tell.]</p>
       <div class="gallery">
         <div class="g wide">[Before / after — store homepage]</div>
         <div class="g">[Product page]</div>
@@ -243,7 +284,7 @@
         <div class="g">[Ad creative]</div>
       </div>
 
-      <span class="kicker">The outcome</span>
+      <span class="kicker"><span class="zh">果</span> The outcome</span>
       <h2>Results that mattered</h2>
       <p>[Restate the results with context. Not just the numbers — what they meant for the business. Tie it back to the problem you opened with so the story closes the loop.]</p>
       <ul>
@@ -252,13 +293,13 @@
         <li>[Launch campaign hit 3.1M organic views]</li>
         <li>[Client retained me for ongoing content — the real proof]</li>
       </ul>
-
     </article>
   </div>
 
   <!-- ===== CTA ===== -->
   <div class="wrap">
     <div class="case-cta">
+      <span class="zh">緣</span>
       <h2>Want this kind of end-to-end work for your brand?</h2>
       <p>Store, video, and design from one person who keeps it all consistent. Tell me what you're building.</p>
       <div class="cta-actions">
@@ -266,7 +307,6 @@
         <a href="work.html" class="btn btn-ghost">See more work</a>
       </div>
     </div>
-
     <div class="pager">
       <a href="#">← [Previous project]</a>
       <a href="#">[Next project] →</a>
@@ -278,23 +318,17 @@
     <div class="wrap">
       <div class="foot">
         <div>
-          <div class="logo" style="font-size:1.2rem;">[Your<span style="color:var(--accent);">Name]</span></div>
-          <p style="color:var(--text-dim); font-size:0.92rem; margin-top:8px; max-width:36ch;">Shopify developer & creative. Building stores and the visuals that sell them.</p>
+          <div class="brand"><span class="seal">匠</span><span class="name" style="font-size:1.25rem;">[Your <span style="color:var(--gold);">Name]</span></span></div>
+          <p class="tag">Shopify developer &amp; creative. Building stores and the visuals that sell them.</p>
         </div>
         <nav class="foot-links">
-          <a href="work.html">Work</a>
-          <a href="index.html#services">Services</a>
-          <a href="index.html#about">About</a>
-          <a href="index.html#contact">Contact</a>
+          <a href="work.html">Work</a><a href="index.html#services">Services</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a>
         </nav>
         <div class="foot-social">
-          <a href="#">Instagram</a>
-          <a href="#">Behance</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">YouTube</a>
+          <a href="#">Instagram</a><a href="#">Behance</a><a href="#">LinkedIn</a><a href="#">YouTube</a>
         </div>
       </div>
-      <p class="copyright">© 2026 [Your Name]. All rights reserved.</p>
+      <p class="copyright"><span class="zh">印</span> © 2026 [Your Name]. All rights reserved.</p>
     </div>
   </footer>
 
@@ -303,6 +337,15 @@
     const links = document.getElementById('navLinks');
     toggle.addEventListener('click', () => links.classList.toggle('open'));
     links.addEventListener('click', (e) => { if (e.target.tagName === 'A') links.classList.remove('open'); });
+
+    const lantern = document.getElementById('lantern');
+    function curTheme(){ return document.documentElement.getAttribute('data-theme') || 'dark'; }
+    lantern.addEventListener('click', () => {
+      const next = curTheme() === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch(e){}
+      lantern.setAttribute('aria-label', next === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+    });
   </script>
 
 </body>

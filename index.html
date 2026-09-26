@@ -5,80 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>[Your Name] — Shopify Developer & Creative</title>
   <meta name="description" content="Shopify developer, video editor, and graphic designer. I build stores that convert and the visuals that make them sell." />
+  <script>
+    /* Apply saved theme before paint (no flash). Default: dark. */
+    (function(){ try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch(e){} })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    /* ============ THEME TOKENS ============ */
     :root {
-      /* Ink base (墨) */
-      --ink: #0c0f12;
-      --ink-2: #12171c;
-      --surface: #171d23;
-      --surface-2: #1c242b;
-      --border: #2a343d;
-      --border-gold: rgba(212,175,98,0.28);
+      /* Dark (default) — ink & lantern-light */
+      --ink: #0c0f12; --ink-2: #12171c; --surface: #171d23; --surface-2: #1c242b;
+      --border: #2a343d; --border-gold: rgba(212,175,98,0.28);
+      --gold: #d4af62; --gold-bright: #f2d999; --cinnabar: #c8503a; --jade: #79c0a6; --cyan: #7fd7d0;
+      --text: #f4f0e7; --text-dim: #a6adb4; --text-mute: #6f7880;
+      --btn-ink: #17110a;
+      --header-bg: rgba(12,15,18,0.72); --panel-bg: rgba(18,23,28,0.6);
+      --thumb-a: #1e262d; --thumb-b: #12171c;
+      --glow-1: rgba(212,175,98,0.10); --glow-2: rgba(127,215,208,0.06); --glow-3: rgba(200,80,58,0.035);
+      --lantern-glow: drop-shadow(0 0 9px rgba(255,178,92,0.60));
 
-      /* Accents */
-      --gold: #d4af62;          /* imperial gold (金) */
-      --gold-bright: #f2d999;
-      --cinnabar: #c8503a;      /* seal red (朱) */
-      --jade: #79c0a6;          /* jade (玉) */
-      --cyan: #7fd7d0;          /* Wuthering tech glow */
-
-      --text: #f4f0e7;          /* warm rice-paper white */
-      --text-dim: #a6adb4;
-      --text-mute: #6f7880;
-
-      --radius: 4px;            /* sharp, angular (Wuthering) */
       --max: 1140px;
-
       --serif: "Cormorant Garamond", "Noto Serif SC", Georgia, "Times New Roman", serif;
       --brush: "Ma Shan Zheng", "Noto Serif SC", cursive;
       --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    :root[data-theme="light"] {
+      /* Light — rice paper (宣纸) & daylight */
+      --ink: #f3ead6; --ink-2: #ece0c7; --surface: #fbf5e6; --surface-2: #f5ecd7;
+      --border: #dccdae; --border-gold: rgba(156,118,32,0.40);
+      --gold: #9c7620; --gold-bright: #b6892f; --cinnabar: #bf3d29; --jade: #3f7d68; --cyan: #2b8079;
+      --text: #2b2418; --text-dim: #5e5648; --text-mute: #8a8070;
+      --header-bg: rgba(243,234,214,0.80); --panel-bg: rgba(246,238,217,0.72);
+      --thumb-a: #e7dbc2; --thumb-b: #f1e8d3;
+      --glow-1: rgba(212,175,98,0.20); --glow-2: rgba(43,128,121,0.08); --glow-3: rgba(191,61,41,0.06);
+      --lantern-glow: none;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: var(--sans);
-      background: var(--ink);
-      color: var(--text);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      font-family: var(--sans); background: var(--ink); color: var(--text);
+      line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+      transition: background .4s ease, color .4s ease;
     }
-    /* subtle rice-paper / ink texture */
     body::before {
-      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; transition: background .4s ease;
       background:
-        radial-gradient(900px 500px at 78% -8%, rgba(212,175,98,0.10), transparent 60%),
-        radial-gradient(700px 500px at 8% 100%, rgba(127,215,208,0.06), transparent 60%),
-        radial-gradient(1000px 700px at 50% 40%, rgba(200,80,58,0.035), transparent 70%);
+        radial-gradient(900px 500px at 78% -8%, var(--glow-1), transparent 60%),
+        radial-gradient(700px 500px at 8% 100%, var(--glow-2), transparent 60%),
+        radial-gradient(1000px 700px at 50% 40%, var(--glow-3), transparent 70%);
     }
     a { color: inherit; text-decoration: none; }
     .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
-    /* ---------- Seal stamp mark ---------- */
+    /* ---------- Seal stamp ---------- */
     .seal {
-      display: inline-grid; place-items: center;
-      width: 40px; height: 40px; flex: 0 0 40px;
-      background: var(--cinnabar);
-      color: #fff5ea; font-family: var(--brush); font-size: 1.5rem; line-height: 1;
-      border-radius: 3px; box-shadow: 0 0 0 1px rgba(255,255,255,0.12) inset;
-      transform: rotate(-2deg);
+      display: inline-grid; place-items: center; width: 40px; height: 40px; flex: 0 0 40px;
+      background: var(--cinnabar); color: #fff5ea; font-family: var(--brush); font-size: 1.5rem; line-height: 1;
+      border-radius: 3px; box-shadow: 0 0 0 1px rgba(255,255,255,0.12) inset; transform: rotate(-2deg);
     }
 
+    /* ---------- Lantern switch ---------- */
+    .nav-right { display: flex; align-items: center; gap: 22px; }
+    .lantern { background: none; border: 0; padding: 0; cursor: pointer; width: 30px; height: 46px; display: grid; place-items: start center; }
+    .lantern svg { width: 30px; height: 46px; transform-origin: 50% 2px; animation: sway 6s ease-in-out infinite; filter: var(--lantern-glow); transition: filter .35s ease, opacity .35s ease; }
+    .lantern:hover svg { animation-duration: 2.4s; }
+    :root[data-theme="light"] .lantern svg { opacity: 0.82; }
+    @keyframes sway { 0%,100% { transform: rotate(-3.5deg); } 50% { transform: rotate(3.5deg); } }
+    @media (prefers-reduced-motion: reduce) { .lantern svg { animation: none; } }
+
     /* ---------- Header ---------- */
-    header {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(12,15,18,0.72);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-    header::after { /* gold hairline */
-      content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
-    }
+    header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); transition: background .4s ease, border-color .4s ease; }
+    header::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
     .nav { display: flex; align-items: center; justify-content: space-between; height: 74px; }
     .brand { display: flex; align-items: center; gap: 12px; }
     .brand .name { font-family: var(--serif); font-weight: 700; font-size: 1.35rem; letter-spacing: 0.02em; }
@@ -88,68 +88,38 @@
     .nav-links a:not(.nav-cta)::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 0; height: 1px; background: var(--gold); transition: width .25s; }
     .nav-links a:not(.nav-cta):hover::after { width: 100%; }
     .nav-links a:hover { color: var(--text); }
-    .nav-cta {
-      color: var(--gold); border: 1px solid var(--border-gold); padding: 9px 20px;
-      font-weight: 600; font-size: 0.88rem; letter-spacing: 0.04em;
-      clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
-      transition: all .2s; background: rgba(212,175,98,0.05);
-    }
-    .nav-cta:hover { background: var(--gold); color: var(--ink); }
+    .nav-cta { color: var(--gold); border: 1px solid var(--border-gold); padding: 9px 20px; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.04em; clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px); transition: all .2s; background: rgba(212,175,98,0.05); }
+    .nav-cta:hover { background: var(--gold); color: var(--btn-ink); }
     .nav-toggle { display: none; background: none; border: 0; color: var(--gold); font-size: 1.5rem; cursor: pointer; }
 
     /* ---------- Hero ---------- */
     .hero { position: relative; padding: 110px 0 140px; overflow: hidden; }
-    /* big faint calligraphy backdrop */
-    .hero .kanji-bg {
-      position: absolute; right: -2%; top: 46%; transform: translateY(-50%);
-      font-family: var(--brush); font-size: clamp(16rem, 42vw, 40rem); line-height: 0.8;
-      color: rgba(212,175,98,0.05); pointer-events: none; user-select: none; z-index: 0;
-    }
-    /* moon / sun disc */
-    .hero .disc {
-      position: absolute; right: 8%; top: 96px; width: 230px; height: 230px; border-radius: 50%;
-      background: radial-gradient(circle at 38% 34%, rgba(242,217,153,0.22), rgba(200,80,58,0.10) 55%, transparent 72%);
-      border: 1px solid rgba(212,175,98,0.22); z-index: 0; filter: blur(0.4px);
-    }
+    .hero .kanji-bg { position: absolute; right: -2%; top: 46%; transform: translateY(-50%); font-family: var(--brush); font-size: clamp(16rem, 42vw, 40rem); line-height: 0.8; color: var(--glow-1); pointer-events: none; user-select: none; z-index: 0; }
+    .hero .disc { position: absolute; right: 8%; top: 96px; width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(circle at 38% 34%, rgba(242,217,153,0.22), rgba(200,80,58,0.10) 55%, transparent 72%); border: 1px solid var(--border-gold); z-index: 0; }
     .hero .wrap { position: relative; z-index: 2; }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 12px; margin-bottom: 30px;
-      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
-    }
+    .eyebrow { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 30px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
     .eyebrow .zh { font-family: var(--brush); font-size: 1.4rem; letter-spacing: 0; color: var(--cinnabar); text-transform: none; }
     .eyebrow .line { width: 46px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
-    .hero h1 {
-      font-family: var(--serif); font-weight: 700;
-      font-size: clamp(2.6rem, 6.5vw, 5rem); line-height: 1.02; letter-spacing: -0.01em; max-width: 16ch;
-    }
-    .hero h1 .grad {
-      background: linear-gradient(100deg, var(--gold-bright), var(--gold) 40%, var(--cinnabar));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
+    .hero h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(2.6rem, 6.5vw, 5rem); line-height: 1.02; letter-spacing: -0.01em; max-width: 16ch; }
+    .hero h1 .grad, .grad { background: linear-gradient(100deg, var(--gold-bright), var(--gold) 40%, var(--cinnabar)); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .hero p.sub { margin-top: 28px; font-size: clamp(1.05rem, 2.1vw, 1.32rem); color: var(--text-dim); max-width: 54ch; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 40px; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 9px; padding: 14px 30px;
-      font-weight: 600; font-size: 0.98rem; letter-spacing: 0.03em; transition: all .2s;
-      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-    }
-    .btn-primary { background: linear-gradient(120deg, var(--gold), var(--gold-bright)); color: var(--ink); }
+    .btn { display: inline-flex; align-items: center; gap: 9px; padding: 14px 30px; font-weight: 600; font-size: 0.98rem; letter-spacing: 0.03em; transition: all .2s; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); }
+    .btn-primary { background: linear-gradient(120deg, var(--gold), var(--gold-bright)); color: var(--btn-ink); }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(212,175,98,0.32); }
     .btn-ghost { border: 1px solid var(--border-gold); color: var(--gold); background: rgba(212,175,98,0.04); }
     .btn-ghost:hover { border-color: var(--gold); background: rgba(212,175,98,0.1); transform: translateY(-2px); }
-
-    /* auspicious cloud / wave scroll at hero base */
     .cloud-strip { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; line-height: 0; opacity: 0.5; }
     .cloud-strip svg { width: 100%; height: 60px; display: block; }
 
-    /* ---------- Ornamental divider ---------- */
+    /* ---------- Divider ---------- */
     .divider { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 6px 0; }
     .divider .l { height: 1px; width: 90px; background: linear-gradient(90deg, transparent, var(--border-gold)); }
     .divider .l.r { background: linear-gradient(90deg, var(--border-gold), transparent); }
     .divider .mark { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.3em; }
 
     /* ---------- Trust strip ---------- */
-    .trust { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(18,23,28,0.6); }
+    .trust { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--panel-bg); transition: background .4s ease; }
     .trust .wrap { padding: 30px 24px; }
     .trust-label { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-mute); text-align: center; margin-bottom: 20px; }
     .trust-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 44px; align-items: center; }
@@ -157,9 +127,8 @@
 
     /* ---------- Stats ---------- */
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 72px 0; }
-    .stat { text-align: center; padding: 30px 16px; background: var(--ink); }
+    .stat { text-align: center; padding: 30px 16px; background: var(--ink); transition: background .4s ease; }
     .stat .num { font-family: var(--serif); font-size: clamp(2rem, 4.4vw, 3rem); font-weight: 700; letter-spacing: -0.01em; }
-    .stat .num .grad { background: linear-gradient(120deg, var(--gold-bright), var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .stat .lbl { color: var(--text-dim); font-size: 0.9rem; margin-top: 6px; letter-spacing: 0.02em; }
 
     /* ---------- Sections ---------- */
@@ -170,21 +139,14 @@
     .section-head h2 { font-family: var(--serif); font-size: clamp(2rem, 4.6vw, 3rem); letter-spacing: -0.01em; margin-top: 12px; font-weight: 700; }
     .section-head p { color: var(--text-dim); margin-top: 14px; font-size: 1.08rem; }
 
-    /* ornamental card (Genshin corner brackets) */
     .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-    .card {
-      position: relative; background: linear-gradient(160deg, var(--surface), var(--ink-2));
-      border: 1px solid var(--border); padding: 34px 30px; transition: transform .25s, border-color .25s;
-      clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
-    }
-    .card::before, .card::after { /* gold corner brackets */
-      content: ""; position: absolute; width: 22px; height: 22px; pointer-events: none;
-    }
+    .card { position: relative; background: linear-gradient(160deg, var(--surface), var(--ink-2)); border: 1px solid var(--border); padding: 34px 30px; transition: transform .25s, border-color .25s; clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px); }
+    .card::before, .card::after { content: ""; position: absolute; width: 22px; height: 22px; pointer-events: none; }
     .card::before { top: 8px; left: 8px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
     .card::after { bottom: 8px; right: 8px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
     .card:hover { transform: translateY(-5px); border-color: var(--border-gold); }
     .card .ico { font-size: 1.9rem; margin-bottom: 16px; filter: drop-shadow(0 4px 12px rgba(212,175,98,0.25)); }
-    .card h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; letter-spacing: 0; }
+    .card h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; }
     .card h3 .zh { font-family: var(--brush); color: var(--gold); font-size: 1.1rem; margin-left: 8px; }
     .card p { color: var(--text-dim); margin-top: 10px; font-size: 0.97rem; }
     .card ul { list-style: none; margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -192,20 +154,12 @@
 
     /* ---------- Featured work ---------- */
     .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-    .work-card {
-      position: relative; background: var(--surface); border: 1px solid var(--border); overflow: hidden;
-      transition: transform .25s, border-color .25s;
-      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
-    }
+    .work-card { position: relative; background: var(--surface); border: 1px solid var(--border); overflow: hidden; transition: transform .25s, border-color .25s; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%); }
     .work-card:hover { transform: translateY(-5px); border-color: var(--border-gold); }
-    .work-thumb {
-      aspect-ratio: 16/9; display: grid; place-items: center;
-      background: linear-gradient(135deg, #1e262d, #12171c);
-      color: var(--text-mute); font-size: 0.85rem; letter-spacing: 0.03em; border-bottom: 1px solid var(--border);
-    }
+    .work-thumb { aspect-ratio: 16/9; display: grid; place-items: center; background: linear-gradient(135deg, var(--thumb-a), var(--thumb-b)); color: var(--text-mute); font-size: 0.85rem; letter-spacing: 0.03em; border-bottom: 1px solid var(--border); }
     .work-body { padding: 26px 28px 30px; }
     .work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-    .work-tags span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); border: 1px solid rgba(127,215,208,0.28); padding: 3px 10px; }
+    .work-tags span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); border: 1px solid var(--cyan); padding: 3px 10px; opacity: 0.9; }
     .work-body h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; }
     .work-body p { color: var(--text-dim); margin-top: 6px; font-size: 0.95rem; }
     .work-metric { margin-top: 16px; font-weight: 600; color: var(--text); font-size: 0.95rem; }
@@ -213,19 +167,14 @@
     .work-more { text-align: center; margin-top: 48px; }
 
     /* ---------- CTA banner ---------- */
-    .cta-banner {
-      position: relative; overflow: hidden; border: 1px solid var(--border-gold);
-      background: linear-gradient(135deg, rgba(200,80,58,0.10), rgba(212,175,98,0.08));
-      padding: 66px 44px; text-align: center;
-      clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px);
-    }
+    .cta-banner { position: relative; overflow: hidden; border: 1px solid var(--border-gold); background: linear-gradient(135deg, rgba(200,80,58,0.10), rgba(212,175,98,0.08)); padding: 66px 44px; text-align: center; clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px); }
     .cta-banner .zh { font-family: var(--brush); color: var(--gold); font-size: 2rem; display: block; margin-bottom: 10px; }
     .cta-banner h2 { font-family: var(--serif); font-size: clamp(1.8rem, 4.4vw, 2.7rem); letter-spacing: -0.01em; font-weight: 700; max-width: 20ch; margin: 0 auto; }
     .cta-banner p { color: var(--text-dim); margin-top: 14px; max-width: 46ch; margin-inline: auto; }
     .cta-banner .hero-actions { justify-content: center; }
 
     /* ---------- Footer ---------- */
-    footer { border-top: 1px solid var(--border); background: rgba(18,23,28,0.6); padding: 56px 0 44px; margin-top: 92px; position: relative; }
+    footer { border-top: 1px solid var(--border); background: var(--panel-bg); padding: 56px 0 44px; margin-top: 92px; position: relative; transition: background .4s ease; }
     footer::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
     .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px; align-items: flex-start; }
     .foot .brand { margin-bottom: 8px; }
@@ -240,20 +189,11 @@
     .copyright .zh { font-family: var(--brush); color: var(--cinnabar); font-size: 1.1rem; }
 
     /* ---------- Responsive ---------- */
-    @media (max-width: 900px) {
-      .stats { grid-template-columns: repeat(2, 1fr); }
-      .offer-grid { grid-template-columns: 1fr; }
-      .work-grid { grid-template-columns: 1fr; }
-      .hero .disc { display: none; }
-    }
+    @media (max-width: 900px) { .stats { grid-template-columns: repeat(2, 1fr); } .offer-grid { grid-template-columns: 1fr; } .work-grid { grid-template-columns: 1fr; } .hero .disc { display: none; } }
     @media (max-width: 720px) {
       .nav-links { display: none; }
       .nav-toggle { display: block; }
-      .nav-links.open {
-        display: flex; position: absolute; top: 74px; left: 0; right: 0;
-        flex-direction: column; gap: 0; background: var(--ink-2);
-        border-bottom: 1px solid var(--border-gold); padding: 8px 24px 22px;
-      }
+      .nav-links.open { display: flex; position: absolute; top: 74px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--ink-2); border-bottom: 1px solid var(--border-gold); padding: 8px 24px 22px; }
       .nav-links.open a { padding: 13px 0; width: 100%; }
       .nav-links.open .nav-cta { text-align: center; margin-top: 10px; }
       .hero { padding: 72px 0 110px; }
@@ -266,17 +206,32 @@
   <header>
     <div class="wrap nav">
       <a href="index.html" class="brand">
-        <!-- Seal character (匠 = master craftsman). Swap for your own initial/name. -->
         <span class="seal">匠</span>
         <span class="name">[Your <span>Name]</span></span>
       </a>
-      <nav class="nav-links" id="navLinks">
-        <a href="work.html">Work</a>
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#contact" class="nav-cta">Let's talk</a>
-      </nav>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+      <div class="nav-right">
+        <button class="lantern" id="lantern" aria-label="Switch to light mode" title="Toggle light / dark">
+          <svg viewBox="0 0 40 54" aria-hidden="true">
+            <line x1="20" y1="0" x2="20" y2="6" stroke="var(--gold)" stroke-width="1.6"/>
+            <rect x="13" y="5" width="14" height="4" rx="1.5" fill="var(--gold)"/>
+            <ellipse cx="20" cy="25" rx="13.5" ry="15.5" fill="var(--cinnabar)"/>
+            <path d="M20 9.5 C 8.5 16, 8.5 34, 20 40.5" stroke="rgba(0,0,0,0.16)" stroke-width="1" fill="none"/>
+            <path d="M20 9.5 C 31.5 16, 31.5 34, 20 40.5" stroke="rgba(0,0,0,0.16)" stroke-width="1" fill="none"/>
+            <line x1="20" y1="9.5" x2="20" y2="40.5" stroke="rgba(255,224,180,0.4)" stroke-width="1"/>
+            <ellipse cx="20" cy="25" rx="5" ry="7" fill="rgba(255,232,180,0.30)"/>
+            <rect x="13" y="39" width="14" height="4" rx="1.5" fill="var(--gold)"/>
+            <line x1="20" y1="43" x2="20" y2="49" stroke="var(--cinnabar)" stroke-width="2.2"/>
+            <path d="M16.5 49 h7 l-3.5 5 z" fill="var(--gold)"/>
+          </svg>
+        </button>
+        <nav class="nav-links" id="navLinks">
+          <a href="work.html">Work</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact" class="nav-cta">Let's talk</a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+      </div>
     </div>
   </header>
 
@@ -296,11 +251,10 @@
         <a href="#contact" class="btn btn-ghost">Book a call</a>
       </div>
     </div>
-    <!-- auspicious cloud / wave scroll -->
     <div class="cloud-strip" aria-hidden="true">
       <svg viewBox="0 0 1440 60" preserveAspectRatio="none" fill="none">
         <path d="M0 40 C 120 40 120 18 200 18 C 250 18 250 34 300 34 C 360 34 360 12 440 12 C 500 12 500 30 560 30 C 640 30 640 16 720 16 C 800 16 800 32 880 32 C 950 32 950 14 1040 14 C 1110 14 1110 30 1180 30 C 1260 30 1260 18 1360 18 C 1410 18 1410 38 1440 40 L 1440 60 L 0 60 Z"
-          stroke="#d4af62" stroke-width="1" fill="rgba(212,175,98,0.05)"/>
+          stroke="var(--gold)" stroke-width="1" fill="rgba(212,175,98,0.05)"/>
       </svg>
     </div>
   </section>
@@ -310,11 +264,7 @@
     <div class="wrap">
       <p class="trust-label">Trusted by · Built with</p>
       <div class="trust-logos">
-        <span>[Client]</span>
-        <span>[Client]</span>
-        <span>Shopify Partner</span>
-        <span>Adobe CC</span>
-        <span>[Client]</span>
+        <span>[Client]</span><span>[Client]</span><span>Shopify Partner</span><span>Adobe CC</span><span>[Client]</span>
       </div>
     </div>
   </div>
@@ -329,7 +279,7 @@
     </div>
   </div>
 
-  <!-- ===== What I do (dual offer) ===== -->
+  <!-- ===== Services ===== -->
   <section class="block" id="services">
     <div class="wrap">
       <div class="section-head">
@@ -416,7 +366,7 @@
     </div>
   </section>
 
-  <!-- ===== CTA banner ===== -->
+  <!-- ===== CTA ===== -->
   <section class="block" id="contact" style="padding-top: 0;">
     <div class="wrap">
       <div class="cta-banner">
@@ -440,16 +390,10 @@
           <p class="tag">Shopify developer &amp; creative. Building stores and the visuals that sell them.</p>
         </div>
         <nav class="foot-links">
-          <a href="work.html">Work</a>
-          <a href="#services">Services</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+          <a href="work.html">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
         </nav>
         <div class="foot-social">
-          <a href="#">Instagram</a>
-          <a href="#">Behance</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">YouTube</a>
+          <a href="#">Instagram</a><a href="#">Behance</a><a href="#">LinkedIn</a><a href="#">YouTube</a>
         </div>
       </div>
       <p class="copyright"><span class="zh">印</span> © 2026 [Your Name]. All rights reserved.</p>
@@ -457,10 +401,21 @@
   </footer>
 
   <script>
+    // Mobile nav
     const toggle = document.getElementById('navToggle');
     const links = document.getElementById('navLinks');
     toggle.addEventListener('click', () => links.classList.toggle('open'));
     links.addEventListener('click', (e) => { if (e.target.tagName === 'A') links.classList.remove('open'); });
+
+    // Lantern theme switch
+    const lantern = document.getElementById('lantern');
+    function curTheme(){ return document.documentElement.getAttribute('data-theme') || 'dark'; }
+    lantern.addEventListener('click', () => {
+      const next = curTheme() === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch(e){}
+      lantern.setAttribute('aria-label', next === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+    });
   </script>
 
 </body>

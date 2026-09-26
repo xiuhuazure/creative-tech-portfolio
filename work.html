@@ -49,8 +49,8 @@
     /* seal + lantern */
     .seal { display: inline-grid; place-items: center; width: 40px; height: 40px; flex: 0 0 40px; background: var(--cinnabar); color: #fff5ea; font-family: var(--brush); font-size: 1.5rem; line-height: 1; border-radius: 3px; box-shadow: 0 0 0 1px rgba(255,255,255,0.12) inset; transform: rotate(-2deg); }
     .nav-right { display: flex; align-items: center; gap: 22px; }
-    .lantern { position: fixed; top: 0; right: 30px; z-index: 60; background: none; border: 0; padding: 0; cursor: pointer; width: 60px; height: 127px; }
-    .lantern svg { width: 60px; height: 127px; display: block; transform-origin: 50% 0; animation: sway 6s ease-in-out infinite; filter: var(--lantern-glow); transition: filter .35s ease, opacity .35s ease; }
+    .lantern { position: fixed; top: 0; right: 30px; z-index: 60; background: none; border: 0; padding: 0; cursor: pointer; width: 60px; height: 89px; }
+    .lantern svg { width: 60px; height: 89px; display: block; transform-origin: 50% 0; animation: sway 6s ease-in-out infinite; filter: var(--lantern-glow); transition: filter .35s ease, opacity .35s ease; }
     .lantern:hover svg { animation-duration: 2.4s; }
     :root[data-theme="light"] .lantern svg { opacity: 0.85; }
     @keyframes sway { 0%,100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
@@ -156,8 +156,8 @@
       .nav-links.open a { padding: 13px 0; width: 100%; }
       .nav-links.open .nav-cta { text-align: center; margin-top: 10px; }
       .nav { padding-right: 66px; }
-      .lantern { width: 46px; height: 97px; right: 12px; }
-      .lantern svg { width: 46px; height: 97px; }
+      .lantern { width: 46px; height: 68px; right: 12px; }
+      .lantern svg { width: 46px; height: 68px; }
     }
   </style>
 </head>
@@ -165,16 +165,16 @@
 
   <!-- Lantern light/dark switch — hangs from the top-right corner -->
   <button class="lantern" id="lantern" aria-label="Switch to light mode" title="Toggle light / dark">
-    <svg viewBox="0 0 84 178" aria-hidden="true">
+    <svg viewBox="0 0 84 124" aria-hidden="true">
       <defs>
-        <radialGradient id="lBody" cx="0.38" cy="0.34" r="0.78">
-          <stop offset="0" stop-color="#79e6cf"/>
-          <stop offset="0.45" stop-color="#31b6a2"/>
-          <stop offset="1" stop-color="#137266"/>
+        <radialGradient id="lBody" cx="0.42" cy="0.40" r="0.72">
+          <stop offset="0" stop-color="#8bead6"/>
+          <stop offset="0.55" stop-color="#33b6a2"/>
+          <stop offset="1" stop-color="#0f6d61"/>
         </radialGradient>
         <linearGradient id="lCap" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#d9ab4c"/>
-          <stop offset="1" stop-color="#875c1c"/>
+          <stop offset="0" stop-color="#eccb73"/>
+          <stop offset="1" stop-color="#b6842b"/>
         </linearGradient>
         <linearGradient id="lGold" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stop-color="#f6d689"/>
@@ -182,43 +182,27 @@
         </linearGradient>
       </defs>
       <line x1="42" y1="0" x2="42" y2="8" stroke="url(#lGold)" stroke-width="2"/>
-      <rect x="38.5" y="6" width="7" height="5" rx="2" fill="url(#lCap)"/>
-      <rect x="30" y="10" width="24" height="6" rx="2" fill="url(#lCap)"/>
-      <rect x="26" y="15" width="32" height="10" rx="3" fill="url(#lCap)"/>
-      <ellipse cx="42" cy="60" rx="31" ry="35" fill="url(#lBody)"/>
-      <g stroke="url(#lGold)" stroke-width="1.5" fill="none" opacity="0.85">
-        <path d="M42 26 Q12 60 42 94"/>
-        <path d="M42 26 Q24 60 42 94"/>
-        <path d="M42 26 Q34 60 42 94"/>
-        <path d="M42 26 Q50 60 42 94"/>
-        <path d="M42 26 Q60 60 42 94"/>
-        <path d="M42 26 Q72 60 42 94"/>
+      <rect x="34" y="7" width="16" height="8" rx="3" fill="url(#lCap)"/>
+      <rect x="27" y="14" width="30" height="11" rx="4" fill="url(#lCap)"/>
+      <ellipse cx="42" cy="60" rx="33" ry="35" fill="url(#lBody)"/>
+      <g stroke="url(#lGold)" stroke-width="1.5" fill="none" opacity="0.9" stroke-linecap="round">
+        <path d="M42 25 Q13 60 42 95"/>
+        <path d="M42 25 Q22 60 42 95"/>
+        <path d="M42 25 Q32 60 42 95"/>
+        <path d="M42 25 L42 95"/>
+        <path d="M42 25 Q52 60 42 95"/>
+        <path d="M42 25 Q62 60 42 95"/>
+        <path d="M42 25 Q71 60 42 95"/>
       </g>
-      <ellipse cx="31" cy="47" rx="9" ry="15" fill="rgba(255,255,255,0.16)"/>
-      <rect x="26" y="95" width="32" height="10" rx="3" fill="url(#lCap)"/>
-      <rect x="30" y="104" width="24" height="6" rx="2" fill="url(#lCap)"/>
-      <rect x="34" y="110" width="16" height="4" rx="1.5" fill="url(#lGold)"/>
-      <g stroke="url(#lGold)" stroke-width="1.5">
-        <line x1="35" y1="114" x2="35" y2="121"/>
-        <line x1="37.5" y1="114" x2="37.5" y2="123"/>
-        <line x1="40" y1="114" x2="40" y2="124"/>
-        <line x1="42.5" y1="114" x2="42.5" y2="124"/>
-        <line x1="45" y1="114" x2="45" y2="123"/>
-        <line x1="47.5" y1="114" x2="47.5" y2="121"/>
-      </g>
-      <line x1="42" y1="124" x2="42" y2="132" stroke="url(#lGold)" stroke-width="1.6"/>
-      <g transform="rotate(45 42 146)">
-        <rect x="29" y="133" width="26" height="26" rx="7" fill="none" stroke="url(#lGold)" stroke-width="3.4"/>
-        <rect x="35" y="139" width="14" height="14" rx="4" fill="none" stroke="url(#lGold)" stroke-width="3"/>
-      </g>
-      <circle cx="42" cy="163" r="3.2" fill="url(#lGold)"/>
-      <rect x="37" y="165" width="10" height="3.4" rx="1.2" fill="url(#lGold)"/>
-      <g stroke="url(#lGold)" stroke-width="1.4">
-        <line x1="38" y1="168" x2="38" y2="176"/>
-        <line x1="40" y1="168" x2="40" y2="177"/>
-        <line x1="42" y1="168" x2="42" y2="178"/>
-        <line x1="44" y1="168" x2="44" y2="177"/>
-        <line x1="46" y1="168" x2="46" y2="176"/>
+      <ellipse cx="30" cy="46" rx="8" ry="13" fill="rgba(255,255,255,0.18)"/>
+      <rect x="27" y="95" width="30" height="11" rx="4" fill="url(#lCap)"/>
+      <rect x="34" y="105" width="16" height="8" rx="3" fill="url(#lCap)"/>
+      <g stroke="url(#lGold)" stroke-width="1.6" stroke-linecap="round">
+        <line x1="36" y1="113" x2="36" y2="119"/>
+        <line x1="39" y1="113" x2="39" y2="121"/>
+        <line x1="42" y1="113" x2="42" y2="123"/>
+        <line x1="45" y1="113" x2="45" y2="121"/>
+        <line x1="48" y1="113" x2="48" y2="119"/>
       </g>
     </svg>
   </button>

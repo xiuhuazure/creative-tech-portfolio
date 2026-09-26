@@ -56,6 +56,24 @@
     @keyframes sway { 0%,100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
     @media (prefers-reduced-motion: reduce) { .lantern svg { animation: none; } }
 
+    /* ---------- Bamboo ambiance ---------- */
+    .decor { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .bamboo { position: fixed; bottom: 0; width: 132px; height: 88vh; opacity: 0.5; }
+    .bamboo-left { left: 0; }
+    .bamboo-right { right: 0; transform: scaleX(-1); }
+    .bamboo svg { width: 100%; height: 100%; display: block; }
+    .leaf { position: fixed; top: 0; left: var(--x, 50vw); width: calc(15px * var(--s, 1)); z-index: 0; opacity: 0; will-change: transform, opacity; animation: leafFall var(--d, 11s) linear var(--delay, 0s) infinite; }
+    .leaf svg { width: 100%; height: auto; display: block; }
+    @keyframes leafFall {
+      0% { transform: translate(0, -12vh) rotate(0deg); opacity: 0; }
+      8% { opacity: 0.85; }
+      50% { transform: translate(calc(var(--drift, 0px) * 0.6), 48vh) rotate(calc(var(--spin, 180deg) * 0.5)); }
+      92% { opacity: 0.85; }
+      100% { transform: translate(var(--drift, 0px), 114vh) rotate(var(--spin, 360deg)); opacity: 0; }
+    }
+    @media (max-width: 1240px) { .bamboo { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .leaf { display: none; } }
+
     /* header */
     header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); transition: background .4s ease, border-color .4s ease; }
     header::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
@@ -207,6 +225,13 @@
       <rect x="41.5" y="157" width="13" height="24" rx="1.5" fill="url(#redFringe)"/>
     </svg>
   </button>
+
+  <!-- Bamboo ambiance -->
+  <div class="decor" aria-hidden="true">
+    <div class="bamboo bamboo-left"><svg viewBox="0 0 130 520" preserveAspectRatio="xMidYMax meet"><defs><linearGradient id="cane" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#84b76a"/><stop offset="0.5" stop-color="#5b9050"/><stop offset="1" stop-color="#3c6a37"/></linearGradient></defs><g opacity="0.75"><rect x="74" y="150" width="11" height="370" rx="5.5" fill="url(#cane)"/><g fill="#2f5a2c"><rect x="72" y="215" width="15" height="5" rx="2.5"/><rect x="72" y="290" width="15" height="5" rx="2.5"/><rect x="72" y="365" width="15" height="5" rx="2.5"/><rect x="72" y="440" width="15" height="5" rx="2.5"/></g></g><rect x="34" y="70" width="15" height="450" rx="7.5" fill="url(#cane)"/><g fill="#2f5a2c"><rect x="32" y="150" width="19" height="6" rx="3"/><rect x="32" y="228" width="19" height="6" rx="3"/><rect x="32" y="306" width="19" height="6" rx="3"/><rect x="32" y="384" width="19" height="6" rx="3"/><rect x="32" y="462" width="19" height="6" rx="3"/></g><g fill="#4e8a44"><g transform="translate(41,74)"><path d="M0 0 C 10 -5 26 -6 40 -2 C 26 2 12 4 0 4 Z" transform="rotate(-38)"/><path d="M0 0 C 10 -4 24 -4 36 0 C 24 4 10 5 0 3 Z" transform="rotate(-8) scale(0.9)"/><path d="M0 0 C 9 -4 22 -4 33 -1 C 22 3 10 4 0 3 Z" transform="rotate(-72) scale(0.85)"/></g><g transform="translate(80,152)" fill="#57963f"><path d="M0 0 C 9 -4 22 -4 33 -1 C 22 3 10 4 0 3 Z" transform="rotate(28)"/><path d="M0 0 C 9 -4 22 -4 33 -1 C 22 3 10 4 0 3 Z" transform="rotate(62) scale(0.85)"/></g><g transform="translate(40,300)"><path d="M0 0 C 9 -4 22 -4 33 -1 C 22 3 10 4 0 3 Z" transform="rotate(-30) scale(0.8)"/><path d="M0 0 C 9 -4 22 -4 33 -1 C 22 3 10 4 0 3 Z" transform="rotate(-70) scale(0.7)"/></g></g></svg></div>
+    <div class="bamboo bamboo-right"><svg viewBox="0 0 130 520" preserveAspectRatio="xMidYMax meet"><g opacity="0.75"><rect x="74" y="150" width="11" height="370" rx="5.5" fill="url(#cane)"/><g fill="#2f5a2c"><rect x="72" y="215" width="15" height="5" rx="2.5"/><rect x="72" y="290" width="15" height="5" rx="2.5"/><rect x="72" y="365" width="15" height="5" rx="2.5"/><rect x="72" y="440" width="15" height="5" rx="2.5"/></g></g><rect x="34" y="70" width="15" height="450" rx="7.5" fill="url(#cane)"/><g fill="#2f5a2c"><rect x="32" y="150" width="19" height="6" rx="3"/><rect x="32" y="228" width="19" height="6" rx="3"/><rect x="32" y="306" width="19" height="6" rx="3"/><rect x="32" y="384" width="19" height="6" rx="3"/><rect x="32" y="462" width="19" height="6" rx="3"/></g><g fill="#4e8a44"><g transform="translate(41,74)"><path d="M0 0 C 10 -5 26 -6 40 -2 C 26 2 12 4 0 4 Z" transform="rotate(-38)"/><path d="M0 0 C 10 -4 24 -4 36 0 C 24 4 10 5 0 3 Z" transform="rotate(-8) scale(0.9)"/><path d="M0 0 C 9 -4 22 -4 33 -1 C 22 3 10 4 0 3 Z" transform="rotate(-72) scale(0.85)"/></g><g transform="translate(80,152)" fill="#57963f"><path d="M0 0 C 9 -4 22 -4 33 -1 C 22 3 10 4 0 3 Z" transform="rotate(28)"/><path d="M0 0 C 9 -4 22 -4 33 -1 C 22 3 10 4 0 3 Z" transform="rotate(62) scale(0.85)"/></g><g transform="translate(40,300)"><path d="M0 0 C 9 -4 22 -4 33 -1 C 22 3 10 4 0 3 Z" transform="rotate(-30) scale(0.8)"/><path d="M0 0 C 9 -4 22 -4 33 -1 C 22 3 10 4 0 3 Z" transform="rotate(-70) scale(0.7)"/></g></g></svg></div>
+    <div class="leaves" id="leaves"></div>
+  </div>
 
   <!-- ===== Header ===== -->
   <header>
@@ -377,6 +402,25 @@
       try { localStorage.setItem('theme', next); } catch(e){}
       lantern.setAttribute('aria-label', next === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
     });
+
+    // Falling bamboo leaves
+    (function(){
+      try { if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch(e){}
+      var host = document.getElementById('leaves'); if (!host) return;
+      var greens = ['#6bab52','#57933f','#7cb964','#4e8a44'];
+      var tpl = '<svg viewBox="0 0 28 12"><path d="M1 6 C 8 1 20 1 27 6 C 20 11 8 11 1 6 Z" fill="{c}"/><path d="M3 6 H 24" stroke="rgba(28,66,24,0.45)" stroke-width="1"/></svg>';
+      for (var i = 0; i < 14; i++) {
+        var el = document.createElement('span'); el.className = 'leaf';
+        el.style.setProperty('--x', (Math.random()*100).toFixed(1) + 'vw');
+        el.style.setProperty('--s', (0.6 + Math.random()*0.9).toFixed(2));
+        el.style.setProperty('--d', (8 + Math.random()*9).toFixed(1) + 's');
+        el.style.setProperty('--delay', (-Math.random()*16).toFixed(1) + 's');
+        el.style.setProperty('--drift', (Math.random()*44 - 22).toFixed(0) + 'px');
+        el.style.setProperty('--spin', (Math.random()*720 - 360).toFixed(0) + 'deg');
+        el.innerHTML = tpl.replace('{c}', greens[i % greens.length]);
+        host.appendChild(el);
+      }
+    })();
   </script>
 
 </body>

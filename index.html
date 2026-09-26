@@ -5,196 +5,258 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>[Your Name] — Shopify Developer & Creative</title>
   <meta name="description" content="Shopify developer, video editor, and graphic designer. I build stores that convert and the visuals that make them sell." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0e0e11;
-      --bg-soft: #16161b;
-      --surface: #1c1c23;
-      --border: #2a2a33;
-      --text: #f4f4f5;
-      --text-dim: #a1a1aa;
-      --accent: #7c5cff;
-      --accent-2: #22d3ee;
-      --radius: 14px;
-      --max: 1120px;
-      --font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      /* Ink base (墨) */
+      --ink: #0c0f12;
+      --ink-2: #12171c;
+      --surface: #171d23;
+      --surface-2: #1c242b;
+      --border: #2a343d;
+      --border-gold: rgba(212,175,98,0.28);
+
+      /* Accents */
+      --gold: #d4af62;          /* imperial gold (金) */
+      --gold-bright: #f2d999;
+      --cinnabar: #c8503a;      /* seal red (朱) */
+      --jade: #79c0a6;          /* jade (玉) */
+      --cyan: #7fd7d0;          /* Wuthering tech glow */
+
+      --text: #f4f0e7;          /* warm rice-paper white */
+      --text-dim: #a6adb4;
+      --text-mute: #6f7880;
+
+      --radius: 4px;            /* sharp, angular (Wuthering) */
+      --max: 1140px;
+
+      --serif: "Cormorant Garamond", "Noto Serif SC", Georgia, "Times New Roman", serif;
+      --brush: "Ma Shan Zheng", "Noto Serif SC", cursive;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: var(--font);
-      background: var(--bg);
+      font-family: var(--sans);
+      background: var(--ink);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
-
+    /* subtle rice-paper / ink texture */
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(900px 500px at 78% -8%, rgba(212,175,98,0.10), transparent 60%),
+        radial-gradient(700px 500px at 8% 100%, rgba(127,215,208,0.06), transparent 60%),
+        radial-gradient(1000px 700px at 50% 40%, rgba(200,80,58,0.035), transparent 70%);
+    }
     a { color: inherit; text-decoration: none; }
+    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
-    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    /* ---------- Seal stamp mark ---------- */
+    .seal {
+      display: inline-grid; place-items: center;
+      width: 40px; height: 40px; flex: 0 0 40px;
+      background: var(--cinnabar);
+      color: #fff5ea; font-family: var(--brush); font-size: 1.5rem; line-height: 1;
+      border-radius: 3px; box-shadow: 0 0 0 1px rgba(255,255,255,0.12) inset;
+      transform: rotate(-2deg);
+    }
 
     /* ---------- Header ---------- */
     header {
       position: sticky; top: 0; z-index: 50;
-      background: rgba(14,14,17,0.72);
-      backdrop-filter: blur(12px);
+      background: rgba(12,15,18,0.72);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
-    .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 68px;
+    header::after { /* gold hairline */
+      content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
     }
-    .logo { font-weight: 700; letter-spacing: -0.02em; font-size: 1.1rem; }
-    .logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 28px; align-items: center; }
-    .nav-links a { color: var(--text-dim); font-size: 0.94rem; transition: color .2s; }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand .name { font-family: var(--serif); font-weight: 700; font-size: 1.35rem; letter-spacing: 0.02em; }
+    .brand .name span { color: var(--gold); }
+    .nav-links { display: flex; gap: 30px; align-items: center; }
+    .nav-links a { color: var(--text-dim); font-size: 0.92rem; letter-spacing: 0.03em; transition: color .2s; position: relative; }
+    .nav-links a:not(.nav-cta)::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 0; height: 1px; background: var(--gold); transition: width .25s; }
+    .nav-links a:not(.nav-cta):hover::after { width: 100%; }
     .nav-links a:hover { color: var(--text); }
     .nav-cta {
-      background: var(--accent); color: #fff; padding: 9px 18px;
-      border-radius: 999px; font-weight: 600; font-size: 0.9rem;
-      transition: transform .15s, box-shadow .2s;
+      color: var(--gold); border: 1px solid var(--border-gold); padding: 9px 20px;
+      font-weight: 600; font-size: 0.88rem; letter-spacing: 0.04em;
+      clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+      transition: all .2s; background: rgba(212,175,98,0.05);
     }
-    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(124,92,255,0.35); }
-    .nav-toggle { display: none; background: none; border: 0; color: var(--text); font-size: 1.4rem; cursor: pointer; }
+    .nav-cta:hover { background: var(--gold); color: var(--ink); }
+    .nav-toggle { display: none; background: none; border: 0; color: var(--gold); font-size: 1.5rem; cursor: pointer; }
 
     /* ---------- Hero ---------- */
-    .hero {
-      position: relative; overflow: hidden;
-      padding: 96px 0 88px;
+    .hero { position: relative; padding: 110px 0 140px; overflow: hidden; }
+    /* big faint calligraphy backdrop */
+    .hero .kanji-bg {
+      position: absolute; right: -2%; top: 46%; transform: translateY(-50%);
+      font-family: var(--brush); font-size: clamp(16rem, 42vw, 40rem); line-height: 0.8;
+      color: rgba(212,175,98,0.05); pointer-events: none; user-select: none; z-index: 0;
     }
-    .hero::before {
-      content: ""; position: absolute; inset: 0;
-      background:
-        radial-gradient(600px 400px at 80% 10%, rgba(124,92,255,0.18), transparent 60%),
-        radial-gradient(500px 400px at 10% 90%, rgba(34,211,238,0.12), transparent 60%);
-      pointer-events: none;
+    /* moon / sun disc */
+    .hero .disc {
+      position: absolute; right: 8%; top: 96px; width: 230px; height: 230px; border-radius: 50%;
+      background: radial-gradient(circle at 38% 34%, rgba(242,217,153,0.22), rgba(200,80,58,0.10) 55%, transparent 72%);
+      border: 1px solid rgba(212,175,98,0.22); z-index: 0; filter: blur(0.4px);
     }
-    .hero .wrap { position: relative; }
+    .hero .wrap { position: relative; z-index: 2; }
     .eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
-      color: var(--accent-2); background: rgba(34,211,238,0.08);
-      border: 1px solid rgba(34,211,238,0.2); padding: 6px 14px; border-radius: 999px;
-      margin-bottom: 24px;
+      display: inline-flex; align-items: center; gap: 12px; margin-bottom: 30px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
     }
+    .eyebrow .zh { font-family: var(--brush); font-size: 1.4rem; letter-spacing: 0; color: var(--cinnabar); text-transform: none; }
+    .eyebrow .line { width: 46px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
     .hero h1 {
-      font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.05;
-      letter-spacing: -0.03em; font-weight: 800; max-width: 15ch;
+      font-family: var(--serif); font-weight: 700;
+      font-size: clamp(2.6rem, 6.5vw, 5rem); line-height: 1.02; letter-spacing: -0.01em; max-width: 16ch;
     }
     .hero h1 .grad {
-      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      background: linear-gradient(100deg, var(--gold-bright), var(--gold) 40%, var(--cinnabar));
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-    .hero p.sub {
-      margin-top: 24px; font-size: clamp(1.05rem, 2.2vw, 1.3rem);
-      color: var(--text-dim); max-width: 52ch;
-    }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+    .hero p.sub { margin-top: 28px; font-size: clamp(1.05rem, 2.1vw, 1.32rem); color: var(--text-dim); max-width: 54ch; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 40px; }
     .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 13px 26px; border-radius: 999px; font-weight: 600; font-size: 0.98rem;
-      transition: transform .15s, box-shadow .2s, background .2s;
+      display: inline-flex; align-items: center; gap: 9px; padding: 14px 30px;
+      font-weight: 600; font-size: 0.98rem; letter-spacing: 0.03em; transition: all .2s;
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
     }
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(124,92,255,0.4); }
-    .btn-ghost { border: 1px solid var(--border); color: var(--text); background: var(--surface); }
-    .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(120deg, var(--gold), var(--gold-bright)); color: var(--ink); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(212,175,98,0.32); }
+    .btn-ghost { border: 1px solid var(--border-gold); color: var(--gold); background: rgba(212,175,98,0.04); }
+    .btn-ghost:hover { border-color: var(--gold); background: rgba(212,175,98,0.1); transform: translateY(-2px); }
+
+    /* auspicious cloud / wave scroll at hero base */
+    .cloud-strip { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; line-height: 0; opacity: 0.5; }
+    .cloud-strip svg { width: 100%; height: 60px; display: block; }
+
+    /* ---------- Ornamental divider ---------- */
+    .divider { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 6px 0; }
+    .divider .l { height: 1px; width: 90px; background: linear-gradient(90deg, transparent, var(--border-gold)); }
+    .divider .l.r { background: linear-gradient(90deg, var(--border-gold), transparent); }
+    .divider .mark { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.3em; }
 
     /* ---------- Trust strip ---------- */
-    .trust { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-soft); }
-    .trust .wrap { padding: 28px 24px; }
-    .trust-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); text-align: center; margin-bottom: 18px; }
-    .trust-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; align-items: center; }
-    .trust-logos span { color: var(--text-dim); font-weight: 700; font-size: 1.05rem; opacity: 0.65; letter-spacing: -0.01em; }
+    .trust { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(18,23,28,0.6); }
+    .trust .wrap { padding: 30px 24px; }
+    .trust-label { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-mute); text-align: center; margin-bottom: 20px; }
+    .trust-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 44px; align-items: center; }
+    .trust-logos span { color: var(--text-dim); font-family: var(--serif); font-weight: 600; font-size: 1.2rem; opacity: 0.6; }
 
     /* ---------- Stats ---------- */
-    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 64px 0; }
-    .stat { text-align: center; }
-    .stat .num { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; }
-    .stat .num .grad { background: linear-gradient(120deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .stat .lbl { color: var(--text-dim); font-size: 0.92rem; margin-top: 4px; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 72px 0; }
+    .stat { text-align: center; padding: 30px 16px; background: var(--ink); }
+    .stat .num { font-family: var(--serif); font-size: clamp(2rem, 4.4vw, 3rem); font-weight: 700; letter-spacing: -0.01em; }
+    .stat .num .grad { background: linear-gradient(120deg, var(--gold-bright), var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .stat .lbl { color: var(--text-dim); font-size: 0.9rem; margin-top: 6px; letter-spacing: 0.02em; }
 
     /* ---------- Sections ---------- */
-    section.block { padding: 80px 0; }
-    .section-head { max-width: 640px; margin-bottom: 44px; }
-    .section-head .kicker { color: var(--accent); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
-    .section-head h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); letter-spacing: -0.02em; margin-top: 10px; font-weight: 800; }
-    .section-head p { color: var(--text-dim); margin-top: 12px; font-size: 1.05rem; }
+    section.block { padding: 92px 0; position: relative; }
+    .section-head { max-width: 660px; margin: 0 auto 56px; text-align: center; }
+    .section-head .zh { font-family: var(--brush); color: var(--cinnabar); font-size: 2.4rem; line-height: 1; display: block; margin-bottom: 8px; }
+    .section-head .kicker { color: var(--gold); font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.2em; }
+    .section-head h2 { font-family: var(--serif); font-size: clamp(2rem, 4.6vw, 3rem); letter-spacing: -0.01em; margin-top: 12px; font-weight: 700; }
+    .section-head p { color: var(--text-dim); margin-top: 14px; font-size: 1.08rem; }
 
-    /* ---------- What I do (dual offer) ---------- */
-    .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    /* ornamental card (Genshin corner brackets) */
+    .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
     .card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 28px; transition: transform .2s, border-color .2s;
+      position: relative; background: linear-gradient(160deg, var(--surface), var(--ink-2));
+      border: 1px solid var(--border); padding: 34px 30px; transition: transform .25s, border-color .25s;
+      clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
     }
-    .card:hover { transform: translateY(-4px); border-color: var(--accent); }
-    .card .ico { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; font-size: 1.4rem; margin-bottom: 16px; background: rgba(124,92,255,0.12); }
-    .card h3 { font-size: 1.2rem; letter-spacing: -0.01em; }
-    .card p { color: var(--text-dim); margin-top: 8px; font-size: 0.96rem; }
-    .card ul { list-style: none; margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
-    .card ul li { font-size: 0.8rem; color: var(--text-dim); border: 1px solid var(--border); padding: 4px 10px; border-radius: 999px; }
+    .card::before, .card::after { /* gold corner brackets */
+      content: ""; position: absolute; width: 22px; height: 22px; pointer-events: none;
+    }
+    .card::before { top: 8px; left: 8px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+    .card::after { bottom: 8px; right: 8px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+    .card:hover { transform: translateY(-5px); border-color: var(--border-gold); }
+    .card .ico { font-size: 1.9rem; margin-bottom: 16px; filter: drop-shadow(0 4px 12px rgba(212,175,98,0.25)); }
+    .card h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; letter-spacing: 0; }
+    .card h3 .zh { font-family: var(--brush); color: var(--gold); font-size: 1.1rem; margin-left: 8px; }
+    .card p { color: var(--text-dim); margin-top: 10px; font-size: 0.97rem; }
+    .card ul { list-style: none; margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .card ul li { font-size: 0.78rem; color: var(--gold); border: 1px solid var(--border-gold); padding: 4px 11px; letter-spacing: 0.03em; }
 
     /* ---------- Featured work ---------- */
-    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
     .work-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; transition: transform .2s, border-color .2s;
+      position: relative; background: var(--surface); border: 1px solid var(--border); overflow: hidden;
+      transition: transform .25s, border-color .25s;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
     }
-    .work-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .work-card:hover { transform: translateY(-5px); border-color: var(--border-gold); }
     .work-thumb {
       aspect-ratio: 16/9; display: grid; place-items: center;
-      background: linear-gradient(135deg, #23232c, #17171d);
-      color: var(--text-dim); font-size: 0.85rem; letter-spacing: 0.03em;
-      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, #1e262d, #12171c);
+      color: var(--text-mute); font-size: 0.85rem; letter-spacing: 0.03em; border-bottom: 1px solid var(--border);
     }
-    .work-body { padding: 22px 24px 26px; }
-    .work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-    .work-tags span { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent-2); background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.18); padding: 3px 9px; border-radius: 999px; }
-    .work-body h3 { font-size: 1.25rem; letter-spacing: -0.01em; }
+    .work-body { padding: 26px 28px 30px; }
+    .work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .work-tags span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); border: 1px solid rgba(127,215,208,0.28); padding: 3px 10px; }
+    .work-body h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; }
     .work-body p { color: var(--text-dim); margin-top: 6px; font-size: 0.95rem; }
-    .work-metric { margin-top: 14px; font-weight: 700; color: var(--text); font-size: 0.95rem; }
-    .work-metric span { color: var(--accent-2); }
-    .work-more { text-align: center; margin-top: 40px; }
+    .work-metric { margin-top: 16px; font-weight: 600; color: var(--text); font-size: 0.95rem; }
+    .work-metric span { color: var(--gold); font-family: var(--serif); font-size: 1.15rem; }
+    .work-more { text-align: center; margin-top: 48px; }
 
     /* ---------- CTA banner ---------- */
     .cta-banner {
-      position: relative; overflow: hidden;
-      border: 1px solid var(--border); border-radius: 24px;
-      background: linear-gradient(135deg, rgba(124,92,255,0.14), rgba(34,211,238,0.08));
-      padding: 56px 40px; text-align: center;
+      position: relative; overflow: hidden; border: 1px solid var(--border-gold);
+      background: linear-gradient(135deg, rgba(200,80,58,0.10), rgba(212,175,98,0.08));
+      padding: 66px 44px; text-align: center;
+      clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px);
     }
-    .cta-banner h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); letter-spacing: -0.02em; font-weight: 800; max-width: 20ch; margin: 0 auto; }
-    .cta-banner p { color: var(--text-dim); margin-top: 12px; max-width: 46ch; margin-inline: auto; }
+    .cta-banner .zh { font-family: var(--brush); color: var(--gold); font-size: 2rem; display: block; margin-bottom: 10px; }
+    .cta-banner h2 { font-family: var(--serif); font-size: clamp(1.8rem, 4.4vw, 2.7rem); letter-spacing: -0.01em; font-weight: 700; max-width: 20ch; margin: 0 auto; }
+    .cta-banner p { color: var(--text-dim); margin-top: 14px; max-width: 46ch; margin-inline: auto; }
     .cta-banner .hero-actions { justify-content: center; }
 
     /* ---------- Footer ---------- */
-    footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding: 48px 0 40px; margin-top: 80px; }
-    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: flex-start; }
-    .foot-links { display: flex; gap: 26px; flex-wrap: wrap; }
+    footer { border-top: 1px solid var(--border); background: rgba(18,23,28,0.6); padding: 56px 0 44px; margin-top: 92px; position: relative; }
+    footer::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
+    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px; align-items: flex-start; }
+    .foot .brand { margin-bottom: 8px; }
+    .foot p.tag { color: var(--text-dim); font-size: 0.92rem; max-width: 34ch; }
+    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
     .foot-links a { color: var(--text-dim); font-size: 0.92rem; transition: color .2s; }
-    .foot-links a:hover { color: var(--text); }
-    .foot-social { display: flex; gap: 16px; }
-    .foot-social a { color: var(--text-dim); font-size: 0.92rem; }
-    .foot-social a:hover { color: var(--accent-2); }
-    .copyright { color: var(--text-dim); font-size: 0.85rem; margin-top: 28px; }
+    .foot-links a:hover { color: var(--gold); }
+    .foot-social { display: flex; gap: 18px; }
+    .foot-social a { color: var(--text-dim); font-size: 0.9rem; }
+    .foot-social a:hover { color: var(--cyan); }
+    .copyright { color: var(--text-mute); font-size: 0.84rem; margin-top: 32px; display: flex; align-items: center; gap: 10px; }
+    .copyright .zh { font-family: var(--brush); color: var(--cinnabar); font-size: 1.1rem; }
 
     /* ---------- Responsive ---------- */
-    @media (max-width: 860px) {
-      .stats { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+    @media (max-width: 900px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
       .offer-grid { grid-template-columns: 1fr; }
       .work-grid { grid-template-columns: 1fr; }
+      .hero .disc { display: none; }
+    }
+    @media (max-width: 720px) {
       .nav-links { display: none; }
       .nav-toggle { display: block; }
       .nav-links.open {
-        display: flex; position: absolute; top: 68px; left: 0; right: 0;
-        flex-direction: column; gap: 0; background: var(--bg-soft);
-        border-bottom: 1px solid var(--border); padding: 8px 24px 20px;
+        display: flex; position: absolute; top: 74px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--ink-2);
+        border-bottom: 1px solid var(--border-gold); padding: 8px 24px 22px;
       }
-      .nav-links.open a { padding: 12px 0; width: 100%; }
-      .nav-links.open .nav-cta { text-align: center; margin-top: 8px; }
+      .nav-links.open a { padding: 13px 0; width: 100%; }
+      .nav-links.open .nav-cta { text-align: center; margin-top: 10px; }
+      .hero { padding: 72px 0 110px; }
     }
   </style>
 </head>
@@ -203,9 +265,13 @@
   <!-- ===== Header ===== -->
   <header>
     <div class="wrap nav">
-      <a href="#" class="logo">[Your<span>Name]</span></a>
+      <a href="index.html" class="brand">
+        <!-- Seal character (匠 = master craftsman). Swap for your own initial/name. -->
+        <span class="seal">匠</span>
+        <span class="name">[Your <span>Name]</span></span>
+      </a>
       <nav class="nav-links" id="navLinks">
-        <a href="#work">Work</a>
+        <a href="work.html">Work</a>
         <a href="#services">Services</a>
         <a href="#about">About</a>
         <a href="#contact" class="nav-cta">Let's talk</a>
@@ -216,30 +282,39 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero">
+    <div class="kanji-bg" aria-hidden="true">境</div>
+    <div class="disc" aria-hidden="true"></div>
     <div class="wrap">
-      <span class="eyebrow">◆ Shopify Developer · Video · Design</span>
+      <span class="eyebrow"><span class="line"></span> <span class="zh">匠心</span> Shopify Developer · Video · Design</span>
       <h1>I build Shopify stores that convert — and the <span class="grad">visuals that make them sell.</span></h1>
       <p class="sub">
         [Your Name] here. Part developer, part creative — one person who can build your store,
         edit your videos, and design the graphics that tie it all together.
       </p>
       <div class="hero-actions">
-        <a href="#work" class="btn btn-primary">See my work →</a>
+        <a href="work.html" class="btn btn-primary">See my work →</a>
         <a href="#contact" class="btn btn-ghost">Book a call</a>
       </div>
+    </div>
+    <!-- auspicious cloud / wave scroll -->
+    <div class="cloud-strip" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" fill="none">
+        <path d="M0 40 C 120 40 120 18 200 18 C 250 18 250 34 300 34 C 360 34 360 12 440 12 C 500 12 500 30 560 30 C 640 30 640 16 720 16 C 800 16 800 32 880 32 C 950 32 950 14 1040 14 C 1110 14 1110 30 1180 30 C 1260 30 1260 18 1360 18 C 1410 18 1410 38 1440 40 L 1440 60 L 0 60 Z"
+          stroke="#d4af62" stroke-width="1" fill="rgba(212,175,98,0.05)"/>
+      </svg>
     </div>
   </section>
 
   <!-- ===== Trust strip ===== -->
   <div class="trust">
     <div class="wrap">
-      <p class="trust-label">Trusted by / Built with</p>
+      <p class="trust-label">Trusted by · Built with</p>
       <div class="trust-logos">
-        <span>[Client Logo]</span>
-        <span>[Client Logo]</span>
+        <span>[Client]</span>
+        <span>[Client]</span>
         <span>Shopify Partner</span>
         <span>Adobe CC</span>
-        <span>[Client Logo]</span>
+        <span>[Client]</span>
       </div>
     </div>
   </div>
@@ -258,26 +333,27 @@
   <section class="block" id="services">
     <div class="wrap">
       <div class="section-head">
+        <span class="zh">藝</span>
         <span class="kicker">What I do</span>
         <h2>One person, the full package.</h2>
         <p>Most freelancers do one thing. I cover the store, the motion, and the design — so your brand looks and works like it should, end to end.</p>
       </div>
       <div class="offer-grid">
         <div class="card">
-          <div class="ico">🛠️</div>
-          <h3>Shopify Development</h3>
+          <div class="ico">⛩️</div>
+          <h3>Shopify Development <span class="zh">技</span></h3>
           <p>Custom themes, Liquid, app integrations, migrations, and speed optimization that turns browsers into buyers.</p>
           <ul><li>Liquid</li><li>Theme dev</li><li>Speed</li><li>Headless</li><li>Apps</li></ul>
         </div>
         <div class="card">
           <div class="ico">🎬</div>
-          <h3>Video Editing</h3>
-          <p>Short-form for Reels & TikTok, product videos, and motion graphics that stop the scroll and drive the click.</p>
+          <h3>Video Editing <span class="zh">影</span></h3>
+          <p>Short-form for Reels &amp; TikTok, product videos, and motion graphics that stop the scroll and drive the click.</p>
           <ul><li>Editing</li><li>Motion GFX</li><li>Short-form</li><li>Product video</li></ul>
         </div>
         <div class="card">
-          <div class="ico">🎨</div>
-          <h3>Graphic Design</h3>
+          <div class="ico">🖌️</div>
+          <h3>Graphic Design <span class="zh">繪</span></h3>
           <p>Brand assets, social templates, product imagery, and ad creative that keeps every touchpoint on-brand.</p>
           <ul><li>Brand</li><li>Social</li><li>Ad creative</li><li>Imagery</li></ul>
         </div>
@@ -285,13 +361,16 @@
     </div>
   </section>
 
+  <div class="wrap"><div class="divider"><span class="l"></span><span class="mark">✦</span><span class="l r"></span></div></div>
+
   <!-- ===== Featured work ===== -->
-  <section class="block" id="work" style="padding-top: 0;">
+  <section class="block" id="work">
     <div class="wrap">
       <div class="section-head">
+        <span class="zh">作</span>
         <span class="kicker">Selected work</span>
         <h2>Projects where dev meets design.</h2>
-        <p>A few builds where I handled the store, the visuals, or both. [Swap these for your real case studies.]</p>
+        <p>A few builds where I handled the store, the visuals, or both.</p>
       </div>
       <div class="work-grid">
         <article class="work-card">
@@ -300,7 +379,7 @@
             <div class="work-tags"><span>Shopify</span><span>Motion</span></div>
             <h3>[Project Name]</h3>
             <p>[One line on the problem you solved for this client.]</p>
-            <p class="work-metric"><span>+42%</span> conversion after rebuild & new product videos</p>
+            <p class="work-metric"><span>+42%</span> conversion after rebuild &amp; new product videos</p>
           </div>
         </article>
         <article class="work-card">
@@ -327,7 +406,7 @@
             <div class="work-tags"><span>Shopify</span><span>Design</span><span>Video</span></div>
             <h3>[Project Name]</h3>
             <p>[The full-package project — store + video + graphics for one brand.]</p>
-            <p class="work-metric"><span>End-to-end</span> store, content & launch</p>
+            <p class="work-metric"><span>End-to-end</span> store, content &amp; launch</p>
           </div>
         </article>
       </div>
@@ -341,6 +420,7 @@
   <section class="block" id="contact" style="padding-top: 0;">
     <div class="wrap">
       <div class="cta-banner">
+        <span class="zh">緣</span>
         <h2>Got a store that needs building — or content that needs to sell?</h2>
         <p>Tell me what you're working on. I'll come back with how I'd approach it and a rough plan.</p>
         <div class="hero-actions">
@@ -356,11 +436,11 @@
     <div class="wrap">
       <div class="foot">
         <div>
-          <div class="logo" style="font-size:1.2rem;">[Your<span style="color:var(--accent);">Name]</span></div>
-          <p style="color:var(--text-dim); font-size:0.92rem; margin-top:8px; max-width:36ch;">Shopify developer & creative. Building stores and the visuals that sell them.</p>
+          <div class="brand"><span class="seal">匠</span><span class="name" style="font-size:1.25rem;">[Your <span style="color:var(--gold);">Name]</span></span></div>
+          <p class="tag">Shopify developer &amp; creative. Building stores and the visuals that sell them.</p>
         </div>
         <nav class="foot-links">
-          <a href="#work">Work</a>
+          <a href="work.html">Work</a>
           <a href="#services">Services</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
@@ -372,18 +452,15 @@
           <a href="#">YouTube</a>
         </div>
       </div>
-      <p class="copyright">© 2026 [Your Name]. All rights reserved.</p>
+      <p class="copyright"><span class="zh">印</span> © 2026 [Your Name]. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
-    // Mobile nav toggle
     const toggle = document.getElementById('navToggle');
     const links = document.getElementById('navLinks');
     toggle.addEventListener('click', () => links.classList.toggle('open'));
-    links.addEventListener('click', (e) => {
-      if (e.target.tagName === 'A') links.classList.remove('open');
-    });
+    links.addEventListener('click', (e) => { if (e.target.tagName === 'A') links.classList.remove('open'); });
   </script>
 
 </body>

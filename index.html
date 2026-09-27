@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Your Name] — Shopify Developer & Creative</title>
+  <meta name="description" content="Shopify developer, video editor, and graphic designer. I build stores that convert and the visuals that make them sell." />
+  <script>
+    /* Apply saved theme before paint (no flash). Default: dark. */
+    (function(){ try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch(e){} })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ============ THEME TOKENS ============ */
+    :root {
+      /* Dark (default) — ink & lantern-light */
+      --ink: #0c0f12; --ink-2: #12171c; --surface: #171d23; --surface-2: #1c242b;
+      --border: #2a343d; --border-gold: rgba(212,175,98,0.28);
+      --gold: #d4af62; --gold-bright: #f2d999; --cinnabar: #c8503a; --jade: #79c0a6; --cyan: #7fd7d0;
+      --text: #f4f0e7; --text-dim: #a6adb4; --text-mute: #6f7880;
+      --btn-ink: #17110a;
+      --header-bg: rgba(12,15,18,0.72); --panel-bg: rgba(18,23,28,0.6);
+      --thumb-a: #1e262d; --thumb-b: #12171c;
+      --glow-1: rgba(212,175,98,0.10); --glow-2: rgba(127,215,208,0.06); --glow-3: rgba(200,80,58,0.035);
+      --lantern-glow: drop-shadow(0 0 20px rgba(232,70,55,0.5)) drop-shadow(0 0 9px rgba(255,180,90,0.34));
+
+      --max: 1140px;
+      --serif: "Cormorant Garamond", "Noto Serif SC", Georgia, "Times New Roman", serif;
+      --brush: "Ma Shan Zheng", "Noto Serif SC", cursive;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    :root[data-theme="light"] {
+      /* Light — rice paper (宣纸) & daylight */
+      --ink: #f3ead6; --ink-2: #ece0c7; --surface: #fbf5e6; --surface-2: #f5ecd7;
+      --border: #dccdae; --border-gold: rgba(156,118,32,0.40);
+      --gold: #9c7620; --gold-bright: #b6892f; --cinnabar: #bf3d29; --jade: #3f7d68; --cyan: #2b8079;
+      --text: #2b2418; --text-dim: #5e5648; --text-mute: #8a8070;
+      --header-bg: rgba(243,234,214,0.80); --panel-bg: rgba(246,238,217,0.72);
+      --thumb-a: #e7dbc2; --thumb-b: #f1e8d3;
+      --glow-1: rgba(212,175,98,0.20); --glow-2: rgba(43,128,121,0.08); --glow-3: rgba(191,61,41,0.06);
+      --lantern-glow: none;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans); background: var(--ink); color: var(--text);
+      line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+      transition: background .4s ease, color .4s ease;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; transition: background .4s ease;
+      background:
+        radial-gradient(900px 500px at 78% -8%, var(--glow-1), transparent 60%),
+        radial-gradient(700px 500px at 8% 100%, var(--glow-2), transparent 60%),
+        radial-gradient(1000px 700px at 50% 40%, var(--glow-3), transparent 70%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* ---------- Seal stamp ---------- */
+    .seal {
+      display: inline-grid; place-items: center; width: 40px; height: 40px; flex: 0 0 40px;
+      background: var(--cinnabar); color: #fff5ea; font-family: var(--brush); font-size: 1.5rem; line-height: 1;
+      border-radius: 3px; box-shadow: 0 0 0 1px rgba(255,255,255,0.12) inset; transform: rotate(-2deg);
+    }
+
+    /* ---------- Lantern switch ---------- */
+    .nav-right { display: flex; align-items: center; gap: 22px; }
+    .lantern { position: fixed; top: 0; right: 30px; z-index: 60; background: none; border: 0; padding: 0; cursor: pointer; width: 62px; height: 120px; }
+    .lantern svg { width: 62px; height: 120px; display: block; transform-origin: 50% 0; animation: sway 6s ease-in-out infinite; filter: var(--lantern-glow); transition: filter .35s ease, opacity .35s ease; }
+    .lantern:hover svg { animation-duration: 2.4s; }
+    :root[data-theme="light"] .lantern svg { opacity: 0.85; }
+    @keyframes sway { 0%,100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+    @media (prefers-reduced-motion: reduce) { .lantern svg { animation: none; } }
+
+    /* ---------- Bamboo ambiance ---------- */
+    .decor { position: fixed; inset: 0; z-index: 55; pointer-events: none; overflow: hidden; }
+    .bamboo { position: fixed; top: 0; bottom: 0; width: 172px; opacity: 0.66; }
+    .bamboo-left { left: 0; }
+    .bamboo-right { right: 0; transform: scaleX(-1); }
+    .bamboo .canes { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .bamboo .tops { position: absolute; top: 44px; left: 0; width: 172px; height: auto; display: block; }
+    .leaf { position: fixed; top: 0; left: var(--x, 50vw); width: calc(15px * var(--s, 1)); z-index: 0; opacity: 0; will-change: transform, opacity; animation: leafFall var(--d, 11s) linear var(--delay, 0s) infinite; }
+    .leaf svg { width: 100%; height: auto; display: block; }
+    @keyframes leafFall {
+      0% { transform: translate(0, -12vh) rotate(0deg); opacity: 0; }
+      8% { opacity: 0.85; }
+      50% { transform: translate(calc(var(--drift, 0px) * 0.6), 48vh) rotate(calc(var(--spin, 180deg) * 0.5)); }
+      92% { opacity: 0.85; }
+      100% { transform: translate(var(--drift, 0px), 114vh) rotate(var(--spin, 360deg)); opacity: 0; }
+    }
+    @media (max-width: 1440px) { .bamboo { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .leaf { display: none; } }
+
+    /* ---------- Header ---------- */
+    header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); transition: background .4s ease, border-color .4s ease; }
+    header::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 74px; padding-right: 96px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand .name { font-family: var(--serif); font-weight: 700; font-size: 1.35rem; letter-spacing: 0.02em; }
+    .brand .name span { color: var(--gold); }
+    .nav-links { display: flex; gap: 30px; align-items: center; }
+    .nav-links a { color: var(--text-dim); font-size: 0.92rem; letter-spacing: 0.03em; transition: color .2s; position: relative; }
+    .nav-links a:not(.nav-cta)::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 0; height: 1px; background: var(--gold); transition: width .25s; }
+    .nav-links a:not(.nav-cta):hover::after { width: 100%; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { color: var(--gold); border: 1px solid var(--border-gold); padding: 9px 20px; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.04em; clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px); transition: all .2s; background: rgba(212,175,98,0.05); }
+    .nav-cta:hover { background: var(--gold); color: var(--btn-ink); }
+    .nav-toggle { display: none; background: none; border: 0; color: var(--gold); font-size: 1.5rem; cursor: pointer; }
+
+    /* ---------- Hero ---------- */
+    .hero { position: relative; padding: 110px 0 140px; overflow: hidden; }
+    .hero .kanji-bg { position: absolute; right: -2%; top: 46%; transform: translateY(-50%); font-family: var(--brush); font-size: clamp(16rem, 42vw, 40rem); line-height: 0.8; color: var(--glow-1); pointer-events: none; user-select: none; z-index: 0; }
+    .hero .disc { position: absolute; right: 8%; top: 96px; width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(circle at 38% 34%, rgba(242,217,153,0.22), rgba(200,80,58,0.10) 55%, transparent 72%); border: 1px solid var(--border-gold); z-index: 0; }
+    .hero .wrap { position: relative; z-index: 2; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 30px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+    .eyebrow .zh { font-family: var(--brush); font-size: 1.4rem; letter-spacing: 0; color: var(--cinnabar); text-transform: none; }
+    .eyebrow .line { width: 46px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
+    .hero h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(2.6rem, 6.5vw, 5rem); line-height: 1.02; letter-spacing: -0.01em; max-width: 16ch; }
+    .hero h1 .grad, .grad { background: linear-gradient(100deg, var(--gold-bright), var(--gold) 40%, var(--cinnabar)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero p.sub { margin-top: 28px; font-size: clamp(1.05rem, 2.1vw, 1.32rem); color: var(--text-dim); max-width: 54ch; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 40px; }
+    .btn { display: inline-flex; align-items: center; gap: 9px; padding: 14px 30px; font-weight: 600; font-size: 0.98rem; letter-spacing: 0.03em; transition: all .2s; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); }
+    .btn-primary { background: linear-gradient(120deg, var(--gold), var(--gold-bright)); color: var(--btn-ink); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(212,175,98,0.32); }
+    .btn-ghost { border: 1px solid var(--border-gold); color: var(--gold); background: rgba(212,175,98,0.04); }
+    .btn-ghost:hover { border-color: var(--gold); background: rgba(212,175,98,0.1); transform: translateY(-2px); }
+    .cloud-strip { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; line-height: 0; opacity: 0.5; }
+    .cloud-strip svg { width: 100%; height: 60px; display: block; }
+
+    /* ---------- Divider ---------- */
+    .divider { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 6px 0; }
+    .divider .l { height: 1px; width: 90px; background: linear-gradient(90deg, transparent, var(--border-gold)); }
+    .divider .l.r { background: linear-gradient(90deg, var(--border-gold), transparent); }
+    .divider .mark { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.3em; }
+
+    /* ---------- Trust strip ---------- */
+    .trust { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--panel-bg); transition: background .4s ease; }
+    .trust .wrap { padding: 30px 24px; }
+    .trust-label { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-mute); text-align: center; margin-bottom: 20px; }
+    .trust-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 44px; align-items: center; }
+    .trust-logos span { color: var(--text-dim); font-family: var(--serif); font-weight: 600; font-size: 1.2rem; opacity: 0.6; }
+
+    /* ---------- Stats ---------- */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 72px 0; }
+    .stat { text-align: center; padding: 30px 16px; background: var(--ink); transition: background .4s ease; }
+    .stat .num { font-family: var(--serif); font-size: clamp(2rem, 4.4vw, 3rem); font-weight: 700; letter-spacing: -0.01em; }
+    .stat .lbl { color: var(--text-dim); font-size: 0.9rem; margin-top: 6px; letter-spacing: 0.02em; }
+
+    /* ---------- Sections ---------- */
+    section.block { padding: 92px 0; position: relative; }
+    .section-head { max-width: 660px; margin: 0 auto 56px; text-align: center; }
+    .section-head .zh { font-family: var(--brush); color: var(--cinnabar); font-size: 2.4rem; line-height: 1; display: block; margin-bottom: 8px; }
+    .section-head .kicker { color: var(--gold); font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.2em; }
+    .section-head h2 { font-family: var(--serif); font-size: clamp(2rem, 4.6vw, 3rem); letter-spacing: -0.01em; margin-top: 12px; font-weight: 700; }
+    .section-head p { color: var(--text-dim); margin-top: 14px; font-size: 1.08rem; }
+
+    .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .card { position: relative; background: linear-gradient(160deg, var(--surface), var(--ink-2)); border: 1px solid var(--border); padding: 34px 30px; transition: transform .25s, border-color .25s; clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px); }
+    .card::before, .card::after { content: ""; position: absolute; width: 22px; height: 22px; pointer-events: none; }
+    .card::before { top: 8px; left: 8px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+    .card::after { bottom: 8px; right: 8px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+    .card:hover { transform: translateY(-5px); border-color: var(--border-gold); }
+    .card .ico { font-size: 1.9rem; margin-bottom: 16px; filter: drop-shadow(0 4px 12px rgba(212,175,98,0.25)); }
+    .card h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; }
+    .card h3 .zh { font-family: var(--brush); color: var(--gold); font-size: 1.1rem; margin-left: 8px; }
+    .card p { color: var(--text-dim); margin-top: 10px; font-size: 0.97rem; }
+    .card ul { list-style: none; margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .card ul li { font-size: 0.78rem; color: var(--gold); border: 1px solid var(--border-gold); padding: 4px 11px; letter-spacing: 0.03em; }
+
+    /* ---------- Featured work ---------- */
+    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .work-card { position: relative; background: var(--surface); border: 1px solid var(--border); overflow: hidden; transition: transform .25s, border-color .25s; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%); }
+    .work-card:hover { transform: translateY(-5px); border-color: var(--border-gold); }
+    .work-thumb { aspect-ratio: 16/9; display: grid; place-items: center; background: linear-gradient(135deg, var(--thumb-a), var(--thumb-b)); color: var(--text-mute); font-size: 0.85rem; letter-spacing: 0.03em; border-bottom: 1px solid var(--border); }
+    .work-body { padding: 26px 28px 30px; }
+    .work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .work-tags span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); border: 1px solid var(--cyan); padding: 3px 10px; opacity: 0.9; }
+    .work-body h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; }
+    .work-body p { color: var(--text-dim); margin-top: 6px; font-size: 0.95rem; }
+    .work-metric { margin-top: 16px; font-weight: 600; color: var(--text); font-size: 0.95rem; }
+    .work-metric span { color: var(--gold); font-family: var(--serif); font-size: 1.15rem; }
+    .work-more { text-align: center; margin-top: 48px; }
+
+    /* ---------- CTA banner ---------- */
+    .cta-banner { position: relative; overflow: hidden; border: 1px solid var(--border-gold); background: linear-gradient(135deg, rgba(200,80,58,0.10), rgba(212,175,98,0.08)); padding: 66px 44px; text-align: center; clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px); }
+    .cta-banner .zh { font-family: var(--brush); color: var(--gold); font-size: 2rem; display: block; margin-bottom: 10px; }
+    .cta-banner h2 { font-family: var(--serif); font-size: clamp(1.8rem, 4.4vw, 2.7rem); letter-spacing: -0.01em; font-weight: 700; max-width: 20ch; margin: 0 auto; }
+    .cta-banner p { color: var(--text-dim); margin-top: 14px; max-width: 46ch; margin-inline: auto; }
+    .cta-banner .hero-actions { justify-content: center; }
+
+    /* ---------- Footer ---------- */
+    footer { border-top: 1px solid var(--border); background: var(--panel-bg); padding: 56px 0 44px; margin-top: 92px; position: relative; transition: background .4s ease; }
+    footer::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
+    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px; align-items: flex-start; }
+    .foot .brand { margin-bottom: 8px; }
+    .foot p.tag { color: var(--text-dim); font-size: 0.92rem; max-width: 34ch; }
+    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .foot-links a { color: var(--text-dim); font-size: 0.92rem; transition: color .2s; }
+    .foot-links a:hover { color: var(--gold); }
+    .foot-social { display: flex; gap: 18px; }
+    .foot-social a { color: var(--text-dim); font-size: 0.9rem; }
+    .foot-social a:hover { color: var(--cyan); }
+    .copyright { color: var(--text-mute); font-size: 0.84rem; margin-top: 32px; display: flex; align-items: center; gap: 10px; }
+    .copyright .zh { font-family: var(--brush); color: var(--cinnabar); font-size: 1.1rem; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) { .stats { grid-template-columns: repeat(2, 1fr); } .offer-grid { grid-template-columns: 1fr; } .work-grid { grid-template-columns: 1fr; } .hero .disc { display: none; } }
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.open { display: flex; position: absolute; top: 74px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--ink-2); border-bottom: 1px solid var(--border-gold); padding: 8px 24px 22px; }
+      .nav-links.open a { padding: 13px 0; width: 100%; }
+      .nav-links.open .nav-cta { text-align: center; margin-top: 10px; }
+      .hero { padding: 72px 0 110px; }
+      .nav { padding-right: 66px; }
+      .lantern { width: 46px; height: 89px; right: 12px; }
+      .lantern svg { width: 46px; height: 89px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Lantern light/dark switch — hangs from the top-right corner -->
+  <button class="lantern" id="lantern" aria-label="Switch to light mode" title="Toggle light / dark">
+    <svg viewBox="0 0 96 186" aria-hidden="true">
+      <defs>
+        <radialGradient id="lBody" cx="0.4" cy="0.36" r="0.82">
+          <stop offset="0" stop-color="#e85345"/>
+          <stop offset="0.5" stop-color="#c92418"/>
+          <stop offset="1" stop-color="#8b1410"/>
+        </radialGradient>
+        <linearGradient id="lGold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f6d689"/>
+          <stop offset="0.5" stop-color="#e2b24e"/>
+          <stop offset="1" stop-color="#c88f2c"/>
+        </linearGradient>
+        <pattern id="redFringe" width="3" height="8" patternUnits="userSpaceOnUse">
+          <rect width="3" height="8" fill="#d12a22"/>
+          <rect x="2.2" width="0.8" height="8" fill="#7c130e"/>
+        </pattern>
+      </defs>
+      <!-- cord + handle loop -->
+      <line x1="48" y1="0" x2="48" y2="15" stroke="#cf2b23" stroke-width="1.6"/>
+      <path d="M40 26 C 40 15, 56 15, 56 26" fill="none" stroke="url(#lGold)" stroke-width="3.4" stroke-linecap="round"/>
+      <!-- top cap -->
+      <rect x="37" y="25" width="22" height="6" rx="2" fill="url(#lGold)"/>
+      <rect x="34" y="30" width="28" height="8" rx="2.5" fill="url(#lGold)"/>
+      <!-- body -->
+      <ellipse cx="48" cy="71" rx="40" ry="34" fill="url(#lBody)"/>
+      <!-- horizontal ribs -->
+      <g stroke="url(#lGold)" stroke-width="2" fill="none" stroke-linecap="round">
+        <path d="M18 48 Q48 51 78 48"/>
+        <path d="M11 56 Q48 59 85 56"/>
+        <path d="M8.5 64 Q48 67 87.5 64"/>
+        <path d="M8 71 Q48 74 88 71"/>
+        <path d="M9 78 Q48 81 87 78"/>
+        <path d="M12 86 Q48 88.5 84 86"/>
+        <path d="M18 93 Q48 95 78 93"/>
+      </g>
+      <ellipse cx="33" cy="57" rx="10" ry="16" fill="rgba(255,255,255,0.16)"/>
+      <!-- bottom cap -->
+      <rect x="34" y="103" width="28" height="6" rx="2.5" fill="url(#lGold)"/>
+      <rect x="37" y="108" width="22" height="6" rx="2" fill="url(#lGold)"/>
+      <!-- red fringe -->
+      <rect x="37" y="114" width="22" height="3" fill="url(#lGold)"/>
+      <rect x="37.5" y="117" width="21" height="13" fill="url(#redFringe)"/>
+      <!-- cord + gold bead -->
+      <line x1="48" y1="130" x2="48" y2="145" stroke="#cf2b23" stroke-width="2"/>
+      <circle cx="48" cy="147" r="3.4" fill="url(#lGold)"/>
+      <!-- bottom tassel -->
+      <path d="M43 150 L53 150 L51 157 L45 157 Z" fill="url(#lGold)"/>
+      <rect x="41.5" y="157" width="13" height="24" rx="1.5" fill="url(#redFringe)"/>
+    </svg>
+  </button>
+
+  <!-- Bamboo ambiance -->
+  <div class="decor" aria-hidden="true">
+    <div class="leaves" id="leaves"></div>
+  </div>
+
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="wrap nav">
+      <a href="index.html" class="brand">
+        <span class="seal">匠</span>
+        <span class="name">[Your <span>Name]</span></span>
+      </a>
+      <div class="nav-right">
+        <nav class="nav-links" id="navLinks">
+          <a href="work.html">Work</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact" class="nav-cta">Let's talk</a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="kanji-bg" aria-hidden="true">境</div>
+    <div class="disc" aria-hidden="true"></div>
+    <div class="wrap">
+      <span class="eyebrow"><span class="line"></span> <span class="zh">匠心</span> Shopify Developer · Video · Design</span>
+      <h1>I build Shopify stores that convert — and the <span class="grad">visuals that make them sell.</span></h1>
+      <p class="sub">
+        [Your Name] here. Part developer, part creative — one person who can build your store,
+        edit your videos, and design the graphics that tie it all together.
+      </p>
+      <div class="hero-actions">
+        <a href="work.html" class="btn btn-primary">See my work →</a>
+        <a href="#contact" class="btn btn-ghost">Book a call</a>
+      </div>
+    </div>
+    <div class="cloud-strip" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" fill="none">
+        <path d="M0 40 C 120 40 120 18 200 18 C 250 18 250 34 300 34 C 360 34 360 12 440 12 C 500 12 500 30 560 30 C 640 30 640 16 720 16 C 800 16 800 32 880 32 C 950 32 950 14 1040 14 C 1110 14 1110 30 1180 30 C 1260 30 1260 18 1360 18 C 1410 18 1410 38 1440 40 L 1440 60 L 0 60 Z"
+          stroke="var(--gold)" stroke-width="1" fill="rgba(212,175,98,0.05)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== Trust strip ===== -->
+  <div class="trust">
+    <div class="wrap">
+      <p class="trust-label">Trusted by · Built with</p>
+      <div class="trust-logos">
+        <span>[Client]</span><span>[Client]</span><span>Shopify Partner</span><span>Adobe CC</span><span>[Client]</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Stats ===== -->
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="num"><span class="grad">[25+]</span></div><div class="lbl">Stores launched</div></div>
+      <div class="stat"><div class="num"><span class="grad">[5]</span> yrs</div><div class="lbl">Freelancing</div></div>
+      <div class="stat"><div class="num"><span class="grad">[3M+]</span></div><div class="lbl">Video views delivered</div></div>
+      <div class="stat"><div class="num"><span class="grad">[40%]</span></div><div class="lbl">Avg. conversion lift</div></div>
+    </div>
+  </div>
+
+  <!-- ===== Services ===== -->
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="zh">藝</span>
+        <span class="kicker">What I do</span>
+        <h2>One person, the full package.</h2>
+        <p>Most freelancers do one thing. I cover the store, the motion, and the design — so your brand looks and works like it should, end to end.</p>
+      </div>
+      <div class="offer-grid">
+        <div class="card">
+          <div class="ico">⛩️</div>
+          <h3>Shopify Development <span class="zh">技</span></h3>
+          <p>Custom themes, Liquid, app integrations, migrations, and speed optimization that turns browsers into buyers.</p>
+          <ul><li>Liquid</li><li>Theme dev</li><li>Speed</li><li>Headless</li><li>Apps</li></ul>
+        </div>
+        <div class="card">
+          <div class="ico">🎬</div>
+          <h3>Video Editing <span class="zh">影</span></h3>
+          <p>Short-form for Reels &amp; TikTok, product videos, and motion graphics that stop the scroll and drive the click.</p>
+          <ul><li>Editing</li><li>Motion GFX</li><li>Short-form</li><li>Product video</li></ul>
+        </div>
+        <div class="card">
+          <div class="ico">🖌️</div>
+          <h3>Graphic Design <span class="zh">繪</span></h3>
+          <p>Brand assets, social templates, product imagery, and ad creative that keeps every touchpoint on-brand.</p>
+          <ul><li>Brand</li><li>Social</li><li>Ad creative</li><li>Imagery</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"><span class="l"></span><span class="mark">✦</span><span class="l r"></span></div></div>
+
+  <!-- ===== Featured work ===== -->
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="zh">作</span>
+        <span class="kicker">Selected work</span>
+        <h2>Projects where dev meets design.</h2>
+        <p>A few builds where I handled the store, the visuals, or both.</p>
+      </div>
+      <div class="work-grid">
+        <article class="work-card">
+          <div class="work-thumb">[Project thumbnail / video]</div>
+          <div class="work-body">
+            <div class="work-tags"><span>Shopify</span><span>Motion</span></div>
+            <h3>[Project Name]</h3>
+            <p>[One line on the problem you solved for this client.]</p>
+            <p class="work-metric"><span>+42%</span> conversion after rebuild &amp; new product videos</p>
+          </div>
+        </article>
+        <article class="work-card">
+          <div class="work-thumb">[Project thumbnail / video]</div>
+          <div class="work-body">
+            <div class="work-tags"><span>Liquid</span><span>Speed</span></div>
+            <h3>[Project Name]</h3>
+            <p>[One line on the problem you solved for this client.]</p>
+            <p class="work-metric"><span>1.8s</span> load time, down from 6s+</p>
+          </div>
+        </article>
+        <article class="work-card">
+          <div class="work-thumb">[Project thumbnail / video]</div>
+          <div class="work-body">
+            <div class="work-tags"><span>Brand</span><span>Social</span></div>
+            <h3>[Project Name]</h3>
+            <p>[One line on the problem you solved for this client.]</p>
+            <p class="work-metric"><span>3.1M</span> organic views across campaign</p>
+          </div>
+        </article>
+        <article class="work-card">
+          <div class="work-thumb">[Project thumbnail / video]</div>
+          <div class="work-body">
+            <div class="work-tags"><span>Shopify</span><span>Design</span><span>Video</span></div>
+            <h3>[Project Name]</h3>
+            <p>[The full-package project — store + video + graphics for one brand.]</p>
+            <p class="work-metric"><span>End-to-end</span> store, content &amp; launch</p>
+          </div>
+        </article>
+      </div>
+      <div class="work-more">
+        <a href="work.html" class="btn btn-ghost">View all projects →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="block" id="contact" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="cta-banner">
+        <span class="zh">緣</span>
+        <h2>Got a store that needs building — or content that needs to sell?</h2>
+        <p>Tell me what you're working on. I'll come back with how I'd approach it and a rough plan.</p>
+        <div class="hero-actions">
+          <a href="mailto:[you@email.com]" class="btn btn-primary">Start a project →</a>
+          <a href="#" class="btn btn-ghost">Book a 20-min call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <div class="brand"><span class="seal">匠</span><span class="name" style="font-size:1.25rem;">[Your <span style="color:var(--gold);">Name]</span></span></div>
+          <p class="tag">Shopify developer &amp; creative. Building stores and the visuals that sell them.</p>
+        </div>
+        <nav class="foot-links">
+          <a href="work.html">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
+        </nav>
+        <div class="foot-social">
+          <a href="#">Instagram</a><a href="#">Behance</a><a href="#">LinkedIn</a><a href="#">YouTube</a>
+        </div>
+      </div>
+      <p class="copyright"><span class="zh">印</span> © 2026 [Your Name]. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.addEventListener('click', (e) => { if (e.target.tagName === 'A') links.classList.remove('open'); });
+
+    // Lantern theme switch
+    const lantern = document.getElementById('lantern');
+    function curTheme(){ return document.documentElement.getAttribute('data-theme') || 'dark'; }
+    lantern.addEventListener('click', () => {
+      const next = curTheme() === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch(e){}
+      lantern.setAttribute('aria-label', next === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+    });
+
+    // Falling bamboo leaves
+    (function(){
+      try { if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch(e){}
+      var host = document.getElementById('leaves'); if (!host) return;
+      var greens = ['#6bab52','#57933f','#7cb964','#4e8a44'];
+      var tpl = '<svg viewBox="0 0 28 12"><path d="M1 6 C 8 1 20 1 27 6 C 20 11 8 11 1 6 Z" fill="{c}"/><path d="M3 6 H 24" stroke="rgba(28,66,24,0.45)" stroke-width="1"/></svg>';
+      for (var i = 0; i < 14; i++) {
+        var el = document.createElement('span'); el.className = 'leaf';
+        el.style.setProperty('--x', (Math.random()*100).toFixed(1) + 'vw');
+        el.style.setProperty('--s', (0.6 + Math.random()*0.9).toFixed(2));
+        el.style.setProperty('--d', (8 + Math.random()*9).toFixed(1) + 's');
+        el.style.setProperty('--delay', (-Math.random()*16).toFixed(1) + 's');
+        el.style.setProperty('--drift', (Math.random()*44 - 22).toFixed(0) + 'px');
+        el.style.setProperty('--spin', (Math.random()*720 - 360).toFixed(0) + 'deg');
+        el.innerHTML = tpl.replace('{c}', greens[i % greens.length]);
+        host.appendChild(el);
+      }
+    })();
+  </script>
+
+</body>
+</html>

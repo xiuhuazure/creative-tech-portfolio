@@ -9,6 +9,10 @@
     /* Apply saved theme before paint (no flash). Default: dark. */
     (function(){ try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch(e){} })();
   </script>
+  <script>
+    /* Scroll-reveal: hide targets up-front only when we can animate them (no flash, no-JS safe) */
+    (function(){ try { if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js-reveal'); } catch(e){} })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet" />
@@ -94,6 +98,29 @@
     }
     @media (max-width: 1440px) { .bamboo { display: none; } }
     @media (prefers-reduced-motion: reduce) { .leaf { display: none; } }
+
+    /* ---------- Scroll reveal ---------- */
+    .js-reveal .section-head,
+    .js-reveal .stats,
+    .js-reveal .trust-logos,
+    .js-reveal .offer-grid > .card,
+    .js-reveal .work-grid > .work-card,
+    .js-reveal .work-more,
+    .js-reveal .featured-card,
+    .js-reveal .results-grid,
+    .js-reveal .cta-banner,
+    .js-reveal article > * {
+      opacity: 0; transform: translateY(26px);
+      transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);
+    }
+    .js-reveal .is-visible { opacity: 1 !important; transform: none !important; }
+    .js-reveal .offer-grid > .card:nth-child(2) { transition-delay: .09s; }
+    .js-reveal .offer-grid > .card:nth-child(3) { transition-delay: .18s; }
+    .js-reveal .work-grid > .work-card:nth-child(2) { transition-delay: .06s; }
+    .js-reveal .work-grid > .work-card:nth-child(3) { transition-delay: .12s; }
+    .js-reveal .work-grid > .work-card:nth-child(4) { transition-delay: .18s; }
+    .js-reveal .work-grid > .work-card:nth-child(5) { transition-delay: .24s; }
+    .js-reveal .work-grid > .work-card:nth-child(6) { transition-delay: .30s; }
 
     /* ---------- Header ---------- */
     header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); transition: background .4s ease, border-color .4s ease; }
@@ -500,6 +527,17 @@
         el.innerHTML = tpl.replace('{c}', greens[i % greens.length]);
         host.appendChild(el);
       }
+    })();
+
+    // Scroll reveal (fade + rise as elements enter the viewport)
+    (function(){
+      if (!document.documentElement.classList.contains('js-reveal')) return;
+      var els = document.querySelectorAll('.section-head, .stats, .trust-logos, .offer-grid > .card, .work-grid > .work-card, .work-more, .featured-card, .results-grid, .cta-banner, article > *');
+      if (!els.length) return;
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+      }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+      els.forEach(function(el){ io.observe(el); });
     })();
   </script>
 

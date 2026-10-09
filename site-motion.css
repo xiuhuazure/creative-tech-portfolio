@@ -1,0 +1,77 @@
+/* =========================================================================
+   Site motion — hero entrance, typing roles, card tilt, scroll progress.
+   Shared by every page; behaviour lives in site-motion.js.
+   Everything here is switched off for visitors who prefer reduced motion.
+   ========================================================================= */
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* Stat numbers keep a steady width while they count up */
+.stat .num { font-variant-numeric: tabular-nums; }
+
+/* ---------- Scroll progress line ---------- */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 58; pointer-events: none;
+  background: linear-gradient(90deg, var(--cinnabar, #c8503a), var(--gold, #d4af62), var(--gold-bright, #f2d999));
+  transform: scaleX(0); transform-origin: 0 50%;
+  box-shadow: 0 0 10px rgba(212, 175, 98, 0.5);
+}
+
+/* ---------- Typing roles caret ---------- */
+.typed { color: var(--gold-bright, #f2d999); }
+.typed::after {
+  content: ""; display: inline-block; width: 2px; height: 1.05em; margin-left: 3px;
+  vertical-align: -0.15em; background: currentColor;
+  animation: m-caret 1s steps(1) infinite;
+}
+@keyframes m-caret { 50% { opacity: 0; } }
+
+/* ---------- Card tilt + cursor glare ---------- */
+.tilt { will-change: transform; }
+.tilt .glare {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0;
+  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(242, 217, 153, 0.16), transparent 62%);
+  transition: opacity .3s ease;
+}
+.tilt.tilting .glare { opacity: 1; }
+/* Beats the scroll-reveal "transform: none !important" while the pointer is over a card */
+html .tilt.tilting {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-6px) !important;
+  transition: transform .12s ease-out !important;
+  transition-delay: 0s !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* ---------- Hero entrance (pure CSS, so there's no flash before scripts load) ---------- */
+  .hero .eyebrow, .hero h1, .hero p.sub, .hero .hero-actions,
+  .page-hero .eyebrow, .page-hero h1, .page-hero p,
+  .case-hero .case-tags, .case-hero h1, .case-hero .lede, .case-hero .case-meta {
+    animation: m-rise .95s cubic-bezier(.2, .7, .2, 1) both;
+  }
+  .hero h1, .page-hero h1, .case-hero h1 { animation-delay: .14s; }
+  .hero p.sub, .page-hero p, .case-hero .lede { animation-delay: .32s; }
+  .hero .hero-actions, .case-hero .case-meta { animation-delay: .48s; }
+
+  .kanji-bg { animation: m-ink 2.2s ease-out both; }
+  .hero .disc { animation: m-float 9s ease-in-out infinite; }
+}
+@keyframes m-rise {
+  from { opacity: 0; transform: translateY(28px); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+@keyframes m-ink {
+  from { opacity: 0; filter: blur(18px); }
+  to   { opacity: 1; filter: none; }
+}
+@keyframes m-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typed::after { animation: none; }
+  .scroll-progress { display: none; }
+}

@@ -6,8 +6,9 @@
    ========================================================================= */
 .vf {
   /* Dark theme (default) */
-  --vf-bg: #000;
-  --vf-bg-2: #0a0b0b;
+  /* Backgrounds use the page's own colours, so the footer matches in both themes */
+  --vf-bg: var(--ink, #0c0f12);
+  --vf-bg-2: var(--ink-2, #12171c);
   --vf-text: #aaa;
   --vf-head: #fff;
   --vf-plain: #777;
@@ -24,7 +25,7 @@
   --vf-pill-shadow: rgba(208, 88, 63, 0.2);
   --vf-planet-0: #d4af62;
   --vf-planet-1: #4a160d;
-  --vf-planet-2: #010100;
+  --vf-planet-2: var(--ink, #0c0f12);
   --vf-ring: #d4af62;
   --vf-ring-glow: #f2d999;
   --vf-comet: #fff;
@@ -52,8 +53,6 @@
 
 /* Light theme — warm parchment with a gold sunrise on the arc */
 :root[data-theme="light"] .vf {
-  --vf-bg: #eee3c8;
-  --vf-bg-2: #f5eddb;
   --vf-text: #5e5648;
   --vf-head: #2b2418;
   --vf-plain: #8a8070;
@@ -70,7 +69,6 @@
   --vf-pill-shadow: rgba(156, 118, 32, 0.18);
   --vf-planet-0: #e2b85c;
   --vf-planet-1: #f0d9b0;
-  --vf-planet-2: #eee3c8;
   --vf-ring: #9c7620;
   --vf-ring-glow: #d4af62;
   --vf-comet: #bf3d29;

@@ -1,120 +1,46 @@
 /* =========================================================================
    Site footer — cinematic globe arc (adapted from "Footer 02 Velara")
-   Self-contained: every rule is scoped under .vf. Follows the site's
-   light/dark theme (html[data-theme]); dark is the default.
+   Self-contained: every rule is scoped under .vf. Always dark, in both themes.
    Rendered by site-footer.js into <footer class="vf" id="site-footer">.
    ========================================================================= */
 .vf {
-  /* Dark theme (default) */
-  --vf-bg: #000;
-  --vf-bg-2: #0a0b0b;
-  --vf-text: #aaa;
-  --vf-head: #fff;
-  --vf-plain: #777;
-  --vf-accent: #d4af62;
-  --vf-btn-text: #fff;
-  --vf-btn-border: #444;
-  --vf-btn-border-hover: #666;
-  --vf-btn-bg-hover: rgba(255, 255, 255, 0.05);
-  --vf-bar-border: #2a2a2a;
-  --vf-pill-bg: #1b1b1b;
-  --vf-pill-border: #333;
-  --vf-pill-text: #888;
-  --vf-pill-text-on: #fff;
-  --vf-pill-shadow: rgba(208, 88, 63, 0.2);
-  --vf-planet-0: #d4af62;
-  --vf-planet-1: #4a160d;
-  --vf-planet-2: #010100;
-  --vf-ring: #d4af62;
-  --vf-ring-glow: #f2d999;
-  --vf-comet: #fff;
-  --vf-spark: #f6e3b0;
-  --vf-halo: #d0583f;
-  --vf-dot: #fbf4ea;
-  --vf-dot-on: #fff;
-  --vf-word: #fefefe;
-  --vf-word-stroke: rgba(255, 255, 255, 0.05);
-  --vf-glow-lo: rgba(242, 217, 153, 0.3);
-  --vf-glow-hi: rgba(242, 217, 153, 0.6);
-
+  --vf-gold: #d4af62;
+  --vf-gold-hi: #f2d999;
+  --vf-red: #d0583f;
   position: relative;
   z-index: 1;
   margin-top: 64px;
-  background: var(--vf-bg);
-  color: var(--vf-text);
+  background: #000;
+  color: #aaa;
   overflow: hidden;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -webkit-user-select: none;
   user-select: none;
-  transition: background .4s ease, color .4s ease;
 }
-
-/* Light theme — warm parchment with a gold sunrise on the arc */
-:root[data-theme="light"] .vf {
-  --vf-bg: #eee3c8;
-  --vf-bg-2: #f5eddb;
-  --vf-text: #5e5648;
-  --vf-head: #2b2418;
-  --vf-plain: #8a8070;
-  --vf-accent: #9c7620;
-  --vf-btn-text: #2b2418;
-  --vf-btn-border: #cdbd9b;
-  --vf-btn-border-hover: #9c7620;
-  --vf-btn-bg-hover: rgba(156, 118, 32, 0.08);
-  --vf-bar-border: #d6c6a4;
-  --vf-pill-bg: #fbf5e6;
-  --vf-pill-border: #dccdae;
-  --vf-pill-text: #8a8070;
-  --vf-pill-text-on: #2b2418;
-  --vf-pill-shadow: rgba(156, 118, 32, 0.18);
-  --vf-planet-0: #e2b85c;
-  --vf-planet-1: #f0d9b0;
-  --vf-planet-2: #eee3c8;
-  --vf-ring: #9c7620;
-  --vf-ring-glow: #d4af62;
-  --vf-comet: #bf3d29;
-  --vf-spark: #a9823a;
-  --vf-halo: #bf3d29;
-  --vf-dot: #fffaf0;
-  --vf-dot-on: #fff;
-  --vf-word: #2b2418;
-  --vf-word-stroke: rgba(0, 0, 0, 0.05);
-  --vf-glow-lo: rgba(156, 118, 32, 0.18);
-  --vf-glow-hi: rgba(156, 118, 32, 0.4);
-}
-
 .vf *, .vf *::before, .vf *::after { box-sizing: border-box; }
 .vf a { color: inherit; text-decoration: none; }
 .vf ul { list-style: none; margin: 0; padding: 0; }
 
 /* ---------- 1. Globe arc ---------- */
-.vf-globe { position: relative; width: 100%; height: 420px; background: var(--vf-bg); overflow: hidden; transition: background .4s ease; }
-/* Feathered seam: fades from the page colour above into the footer */
+.vf-globe { position: relative; width: 100%; height: 420px; background: #000; overflow: hidden; }
+/* Feathered seam: fades from the page colour above into the black footer */
 .vf-globe::before {
   content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8rem; z-index: 20; pointer-events: none;
-  background: linear-gradient(to bottom, var(--ink, var(--vf-bg)), transparent);
+  background: linear-gradient(to bottom, var(--ink, #000), transparent);
 }
 .vf-globe svg { display: block; width: 100%; height: 100%; }
 
-/* SVG colours come from the theme variables (CSS beats presentation attributes) */
-.vf-s0 { stop-color: var(--vf-planet-0); }
-.vf-s1 { stop-color: var(--vf-planet-1); }
-.vf-s2 { stop-color: var(--vf-planet-2); }
-.vf-ring { stroke: var(--vf-ring); }
-.vf-ring-glow { stroke: var(--vf-ring-glow); }
-.vf-spark { fill: var(--vf-spark); }
-
 /* Sweeping comet of light along the arc */
-.vf-comet { stroke: var(--vf-comet); stroke-dasharray: 120 1800; stroke-dashoffset: 1920; animation: vf-comet 5s linear infinite; }
+.vf-comet { stroke-dasharray: 120 1800; stroke-dashoffset: 1920; animation: vf-comet 5s linear infinite; }
 @keyframes vf-comet { from { stroke-dashoffset: 1920; } to { stroke-dashoffset: -1920; } }
 
 /* Location pins — active pin pulses larger and brighter */
 .vf-pin .halo, .vf-pin .dot { transform-box: fill-box; transform-origin: center; }
-.vf-pin .halo { fill: var(--vf-halo); opacity: 0.2; transition: opacity .8s ease, transform .8s ease; }
-.vf-pin .dot  { fill: var(--vf-dot); transition: transform .8s ease, fill .8s ease; }
+.vf-pin .halo { opacity: 0.2; transition: opacity .8s ease, transform .8s ease; }
+.vf-pin .dot  { fill: #fbf4ea; transition: transform .8s ease, fill .8s ease; }
 .vf-pin.active .halo { opacity: 0.6; transform: scale(1.5); }
-.vf-pin.active .dot  { transform: scale(1.5); fill: var(--vf-dot-on); }
+.vf-pin.active .dot  { transform: scale(1.5); fill: #fff; }
 
 /* Badges float above their pin; positioned in JS from the pin's real on-screen spot */
 .vf-badge {
@@ -125,70 +51,70 @@
 }
 .vf-badge.active { opacity: 1; transform: translate(-50%, calc(-100% - 5px)) scale(1.1); }
 .vf-badge .pill {
-  background: var(--vf-pill-bg); border: 1px solid var(--vf-pill-border); border-radius: 6px; padding: 6px 12px;
-  white-space: nowrap; font-size: 13px; font-weight: 500; letter-spacing: -0.01em; color: var(--vf-pill-text);
-  box-shadow: 0 10px 15px -3px var(--vf-pill-shadow);
-  transition: border-color .7s ease, color .7s ease, background .4s ease;
+  background: #1b1b1b; border: 1px solid #333; border-radius: 6px; padding: 6px 12px;
+  white-space: nowrap; font-size: 13px; font-weight: 500; letter-spacing: -0.01em; color: #888;
+  box-shadow: 0 10px 15px -3px rgba(208, 88, 63, 0.2);
+  transition: border-color .7s ease, color .7s ease;
 }
-.vf-badge.active .pill { border-color: var(--vf-accent); color: var(--vf-pill-text-on); }
+.vf-badge.active .pill { border-color: var(--vf-gold); color: #fff; }
 .vf-badge .line {
   width: 1px; height: 40px; margin-top: 4px; opacity: 0.3;
-  background: linear-gradient(to bottom, var(--vf-accent), transparent);
+  background: linear-gradient(to bottom, var(--vf-gold), transparent);
   transition: height .7s ease, opacity .7s ease;
 }
 .vf-badge.active .line { height: 45px; opacity: 0.8; }
 
 /* ---------- 2. Links ---------- */
-.vf-links { position: relative; background: var(--vf-bg-2); padding: 64px 40px; transition: background .4s ease; }
+.vf-links { position: relative; background: #0a0b0b; padding: 64px 40px; }
 .vf-links::before {
   content: ""; position: absolute; left: 0; right: 0; top: -96px; height: 96px; z-index: 10; pointer-events: none;
-  background: linear-gradient(to top, var(--vf-bg-2), transparent);
+  background: linear-gradient(to top, #0a0b0b, transparent);
 }
 .vf-grid { position: relative; z-index: 11; max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; }
-.vf-grid h4 { margin: 0 0 24px; color: var(--vf-head); font-size: 15px; font-weight: 600; }
+.vf-grid h4 { margin: 0 0 24px; color: #fff; font-size: 15px; font-weight: 600; }
 .vf-grid ul { display: flex; flex-direction: column; gap: 12px; }
-.vf-grid li { font-size: 14px; line-height: 2; color: var(--vf-text); }
+.vf-grid li { font-size: 14px; line-height: 2; color: #aaa; }
 .vf-grid a { transition: color .2s ease; }
-.vf-grid a:hover { color: var(--vf-head); }
-.vf-grid .plain { color: var(--vf-plain); }
+.vf-grid a:hover { color: #fff; }
+.vf-grid .plain { color: #777; }
 
 /* ---------- 3. Social buttons ---------- */
 .vf-social { position: relative; z-index: 11; max-width: 1440px; margin: 64px auto 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .vf-social a {
-  padding: 12px 28px; border: 1px solid var(--vf-btn-border); border-radius: 6px;
-  color: var(--vf-btn-text); font-size: 14px; font-weight: 500;
+  padding: 12px 28px; border: 1px solid #444; border-radius: 6px;
+  color: #fff; font-size: 14px; font-weight: 500;
   transition: background-color .2s ease, border-color .2s ease;
 }
-.vf-social a:hover { background-color: var(--vf-btn-bg-hover); border-color: var(--vf-btn-border-hover); }
+.vf-social a:hover { background-color: rgba(255, 255, 255, 0.05); border-color: #666; }
 
 /* ---------- 4. Copyright bar ---------- */
-.vf-bar { background: var(--vf-bg-2); border-top: 1px dashed var(--vf-bar-border); transition: background .4s ease; }
+.vf-bar { background: #0a0b0b; border-top: 1px dashed #2a2a2a; }
 .vf-bar-in {
   max-width: 1440px; margin: 0 auto; padding: 24px 40px;
   display: flex; flex-direction: column; justify-content: space-between; gap: 16px;
-  font-size: 13px; color: var(--vf-plain);
+  font-size: 13px; color: #777;
 }
-.vf-bar a:hover { color: var(--vf-head); }
+.vf-bar a:hover { color: #fff; }
 
 /* ---------- 5. Giant wordmark ---------- */
 .vf-brand {
   position: relative; width: 100%; height: clamp(170px, 30vw, 400px);
   display: flex; align-items: center; justify-content: center;
-  background: var(--vf-bg); overflow: hidden; transition: background .4s ease;
+  background: #000; overflow: hidden;
 }
 .vf-brand::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 80px; z-index: 10; pointer-events: none;
-  background: linear-gradient(to top, var(--vf-bg), transparent);
+  background: linear-gradient(to top, #000, transparent);
 }
 .vf-word {
   margin: 0; white-space: nowrap; pointer-events: none;
   font-size: min(19vw, 340px); font-weight: 900; line-height: 1; letter-spacing: -0.05em;
-  filter: blur(0.3px); -webkit-text-stroke: 1px var(--vf-word-stroke);
-  color: #d4af62; opacity: 0; transform: translateY(150px) scale(0.95);
+  filter: blur(0.3px); -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+  color: var(--vf-gold); opacity: 0; transform: translateY(150px) scale(0.95);
   transition: transform 1.8s cubic-bezier(.16, 1, .3, 1), color 1.5s ease-out, opacity 1.2s ease;
 }
 .vf-brand.in .vf-word {
-  opacity: 1; transform: none; color: var(--vf-word);
+  opacity: 1; transform: none; color: #fefefe;
   animation: vf-flicker 1.2s linear infinite, vf-glow 3s ease-in-out infinite;
 }
 @keyframes vf-flicker {
@@ -196,8 +122,8 @@
   70% { opacity: 1; } 80% { opacity: .9; } 100% { opacity: 1; }
 }
 @keyframes vf-glow {
-  0%, 100% { text-shadow: 0 0 20px var(--vf-glow-lo); }
-  50%      { text-shadow: 0 0 80px var(--vf-glow-hi); }
+  0%, 100% { text-shadow: 0 0 20px rgba(242, 217, 153, 0.3); }
+  50%      { text-shadow: 0 0 80px rgba(242, 217, 153, 0.6); }
 }
 
 /* ---------- Responsive ---------- */
@@ -213,5 +139,5 @@
 @media (prefers-reduced-motion: reduce) {
   .vf-comet { animation: none; }
   .vf-word { transition: none; }
-  .vf-brand.in .vf-word { animation: none; text-shadow: 0 0 30px var(--vf-glow-lo); }
+  .vf-brand.in .vf-word { animation: none; text-shadow: 0 0 30px rgba(242, 217, 153, 0.4); }
 }

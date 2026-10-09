@@ -28,7 +28,7 @@
   for (var i = 0; i < 35; i++) {
     var ang = Math.PI + (Math.PI * i) / 34;
     var rx = A + (Math.random() * 20 - 10), ry = B + (Math.random() * 20 - 10);
-    sparkles += '<circle cx="' + (CX + rx * Math.cos(ang)).toFixed(1) + '" cy="' + (CY + ry * Math.sin(ang)).toFixed(1) +
+    sparkles += '<circle class="vf-spark" cx="' + (CX + rx * Math.cos(ang)).toFixed(1) + '" cy="' + (CY + ry * Math.sin(ang)).toFixed(1) +
       '" r="' + (0.5 + Math.random() * 1.5).toFixed(2) + '" fill="#f6e3b0" opacity="' + (0.3 + Math.random() * 0.5).toFixed(2) + '"/>';
   }
 
@@ -56,15 +56,15 @@
       '<svg viewBox="0 0 1400 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true">' +
         '<defs>' +
           '<radialGradient id="vfPlanet" cx="50%" cy="100%" r="100%">' +
-            '<stop offset="0%" stop-color="#d4af62"/><stop offset="60%" stop-color="#4a160d"/><stop offset="100%" stop-color="#010100"/>' +
+            '<stop class="vf-s0" offset="0%" stop-color="#d4af62"/><stop class="vf-s1" offset="60%" stop-color="#4a160d"/><stop class="vf-s2" offset="100%" stop-color="#010100"/>' +
           '</radialGradient>' +
           '<filter id="vfGlow" x="-50%" y="-50%" width="200%" height="200%">' +
             '<feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>' +
           '</filter>' +
         '</defs>' +
         '<ellipse cx="700" cy="420" rx="900" ry="220" fill="url(#vfPlanet)"/>' +
-        '<ellipse cx="700" cy="430" rx="860" ry="200" fill="none" stroke="#d4af62" stroke-width="2.5" opacity="0.9"/>' +
-        '<ellipse cx="700" cy="430" rx="860" ry="200" fill="none" stroke="#f2d999" stroke-width="12" opacity="0.15" filter="url(#vfGlow)"/>' +
+        '<ellipse class="vf-ring" cx="700" cy="430" rx="860" ry="200" fill="none" stroke="#d4af62" stroke-width="2.5" opacity="0.9"/>' +
+        '<ellipse class="vf-ring-glow" cx="700" cy="430" rx="860" ry="200" fill="none" stroke="#f2d999" stroke-width="12" opacity="0.15" filter="url(#vfGlow)"/>' +
         '<path class="vf-comet" d="M -160 430 A 860 200 0 0 1 1560 430" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.6" filter="url(#vfGlow)"/>' +
         sparkles + pins +
       '</svg>' +

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work — [Your Name]</title>
-  <meta name="description" content="Selected Shopify builds, video edits, and design work by [Your Name] — a developer and creative in one." />
+  <title>Work — Kimberly D. Yu</title>
+  <meta name="description" content="Projects by Kimberly D. Yu: Shopify storefront and ad work for Earth Moon Magick, the FSLAMES thesis app, and the U-Eat ordering app." />
   <script>
     (function(){ try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch(e){} })();
   </script>
@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site-footer.css" />
   <style>
     /* ============ THEME TOKENS ============ */
     :root {
@@ -177,20 +178,6 @@
     .cta-banner p { color: var(--text-dim); margin-top: 12px; max-width: 46ch; margin-inline: auto; }
     .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
 
-    /* footer */
-    footer { border-top: 1px solid var(--border); background: var(--panel-bg); padding: 56px 0 44px; margin-top: 80px; position: relative; transition: background .4s ease; }
-    footer::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
-    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px; align-items: flex-start; }
-    .foot .brand { margin-bottom: 8px; }
-    .foot p.tag { color: var(--text-dim); font-size: 0.92rem; max-width: 34ch; }
-    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
-    .foot-links a { color: var(--text-dim); font-size: 0.92rem; transition: color .2s; }
-    .foot-links a:hover { color: var(--gold); }
-    .foot-social { display: flex; gap: 18px; }
-    .foot-social a { color: var(--text-dim); font-size: 0.9rem; }
-    .foot-social a:hover { color: var(--cyan); }
-    .copyright { color: var(--text-mute); font-size: 0.84rem; margin-top: 32px; display: flex; align-items: center; gap: 10px; }
-    .copyright .zh { font-family: var(--brush); color: var(--cinnabar); font-size: 1.1rem; }
 
     /* responsive */
     @media (max-width: 980px) { .work-grid { grid-template-columns: repeat(2, 1fr); } .featured-card { grid-template-columns: 1fr; } .featured-media { min-height: 220px; } }
@@ -264,12 +251,12 @@
     <div class="wrap nav">
       <a href="index.html" class="brand">
         <span class="seal">匠</span>
-        <span class="name">[Your <span>Name]</span></span>
+        <span class="name">Kimberly <span>Yu</span></span>
       </a>
       <div class="nav-right">
         <nav class="nav-links" id="navLinks">
           <a href="work.html" class="active">Work</a>
-          <a href="index.html#services">Services</a>
+          <a href="index.html#services">Skills</a>
           <a href="index.html#about">About</a>
           <a href="index.html#contact" class="nav-cta">Let's talk</a>
         </nav>
@@ -283,8 +270,8 @@
     <div class="kanji-bg" aria-hidden="true">作</div>
     <div class="wrap">
       <span class="eyebrow"><span class="line"></span> <span class="zh">作品</span> Selected work</span>
-      <h1>Stores, video, and design — <span class="grad">often on the same project.</span></h1>
-      <p>A mix of Shopify builds, edits, and brand work. Filter by discipline, or look for the full-package projects where I did all three.</p>
+      <h1>Code, content, and apps — <span class="grad">what I’ve built so far.</span></h1>
+      <p>Freelance Shopify and ad work for Earth Moon Magick, my thesis on Filipino Sign Language, and a team-built Android app. Filter by the kind of work.</p>
     </div>
   </section>
 
@@ -293,24 +280,23 @@
     <div class="filters" id="filters">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="shopify">Shopify</button>
-      <button class="filter-btn" data-filter="video">Video</button>
-      <button class="filter-btn" data-filter="design">Design</button>
-      <button class="filter-btn" data-filter="full">Full package</button>
+      <button class="filter-btn" data-filter="video">Video &amp; Motion</button>
+      <button class="filter-btn" data-filter="apps">Apps &amp; ML</button>
     </div>
 
     <!-- ===== Featured case study ===== -->
     <div class="featured">
       <div class="featured-card">
-        <div class="featured-media">[Featured project — hero image or video]</div>
+        <div class="featured-media"><span style="font-size:3.4rem">🛍️ 🎬 📱</span></div>
         <div class="featured-body">
           <span class="badge">精選</span>
           <span class="kicker">Featured case study</span>
-          <h2>[Flagship Project Name]</h2>
-          <p>[The one-project story that proves the whole pitch: I rebuilt the store, shot and edited the product videos, and designed the launch campaign — all as one person.]</p>
+          <h2>Earth Moon Magick</h2>
+          <p>My freelance role as Shopify Technical Specialist &amp; Video Editor: storefront customization, product listings, Meta video ads, motion ad creatives, and Instagram content, all for one brand.</p>
           <div class="featured-stats">
-            <div class="s"><div class="n grad">+42%</div><div class="l">Conversion rate</div></div>
-            <div class="s"><div class="n grad">3.1M</div><div class="l">Campaign views</div></div>
-            <div class="s"><div class="n grad">1.8s</div><div class="l">Page load</div></div>
+            <div class="s"><div class="n grad">Dec 2025</div><div class="l">Started</div></div>
+            <div class="s"><div class="n grad">5</div><div class="l">Areas I handle</div></div>
+            <div class="s"><div class="n grad">Shopify · Meta</div><div class="l">Platforms</div></div>
           </div>
           <a href="case-study.html" class="btn btn-primary">Read the case study →</a>
         </div>
@@ -319,52 +305,58 @@
 
     <!-- ===== Work grid ===== -->
     <div class="work-grid" id="workGrid">
-      <article class="work-card" data-cat="shopify full">
-        <div class="work-thumb">[Project thumbnail]</div>
+      <article class="work-card" data-cat="shopify">
+        <div class="work-thumb"><span style="font-size:2.4rem">🧱</span></div>
         <div class="work-body">
-          <div class="work-tags"><span>Shopify</span><span>Video</span><span>Design</span></div>
-          <h3>[Project Name]</h3><p>[Store + content, end to end for one brand.]</p>
-          <p class="work-metric"><span>End-to-end</span> store, content &amp; launch</p>
+          <div class="work-tags"><span>GemPages</span><span>Liquid</span><span>HTML/CSS</span></div>
+          <h3>Landing pages</h3>
+          <p>Custom responsive landing pages in GemPages, plus theme modifications in Shopify Liquid, HTML and CSS to improve UX and layout.</p>
+          <p class="work-metric"><span>Earth Moon Magick</span> freelance</p>
         </div>
       </article>
       <article class="work-card" data-cat="shopify">
-        <div class="work-thumb">[Project thumbnail]</div>
+        <div class="work-thumb"><span style="font-size:2.4rem">🛍️</span></div>
         <div class="work-body">
-          <div class="work-tags"><span>Liquid</span><span>Speed</span></div>
-          <h3>[Project Name]</h3><p>[Theme rebuild + performance overhaul.]</p>
-          <p class="work-metric"><span>1.8s</span> load, down from 6s+</p>
+          <div class="work-tags"><span>Shopify</span><span>Troubleshooting</span></div>
+          <h3>Product listings</h3>
+          <p>End-to-end product listings, including fixing variant configurations, media galleries and listing data directly in Shopify.</p>
+          <p class="work-metric"><span>Earth Moon Magick</span> freelance</p>
         </div>
       </article>
       <article class="work-card" data-cat="video">
-        <div class="work-thumb">[Video thumbnail]</div>
+        <div class="work-thumb"><span style="font-size:2.4rem">🎬</span></div>
         <div class="work-body">
-          <div class="work-tags"><span>Short-form</span><span>Motion</span></div>
-          <h3>[Project Name]</h3><p>[Reels/TikTok campaign for a product launch.]</p>
-          <p class="work-metric"><span>3.1M</span> organic views</p>
+          <div class="work-tags"><span>UGC</span><span>B-roll</span><span>Audio</span></div>
+          <h3>Meta video ads</h3>
+          <p>Video ads built from UGC and product footage, with dynamic B-roll, motion text and audio design.</p>
+          <p class="work-metric"><span>Earth Moon Magick</span> freelance</p>
         </div>
       </article>
-      <article class="work-card" data-cat="design">
-        <div class="work-thumb">[Design thumbnail]</div>
+      <article class="work-card" data-cat="video">
+        <div class="work-thumb"><span style="font-size:2.4rem">✨</span></div>
         <div class="work-body">
-          <div class="work-tags"><span>Brand</span><span>Social</span></div>
-          <h3>[Project Name]</h3><p>[Brand identity + social template system.]</p>
-          <p class="work-metric"><span>30+</span> reusable templates</p>
+          <div class="work-tags"><span>Motion</span><span>Design</span><span>Instagram</span></div>
+          <h3>Ad creatives &amp; social</h3>
+          <p>On-brand static and motion graphics for Meta campaigns sized for mobile, plus Instagram feed and story assets, copy and scheduling.</p>
+          <p class="work-metric"><span>Earth Moon Magick</span> freelance</p>
         </div>
       </article>
-      <article class="work-card" data-cat="shopify">
-        <div class="work-thumb">[Project thumbnail]</div>
+      <article class="work-card" data-cat="apps">
+        <div class="work-thumb"><span style="font-size:2.4rem">🤟</span></div>
         <div class="work-body">
-          <div class="work-tags"><span>Shopify</span><span>Migration</span></div>
-          <h3>[Project Name]</h3><p>[Platform migration to Shopify with zero downtime.]</p>
-          <p class="work-metric"><span>0</span> hours downtime</p>
+          <div class="work-tags"><span>Python</span><span>MediaPipe</span><span>TensorFlow</span></div>
+          <h3>FSLAMES</h3>
+          <p>Filipino Sign Language Automated Mobile Education System. I handled backend development and documentation, designed app interfaces, assisted Android development, and helped collect the ML training dataset.</p>
+          <p class="work-metric"><span>Thesis</span> 2025 – 2026</p>
         </div>
       </article>
-      <article class="work-card" data-cat="video design">
-        <div class="work-thumb">[Project thumbnail]</div>
+      <article class="work-card" data-cat="apps">
+        <div class="work-thumb"><span style="font-size:2.4rem">🍱</span></div>
         <div class="work-body">
-          <div class="work-tags"><span>Video</span><span>Design</span></div>
-          <h3>[Project Name]</h3><p>[Product photography + video for a catalog refresh.]</p>
-          <p class="work-metric"><span>50+</span> assets delivered</p>
+          <div class="work-tags"><span>Kotlin</span><span>Firebase</span><span>Android Studio</span></div>
+          <h3>U-Eat Ordering System</h3>
+          <p>An Android canteen-ordering app supporting customer orders and stall-owner order management. I prototyped interfaces in Kotlin and prepared technical documentation.</p>
+          <p class="work-metric"><span>Group project</span> 2024 – 2025</p>
         </div>
       </article>
     </div>
@@ -372,33 +364,23 @@
     <!-- ===== CTA ===== -->
     <div class="cta-banner">
       <span class="zh">緣</span>
-      <h2>Like what you see? Let's build yours.</h2>
-      <p>Tell me about your store or campaign and I'll come back with how I'd approach it.</p>
+      <h2>Want someone like this on your team?</h2>
+      <p>I’m looking for an OJT placement in web development, IT support, or a creative role. Let’s talk.</p>
       <div class="cta-actions">
-        <a href="mailto:[you@email.com]" class="btn btn-primary">Start a project →</a>
-        <a href="index.html#contact" class="btn btn-ghost">Get in touch</a>
+        <a href="mailto:kimberlydacucoyu@gmail.com?subject=OJT%20opportunity" class="btn btn-primary">Email me →</a>
+        <a href="https://linkedin.com/in/kimberly-d-yu" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
       </div>
     </div>
   </div>
 
-  <!-- ===== Footer ===== -->
-  <footer>
-    <div class="wrap">
-      <div class="foot">
-        <div>
-          <div class="brand"><span class="seal">匠</span><span class="name" style="font-size:1.25rem;">[Your <span style="color:var(--gold);">Name]</span></span></div>
-          <p class="tag">Shopify developer &amp; creative. Building stores and the visuals that sell them.</p>
-        </div>
-        <nav class="foot-links">
-          <a href="work.html">Work</a><a href="index.html#services">Services</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a>
-        </nav>
-        <div class="foot-social">
-          <a href="#">Instagram</a><a href="#">Behance</a><a href="#">LinkedIn</a><a href="#">YouTube</a>
-        </div>
-      </div>
-      <p class="copyright"><span class="zh">印</span> © 2026 [Your Name]. All rights reserved.</p>
-    </div>
+  <!-- ===== Footer (rendered by site-footer.js; static fallback below) ===== -->
+  <footer class="vf" id="site-footer">
+    <div class="vf-bar"><div class="vf-bar-in">
+      <span>© 2026 Kimberly D. Yu</span>
+      <span><a href="mailto:kimberlydacucoyu@gmail.com">Email</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
+    </div></div>
   </footer>
+  <script src="site-footer.js"></script>
 
   <script>
     const toggle = document.getElementById('navToggle');

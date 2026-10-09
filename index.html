@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>[Your Name] — Shopify Developer & Creative</title>
-  <meta name="description" content="Shopify developer, video editor, and graphic designer. I build stores that convert and the visuals that make them sell." />
+  <title>Kimberly D. Yu — CS Student · Shopify &amp; Creative</title>
+  <meta name="description" content="Kimberly D. Yu, Computer Science student in Pangasinan, Philippines: Shopify storefront work, Meta video ads and motion graphics, and Android app projects. Open to OJT." />
   <script>
     /* Apply saved theme before paint (no flash). Default: dark. */
     (function(){ try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch(e){} })();
@@ -16,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site-footer.css" />
   <style>
     /* ============ THEME TOKENS ============ */
     :root {
@@ -256,20 +257,6 @@
     .cta-banner p { color: var(--text-dim); margin-top: 14px; max-width: 46ch; margin-inline: auto; }
     .cta-banner .hero-actions { justify-content: center; }
 
-    /* ---------- Footer ---------- */
-    footer { border-top: 1px solid var(--border); background: var(--panel-bg); padding: 56px 0 44px; margin-top: 92px; position: relative; transition: background .4s ease; }
-    footer::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
-    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px; align-items: flex-start; }
-    .foot .brand { margin-bottom: 8px; }
-    .foot p.tag { color: var(--text-dim); font-size: 0.92rem; max-width: 34ch; }
-    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
-    .foot-links a { color: var(--text-dim); font-size: 0.92rem; transition: color .2s; }
-    .foot-links a:hover { color: var(--gold); }
-    .foot-social { display: flex; gap: 18px; }
-    .foot-social a { color: var(--text-dim); font-size: 0.9rem; }
-    .foot-social a:hover { color: var(--cyan); }
-    .copyright { color: var(--text-mute); font-size: 0.84rem; margin-top: 32px; display: flex; align-items: center; gap: 10px; }
-    .copyright .zh { font-family: var(--brush); color: var(--cinnabar); font-size: 1.1rem; }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 900px) { .stats { grid-template-columns: repeat(2, 1fr); } .offer-grid { grid-template-columns: 1fr; } .work-grid { grid-template-columns: 1fr; } .hero .disc { display: none; } }
@@ -351,12 +338,12 @@
     <div class="wrap nav">
       <a href="index.html" class="brand">
         <span class="seal">匠</span>
-        <span class="name">[Your <span>Name]</span></span>
+        <span class="name">Kimberly <span>Yu</span></span>
       </a>
       <div class="nav-right">
         <nav class="nav-links" id="navLinks">
           <a href="work.html">Work</a>
-          <a href="#services">Services</a>
+          <a href="#services">Skills</a>
           <a href="#about">About</a>
           <a href="#contact" class="nav-cta">Let's talk</a>
         </nav>
@@ -370,15 +357,15 @@
     <div class="kanji-bg" aria-hidden="true">境</div>
     <div class="disc" aria-hidden="true"></div>
     <div class="wrap">
-      <span class="eyebrow"><span class="line"></span> <span class="zh">匠心</span> Shopify Developer · Video · Design</span>
-      <h1>I build Shopify stores that convert — and the <span class="grad">visuals that make them sell.</span></h1>
+      <span class="eyebrow"><span class="line"></span> <span class="zh">匠心</span> CS Student · Shopify · Video &amp; Motion</span>
+      <h1>I build storefronts and apps — and <span class="grad">the visuals that bring them to life.</span></h1>
       <p class="sub">
-        [Your Name] here. Part developer, part creative — one person who can build your store,
-        edit your videos, and design the graphics that tie it all together.
+        Hi, I’m Kimberly — a Computer Science student at PHINMA UPang College Urdaneta. I customize Shopify stores,
+        edit Meta video ads, and help build Android apps. I’m looking for an OJT opportunity.
       </p>
       <div class="hero-actions">
         <a href="work.html" class="btn btn-primary">See my work →</a>
-        <a href="#contact" class="btn btn-ghost">Book a call</a>
+        <a href="#contact" class="btn btn-ghost">Hire me for OJT</a>
       </div>
     </div>
     <div class="cloud-strip" aria-hidden="true">
@@ -392,9 +379,9 @@
   <!-- ===== Trust strip ===== -->
   <div class="trust">
     <div class="wrap">
-      <p class="trust-label">Trusted by · Built with</p>
+      <p class="trust-label">Worked with · Built with</p>
       <div class="trust-logos">
-        <span>[Client]</span><span>[Client]</span><span>Shopify Partner</span><span>Adobe CC</span><span>[Client]</span>
+        <span>Earth Moon Magick</span><span>Shopify</span><span>GemPages</span><span>Meta Business Suite</span><span>Android Studio</span><span>Firebase</span>
       </div>
     </div>
   </div>
@@ -402,40 +389,40 @@
   <!-- ===== Stats ===== -->
   <div class="wrap">
     <div class="stats">
-      <div class="stat"><div class="num"><span class="grad">[25+]</span></div><div class="lbl">Stores launched</div></div>
-      <div class="stat"><div class="num"><span class="grad">[2]</span> yrs</div><div class="lbl">Freelancing</div></div>
-      <div class="stat"><div class="num"><span class="grad">[3M+]</span></div><div class="lbl">Video views delivered</div></div>
-      <div class="stat"><div class="num"><span class="grad">[40%]</span></div><div class="lbl">Avg. conversion lift</div></div>
+      <div class="stat"><div class="num"><span class="grad">3</span></div><div class="lbl">Major projects</div></div>
+      <div class="stat"><div class="num"><span class="grad">4</span></div><div class="lbl">Certifications</div></div>
+      <div class="stat"><div class="num"><span class="grad">5</span></div><div class="lbl">Programming languages</div></div>
+      <div class="stat"><div class="num"><span class="grad">2025</span></div><div class="lbl">Freelancing since</div></div>
     </div>
   </div>
 
-  <!-- ===== Services ===== -->
+  <!-- ===== Skills ===== -->
   <section class="block" id="services">
     <div class="wrap">
       <div class="section-head">
         <span class="zh">藝</span>
         <span class="kicker">What I do</span>
-        <h2>One person, the full package.</h2>
-        <p>Most freelancers do one thing. I cover the store, the motion, and the design — so your brand looks and works like it should, end to end.</p>
+        <h2>Code and content, in one person.</h2>
+        <p>I work between the technical and the creative: I can fix the storefront, edit the ad, and help build the app.</p>
       </div>
       <div class="offer-grid">
         <div class="card">
           <div class="ico">⛩️</div>
-          <h3>Shopify Development <span class="zh">技</span></h3>
-          <p>Custom themes, Liquid, app integrations, migrations, and speed optimization that turns browsers into buyers.</p>
-          <ul><li>Liquid</li><li>Theme dev</li><li>Speed</li><li>Headless</li><li>Apps</li></ul>
+          <h3>Shopify &amp; Web <span class="zh">技</span></h3>
+          <p>Responsive landing pages in GemPages, theme edits in Shopify Liquid, HTML and CSS, and end-to-end product listing management.</p>
+          <ul><li>Shopify Liquid</li><li>GemPages</li><li>HTML / CSS</li><li>Responsive design</li></ul>
         </div>
         <div class="card">
           <div class="ico">🎬</div>
-          <h3>Video Editing <span class="zh">影</span></h3>
-          <p>Short-form for Reels &amp; TikTok, product videos, and motion graphics that stop the scroll and drive the click.</p>
-          <ul><li>Editing</li><li>Motion GFX</li><li>Short-form</li><li>Product video</li></ul>
+          <h3>Video &amp; Motion <span class="zh">影</span></h3>
+          <p>Meta video ads built from UGC and product footage, with B-roll, motion text and audio design, plus static and motion ad creatives sized for mobile.</p>
+          <ul><li>Video editing</li><li>Motion graphics</li><li>Meta ads</li><li>Graphic design</li></ul>
         </div>
         <div class="card">
-          <div class="ico">🖌️</div>
-          <h3>Graphic Design <span class="zh">繪</span></h3>
-          <p>Brand assets, social templates, product imagery, and ad creative that keeps every touchpoint on-brand.</p>
-          <ul><li>Brand</li><li>Social</li><li>Ad creative</li><li>Imagery</li></ul>
+          <div class="ico">📱</div>
+          <h3>Apps &amp; Programming <span class="zh">碼</span></h3>
+          <p>Android apps in Kotlin and Firebase, machine-learning work in Python and TensorFlow, and a habit of troubleshooting until things work.</p>
+          <ul><li>Kotlin</li><li>Firebase</li><li>Python</li><li>JavaScript</li><li>MySQL</li><li>Git</li></ul>
         </div>
       </div>
     </div>
@@ -449,44 +436,44 @@
       <div class="section-head">
         <span class="zh">作</span>
         <span class="kicker">Selected work</span>
-        <h2>Projects where dev meets design.</h2>
-        <p>A few builds where I handled the store, the visuals, or both.</p>
+        <h2>Things I’ve actually built.</h2>
+        <p>Freelance Shopify and ad work, my thesis, and a team-built Android app.</p>
       </div>
       <div class="work-grid">
         <article class="work-card">
-          <div class="work-thumb">[Project thumbnail / video]</div>
+          <div class="work-thumb"><span style="font-size:2.6rem">🛍️</span></div>
           <div class="work-body">
-            <div class="work-tags"><span>Shopify</span><span>Motion</span></div>
-            <h3>[Project Name]</h3>
-            <p>[One line on the problem you solved for this client.]</p>
-            <p class="work-metric"><span>+42%</span> conversion after rebuild &amp; new product videos</p>
+            <div class="work-tags"><span>Shopify</span><span>GemPages</span><span>Liquid</span></div>
+            <h3><a href="case-study.html">Earth Moon Magick — Storefront</a></h3>
+            <p>Responsive landing pages and theme customizations, plus product listings, variants and media galleries managed directly in Shopify.</p>
+            <p class="work-metric"><span>Freelance</span> Dec 2025 – Present</p>
           </div>
         </article>
         <article class="work-card">
-          <div class="work-thumb">[Project thumbnail / video]</div>
+          <div class="work-thumb"><span style="font-size:2.6rem">🎬</span></div>
           <div class="work-body">
-            <div class="work-tags"><span>Liquid</span><span>Speed</span></div>
-            <h3>[Project Name]</h3>
-            <p>[One line on the problem you solved for this client.]</p>
-            <p class="work-metric"><span>1.8s</span> load time, down from 6s+</p>
+            <div class="work-tags"><span>Video</span><span>Motion</span><span>Meta</span></div>
+            <h3><a href="case-study.html">Earth Moon Magick — Ads &amp; Social</a></h3>
+            <p>Meta video ads from UGC and product footage, static and motion ad creatives, and Instagram feed and story content.</p>
+            <p class="work-metric"><span>Freelance</span> Dec 2025 – Present</p>
           </div>
         </article>
         <article class="work-card">
-          <div class="work-thumb">[Project thumbnail / video]</div>
+          <div class="work-thumb"><span style="font-size:2.6rem">🤟</span></div>
           <div class="work-body">
-            <div class="work-tags"><span>Brand</span><span>Social</span></div>
-            <h3>[Project Name]</h3>
-            <p>[One line on the problem you solved for this client.]</p>
-            <p class="work-metric"><span>3.1M</span> organic views across campaign</p>
+            <div class="work-tags"><span>Python</span><span>TensorFlow</span><span>Android</span></div>
+            <h3>FSLAMES</h3>
+            <p>Filipino Sign Language Automated Mobile Education System, an app with ML-based sign recognition. I worked on the backend and documentation, designed app interfaces, and helped collect the training dataset.</p>
+            <p class="work-metric"><span>Thesis</span> 2025 – 2026</p>
           </div>
         </article>
         <article class="work-card">
-          <div class="work-thumb">[Project thumbnail / video]</div>
+          <div class="work-thumb"><span style="font-size:2.6rem">🍱</span></div>
           <div class="work-body">
-            <div class="work-tags"><span>Shopify</span><span>Design</span><span>Video</span></div>
-            <h3>[Project Name]</h3>
-            <p>[The full-package project — store + video + graphics for one brand.]</p>
-            <p class="work-metric"><span>End-to-end</span> store, content &amp; launch</p>
+            <div class="work-tags"><span>Kotlin</span><span>Firebase</span><span>Android</span></div>
+            <h3>U-Eat Ordering System</h3>
+            <p>An Android canteen-ordering app for customers and stall owners. I prototyped the interfaces in Kotlin and prepared the technical documentation.</p>
+            <p class="work-metric"><span>Group project</span> 2024 – 2025</p>
           </div>
         </article>
       </div>
@@ -496,23 +483,23 @@
     </div>
   </section>
 
-  <!-- ===== Testimonials (host card + dual marquee) ===== -->
-  <section class="tm" aria-label="Testimonials">
+  <!-- ===== About me (host card + dual marquee) ===== -->
+  <section class="tm" id="about" aria-label="About me">
     <div class="tm-top">
       <div class="section-head">
-        <span class="zh">評</span>
-        <span class="kicker">Testimonials</span>
-        <h2>What clients are saying.</h2>
+        <span class="zh">我</span>
+        <span class="kicker">About me</span>
+        <h2>Nice to meet you.</h2>
       </div>
       <div class="tm-host">
         <div class="tm-pill">
-          <div class="tm-ava" aria-hidden="true">★</div>
-          <div class="tm-id"><div class="n">[Client Name]</div><div class="r">[Role · Company]</div></div>
-          <div class="tm-phone" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.1 2.2z"/></svg></div>
+          <div class="tm-ava" aria-hidden="true">K</div>
+          <div class="tm-id"><div class="n">Kimberly D. Yu</div><div class="r">BS Computer Science · 2023 – 2027</div></div>
+          <a class="tm-phone" href="mailto:kimberlydacucoyu@gmail.com" aria-label="Email Kimberly"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
         </div>
       </div>
       <div class="tm-quote">
-        <p>“[Kimberly rebuilt our Shopify store and produced the launch content end to end — faster, cleaner, and more on-brand than any team we’d worked with. The results spoke for themselves.]”</p>
+        <p>“Hi, I’m Kimberly. I’m a Computer Science student and quick learner who loves troubleshooting systems and helping people solve everyday digital problems. I bring hands-on experience in Shopify storefront support, ad video editing and digital asset pipelines, and I’m looking for an OJT opportunity where I can contribute and keep learning.”</p>
       </div>
     </div>
     <!-- Full-bleed marquee rows (chips generated x4 in JS for a seamless -25% loop) -->
@@ -527,34 +514,24 @@
     <div class="wrap">
       <div class="cta-banner">
         <span class="zh">緣</span>
-        <h2>Got a store that needs building — or content that needs to sell?</h2>
-        <p>Tell me what you're working on. I'll come back with how I'd approach it and a rough plan.</p>
+        <h2>Looking for an OJT intern who can code and create?</h2>
+        <p>I’m open to OJT placements in web development, IT support, and creative or digital marketing roles. I’d love to hear from you.</p>
         <div class="hero-actions">
-          <a href="mailto:[you@email.com]" class="btn btn-primary">Start a project →</a>
-          <a href="#" class="btn btn-ghost">Book a 20-min call</a>
+          <a href="mailto:kimberlydacucoyu@gmail.com?subject=OJT%20opportunity" class="btn btn-primary">Email me →</a>
+          <a href="https://linkedin.com/in/kimberly-d-yu" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Footer ===== -->
-  <footer>
-    <div class="wrap">
-      <div class="foot">
-        <div>
-          <div class="brand"><span class="seal">匠</span><span class="name" style="font-size:1.25rem;">[Your <span style="color:var(--gold);">Name]</span></span></div>
-          <p class="tag">Shopify developer &amp; creative. Building stores and the visuals that sell them.</p>
-        </div>
-        <nav class="foot-links">
-          <a href="work.html">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
-        </nav>
-        <div class="foot-social">
-          <a href="#">Instagram</a><a href="#">Behance</a><a href="#">LinkedIn</a><a href="#">YouTube</a>
-        </div>
-      </div>
-      <p class="copyright"><span class="zh">印</span> © 2026 [Your Name]. All rights reserved.</p>
-    </div>
+  <!-- ===== Footer (rendered by site-footer.js; static fallback below) ===== -->
+  <footer class="vf" id="site-footer">
+    <div class="vf-bar"><div class="vf-bar-in">
+      <span>© 2026 Kimberly D. Yu</span>
+      <span><a href="mailto:kimberlydacucoyu@gmail.com">Email</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
+    </div></div>
   </footer>
+  <script src="site-footer.js"></script>
 
   <script>
     // Mobile nav
@@ -607,8 +584,8 @@
     (function(){
       var r1 = document.getElementById('tmRow1'), r2 = document.getElementById('tmRow2');
       if (!r1 || !r2) return;
-      var ROW1 = [['⛩️','Shopify Development'],['🧩','Liquid Themes'],['⚡','Speed Optimization'],['🔌','App Integrations'],['🚚','Store Migrations']];
-      var ROW2 = [['🎬','Video Editing'],['✨','Motion Graphics'],['📱','Short-Form Content'],['🖌️','Brand Design'],['🗂️','Social Templates']];
+      var ROW1 = [['🛍️','Shopify Liquid'],['🧱','GemPages'],['🌐','HTML &amp; CSS'],['⚙️','JavaScript'],['🐍','Python'],['☕','Java'],['🐘','PHP'],['📱','Kotlin'],['🔥','Firebase'],['🗄️','MySQL'],['🔀','Git']];
+      var ROW2 = [['🎬','Video Editing'],['✨','Motion Graphics'],['🖌️','Graphic Design'],['📣','Meta Business Suite'],['🤖','Android Development'],['🛠️','Technical Troubleshooting'],['🔎','Research &amp; Investigation']];
       function fill(el, items){
         var html = '';
         for (var k = 0; k < 4; k++) for (var i = 0; i < items.length; i++)

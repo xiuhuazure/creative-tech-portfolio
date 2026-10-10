@@ -1,0 +1,102 @@
+/* =========================================================================
+   Site buttons — two swap components, ported 1:1 from the provided React code
+   (the site is static HTML, so there is no React/Framer Motion to run them).
+     Dark mode:  Glow Button          (.gbtn-*)
+     Light mode: Circle Reveal Button (.crbtn-*)
+   Each button is rendered once per variant; only the variant for the current
+   theme is displayed, so there is a single link in the tab order.
+   Behaviour (springs, cursor tracking) lives in site-buttons.js.
+   ========================================================================= */
+
+.sbtn { display: inline-block; }
+
+/* ---------------- Glow Button (dark mode) ---------------- */
+/* wrapper: relative inline-block, perspective 1000px */
+.gbtn-wrap { position: relative; display: inline-block; perspective: 1000px; }
+
+/* motion.button: relative px-8 py-4 rounded-full cursor-pointer overflow-hidden */
+.gbtn {
+  position: relative; display: inline-block; box-sizing: border-box;
+  padding: 16px 32px; border-radius: 9999px; cursor: pointer; overflow: hidden;
+  text-decoration: none; line-height: normal;
+  background: rgba(15, 15, 15, 0.85);
+  -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  transform: translateX(0px) translateY(0px) scale(1) rotateX(0deg) rotateY(0deg);
+}
+
+/* top sheen */
+.gbtn-sheen {
+  position: absolute; inset: 0; pointer-events: none; border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
+}
+
+/* cursor-following gradient border */
+.gbtn-ring {
+  position: absolute; inset: 0; border-radius: 9999px; pointer-events: none;
+  transition: opacity 300ms;
+  padding: 1.5px;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(236, 72, 153, 0.8) 0%, transparent 50%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+}
+.gbtn-wrap.is-hovered .gbtn-ring { opacity: 1; }
+
+/* label: relative z-10 text-white font-medium text-lg tracking-tight select-none */
+.gbtn-label {
+  position: relative; z-index: 10; color: #fff; font-weight: 500;
+  font-size: 1.125rem; line-height: 1.75rem; letter-spacing: -0.025em;
+  -webkit-user-select: none; user-select: none;
+}
+
+/* aura: 240px pink radial, blur 35px, screen blend, follows the spring */
+.gbtn-aura {
+  position: absolute; pointer-events: none;
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 70%);
+  filter: blur(35px); mix-blend-mode: screen;
+  left: 50%; top: 50%; z-index: -1;
+  transform: translateX(-120px) translateY(-120px) scale(1.4);
+  opacity: 0.4; transition: opacity 0.3s;
+}
+.gbtn-wrap.is-hovered .gbtn-aura { opacity: 0.7; }
+
+/* ---------------- Circle Reveal Button (light mode) ---------------- */
+.crbtn {
+  position: relative; display: none;
+  background: none; border: none; padding: 0;
+  cursor: pointer; text-decoration: none; line-height: normal;
+  font-family: 'Inter', system-ui, sans-serif;
+  opacity: 1;
+}
+.crbtn-clip {
+  display: block; position: relative; overflow: hidden;
+  background: #111110; padding: 18px 44px; border-radius: 60px;
+  isolation: isolate;
+}
+.crbtn-spot {
+  position: absolute; left: 0; top: 0;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: #fefefe;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0; pointer-events: none;
+}
+.crbtn.is-hovered .crbtn-spot { transform: translate(-50%, -50%) scale(1); }
+.crbtn-label {
+  position: relative; z-index: 1;
+  color: #c9fe00; transition: color 0.35s ease;
+  font-size: 16px; font-weight: 800; letter-spacing: 2px;
+}
+.crbtn.is-hovered .crbtn-label { color: #010001; }
+
+/* ---------------- Theme switch: one variant at a time ---------------- */
+:root[data-theme="light"] .gbtn-wrap { display: none; }
+:root[data-theme="light"] .crbtn { display: inline-block; }
+
+/* Layout glue for the one spot that styled the old .btn directly */
+.featured-body > .sbtn { align-self: flex-start; margin-top: 30px; }

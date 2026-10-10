@@ -3,6 +3,7 @@
    (the site is static HTML, so there is no React/Framer Motion to run them).
      Dark mode:  Glow Button          (.gbtn-*)
      Light mode: Circle Reveal Button (.crbtn-*)
+   Colours are recoloured to the site palette (gold + cinnabar red).
    Each button is rendered once per variant; only the variant for the current
    theme is displayed, so there is a single link in the tab order.
    Behaviour (springs, cursor tracking) lives in site-buttons.js.
@@ -21,7 +22,7 @@
   text-decoration: none; line-height: normal;
   background: rgba(15, 15, 15, 0.85);
   -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(212, 175, 98, 0.28);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   transform: translateX(0px) translateY(0px) scale(1) rotateX(0deg) rotateY(0deg);
 }
@@ -37,7 +38,7 @@
   position: absolute; inset: 0; border-radius: 9999px; pointer-events: none;
   transition: opacity 300ms;
   padding: 1.5px;
-  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(236, 72, 153, 0.8) 0%, transparent 50%);
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(242, 217, 153, 0.9) 0%, transparent 50%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -48,7 +49,7 @@
 
 /* label: relative z-10 text-white font-medium text-lg tracking-tight select-none */
 .gbtn-label {
-  position: relative; z-index: 10; color: #fff; font-weight: 500;
+  position: relative; z-index: 10; color: #f2d999; font-weight: 500;
   font-size: 1.125rem; line-height: 1.75rem; letter-spacing: -0.025em;
   -webkit-user-select: none; user-select: none;
 }
@@ -57,7 +58,7 @@
 .gbtn-aura {
   position: absolute; pointer-events: none;
   width: 240px; height: 240px;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(200, 80, 58, 0.45) 0%, transparent 70%);
   filter: blur(35px); mix-blend-mode: screen;
   left: 50%; top: 50%; z-index: -1;
   transform: translateX(-120px) translateY(-120px) scale(1.4);
@@ -75,13 +76,13 @@
 }
 .crbtn-clip {
   display: block; position: relative; overflow: hidden;
-  background: #111110; padding: 18px 44px; border-radius: 60px;
+  background: #2b2418; padding: 18px 44px; border-radius: 60px;
   isolation: isolate;
 }
 .crbtn-spot {
   position: absolute; left: 0; top: 0;
   width: 400px; height: 400px; border-radius: 50%;
-  background: #fefefe;
+  background: #bf3d29;
   transform: translate(-50%, -50%) scale(0);
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 0; pointer-events: none;
@@ -89,10 +90,10 @@
 .crbtn.is-hovered .crbtn-spot { transform: translate(-50%, -50%) scale(1); }
 .crbtn-label {
   position: relative; z-index: 1;
-  color: #c9fe00; transition: color 0.35s ease;
+  color: #f2d999; transition: color 0.35s ease;
   font-size: 16px; font-weight: 800; letter-spacing: 2px;
 }
-.crbtn.is-hovered .crbtn-label { color: #010001; }
+.crbtn.is-hovered .crbtn-label { color: #fff5ea; }
 
 /* ---------------- Theme switch: one variant at a time ---------------- */
 :root[data-theme="light"] .gbtn-wrap { display: none; }

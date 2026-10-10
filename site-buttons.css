@@ -76,8 +76,9 @@
 }
 .crbtn-clip {
   display: block; position: relative; overflow: hidden;
-  background: #2b2418; padding: 16px 32px; border-radius: 9999px;
-  border: 1px solid rgba(43, 36, 24, 0.9); /* matches the Glow Button's 1px border, so both are the same size */
+  /* No border, so the hover fill reaches the edge with no outline. The Glow Button's 1px border
+     is added to the padding instead (16+1 / 32+1), keeping both buttons exactly the same size. */
+  background: #2b2418; padding: 17px 33px; border-radius: 9999px;
   isolation: isolate;
 }
 .crbtn-spot {

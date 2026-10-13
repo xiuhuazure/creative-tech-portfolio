@@ -1,0 +1,119 @@
+/* =========================================================================
+   Tech stack — adapted from the "Integration 01 Luma" spec: an infinite rail
+   of logo tiles inside a glowing pill, with light streaks, lens flares and
+   diagonal beams. Recoloured from orange-on-black to the site's gold, and
+   theme-aware (light/dark). Scoped under .ts; behaviour in site-techstack.js.
+   Logos: Simple Icons (CC0), as an inline <symbol> sprite in index.html.
+   ========================================================================= */
+.ts {
+  --ts-bg: var(--ink, #0c0f12);
+  --ts-accent: var(--gold, #d4af62);
+  --ts-flare: #fff;
+  --ts-tile: #1b1b1b;
+  --ts-tile-border: rgba(255, 255, 255, 0.05);
+  --ts-mono: #f4f0e7;
+  position: relative; z-index: 1; width: 100%; box-sizing: border-box;
+  background: var(--ts-bg); padding: 96px 24px; overflow: hidden;
+  transition: background .4s ease;
+}
+:root[data-theme="light"] .ts {
+  --ts-flare: var(--gold-bright, #b6892f);
+  --ts-tile: #2b2418;
+  --ts-tile-border: rgba(255, 255, 255, 0.06);
+}
+.ts-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.ts-inner { position: relative; z-index: 10; max-width: 1280px; margin: 0 auto; }
+
+/* ---------- Header: big headline left, short description right ---------- */
+.ts-head { display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 80px; }
+.ts-kicker { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 14px; color: var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; }
+.ts-kicker .zh { font-family: var(--brush); color: var(--cinnabar); font-size: 1.5rem; letter-spacing: 0; text-transform: none; }
+.ts-title { margin: 0; max-width: 800px; font-family: var(--serif); font-size: 48px; font-weight: 700; line-height: 1.1; color: var(--text); }
+.ts-desc { margin: 0; max-width: 360px; padding-top: 8px; font-size: 15px; line-height: 1.625; color: var(--text-dim); }
+@media (min-width: 768px) {
+  .ts { padding: 96px 48px; }
+  .ts-head { flex-direction: row; }
+}
+@media (min-width: 1024px) { .ts { padding: 96px 96px; } }
+
+/* Header fade-up when it scrolls into view (only hidden when animation is possible) */
+.js-reveal .ts-kicker, .js-reveal .ts-title, .js-reveal .ts-desc {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .6s cubic-bezier(.25, .1, .25, 1), transform .6s cubic-bezier(.25, .1, .25, 1);
+}
+.js-reveal .ts-desc { transition-delay: .1s; }
+.ts.in .ts-kicker, .ts.in .ts-title, .ts.in .ts-desc { opacity: 1; transform: none; }
+
+/* ---------- Strip ---------- */
+.ts-strip { position: relative; width: 100%; padding: 80px 0; }
+
+/* Light streaks */
+.ts-streaks { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.ts-streak {
+  position: absolute; left: 0; top: calc(15% + var(--i) * 15%);
+  width: 256px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ts-accent), transparent);
+  opacity: 0;
+  animation: ts-streak calc(3s + var(--i) * 0.4s) linear calc(var(--i) * 1.5s) infinite both;
+}
+.ts-streak .dot {
+  position: absolute; right: 0; top: -1.5px; width: 4px; height: 4px; border-radius: 50%;
+  background: #fff; filter: blur(2px); box-shadow: 0 0 8px var(--ts-accent);
+}
+@keyframes ts-streak {
+  0%      { transform: translateX(-100%); opacity: 0; }
+  33.33%  { opacity: 0.8; }
+  66.66%  { opacity: 0.8; }
+  100%    { transform: translateX(200%); opacity: 0; }
+}
+
+/* Glowing pill */
+.ts-pill { position: relative; width: 100%; height: 100px; border-radius: 9999px; display: flex; align-items: center; overflow: hidden; }
+.ts-border { position: absolute; inset: 0; border-radius: 9999px; opacity: 0.4; background: linear-gradient(90deg, transparent, var(--ts-accent), transparent); }
+.ts-border::after { content: ""; position: absolute; inset: 1px; border-radius: 9999px; background: var(--ts-bg); transition: background .4s ease; }
+.ts-line {
+  position: absolute; left: 0; right: 0; top: 50%; height: 1px; transform: translateY(-50%); opacity: 0.3;
+  background: linear-gradient(90deg, transparent, var(--ts-accent), transparent);
+}
+.ts-flare {
+  position: absolute; top: 50%; width: 8px; height: 8px; border-radius: 50%; transform: translateY(-50%);
+  background: var(--ts-flare); filter: blur(4px); opacity: 0.4;
+}
+
+/* Infinite rail */
+/* Inset by the pill's end radius (50px) so moving tiles never pass under the rounded ends;
+   otherwise the curved clip lets a hairline of a dark tile show through in light mode. */
+.ts-slider { position: relative; display: flex; align-items: center; width: calc(100% - 100px); margin: 0 50px; height: 100%; overflow: hidden; }
+.ts-mask { position: absolute; top: 0; bottom: 0; width: 25%; z-index: 20; pointer-events: none; }
+.ts-mask.l { left: 0;  background: linear-gradient(90deg,  var(--ts-bg) 0%, var(--ts-bg) 30%, color-mix(in srgb, var(--ts-bg) 95%, transparent) 50%, transparent 100%); }
+.ts-mask.r { right: 0; background: linear-gradient(270deg, var(--ts-bg) 0%, var(--ts-bg) 30%, color-mix(in srgb, var(--ts-bg) 95%, transparent) 50%, transparent 100%); }
+/* Outer 30% of each fade is fully opaque so no tile ghosts at the pill's ends (notably dark tiles in light mode). */
+/* 32px gaps + 16px side padding make -25% exactly one set of tiles, so the loop is seamless */
+.ts-track { display: flex; align-items: center; gap: 32px; padding: 0 16px; margin: 0; list-style: none; width: max-content; }
+.ts.ready .ts-track { animation: ts-rail 50s linear infinite; }
+@keyframes ts-rail { from { transform: translateX(0); } to { transform: translateX(-25%); } }
+
+.ts-tile {
+  width: 52px; height: 52px; flex-shrink: 0; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--ts-tile); border: 1px solid var(--ts-tile-border);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  transition: background .4s ease;
+}
+.ts-tile svg { width: 32px; height: 32px; fill: currentColor; }
+.ts-tile svg.mono { color: var(--ts-mono); }
+
+/* Diagonal beams */
+.ts-diag { position: absolute; inset: 0; pointer-events: none; }
+.ts-beam {
+  position: absolute; width: 1px; height: 128px; opacity: 0.1; transform: rotate(45deg);
+  background: linear-gradient(180deg, transparent, var(--ts-accent), transparent);
+}
+.ts-beam.a { top: 0; left: 30%; animation: ts-pulse 4s ease-in-out infinite; }
+.ts-beam.b { bottom: 0; right: 40%; animation: ts-pulse 5s ease-in-out 1s infinite; }
+@keyframes ts-pulse { 0%, 100% { opacity: 0.1; } 50% { opacity: 0.3; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ts.ready .ts-track, .ts-beam { animation: none; }
+  .ts-streak { display: none; }
+}

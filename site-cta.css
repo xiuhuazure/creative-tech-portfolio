@@ -1,0 +1,157 @@
+/* =========================================================================
+   Homepage CTA — adapted from the "CTA 01 Velara" spec: a glowing icon tile
+   over a perspective grid floor, radial glow and starfield, with a frosted
+   pill form. Recoloured from purple to the site's gold + cinnabar, and
+   theme-aware. Scoped under .cta2; behaviour in site-cta.js.
+   ========================================================================= */
+.cta2 {
+  /* Dark theme (default) */
+  --c-gold: 212 175 98;        /* #d4af62 */
+  --c-red: 200 80 58;          /* #c8503a */
+  --c-bg: var(--ink, #0c0f12);
+  --c-card: #07090b;
+  --c-text: var(--text, #f4f0e7);
+  --c-dim: rgb(244 240 231 / 0.5);
+  --c-faint: rgb(244 240 231 / 0.32);
+  --c-star: #fff;
+  --c-pill-bg: rgb(244 240 231 / 0.07);
+  --c-pill-border: rgb(var(--c-gold) / 0.28);
+  --c-btn-bg: #d4af62;
+  --c-btn-text: #17110a;
+  --c-btn-hover-bg: #f2d999;
+  --c-btn-hover-text: #17110a;
+  --c-drop: 0 40px 100px rgb(0 0 0 / 0.8);
+
+  position: relative; z-index: 1;
+  min-height: 100vh; box-sizing: border-box;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; background: var(--c-bg);
+  transition: background .4s ease;
+}
+:root[data-theme="light"] .cta2 {
+  --c-gold: 156 118 32;        /* #9c7620 */
+  --c-red: 191 61 41;          /* #bf3d29 */
+  --c-card: #fbf5e6;
+  --c-dim: rgb(43 36 24 / 0.62);
+  --c-faint: rgb(43 36 24 / 0.45);
+  --c-star: #9c7620;
+  --c-pill-bg: rgb(43 36 24 / 0.05);
+  --c-pill-border: rgb(var(--c-gold) / 0.35);
+  --c-btn-bg: #2b2418;
+  --c-btn-text: #f2d999;
+  --c-btn-hover-bg: #bf3d29;
+  --c-btn-hover-text: #fff5ea;
+  --c-drop: 0 40px 100px rgb(60 40 10 / 0.16);
+}
+@media (min-width: 768px) { .cta2 { padding: 40px; } }
+
+/* ---------- Card ---------- */
+.cta2-card {
+  position: relative; overflow: hidden; box-sizing: border-box;
+  width: 100%; max-width: 1140px; min-height: 580px;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  background: var(--c-card); border-radius: 24px;
+  border: 1px solid rgb(var(--c-gold) / 0.15);
+  box-shadow: 0 0 0 1px rgb(var(--c-gold) / 0.1), 0 0 80px rgb(var(--c-gold) / 0.1), var(--c-drop);
+  transition: background .4s ease;
+}
+
+/* Background layers (never block clicks) */
+.cta2-corner-lines, .cta2-grid-floor, .cta2-grid-glow, .cta2-stars { position: absolute; pointer-events: none; }
+.cta2-corner-lines {
+  inset: 0; opacity: 0.5;
+  background-image:
+    linear-gradient(rgb(var(--c-gold) / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--c-gold) / 0.06) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.cta2-grid-floor {
+  left: 0; right: 0; bottom: 0; height: 55%;
+  background-image:
+    linear-gradient(rgb(var(--c-gold) / 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--c-gold) / 0.12) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: perspective(400px) rotateX(55deg);
+  transform-origin: bottom center;
+}
+.cta2-grid-glow {
+  bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 55%;
+  background: radial-gradient(ellipse 70% 40% at 50% 100%, rgb(var(--c-gold) / 0.5) 0%, rgb(var(--c-red) / 0.2) 40%, transparent 70%);
+}
+.cta2-stars { inset: 0; width: 100%; height: 100%; color: var(--c-star); }
+
+/* ---------- Content ---------- */
+.cta2-content { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; padding: 48px 24px; }
+@media (min-width: 768px)  { .cta2-content { padding: 48px 40px; } }
+@media (min-width: 1024px) { .cta2-content { padding: 80px; } }
+
+.cta2-icon {
+  position: relative; z-index: 2; width: 110px; height: 110px; margin: 0 auto 36px;
+  display: flex; align-items: center; justify-content: center; border-radius: 26px;
+  background: linear-gradient(135deg, #b8452f 0%, #7a2416 40%, #c9963f 70%, #e8c77a 100%);
+  border: 1px solid rgb(242 217 153 / 0.4);
+  animation: cta2-icon-pulse 4s ease-in-out infinite;
+}
+.cta2-icon svg { width: 56px; height: 56px; filter: drop-shadow(0 0 15px rgb(242 217 153 / 0.7)); }
+@keyframes cta2-icon-pulse {
+  0%, 100% { box-shadow: 0 0 40px rgb(212 175 98 / 0.5), 0 0 80px rgb(200 80 58 / 0.2); }
+  50%      { box-shadow: 0 0 60px rgb(212 175 98 / 0.7), 0 0 120px rgb(200 80 58 / 0.3); }
+}
+
+.cta2-title {
+  margin: 0 0 16px; text-align: center; color: var(--c-text);
+  font-family: var(--serif); font-size: 40px; font-weight: 700; line-height: 1.1; letter-spacing: -1px;
+  text-shadow: 0 0 40px rgb(var(--c-gold) / 0.3);
+}
+.cta2-br { display: none; }
+@media (min-width: 768px) { .cta2-title { font-size: 62px; } .cta2-br { display: block; } }
+
+.cta2-sub { margin: 0 0 40px; max-width: 500px; text-align: center; font-size: 17px; line-height: 1.625; color: var(--c-dim); }
+
+.cta2-cta { width: 100%; display: flex; flex-direction: column; align-items: center; }
+.cta2-form {
+  display: inline-flex; align-items: center; gap: 8px; box-sizing: border-box;
+  width: 100%; max-width: 480px; margin: 0 0 16px; padding: 6px 6px 6px 22px;
+  background: var(--c-pill-bg); border: 1px solid var(--c-pill-border); border-radius: 999px;
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.cta2-form:focus-within { border-color: rgb(var(--c-gold) / 0.6); }
+.cta2-input {
+  flex: 1; min-width: 0; background: transparent; border: none; outline: none;
+  font: inherit; font-size: 15px; color: var(--c-text);
+}
+.cta2-input::placeholder { color: var(--c-faint); }
+.cta2-btn {
+  flex-shrink: 0; border: none; border-radius: 999px; padding: 10px 24px;
+  font: inherit; font-size: 14px; font-weight: 700;
+  background: var(--c-btn-bg); color: var(--c-btn-text);
+  transition: background .2s ease, color .2s ease;
+}
+.cta2-btn:hover { background: var(--c-btn-hover-bg); color: var(--c-btn-hover-text); }
+.cta2-btn:focus-visible { outline: 2px solid rgb(var(--c-gold)); outline-offset: 2px; }
+
+.cta2-trust { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; font-size: 13px; letter-spacing: -0.01em; color: var(--c-faint); }
+.cta2-trust .spark { color: rgb(var(--c-red) / 0.6); font-weight: 700; }
+.cta2-trust a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.cta2-trust a:hover { color: rgb(var(--c-gold)); }
+
+/* Staggered fade-up as it scrolls into view (only hidden when animation is possible) */
+.js-reveal .cta2-title, .js-reveal .cta2-sub, .js-reveal .cta2-cta {
+  opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease;
+}
+.js-reveal .cta2-sub { transition-delay: .2s; }
+.js-reveal .cta2-cta { transition-delay: .4s; }
+.cta2.in .cta2-title, .cta2.in .cta2-sub, .cta2.in .cta2-cta { opacity: 1; transform: none; }
+
+/* ---------- Small screens: stacked form ---------- */
+@media (max-width: 640px) {
+  .cta2-form { flex-direction: column; border-radius: 24px; padding: 16px; gap: 12px; }
+  .cta2-input { text-align: center; width: 100%; }
+  .cta2-btn { width: 100%; }
+  .cta2-title { font-size: 40px !important; }
+  .cta2-icon { width: 80px; height: 80px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta2-icon { animation: none; box-shadow: 0 0 40px rgb(212 175 98 / 0.5), 0 0 80px rgb(200 80 58 / 0.2); }
+}

@@ -150,16 +150,7 @@
 .vf-grid a:hover { color: var(--vf-head); }
 .vf-grid .plain { color: var(--vf-plain); }
 
-/* ---------- 3. Social buttons ---------- */
-.vf-social { position: relative; z-index: 11; max-width: 1440px; margin: 64px auto 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-.vf-social a {
-  padding: 12px 28px; border: 1px solid var(--vf-btn-border); border-radius: 6px;
-  color: var(--vf-btn-text); font-size: 14px; font-weight: 500;
-  transition: background-color .2s ease, border-color .2s ease;
-}
-.vf-social a:hover { background-color: var(--vf-btn-bg-hover); border-color: var(--vf-btn-border-hover); }
-
-/* ---------- 4. Copyright bar ---------- */
+/* ---------- 3. Copyright bar ---------- */
 .vf-bar { background: var(--vf-bg-2); border-top: 1px dashed var(--vf-bar-border); transition: background .4s ease; }
 .vf-bar-in {
   max-width: 1440px; margin: 0 auto; padding: 24px 40px;
@@ -168,7 +159,7 @@
 }
 .vf-bar a:hover { color: var(--vf-head); }
 
-/* ---------- 5. Giant wordmark ---------- */
+/* ---------- 4. Giant wordmark ---------- */
 .vf-brand {
   position: relative; width: 100%; height: clamp(170px, 30vw, 400px);
   display: flex; align-items: center; justify-content: center;

@@ -77,11 +77,6 @@
         col('Projects', [['Earth Moon Magick', 'case-study.html'], ['FSLAMES (thesis)', 'work.html'], ['U-Eat Ordering System', 'work.html']]) +
         col('Contact', [['Email me', 'mailto:' + EMAIL], ['LinkedIn', LINKEDIN], ['GitHub', GITHUB], ['Pangasinan, Philippines', null]]) +
       '</div>' +
-      '<div class="vf-social">' +
-        '<a href="' + LINKEDIN + '" target="_blank" rel="noopener">LinkedIn</a>' +
-        '<a href="' + GITHUB + '" target="_blank" rel="noopener">GitHub</a>' +
-        '<a href="mailto:' + EMAIL + '">Email</a>' +
-      '</div>' +
     '</div>' +
     '<div class="vf-bar"><div class="vf-bar-in">' +
       '<span>© 2026 Kimberly D. Yu. All rights reserved.</span>' +

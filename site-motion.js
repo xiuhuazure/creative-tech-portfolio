@@ -84,4 +84,36 @@
       el.addEventListener('pointerleave', function () { el.classList.remove('tilting'); });
     })(cards[c]);
   }
+
+  // ---- Hero wave: the line ripples gently (ends stay pinned) ----
+  var wave = document.querySelector('.cloud-strip svg');
+  if (wave) {
+    var shape = wave.querySelector('.cs-shape'), comet = wave.querySelector('.cs-comet');
+    var XS = [0, 200, 300, 440, 560, 720, 880, 1040, 1180, 1360, 1440];
+    var YS = [40, 18, 34, 12, 30, 16, 32, 14, 30, 18, 40];
+    var waveOn = true;
+    var waveLine = function (t) {
+      var ys = YS.map(function (y, i) {
+        return (i === 0 || i === YS.length - 1) ? y : y + 6 * Math.sin(t * 0.0009 + i * 1.3);
+      });
+      var d = 'M0 ' + ys[0];
+      for (var i = 1; i < XS.length; i++) {
+        var mx = (XS[i - 1] + XS[i]) / 2;
+        d += ' C ' + mx + ' ' + ys[i - 1].toFixed(1) + ' ' + mx + ' ' + ys[i].toFixed(1) + ' ' + XS[i] + ' ' + ys[i].toFixed(1);
+      }
+      return d;
+    };
+    var waveTick = function (t) {
+      if (waveOn) {
+        var d = waveLine(t);
+        if (comet) comet.setAttribute('d', d);
+        if (shape) shape.setAttribute('d', d + ' L 1440 60 L 0 60 Z');
+      }
+      requestAnimationFrame(waveTick);
+    };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) { waveOn = entries[0].isIntersecting; }).observe(wave);
+    }
+    requestAnimationFrame(waveTick);
+  }
 })();

@@ -71,7 +71,17 @@ html .tilt.tilting {
   50%      { transform: translateY(-14px); }
 }
 
+/* ---------- Hero wave: a spark of light travels along the line ---------- */
+.cloud-strip .cs-comet {
+  fill: none; stroke: var(--gold-bright); stroke-width: 2; stroke-linecap: round;
+  stroke-dasharray: 90 1100; stroke-dashoffset: 90;
+  filter: drop-shadow(0 0 4px var(--gold-bright));
+  animation: m-comet 7s linear infinite;
+}
+@keyframes m-comet { from { stroke-dashoffset: 90; } to { stroke-dashoffset: -1000; } }
+
 @media (prefers-reduced-motion: reduce) {
   .typed::after { animation: none; }
+  .cloud-strip .cs-comet { animation: none; display: none; }
   .scroll-progress { display: none; }
 }

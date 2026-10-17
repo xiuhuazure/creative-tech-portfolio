@@ -200,7 +200,8 @@
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(212,175,98,0.32); }
     .btn-ghost { border: 1px solid var(--border-gold); color: var(--gold); background: rgba(212,175,98,0.04); }
     .btn-ghost:hover { border-color: var(--gold); background: rgba(212,175,98,0.1); transform: translateY(-2px); }
-    .cloud-strip { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; line-height: 0; opacity: 0.5; }
+    .cloud-strip { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; line-height: 0; }
+    .cloud-strip .cs-shape { opacity: 0.5; }
     .cloud-strip svg { width: 100%; height: 60px; display: block; }
 
     /* ---------- Divider ---------- */
@@ -378,7 +379,8 @@
     <div class="cloud-strip" aria-hidden="true">
       <svg viewBox="0 0 1440 60" preserveAspectRatio="none" fill="none">
         <path d="M0 40 C 120 40 120 18 200 18 C 250 18 250 34 300 34 C 360 34 360 12 440 12 C 500 12 500 30 560 30 C 640 30 640 16 720 16 C 800 16 800 32 880 32 C 950 32 950 14 1040 14 C 1110 14 1110 30 1180 30 C 1260 30 1260 18 1360 18 C 1410 18 1410 38 1440 40 L 1440 60 L 0 60 Z"
-          stroke="var(--gold)" stroke-width="1" fill="rgba(212,175,98,0.05)"/>
+          class="cs-shape" stroke="var(--gold)" stroke-width="1" fill="rgba(212,175,98,0.05)"/>
+        <path class="cs-comet" pathLength="1000" d="M0 40 C 120 40 120 18 200 18 C 250 18 250 34 300 34 C 360 34 360 12 440 12 C 500 12 500 30 560 30 C 640 30 640 16 720 16 C 800 16 800 32 880 32 C 950 32 950 14 1040 14 C 1110 14 1110 30 1180 30 C 1260 30 1260 18 1360 18 C 1410 18 1410 38 1440 40"/>
       </svg>
     </div>
   </section>

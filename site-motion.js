@@ -1,8 +1,20 @@
 /* =========================================================================
-   Site motion — typing roles, counting stats, card tilt, scroll progress.
+   Site motion — header blend, typing roles, counting stats, card tilt, scroll progress.
    Shared by every page; styles live in site-motion.css. No dependencies.
    ========================================================================= */
 (function () {
+  // ---- Header: transparent at the very top, solid once you scroll (not motion, so always on) ----
+  var header = document.querySelector('header');
+  if (header) {
+    var setTop = function () { header.classList.toggle('at-top', window.scrollY < 8); };
+    // Apply the first state without the fade, so the page doesn't flash on load
+    header.style.transition = 'none';
+    setTop();
+    void header.offsetHeight;
+    header.style.transition = '';
+    window.addEventListener('scroll', setTop, { passive: true });
+  }
+
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) return;
 

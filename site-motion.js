@@ -89,7 +89,12 @@
   var wave = document.querySelector('.cloud-strip svg');
   if (wave) {
     var shape = wave.querySelector('.cs-shape'), guide = wave.querySelector('.cs-line');
-    var STAR = '<svg viewBox="0 0 24 24"><path d="M12 0C12.6 7 17 11.4 24 12C17 12.6 12.6 17 12 24C11.4 17 7 12.6 0 12C7 11.4 11.4 7 12 0Z"/></svg>';
+    // A glint: glowing core, long thin rays up/down/left/right, shorter diagonal rays
+    var STAR = '<svg viewBox="-12 -12 24 24">' +
+      '<circle r="3.2" opacity="0.25"/><circle r="1.3"/>' +
+      '<path d="M0 -12L0.55 0L0 12L-0.55 0Z"/><path d="M-12 0L0 0.55L12 0L0 -0.55Z"/>' +
+      '<path d="M0 -6L0.4 0L0 6L-0.4 0Z" transform="rotate(45)" opacity="0.8"/>' +
+      '<path d="M0 -6L0.4 0L0 6L-0.4 0Z" transform="rotate(-45)" opacity="0.8"/></svg>';
     var stars = [];
     var place = function (s) { s.at = 0.03 + Math.random() * 0.94; };
     for (var k = 0; k < 9; k++) {
@@ -97,7 +102,7 @@
       el.className = 'cs-star';
       el.setAttribute('aria-hidden', 'true');
       el.innerHTML = STAR;
-      el.style.setProperty('--s', (8 + Math.random() * 8).toFixed(1) + 'px');
+      el.style.setProperty('--s', (14 + Math.random() * 12).toFixed(1) + 'px');
       el.style.setProperty('--dur', (2.6 + Math.random() * 2.4).toFixed(2) + 's');
       el.style.setProperty('--delay', (-Math.random() * 5).toFixed(2) + 's');
       var s = { el: el };

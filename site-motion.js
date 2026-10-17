@@ -85,10 +85,28 @@
     })(cards[c]);
   }
 
-  // ---- Hero wave: the line ripples gently (ends stay pinned) ----
+  // ---- Hero wave: the line ripples gently (ends stay pinned) and stars twinkle on it ----
   var wave = document.querySelector('.cloud-strip svg');
   if (wave) {
-    var shape = wave.querySelector('.cs-shape'), comet = wave.querySelector('.cs-comet');
+    var shape = wave.querySelector('.cs-shape'), guide = wave.querySelector('.cs-line');
+    var STAR = '<svg viewBox="0 0 24 24"><path d="M12 0C12.6 7 17 11.4 24 12C17 12.6 12.6 17 12 24C11.4 17 7 12.6 0 12C7 11.4 11.4 7 12 0Z"/></svg>';
+    var stars = [];
+    var place = function (s) { s.at = 0.03 + Math.random() * 0.94; };
+    for (var k = 0; k < 9; k++) {
+      var el = document.createElement('span');
+      el.className = 'cs-star';
+      el.setAttribute('aria-hidden', 'true');
+      el.innerHTML = STAR;
+      el.style.setProperty('--s', (8 + Math.random() * 8).toFixed(1) + 'px');
+      el.style.setProperty('--dur', (2.6 + Math.random() * 2.4).toFixed(2) + 's');
+      el.style.setProperty('--delay', (-Math.random() * 5).toFixed(2) + 's');
+      var s = { el: el };
+      place(s);
+      // Each time a star finishes twinkling, it reappears somewhere else on the line
+      el.addEventListener('animationiteration', (function (st) { return function () { place(st); }; })(s));
+      wave.parentNode.appendChild(el);
+      stars.push(s);
+    }
     var XS = [0, 200, 300, 440, 560, 720, 880, 1040, 1180, 1360, 1440];
     var YS = [40, 18, 34, 12, 30, 16, 32, 14, 30, 18, 40];
     var waveOn = true;
@@ -106,8 +124,16 @@
     var waveTick = function (t) {
       if (waveOn) {
         var d = waveLine(t);
-        if (comet) comet.setAttribute('d', d);
         if (shape) shape.setAttribute('d', d + ' L 1440 60 L 0 60 Z');
+        if (guide) {
+          guide.setAttribute('d', d);
+          var len = guide.getTotalLength();
+          for (var j = 0; j < stars.length; j++) {
+            var pt = guide.getPointAtLength(stars[j].at * len);
+            stars[j].el.style.left = (pt.x / 14.4).toFixed(2) + '%';
+            stars[j].el.style.top = pt.y.toFixed(1) + 'px';
+          }
+        }
       }
       requestAnimationFrame(waveTick);
     };

@@ -71,7 +71,7 @@ html .tilt.tilting {
   50%      { transform: translateY(-14px); }
 }
 
-/* ---------- Hero wave: four-pointed stars twinkle at random spots on the line ---------- */
+/* ---------- Hero wave: sparkles (light glints) twinkle at random spots on the line ---------- */
 /* HTML overlays (not inside the stretched SVG) so the stars keep their shape at any width */
 .cs-star {
   position: absolute; width: var(--s, 10px); height: var(--s, 10px);
@@ -82,9 +82,9 @@ html .tilt.tilting {
 }
 .cloud-strip .cs-star svg { display: block; width: 100%; height: 100%; fill: currentColor; } /* beats the page's .cloud-strip svg rule */
 @keyframes m-twinkle {
-  0%        { opacity: 0; transform: scale(0) rotate(0deg); }
-  25%       { opacity: 1; transform: scale(1) rotate(45deg); }
-  55%, 100% { opacity: 0; transform: scale(0) rotate(90deg); }
+  0%        { opacity: 0; transform: scale(0) rotate(-20deg); }
+  25%       { opacity: 1; transform: scale(1) rotate(0deg); }
+  55%, 100% { opacity: 0; transform: scale(0) rotate(20deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {

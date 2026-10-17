@@ -85,16 +85,32 @@
     })(cards[c]);
   }
 
+  // A sparkle glint: glowing core, long thin rays up/down/left/right, shorter diagonal rays
+  var STAR = '<svg viewBox="-12 -12 24 24">' +
+    '<circle r="3.2" opacity="0.25"/><circle r="1.3"/>' +
+    '<path d="M0 -12L0.55 0L0 12L-0.55 0Z"/><path d="M-12 0L0 0.55L12 0L0 -0.55Z"/>' +
+    '<path d="M0 -6L0.4 0L0 6L-0.4 0Z" transform="rotate(45)" opacity="0.8"/>' +
+    '<path d="M0 -6L0.4 0L0 6L-0.4 0Z" transform="rotate(-45)" opacity="0.8"/></svg>';
+
+  // ---- Lantern: three sparkles twinkle around it ----
+  var lantern = document.getElementById('lantern');
+  if (lantern) {
+    // [left, top, size, duration, delay] — % of the lantern box so they scale on phones;
+    // kept off the left side up top, where the phone menu button sits
+    [['100%', '10%', 20, 2.6, 0], ['108%', '62%', 16, 3.2, -1.1], ['-10%', '90%', 18, 2.9, -2]].forEach(function (p) {
+      var st = document.createElement('span');
+      st.className = 'ln-star';
+      st.setAttribute('aria-hidden', 'true');
+      st.innerHTML = STAR;
+      st.style.cssText = '--x:' + p[0] + ';--y:' + p[1] + ';--s:' + p[2] + 'px;--dur:' + p[3] + 's;--delay:' + p[4] + 's';
+      lantern.appendChild(st);
+    });
+  }
+
   // ---- Hero wave: sparkles twinkle at random spots along the (still) line ----
   var wave = document.querySelector('.cloud-strip svg');
   var guide = wave && wave.querySelector('.cs-line');
   if (guide) {
-    // A glint: glowing core, long thin rays up/down/left/right, shorter diagonal rays
-    var STAR = '<svg viewBox="-12 -12 24 24">' +
-      '<circle r="3.2" opacity="0.25"/><circle r="1.3"/>' +
-      '<path d="M0 -12L0.55 0L0 12L-0.55 0Z"/><path d="M-12 0L0 0.55L12 0L0 -0.55Z"/>' +
-      '<path d="M0 -6L0.4 0L0 6L-0.4 0Z" transform="rotate(45)" opacity="0.8"/>' +
-      '<path d="M0 -6L0.4 0L0 6L-0.4 0Z" transform="rotate(-45)" opacity="0.8"/></svg>';
     var len = guide.getTotalLength();
     var place = function (el) {
       var pt = guide.getPointAtLength((0.03 + Math.random() * 0.94) * len);

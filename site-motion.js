@@ -85,18 +85,22 @@
     })(cards[c]);
   }
 
-  // ---- Hero wave: the line ripples gently (ends stay pinned) and stars twinkle on it ----
+  // ---- Hero wave: sparkles twinkle at random spots along the (still) line ----
   var wave = document.querySelector('.cloud-strip svg');
-  if (wave) {
-    var shape = wave.querySelector('.cs-shape'), guide = wave.querySelector('.cs-line');
+  var guide = wave && wave.querySelector('.cs-line');
+  if (guide) {
     // A glint: glowing core, long thin rays up/down/left/right, shorter diagonal rays
     var STAR = '<svg viewBox="-12 -12 24 24">' +
       '<circle r="3.2" opacity="0.25"/><circle r="1.3"/>' +
       '<path d="M0 -12L0.55 0L0 12L-0.55 0Z"/><path d="M-12 0L0 0.55L12 0L0 -0.55Z"/>' +
       '<path d="M0 -6L0.4 0L0 6L-0.4 0Z" transform="rotate(45)" opacity="0.8"/>' +
       '<path d="M0 -6L0.4 0L0 6L-0.4 0Z" transform="rotate(-45)" opacity="0.8"/></svg>';
-    var stars = [];
-    var place = function (s) { s.at = 0.03 + Math.random() * 0.94; };
+    var len = guide.getTotalLength();
+    var place = function (el) {
+      var pt = guide.getPointAtLength((0.03 + Math.random() * 0.94) * len);
+      el.style.left = (pt.x / 14.4).toFixed(2) + '%'; // viewBox is 1440 wide
+      el.style.top = pt.y.toFixed(1) + 'px';
+    };
     for (var k = 0; k < 9; k++) {
       var el = document.createElement('span');
       el.className = 'cs-star';
@@ -105,46 +109,10 @@
       el.style.setProperty('--s', (14 + Math.random() * 12).toFixed(1) + 'px');
       el.style.setProperty('--dur', (2.6 + Math.random() * 2.4).toFixed(2) + 's');
       el.style.setProperty('--delay', (-Math.random() * 5).toFixed(2) + 's');
-      var s = { el: el };
-      place(s);
-      // Each time a star finishes twinkling, it reappears somewhere else on the line
-      el.addEventListener('animationiteration', (function (st) { return function () { place(st); }; })(s));
+      place(el);
+      // Each time a sparkle finishes twinkling, it reappears somewhere else on the line
+      el.addEventListener('animationiteration', function (e) { place(e.currentTarget); });
       wave.parentNode.appendChild(el);
-      stars.push(s);
     }
-    var XS = [0, 200, 300, 440, 560, 720, 880, 1040, 1180, 1360, 1440];
-    var YS = [40, 18, 34, 12, 30, 16, 32, 14, 30, 18, 40];
-    var waveOn = true;
-    var waveLine = function (t) {
-      var ys = YS.map(function (y, i) {
-        return (i === 0 || i === YS.length - 1) ? y : y + 6 * Math.sin(t * 0.0009 + i * 1.3);
-      });
-      var d = 'M0 ' + ys[0];
-      for (var i = 1; i < XS.length; i++) {
-        var mx = (XS[i - 1] + XS[i]) / 2;
-        d += ' C ' + mx + ' ' + ys[i - 1].toFixed(1) + ' ' + mx + ' ' + ys[i].toFixed(1) + ' ' + XS[i] + ' ' + ys[i].toFixed(1);
-      }
-      return d;
-    };
-    var waveTick = function (t) {
-      if (waveOn) {
-        var d = waveLine(t);
-        if (shape) shape.setAttribute('d', d + ' L 1440 60 L 0 60 Z');
-        if (guide) {
-          guide.setAttribute('d', d);
-          var len = guide.getTotalLength();
-          for (var j = 0; j < stars.length; j++) {
-            var pt = guide.getPointAtLength(stars[j].at * len);
-            stars[j].el.style.left = (pt.x / 14.4).toFixed(2) + '%';
-            stars[j].el.style.top = pt.y.toFixed(1) + 'px';
-          }
-        }
-      }
-      requestAnimationFrame(waveTick);
-    };
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) { waveOn = entries[0].isIntersecting; }).observe(wave);
-    }
-    requestAnimationFrame(waveTick);
   }
 })();

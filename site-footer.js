@@ -72,7 +72,7 @@
     '</div>' +
     '<div class="vf-links">' +
       '<div class="vf-grid">' +
-        col('Navigate', [['Home', 'index.html'], ['Work', 'work.html'], ['Case study', 'case-study.html'], ['About me', 'index.html#about']]) +
+        col('Navigate', [['Home', 'index.html'], ['Work', 'work.html'], ['Case study', 'case-study.html'], ['About me', 'about.html']]) +
         col('What I do', [['Shopify & Liquid', 'index.html#services'], ['GemPages landing pages', 'index.html#services'], ['Video ads & motion graphics', 'index.html#services'], ['Android apps', 'index.html#services']]) +
         col('Projects', [['Earth Moon Magick', 'case-study.html'], ['FSLAMES (thesis)', 'work.html'], ['U-Eat Ordering System', 'work.html']]) +
         col('Contact', [['Email me', 'mailto:' + EMAIL], ['LinkedIn', LINKEDIN], ['GitHub', GITHUB], ['Pangasinan, Philippines', null]]) +

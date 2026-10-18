@@ -17,7 +17,7 @@
     { x: 190,  label: '🛍️ Shopify & Liquid' },
     { x: 370,  label: '🎬 Video Editing' },
     { x: 680,  label: '🛡️ Cybersecurity' },
-    { x: 870,  label: '✨ Motion Graphics' },
+    { x: 870,  label: '💻 Front-end Development' },
     { x: 1180, label: '📱 Android Apps' }
   ];
   function arcY(x) { var t = (x - CX) / A; return CY - B * Math.sqrt(1 - t * t); }

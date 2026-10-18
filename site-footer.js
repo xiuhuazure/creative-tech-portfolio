@@ -16,7 +16,7 @@
   var PINS = [
     { x: 190,  label: '🛍️ Shopify & Liquid' },
     { x: 370,  label: '🎬 Video Editing' },
-    { x: 680,  label: '🇵🇭 Based in Pangasinan, PH' },
+    { x: 680,  label: '🛡️ Cybersecurity' },
     { x: 870,  label: '✨ Motion Graphics' },
     { x: 1180, label: '📱 Android Apps' }
   ];

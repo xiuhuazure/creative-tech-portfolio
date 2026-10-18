@@ -15,10 +15,10 @@
 /* wrapper: relative inline-block, perspective 1000px */
 .gbtn-wrap { position: relative; display: inline-block; perspective: 1000px; }
 
-/* motion.button: relative px-8 py-4 rounded-full cursor-pointer overflow-hidden */
+/* motion.button: relative px-8 py-4 rounded-full cursor-pointer overflow-hidden (vertical padding trimmed) */
 .gbtn {
   position: relative; display: inline-block; box-sizing: border-box;
-  padding: 16px 32px; border-radius: 9999px; cursor: pointer; overflow: hidden;
+  padding: 11px 32px; border-radius: 9999px; cursor: pointer; overflow: hidden; /* slimmer than the spec's 16px */
   text-decoration: none; line-height: normal;
   background: rgba(15, 15, 15, 0.85);
   -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
@@ -77,8 +77,8 @@
 .crbtn-clip {
   display: block; position: relative; overflow: hidden;
   /* No border, so the hover fill reaches the edge with no outline. The Glow Button's 1px border
-     is added to the padding instead (16+1 / 32+1), keeping both buttons exactly the same size. */
-  background: #2b2418; padding: 17px 33px; border-radius: 9999px;
+     is added to the padding instead (11+1 / 32+1), keeping both buttons exactly the same size. */
+  background: #2b2418; padding: 12px 33px; border-radius: 9999px;
   isolation: isolate;
 }
 .crbtn-spot {

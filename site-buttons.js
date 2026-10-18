@@ -54,9 +54,11 @@
     }
     function kick() { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } }
 
-    // handleMouseMove
-    btn.addEventListener('mousemove', function (e) {
-      var rect = btn.getBoundingClientRect();
+    // handleMouseMove — listened for on the wrapper, which never moves. The button itself
+    // tilts and slides toward the cursor, so near its edges it could slip out from under the
+    // pointer, fire mouseleave, spring back and re-enter: a visible flicker.
+    wrap.addEventListener('mousemove', function (e) {
+      var rect = wrap.getBoundingClientRect();
       var x = e.clientX - (rect.left + rect.width / 2);
       var y = e.clientY - (rect.top + rect.height / 2);
       sx.target = x;
@@ -67,7 +69,7 @@
       kick();
     });
     // handleMouseLeave
-    btn.addEventListener('mouseleave', function () {
+    wrap.addEventListener('mouseleave', function () {
       sx.target = 0; sy.target = 0;
       wrap.classList.remove('is-hovered');
       kick();
@@ -84,6 +86,10 @@
     var spot = btn.querySelector('.crbtn-spot');
     function place(e) {
       var rect = btn.getBoundingClientRect();
+      // Make the circle big enough to cover the whole button from any entry point
+      // (a fixed 400px left the far end of wider buttons unfilled)
+      var size = Math.ceil(2 * Math.sqrt(rect.width * rect.width + rect.height * rect.height));
+      spot.style.width = spot.style.height = Math.max(400, size) + 'px';
       spot.style.left = (e.clientX - rect.left) + 'px';
       spot.style.top = (e.clientY - rect.top) + 'px';
     }

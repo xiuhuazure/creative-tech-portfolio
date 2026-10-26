@@ -150,22 +150,21 @@
     .folder { position: relative; margin-top: 10px; }
     .filters { display: flex; justify-content: center; align-items: flex-end; padding: 0 12px; }
     .filter-btn {
-      position: relative; z-index: 1; margin: 0 -5px; padding: 12px 28px 12px;
+      position: relative; z-index: 1; margin: 0 2px; padding: 12px 28px 12px;
       background: none; border: 0; font-family: inherit; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.03em; white-space: nowrap;
       color: var(--text-mute); cursor: pointer; transform: translateY(6px); transition: color .2s, transform .25s ease;
     }
-    /* the tab shape: a trapezoid with rounded top corners, like a folder divider */
+    /* the tab shape: straight sides with rounded top corners, like a folder divider */
     .filter-btn::before {
       content: ""; position: absolute; inset: 0; z-index: -1;
       background: var(--folder-tab); border: 1px solid var(--folder-edge); border-bottom: 0; border-radius: 10px 10px 0 0;
-      transform: perspective(60px) rotateX(7deg); transform-origin: 50% 100%;
       transition: background .25s ease;
     }
     .filter-btn:hover { color: var(--text); transform: translateY(2px); }
     .filter-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
     /* the open tab is the same sheet as the page, sits in front and joins it seamlessly */
     .filter-btn.active { z-index: 3; color: #2b2418; transform: none; margin-bottom: -1px; padding-bottom: 13px; }
-    .filter-btn.active::before { background: var(--folder-page); border-top: 2px solid var(--gold); }
+    .filter-btn.active::before { background: var(--folder-page); }
     /* Near full-bleed: the folder breaks out of the page width, leaving a small gutter so its rounded corners show */
     .folder { --gutter: 16px; width: calc(100vw - 2 * var(--gutter)); margin-left: calc(50% - 50vw + var(--gutter)); }
     .folder-page {
@@ -238,7 +237,7 @@
       .folder { --gutter: 8px; }
       .folder-page { padding: 32px 18px 48px; border-radius: 16px; }
       .filters { padding: 0 4px; }
-      .filter-btn { padding: 10px 14px 10px; margin: 0 -3px; font-size: 0.8rem; letter-spacing: 0.01em; }
+      .filter-btn { padding: 10px 14px 10px; margin: 0 1px; font-size: 0.8rem; letter-spacing: 0.01em; }
       .filter-btn.active { padding-bottom: 11px; }
       .nav-links { display: none; }
       .nav-toggle { display: block; }
@@ -250,7 +249,7 @@
       .lantern svg { width: 46px; height: 89px; }
     }
     @media (max-width: 380px) {
-      .filter-btn { padding: 9px 9px 9px; margin: 0 -2px; font-size: 0.74rem; letter-spacing: 0; }
+      .filter-btn { padding: 9px 9px 9px; margin: 0 1px; font-size: 0.74rem; letter-spacing: 0; }
       .filter-btn.active { padding-bottom: 10px; }
     }
   </style>

@@ -228,7 +228,20 @@
     .vid-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 8px 20px; border: 1px solid var(--border-gold); border-radius: 999px; color: var(--gold); font-size: 0.86rem; font-weight: 600; letter-spacing: 0.02em; transition: background .2s, color .2s, border-color .2s; }
     .vid-link:hover { background: var(--gold); border-color: var(--gold); color: #fffdf8; }
     .vid-link.no-link { display: none; } /* set by the script when a video has no link yet */
+    .vids-sub { display: flex; align-items: center; gap: 14px; margin: 0 0 32px; color: var(--gold); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.2em; }
+    .vids-sub::before, .vids-sub::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+    .vids-sub + .vids-grid { margin-bottom: 72px; }
+    .vids-grid.wide { grid-template-columns: repeat(2, 1fr); gap: 48px 40px; }
+    /* Laptop frame for long-form (16:9) videos */
+    .laptop { width: 100%; max-width: 520px; transition: transform .3s ease; }
+    .vid:hover .laptop { transform: translateY(-6px); }
+    .laptop-lid { position: relative; padding: 14px 14px 18px; border-radius: 18px 18px 6px 6px; background: #15110c; box-shadow: 0 0 0 2px #3a3128, 0 26px 50px rgba(60, 40, 10, 0.22); }
+    .laptop-lid::before { content: ""; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 5px; height: 5px; border-radius: 50%; background: #3a3128; } /* camera */
+    .laptop .phone-screen { aspect-ratio: 16 / 9; height: auto; border-radius: 6px; }
+    .laptop-base { position: relative; height: 14px; margin: 0 -4%; border-radius: 0 0 14px 14px; background: linear-gradient(#cdbf9f, #a8987a); box-shadow: 0 10px 20px rgba(60, 40, 10, 0.18); }
+    .laptop-base::before { content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 18%; height: 5px; border-radius: 0 0 6px 6px; background: #8f8166; } /* thumb notch */
     @media (max-width: 980px) { .vids-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 760px) { .vids-grid.wide { grid-template-columns: 1fr; } }
     @media (max-width: 600px) { .vids-grid { grid-template-columns: 1fr; } .phone { max-width: 240px; } }
 
     /* CTA */
@@ -372,7 +385,7 @@
       </div>
     </div>
 
-    <!-- ===== Videos: a gallery of phone frames (shows on the Videos tab only) =====
+    <!-- ===== Videos: phone frames (short-form) and laptop frames (long-form); Videos tab only =====
          Each video has a title, a description and a "Watch video" button.
          Put the real link in href="#"; leave href="" empty and the button hides itself. -->
     <section class="vids is-hidden" data-cat="video" data-only="true" aria-labelledby="vidsTitle">
@@ -380,13 +393,15 @@
         <span class="kicker">Videos I’ve edited</span>
         <h2 id="vidsTitle">Watch my edits</h2>
       </div>
+
+      <h3 class="vids-sub">Short-form · Reels &amp; ads</h3>
       <div class="vids-grid">
         <article class="vid">
           <div class="phone">
             <div class="phone-screen">
               <!-- Replace this placeholder with your video, e.g.:
-                   <video src="videos/my-edit.mp4" poster="videos/my-edit.jpg" muted loop playsinline controls></video> -->
-              <div><div class="play" aria-hidden="true">▶</div><small>[Video 1]</small></div>
+                   <video src="videos/short-1.mp4" poster="videos/short-1.jpg" muted loop playsinline controls></video> -->
+              <div><div class="play" aria-hidden="true">▶</div><small>[Short video 1]</small></div>
             </div>
           </div>
           <h3 class="ph">[Video title]</h3>
@@ -397,8 +412,8 @@
           <div class="phone">
             <div class="phone-screen">
               <!-- Replace this placeholder with your video, e.g.:
-                   <video src="videos/my-edit.mp4" poster="videos/my-edit.jpg" muted loop playsinline controls></video> -->
-              <div><div class="play" aria-hidden="true">▶</div><small>[Video 2]</small></div>
+                   <video src="videos/short-2.mp4" poster="videos/short-2.jpg" muted loop playsinline controls></video> -->
+              <div><div class="play" aria-hidden="true">▶</div><small>[Short video 2]</small></div>
             </div>
           </div>
           <h3 class="ph">[Video title]</h3>
@@ -409,9 +424,79 @@
           <div class="phone">
             <div class="phone-screen">
               <!-- Replace this placeholder with your video, e.g.:
-                   <video src="videos/my-edit.mp4" poster="videos/my-edit.jpg" muted loop playsinline controls></video> -->
-              <div><div class="play" aria-hidden="true">▶</div><small>[Video 3]</small></div>
+                   <video src="videos/short-3.mp4" poster="videos/short-3.jpg" muted loop playsinline controls></video> -->
+              <div><div class="play" aria-hidden="true">▶</div><small>[Short video 3]</small></div>
             </div>
+          </div>
+          <h3 class="ph">[Video title]</h3>
+          <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>
+          <a class="vid-link" href="#" target="_blank" rel="noopener">Watch video →</a>
+        </article>
+        <article class="vid">
+          <div class="phone">
+            <div class="phone-screen">
+              <!-- Replace this placeholder with your video, e.g.:
+                   <video src="videos/short-4.mp4" poster="videos/short-4.jpg" muted loop playsinline controls></video> -->
+              <div><div class="play" aria-hidden="true">▶</div><small>[Short video 4]</small></div>
+            </div>
+          </div>
+          <h3 class="ph">[Video title]</h3>
+          <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>
+          <a class="vid-link" href="#" target="_blank" rel="noopener">Watch video →</a>
+        </article>
+        <article class="vid">
+          <div class="phone">
+            <div class="phone-screen">
+              <!-- Replace this placeholder with your video, e.g.:
+                   <video src="videos/short-5.mp4" poster="videos/short-5.jpg" muted loop playsinline controls></video> -->
+              <div><div class="play" aria-hidden="true">▶</div><small>[Short video 5]</small></div>
+            </div>
+          </div>
+          <h3 class="ph">[Video title]</h3>
+          <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>
+          <a class="vid-link" href="#" target="_blank" rel="noopener">Watch video →</a>
+        </article>
+        <article class="vid">
+          <div class="phone">
+            <div class="phone-screen">
+              <!-- Replace this placeholder with your video, e.g.:
+                   <video src="videos/short-6.mp4" poster="videos/short-6.jpg" muted loop playsinline controls></video> -->
+              <div><div class="play" aria-hidden="true">▶</div><small>[Short video 6]</small></div>
+            </div>
+          </div>
+          <h3 class="ph">[Video title]</h3>
+          <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>
+          <a class="vid-link" href="#" target="_blank" rel="noopener">Watch video →</a>
+        </article>
+      </div>
+
+      <h3 class="vids-sub">Long-form</h3>
+      <div class="vids-grid wide">
+        <article class="vid">
+          <div class="laptop">
+            <div class="laptop-lid">
+              <div class="phone-screen">
+                <!-- Replace this placeholder with your video, e.g. a YouTube embed:
+                     <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Video title" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe> -->
+                <div><div class="play" aria-hidden="true">▶</div><small>[Long-form video 1]</small></div>
+              </div>
+            </div>
+            <div class="laptop-base"></div>
+          </div>
+          <h3 class="ph">[Video title]</h3>
+          <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>
+          <a class="vid-link" href="#" target="_blank" rel="noopener">Watch video →</a>
+        </article>
+        <article class="vid">
+          <div class="laptop">
+            <div class="laptop-lid">
+              <div class="phone-screen">
+                <!-- Replace this placeholder with your video, e.g. a YouTube embed:
+                     <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Video title" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe> -->
+                <div><div class="play" aria-hidden="true">▶</div><small>[Long-form video 2]</small></div>
+              </div>
+            </div>
+            <div class="laptop-base"></div>
           </div>
           <h3 class="ph">[Video title]</h3>
           <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>

@@ -152,13 +152,13 @@
     .filter-btn {
       position: relative; z-index: 1; margin: 0 2px; padding: 12px 28px 12px;
       background: none; border: 0; font-family: inherit; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.03em; white-space: nowrap;
-      color: var(--text-mute); cursor: pointer; transform: translateY(6px); transition: color .2s, transform .25s ease;
+      color: var(--text-mute); cursor: pointer; transform: translateY(6px); transition: transform .25s ease;
+      /* colour and background switch instantly (no fade), so the old and new tab swap in one step together with their stacking */
     }
     /* the tab shape: straight sides with rounded top corners, like a folder divider */
     .filter-btn::before {
       content: ""; position: absolute; inset: 0; z-index: -1;
       background: var(--folder-tab); border: 1px solid var(--folder-edge); border-bottom: 0; border-radius: 10px 10px 0 0;
-      transition: background .25s ease;
     }
     .filter-btn:hover { color: var(--text); transform: translateY(2px); }
     .filter-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }

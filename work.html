@@ -219,7 +219,7 @@
     .vid:hover .phone { transform: translateY(-6px); }
     .phone::before { content: ""; position: absolute; top: 19px; left: 50%; transform: translateX(-50%); width: 76px; height: 21px; border-radius: 999px; background: #000; z-index: 2; } /* dynamic island */
     .phone-screen { position: relative; height: 100%; border-radius: 33px; overflow: hidden; display: grid; place-items: center; text-align: center; padding: 22px; background: linear-gradient(160deg, #3b2418, #1d1712 55%, #2b1d14); color: #f2d999; }
-    .phone-screen video, .phone-screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .phone-screen video, .phone-screen img, .phone-screen iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
     .phone-screen .play { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; margin: 0 auto 12px; background: rgba(242, 217, 153, 0.16); border: 1px solid rgba(242, 217, 153, 0.5); font-size: 1.25rem; }
     .phone-screen small { display: block; font-size: 0.78rem; color: rgba(242, 217, 153, 0.7); font-style: italic; }
     .vid h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-top: 22px; }
@@ -476,31 +476,30 @@
           <div class="laptop">
             <div class="laptop-lid">
               <div class="phone-screen">
-                <!-- Replace this placeholder with your video, e.g. a YouTube embed:
-                     <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Video title" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe> -->
-                <div><div class="play" aria-hidden="true">▶</div><small>[Long-form video 1]</small></div>
+                <!-- VSL is 314 MB: too big to host on the site. Once it's on YouTube, swap this placeholder for:
+                     <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="Soul Oracle Kickstarter launch VSL" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+                     and put the YouTube link in the button's href below. -->
+                <div><div class="play" aria-hidden="true">▶</div><small>Video coming soon</small></div>
               </div>
             </div>
             <div class="laptop-base"></div>
           </div>
-          <h3 class="ph">[Video title]</h3>
-          <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>
-          <a class="vid-link" href="#" target="_blank" rel="noopener">Watch video →</a>
+          <h3>Soul Oracle Kickstarter launch VSL</h3>
+          <p>A video sales letter for Earth Moon Magick’s Soul Oracle Kickstarter launch.</p>
+          <a class="vid-link" href="" target="_blank" rel="noopener">Watch video →</a>
         </article>
         <article class="vid">
           <div class="laptop">
             <div class="laptop-lid">
               <div class="phone-screen">
-                <!-- Replace this placeholder with your video, e.g. a YouTube embed:
-                     <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Video title" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe> -->
-                <div><div class="play" aria-hidden="true">▶</div><small>[Long-form video 2]</small></div>
+                <iframe src="https://www.youtube-nocookie.com/embed/5hth3DJgcEw" title="My most-viewed edit, from Doctor's Making Videos" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
               </div>
             </div>
             <div class="laptop-base"></div>
           </div>
           <h3 class="ph">[Video title]</h3>
-          <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>
-          <a class="vid-link" href="#" target="_blank" rel="noopener">Watch video →</a>
+          <p>My most-viewed edit, made while I was with the Doctor’s Making Videos agency.</p>
+          <a class="vid-link" href="https://youtu.be/5hth3DJgcEw" target="_blank" rel="noopener">Watch on YouTube →</a>
         </article>
       </div>
     </section>

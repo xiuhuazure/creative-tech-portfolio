@@ -31,6 +31,7 @@
       --thumb-a: #1e262d; --thumb-b: #12171c;
       --glow-1: rgba(212,175,98,0.10); --glow-2: rgba(127,215,208,0.06); --glow-3: rgba(200,80,58,0.035);
       --lantern-glow: drop-shadow(0 0 20px rgba(232,70,55,0.5)) drop-shadow(0 0 9px rgba(255,180,90,0.34));
+      --folder-page: #1b2229; --folder-tab: #12171c; --folder-edge: rgba(212,175,98,0.24); --folder-shadow: 0 24px 50px rgba(0,0,0,0.35);
       --max: 1140px;
       --serif: "Cormorant Garamond", "Noto Serif SC", Georgia, "Times New Roman", serif;
       --brush: "Ma Shan Zheng", "Noto Serif SC", cursive;
@@ -45,6 +46,7 @@
       --thumb-a: #e7dbc2; --thumb-b: #f1e8d3;
       --glow-1: rgba(212,175,98,0.20); --glow-2: rgba(43,128,121,0.08); --glow-3: rgba(191,61,41,0.06);
       --lantern-glow: none;
+      --folder-page: #fffdf8; --folder-tab: #ecdfc3; --folder-edge: #d8c7a3; --folder-shadow: 0 24px 50px rgba(90,64,20,0.10);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -142,11 +144,32 @@
     .page-hero h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(2.2rem, 5.6vw, 3.8rem); line-height: 1.04; letter-spacing: -0.01em; max-width: 18ch; }
     .page-hero p { margin-top: 18px; font-size: clamp(1.02rem, 2vw, 1.22rem); color: var(--text-dim); max-width: 56ch; }
 
-    /* filters */
-    .filters { display: flex; flex-wrap: wrap; gap: 10px; padding: 10px 0 42px; }
-    .filter-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text-dim); padding: 9px 20px; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.03em; cursor: pointer; transition: all .2s; font-family: inherit; clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px); }
-    .filter-btn:hover { color: var(--text); border-color: var(--border-gold); }
-    .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--btn-ink); }
+    /* filters: file-folder index tabs (centred) sitting on top of the "page" that holds the work */
+    .folder { position: relative; margin-top: 10px; }
+    .filters { display: flex; justify-content: center; align-items: flex-end; padding: 0 12px; }
+    .filter-btn {
+      position: relative; z-index: 1; margin: 0 -5px; padding: 12px 28px 12px;
+      background: none; border: 0; font-family: inherit; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.03em; white-space: nowrap;
+      color: var(--text-mute); cursor: pointer; transform: translateY(6px); transition: color .2s, transform .25s ease;
+    }
+    /* the tab shape: a trapezoid with rounded top corners, like a folder divider */
+    .filter-btn::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: var(--folder-tab); border: 1px solid var(--folder-edge); border-bottom: 0; border-radius: 10px 10px 0 0;
+      transform: perspective(60px) rotateX(7deg); transform-origin: 50% 100%;
+      transition: background .25s ease;
+    }
+    .filter-btn:hover { color: var(--text); transform: translateY(2px); }
+    .filter-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    /* the open tab is the same sheet as the page, sits in front and joins it seamlessly */
+    .filter-btn.active { z-index: 3; color: var(--text); transform: none; margin-bottom: -1px; padding-bottom: 13px; }
+    .filter-btn.active::before { background: var(--folder-page); border-top: 2px solid var(--gold); }
+    .folder-page {
+      position: relative; z-index: 2; padding: 40px;
+      background: var(--folder-page); border: 1px solid var(--folder-edge); border-radius: 14px;
+      box-shadow: var(--folder-shadow); transition: background .4s ease;
+    }
+    .folder-page .work-grid { padding-bottom: 0; }
 
     /* featured */
     .featured { margin-bottom: 46px; }
@@ -188,6 +211,10 @@
     @media (max-width: 980px) { .work-grid { grid-template-columns: repeat(2, 1fr); } .featured-card { grid-template-columns: 1fr; } .featured-media { min-height: 220px; } }
     @media (max-width: 720px) {
       .work-grid { grid-template-columns: 1fr; }
+      .folder-page { padding: 18px; border-radius: 12px; }
+      .filters { padding: 0 4px; }
+      .filter-btn { padding: 10px 14px 10px; margin: 0 -3px; font-size: 0.8rem; letter-spacing: 0.01em; }
+      .filter-btn.active { padding-bottom: 11px; }
       .nav-links { display: none; }
       .nav-toggle { display: block; }
       .nav-links.open { display: flex; position: absolute; top: 74px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--ink-2); border-bottom: 1px solid var(--border-gold); padding: 8px 24px 22px; }
@@ -196,6 +223,10 @@
       .nav { padding-right: 66px; }
       .lantern { width: 46px; height: 89px; right: 12px; }
       .lantern svg { width: 46px; height: 89px; }
+    }
+    @media (max-width: 380px) {
+      .filter-btn { padding: 9px 9px 9px; margin: 0 -2px; font-size: 0.74rem; letter-spacing: 0; }
+      .filter-btn.active { padding-bottom: 10px; }
     }
   </style>
 </head>
@@ -280,13 +311,15 @@
   </section>
 
   <div class="wrap">
-    <!-- ===== Filters ===== -->
-    <div class="filters" id="filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="shopify">Shopify</button>
-      <button class="filter-btn" data-filter="video">Video &amp; Motion</button>
-      <button class="filter-btn" data-filter="apps">Apps &amp; ML</button>
+    <!-- ===== Folder: index tabs (filters) + the page that holds the work ===== -->
+    <div class="folder">
+    <div class="filters" id="filters" role="tablist" aria-label="Filter work">
+      <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" aria-controls="workPage">All</button>
+      <button class="filter-btn" data-filter="shopify" role="tab" aria-selected="false" aria-controls="workPage">Shopify</button>
+      <button class="filter-btn" data-filter="video" role="tab" aria-selected="false" aria-controls="workPage">Video &amp; Motion</button>
+      <button class="filter-btn" data-filter="apps" role="tab" aria-selected="false" aria-controls="workPage">Apps &amp; ML</button>
     </div>
+    <div class="folder-page" id="workPage" role="tabpanel">
 
     <!-- ===== Featured case study ===== -->
     <div class="featured">
@@ -364,6 +397,8 @@
         </div>
       </article>
     </div>
+    </div><!-- /.folder-page -->
+    </div><!-- /.folder -->
 
     <!-- ===== CTA ===== -->
     <div class="cta-banner">
@@ -398,8 +433,9 @@
     const cards = document.querySelectorAll('#workGrid .work-card');
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
+        filterBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
         btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
         const f = btn.dataset.filter;
         cards.forEach(card => {
           const match = f === 'all' || card.dataset.cat.split(' ').includes(f);

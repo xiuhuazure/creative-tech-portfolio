@@ -114,6 +114,8 @@
     header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); backdrop-filter: blur(14px); transition: background .4s ease, backdrop-filter .4s ease; }
     /* At the very top the header blends into the page; its background returns once you scroll (site-motion.js) */
     header.at-top { background: transparent; backdrop-filter: none; }
+    /* Solid (not see-through) while it sits over the white folder page */
+    header.over-page { background: var(--ink); backdrop-filter: none; box-shadow: 0 1px 0 var(--border); }
     .nav { display: flex; align-items: center; justify-content: space-between; height: 74px; padding-right: 96px; }
     .brand { display: flex; align-items: center; gap: 12px; }
     .brand .name { font-family: var(--serif); font-weight: 700; font-size: 1.35rem; letter-spacing: 0.02em; }
@@ -207,6 +209,19 @@
     .work-metric { margin-top: 14px; font-weight: 600; font-size: 0.9rem; }
     .work-metric span { color: var(--gold); font-family: var(--serif); font-size: 1.1rem; }
     .is-hidden { display: none; }
+
+    /* Videos tab: a phone frame showing edited work, plus a link out (placeholder for now) */
+    .reel { display: grid; grid-template-columns: auto 1fr; gap: 56px; align-items: center; margin-bottom: 46px; }
+    .phone { position: relative; width: 270px; aspect-ratio: 9 / 19.5; border-radius: 44px; padding: 11px; background: #15110c; box-shadow: 0 0 0 2px #3a3128, 0 30px 60px rgba(60, 40, 10, 0.25); }
+    .phone::before { content: ""; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 82px; height: 22px; border-radius: 999px; background: #000; z-index: 2; } /* dynamic island */
+    .phone-screen { position: relative; height: 100%; border-radius: 34px; overflow: hidden; display: grid; place-items: center; text-align: center; padding: 24px; background: linear-gradient(160deg, #3b2418, #1d1712 55%, #2b1d14); color: #f2d999; }
+    .phone-screen .play { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; margin: 0 auto 14px; background: rgba(242, 217, 153, 0.16); border: 1px solid rgba(242, 217, 153, 0.5); font-size: 1.4rem; }
+    .phone-screen small { display: block; font-size: 0.8rem; color: rgba(242, 217, 153, 0.7); font-style: italic; }
+    .reel-copy h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3.4vw, 2.5rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
+    .reel-copy p { color: var(--text-dim); margin: 12px 0 26px; max-width: 46ch; }
+    .reel-copy .ph { color: var(--text-mute); font-style: italic; }
+    .reel-copy .kicker { display: block; color: var(--gold); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 12px; }
+    @media (max-width: 860px) { .reel { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 32px; } .reel-copy p { margin-inline: auto; } .phone { width: 240px; } }
 
     /* CTA */
     .cta-banner { position: relative; overflow: hidden; border: 1px solid var(--border-gold); background: linear-gradient(135deg, rgba(200,80,58,0.10), rgba(212,175,98,0.08)); padding: 60px 44px; text-align: center; margin: 44px 0 0; clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px); }
@@ -325,8 +340,7 @@
     <div class="folder">
     <div class="filters" id="filters" role="tablist" aria-label="Filter work">
       <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" aria-controls="workPage">All</button>
-      <button class="filter-btn" data-filter="shopify" role="tab" aria-selected="false" aria-controls="workPage">Shopify</button>
-      <button class="filter-btn" data-filter="video" role="tab" aria-selected="false" aria-controls="workPage">Video &amp; Motion</button>
+      <button class="filter-btn" data-filter="video" role="tab" aria-selected="false" aria-controls="workPage">Videos</button>
       <button class="filter-btn" data-filter="apps" role="tab" aria-selected="false" aria-controls="workPage">Apps &amp; ML</button>
     </div>
     <div class="folder-page" id="workPage" role="tabpanel">
@@ -350,26 +364,24 @@
       </div>
     </div>
 
+    <!-- ===== Videos: phone frame + link (shows on the Videos tab only) =====
+         PLACEHOLDER: put the real link in both href="#" below, and swap the phone screen for a video or thumbnail. -->
+    <div class="reel is-hidden" data-cat="video" data-only="true">
+      <div class="phone" aria-label="Phone preview of edited videos">
+        <div class="phone-screen">
+          <div><div class="play" aria-hidden="true">▶</div><small>[Your edited video plays here]</small></div>
+        </div>
+      </div>
+      <div class="reel-copy">
+        <span class="kicker">Videos I’ve edited</span>
+        <h2>Watch my edits</h2>
+        <p class="ph">[A short line about the videos: what they are, who they’re for, and where to watch the rest.]</p>
+        <span class="sbtn"><span class="gbtn-wrap"><a class="gbtn" href="#"><span class="gbtn-sheen"></span><span class="gbtn-ring"></span><span class="gbtn-label">Watch my videos →</span></a><span class="gbtn-aura" aria-hidden="true"></span></span><a class="crbtn" href="#"><span class="crbtn-clip"><span class="crbtn-spot" aria-hidden="true"></span><span class="crbtn-label">Watch my videos →</span></span></a></span>
+      </div>
+    </div>
+
     <!-- ===== Work grid ===== -->
     <div class="work-grid" id="workGrid">
-      <article class="work-card" data-cat="shopify">
-        <div class="work-thumb"><span style="font-size:2.4rem">🧱</span></div>
-        <div class="work-body">
-          <div class="work-tags"><span>GemPages</span><span>Liquid</span><span>HTML/CSS</span></div>
-          <h3>Landing pages</h3>
-          <p>Custom responsive landing pages in GemPages, plus theme modifications in Shopify Liquid, HTML and CSS to improve UX and layout.</p>
-          <p class="work-metric"><span>Earth Moon Magick</span> freelance</p>
-        </div>
-      </article>
-      <article class="work-card" data-cat="shopify">
-        <div class="work-thumb"><span style="font-size:2.4rem">🛍️</span></div>
-        <div class="work-body">
-          <div class="work-tags"><span>Shopify</span><span>Troubleshooting</span></div>
-          <h3>Product listings</h3>
-          <p>End-to-end product listings, including fixing variant configurations, media galleries and listing data directly in Shopify.</p>
-          <p class="work-metric"><span>Earth Moon Magick</span> freelance</p>
-        </div>
-      </article>
       <article class="work-card" data-cat="video">
         <div class="work-thumb"><span style="font-size:2.4rem">🎬</span></div>
         <div class="work-body">
@@ -440,7 +452,7 @@
     links.addEventListener('click', (e) => { if (e.target.tagName === 'A') links.classList.remove('open'); });
 
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('#workGrid .work-card');
+    const cards = document.querySelectorAll('#workGrid .work-card, .reel');
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
@@ -448,11 +460,24 @@
         btn.setAttribute('aria-selected', 'true');
         const f = btn.dataset.filter;
         cards.forEach(card => {
-          const match = f === 'all' || card.dataset.cat.split(' ').includes(f);
+          const match = (f === 'all' && !card.dataset.only) || card.dataset.cat.split(' ').includes(f);
           card.classList.toggle('is-hidden', !match);
         });
       });
     });
+
+    // Solid header while it's over the white folder page
+    (function(){
+      var header = document.querySelector('header'), page = document.getElementById('workPage');
+      if (!header || !page) return;
+      function check(){
+        var h = header.getBoundingClientRect().bottom, r = page.getBoundingClientRect();
+        header.classList.toggle('over-page', r.top < h && r.bottom > 0);
+      }
+      window.addEventListener('scroll', check, { passive: true });
+      window.addEventListener('resize', check);
+      check();
+    })();
 
     const lantern = document.getElementById('lantern');
     function curTheme(){ return document.documentElement.getAttribute('data-theme') || 'dark'; }

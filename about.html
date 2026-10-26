@@ -84,28 +84,6 @@
     @media (max-width: 1440px) { .bamboo { display: none; } }
     @media (prefers-reduced-motion: reduce) { .leaf { display: none; } }
 
-    /* ---------- Scroll reveal ---------- */
-    .js-reveal .section-head,
-    .js-reveal .stats,
-    .js-reveal .trust-logos,
-    .js-reveal .offer-grid > .card,
-    .js-reveal .work-grid > .work-card,
-    .js-reveal .work-more,
-    .js-reveal .featured-card,
-    .js-reveal .results-grid,
-    .js-reveal .cta-banner,
-    .js-reveal article > * {
-      opacity: 0; transform: translateY(26px);
-      transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);
-    }
-    .js-reveal .is-visible { opacity: 1 !important; transform: none !important; }
-    .js-reveal .offer-grid > .card:nth-child(2) { transition-delay: .09s; }
-    .js-reveal .offer-grid > .card:nth-child(3) { transition-delay: .18s; }
-    .js-reveal .work-grid > .work-card:nth-child(2) { transition-delay: .06s; }
-    .js-reveal .work-grid > .work-card:nth-child(3) { transition-delay: .12s; }
-    .js-reveal .work-grid > .work-card:nth-child(4) { transition-delay: .18s; }
-    .js-reveal .work-grid > .work-card:nth-child(5) { transition-delay: .24s; }
-    .js-reveal .work-grid > .work-card:nth-child(6) { transition-delay: .30s; }
 
     header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); backdrop-filter: blur(14px); transition: background .4s ease, backdrop-filter .4s ease; }
     /* At the very top the header blends into the page; its background returns once you scroll (site-motion.js) */
@@ -298,7 +276,7 @@
        Everything in class="ph" is placeholder copy: replace the text and remove the class. -->
   <section class="case-hero">
     <div class="wrap about-grid">
-      <div>
+      <div data-reveal-group>
         <div class="case-tags"><span>About me</span></div>
         <h1 class="ph">[Your headline: who you are, in one line]</h1>
         <p class="lede ph">[A short intro, 2–3 sentences: what you do, what drives you, and what you’re looking for right now.]</p>
@@ -309,14 +287,14 @@
           <div class="m"><div class="k">Open to</div><div class="v ph">[Roles you want]</div></div>
         </div>
       </div>
-      <div class="about-photo" aria-label="Photo placeholder">[Photo of you: candid or at work]</div>
+      <div class="about-photo" aria-label="Photo placeholder" data-reveal>[Photo of you: candid or at work]</div>
     </div>
   </section>
 
   <!-- ===== Quick facts band ===== -->
   <div class="results">
     <div class="wrap">
-      <div class="results-grid">
+      <div class="results-grid" data-reveal-group>
         <div class="result"><div class="n grad">[Fact]</div><div class="l ph">[A quick fact about you]</div></div>
         <div class="result"><div class="n grad">[Fact]</div><div class="l ph">[A quick fact about you]</div></div>
         <div class="result"><div class="n grad">[Fact]</div><div class="l ph">[A quick fact about you]</div></div>
@@ -326,7 +304,7 @@
 
   <!-- ===== Article ===== -->
   <div class="wrap">
-    <article class="measure">
+    <article class="measure" data-reveal-group>
       <span class="kicker"><span class="zh">我</span> My story</span>
       <h2 class="ph">[How I got here]</h2>
       <p class="ph">[How you got into tech and creative work: the moment it clicked, what you studied, and how it led to what you do now.]</p>
@@ -334,7 +312,7 @@
 
       <span class="kicker"><span class="zh">道</span> How I work</span>
       <h2>My work style</h2>
-      <div class="deliv">
+      <div class="deliv" data-reveal-group>
         <div class="col"><div class="num">01</div><h4 class="ph">[Trait]</h4><p class="ph">[How this shows up in your work, with a small example.]</p></div>
         <div class="col"><div class="num">02</div><h4 class="ph">[Trait]</h4><p class="ph">[How this shows up in your work, with a small example.]</p></div>
         <div class="col"><div class="num">03</div><h4 class="ph">[Trait]</h4><p class="ph">[How this shows up in your work, with a small example.]</p></div>
@@ -347,7 +325,7 @@
 
       <span class="kicker"><span class="zh">心</span> What I value</span>
       <h2>Working with me</h2>
-      <ul>
+      <ul data-reveal-group>
         <li class="ph">[Something teammates can always count on you for]</li>
         <li class="ph">[How you like to give and receive feedback]</li>
         <li class="ph">[How you handle deadlines and pressure]</li>
@@ -356,7 +334,7 @@
 
       <span class="kicker"><span class="zh">學</span> Always learning</span>
       <h2>What I’m learning now</h2>
-      <ul>
+      <ul data-reveal-group>
         <li class="ph">[A skill or tool you’re learning]</li>
         <li class="ph">[A skill or tool you’re learning]</li>
         <li class="ph">[A skill or tool you’re learning]</li>
@@ -366,7 +344,7 @@
 
       <span class="kicker"><span class="zh">趣</span> Outside work</span>
       <h2>When I’m not working</h2>
-      <div class="deliv">
+      <div class="deliv" data-reveal-group>
         <div class="col"><div class="num">01</div><h4 class="ph">[Hobby or interest]</h4><p class="ph">[A line about it.]</p></div>
         <div class="col"><div class="num">02</div><h4 class="ph">[Hobby or interest]</h4><p class="ph">[A line about it.]</p></div>
         <div class="col"><div class="num">03</div><h4 class="ph">[Hobby or interest]</h4><p class="ph">[A line about it.]</p></div>
@@ -376,7 +354,7 @@
 
   <!-- ===== CTA ===== -->
   <div class="wrap">
-    <div class="case-cta">
+    <div class="case-cta" data-reveal>
       <span class="zh">緣</span>
       <h2>Let’s work together</h2>
       <p class="ph">[A short line inviting people to reach out.]</p>
@@ -441,16 +419,6 @@
       for (var j = 0; j < 12; j++) addLeaf(back, j, 0.45, 0.5, 12, 8);  // behind the content
     })();
 
-    // Scroll reveal (fade + rise as elements enter the viewport)
-    (function(){
-      if (!document.documentElement.classList.contains('js-reveal')) return;
-      var els = document.querySelectorAll('.section-head, .stats, .trust-logos, .offer-grid > .card, .work-grid > .work-card, .work-more, .featured-card, .results-grid, .cta-banner, article > *');
-      if (!els.length) return;
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
-      }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
-      els.forEach(function(el){ io.observe(el); });
-    })();
   </script>
 
 </body>

@@ -97,6 +97,9 @@
     .js-reveal .featured-card,
     .js-reveal .results-grid,
     .js-reveal .cta-banner,
+    .js-reveal .vids-head,
+    .js-reveal .vids-sub,
+    .js-reveal .vid,
     .js-reveal article > * {
       opacity: 0; transform: translateY(26px);
       transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);
@@ -396,7 +399,7 @@
 
       <h3 class="vids-sub">Short-form · Reels &amp; ads</h3>
       <div class="vids-grid">
-        <article class="vid">
+        <div class="vid">
           <div class="phone">
             <div class="phone-screen">
               <!-- Replace this placeholder with your video, e.g.:
@@ -407,8 +410,8 @@
           <h3 class="ph">[Video title]</h3>
           <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>
           <a class="vid-link" href="https://www.facebook.com/ads/library/?id=1704592681676485" target="_blank" rel="noopener">View the ad →</a>
-        </article>
-        <article class="vid">
+        </div>
+        <div class="vid">
           <div class="phone">
             <div class="phone-screen">
               <!-- Replace this placeholder with your video, e.g.:
@@ -419,8 +422,8 @@
           <h3 class="ph">[Video title]</h3>
           <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>
           <a class="vid-link" href="https://www.facebook.com/ads/library/?id=2277647252773671" target="_blank" rel="noopener">View the ad →</a>
-        </article>
-        <article class="vid">
+        </div>
+        <div class="vid">
           <div class="phone">
             <div class="phone-screen">
               <!-- Replace this placeholder with your video, e.g.:
@@ -431,8 +434,8 @@
           <h3 class="ph">[Video title]</h3>
           <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>
           <a class="vid-link" href="https://www.facebook.com/ads/library/?id=1617862633244058" target="_blank" rel="noopener">View the ad →</a>
-        </article>
-        <article class="vid">
+        </div>
+        <div class="vid">
           <div class="phone">
             <div class="phone-screen">
               <!-- Replace this placeholder with your video, e.g.:
@@ -443,8 +446,8 @@
           <h3 class="ph">[Video title]</h3>
           <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>
           <a class="vid-link" href="https://www.facebook.com/ads/library/?id=1074319012100141" target="_blank" rel="noopener">View the ad →</a>
-        </article>
-        <article class="vid">
+        </div>
+        <div class="vid">
           <div class="phone">
             <div class="phone-screen">
               <!-- Replace this placeholder with your video, e.g.:
@@ -455,8 +458,8 @@
           <h3 class="ph">[Video title]</h3>
           <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>
           <a class="vid-link" href="https://www.facebook.com/ads/library/?id=2106932693517342" target="_blank" rel="noopener">View the ad →</a>
-        </article>
-        <article class="vid">
+        </div>
+        <div class="vid">
           <div class="phone">
             <div class="phone-screen">
               <!-- Replace this placeholder with your video, e.g.:
@@ -467,12 +470,12 @@
           <h3 class="ph">[Video title]</h3>
           <p class="ph">[A short description: what it is, who it was for, and what you did.]</p>
           <a class="vid-link" href="https://www.instagram.com/p/DcTGon8yxs2/" target="_blank" rel="noopener">View on Instagram →</a>
-        </article>
+        </div>
       </div>
 
       <h3 class="vids-sub">Long-form</h3>
       <div class="vids-grid wide">
-        <article class="vid">
+        <div class="vid">
           <div class="laptop">
             <div class="laptop-lid">
               <div class="phone-screen">
@@ -484,8 +487,8 @@
           <h3>Soul Oracle Kickstarter launch VSL</h3>
           <p>A video sales letter for Earth Moon Magick’s Soul Oracle Kickstarter launch.</p>
           <a class="vid-link" href="https://youtu.be/UuSD2wWrmIg" target="_blank" rel="noopener">Watch on YouTube →</a>
-        </article>
-        <article class="vid">
+        </div>
+        <div class="vid">
           <div class="laptop">
             <div class="laptop-lid">
               <div class="phone-screen">
@@ -497,7 +500,7 @@
           <h3>Dr. Saru Bala’s most viewed</h3>
           <p>My most-viewed edit, made while I was with the Doctor’s Making Videos agency.</p>
           <a class="vid-link" href="https://youtu.be/5hth3DJgcEw" target="_blank" rel="noopener">Watch on YouTube →</a>
-        </article>
+        </div>
       </div>
     </section>
 
@@ -586,8 +589,37 @@
           const match = (f === 'all' && !card.dataset.only) || card.dataset.cat.split(' ').includes(f);
           card.classList.toggle('is-hidden', !match);
         });
+        replay();
       });
     });
+
+    // Fade-up motion: items rise in, one after another, when a tab is opened and as they scroll into view
+    const revealTargets = '.featured-card, #workGrid > .work-card, .vids-head, .vids-sub, .vid';
+    const motionOK = document.documentElement.classList.contains('js-reveal');
+    const tabIO = motionOK && new IntersectionObserver(entries => {
+      let k = 0;
+      entries.filter(e => e.isIntersecting).forEach(e => {
+        const el = e.target;
+        el.style.transitionDelay = Math.min(k++ * 0.08, 0.4) + 's';
+        el.classList.add('is-visible');
+        tabIO.unobserve(el);
+        el.addEventListener('transitionend', () => { el.style.transitionDelay = ''; }, { once: true });
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+    // Reset the visible items instantly, then let the observer bring them back in
+    function replay() {
+      if (!motionOK) return;
+      document.querySelectorAll(revealTargets).forEach(el => {
+        if (!el.offsetParent) return; // hidden on this tab
+        el.style.transition = 'none';
+        el.classList.remove('is-visible');
+        void el.offsetWidth;
+        el.style.transition = '';
+        tabIO.observe(el);
+      });
+    }
+    // The video section starts hidden, so arm its pieces for scrolling once the page is ready
+    if (motionOK) document.querySelectorAll('.vids-head, .vids-sub, .vid').forEach(el => tabIO.observe(el));
 
     // Solid header while it's over the white folder page
     (function(){

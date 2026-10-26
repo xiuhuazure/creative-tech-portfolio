@@ -15,6 +15,37 @@
     window.addEventListener('scroll', setTop, { passive: true });
   }
 
+  // ---- Fade-up reveal: [data-reveal] items and the children of [data-reveal-group] (styles in site-motion.css) ----
+  // Items that come into view together rise one after another, 80ms apart.
+  // Pages that swap content (like the Work tabs) can call window.siteReveal.replay(container) to play it again.
+  if (document.documentElement.classList.contains('js-reveal') && 'IntersectionObserver' in window) {
+    var REVEAL = '[data-reveal], [data-reveal-group] > *';
+    var revealIO = new IntersectionObserver(function (entries) {
+      var k = 0;
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        el.style.transitionDelay = Math.min(k++ * 0.08, 0.4) + 's';
+        el.classList.add('is-visible');
+        revealIO.unobserve(el);
+        el.addEventListener('transitionend', function () { el.style.transitionDelay = ''; }, { once: true });
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll(REVEAL).forEach(function (el) { revealIO.observe(el); });
+    window.siteReveal = {
+      replay: function (scope) {
+        (scope || document).querySelectorAll(REVEAL).forEach(function (el) {
+          if (!el.offsetParent) return;
+          el.style.transition = 'none';
+          el.classList.remove('is-visible');
+          void el.offsetWidth;
+          el.style.transition = '';
+          revealIO.observe(el);
+        });
+      }
+    };
+  }
+
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) return;
 

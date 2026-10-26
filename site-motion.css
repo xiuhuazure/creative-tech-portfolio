@@ -29,6 +29,19 @@
 }
 @keyframes m-caret { 50% { opacity: 0; } }
 
+/* ---------- Fade-up reveal (shared by every page) ----------
+   Mark content in the HTML:
+     data-reveal        on an element  -> it fades up when it scrolls into view
+     data-reveal-group  on a container -> each direct child fades up, one after another
+   Only hidden when motion is allowed (html.js-reveal is set in each page's <head>). Driven by site-motion.js. */
+.js-reveal [data-reveal],
+.js-reveal [data-reveal-group] > * {
+  opacity: 0; transform: translateY(26px);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1);
+}
+.js-reveal [data-reveal].is-visible,
+.js-reveal [data-reveal-group] > .is-visible { opacity: 1; transform: none; }
+
 /* ---------- Card tilt + cursor glare ---------- */
 .tilt { will-change: transform; }
 .tilt .glare {

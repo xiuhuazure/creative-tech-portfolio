@@ -6,7 +6,7 @@
   <title>Earth Moon Magick — Case Study — Kimberly D. Yu</title>
   <meta name="description" content="How Kimberly D. Yu handles Shopify storefront work and Meta ad creative for Earth Moon Magick." />
   <script>
-    (function(){ try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch(e){} })();
+    (function(){ try { var t = sessionStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch(e){} })();
   </script>
   <script>
     /* Scroll-reveal: hide targets up-front only when we can animate them (no flash, no-JS safe) */
@@ -217,44 +217,63 @@
   <button class="lantern" id="lantern" aria-label="Switch to light mode" title="Toggle light / dark">
     <svg viewBox="0 0 96 186" aria-hidden="true">
       <defs>
-        <radialGradient id="lBody" cx="0.4" cy="0.36" r="0.82">
-          <stop offset="0" stop-color="#e85345"/>
-          <stop offset="0.5" stop-color="#c92418"/>
-          <stop offset="1" stop-color="#8b1410"/>
-        </radialGradient>
-        <linearGradient id="lGold" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#f6d689"/>
-          <stop offset="0.5" stop-color="#e2b24e"/>
-          <stop offset="1" stop-color="#c88f2c"/>
-        </linearGradient>
-        <pattern id="redFringe" width="3" height="8" patternUnits="userSpaceOnUse">
-          <rect width="3" height="8" fill="#d12a22"/>
-          <rect x="2.2" width="0.8" height="8" fill="#7c130e"/>
-        </pattern>
+        <linearGradient id="ltBack" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f06292"/><stop offset="1" stop-color="#b0174a"/></linearGradient>
+        <linearGradient id="ltMid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff86ab"/><stop offset="1" stop-color="#d42a62"/></linearGradient>
+        <linearGradient id="ltFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffa6c1"/><stop offset="1" stop-color="#e2467a"/></linearGradient>
+        <linearGradient id="ltDeep" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d0285d"/><stop offset="1" stop-color="#8e0f3a"/></linearGradient>
+        <radialGradient id="ltGlow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#fff3c4" stop-opacity="0.95"/><stop offset="0.45" stop-color="#ffc861" stop-opacity="0.55"/><stop offset="1" stop-color="#ff9a3c" stop-opacity="0"/></radialGradient>
+        <radialGradient id="ltFlame" cx="0.5" cy="0.7" r="0.6"><stop offset="0" stop-color="#ffffff"/><stop offset="0.45" stop-color="#fff2a8"/><stop offset="1" stop-color="#ffb03a"/></radialGradient>
       </defs>
-      <line x1="48" y1="0" x2="48" y2="15" stroke="#cf2b23" stroke-width="1.6"/>
-      <path d="M40 26 C 40 15, 56 15, 56 26" fill="none" stroke="url(#lGold)" stroke-width="3.4" stroke-linecap="round"/>
-      <rect x="37" y="25" width="22" height="6" rx="2" fill="url(#lGold)"/>
-      <rect x="34" y="30" width="28" height="8" rx="2.5" fill="url(#lGold)"/>
-      <ellipse cx="48" cy="71" rx="40" ry="34" fill="url(#lBody)"/>
-      <g stroke="url(#lGold)" stroke-width="2" fill="none" stroke-linecap="round">
-        <path d="M18 48 Q48 51 78 48"/>
-        <path d="M11 56 Q48 59 85 56"/>
-        <path d="M8.5 64 Q48 67 87.5 64"/>
-        <path d="M8 71 Q48 74 88 71"/>
-        <path d="M9 78 Q48 81 87 78"/>
-        <path d="M12 86 Q48 88.5 84 86"/>
-        <path d="M18 93 Q48 95 78 93"/>
+      <!-- cord + small knot -->
+      <line x1="48" y1="0" x2="48" y2="12" stroke="#d3243a" stroke-width="1.4" stroke-dasharray="2 1.4"/>
+      <g fill="none" stroke="#d3243a" stroke-width="1.7">
+        <circle cx="48" cy="14.4" r="2.6"/>
+        <g transform="translate(48 22.4) rotate(45)">
+          <rect x="-4" y="-4" width="8" height="8"/>
+          <path d="M-4 -1.3 H4 M-4 1.3 H4 M-1.3 -4 V4 M1.3 -4 V4" stroke-width="1"/>
+          <path d="M4 -3 A3.2 3.2 0 1 1 4 3 M-4 -3 A3.2 3.2 0 1 0 -4 3 M-3 -4 A3.2 3.2 0 1 1 3 -4 M-3 4 A3.2 3.2 0 1 0 3 4"/>
+        </g>
+        <circle cx="48" cy="30.4" r="2.6"/>
       </g>
-      <ellipse cx="33" cy="57" rx="10" ry="16" fill="rgba(255,255,255,0.16)"/>
-      <rect x="34" y="103" width="28" height="6" rx="2.5" fill="url(#lGold)"/>
-      <rect x="37" y="108" width="22" height="6" rx="2" fill="url(#lGold)"/>
-      <rect x="37" y="114" width="22" height="3" fill="url(#lGold)"/>
-      <rect x="37.5" y="117" width="21" height="13" fill="url(#redFringe)"/>
-      <line x1="48" y1="130" x2="48" y2="145" stroke="#cf2b23" stroke-width="2"/>
-      <circle cx="48" cy="147" r="3.4" fill="url(#lGold)"/>
-      <path d="M43 150 L53 150 L51 157 L45 157 Z" fill="url(#lGold)"/>
-      <rect x="41.5" y="157" width="13" height="24" rx="1.5" fill="url(#redFringe)"/>
+      <!-- hanging strings -->
+      <path d="M48 33 L22 70 M48 33 L48 60 M48 33 L74 70" stroke="#f7a8c2" stroke-width="0.8" fill="none"/>
+      <!-- lotus: back petals -->
+      <path d="M48 101 C30 103 9 97 1 84 C14 80 35 87 48 101 Z" fill="url(#ltBack)"/>
+      <path d="M48 101 C66 103 87 97 95 84 C82 80 61 87 48 101 Z" fill="url(#ltBack)"/>
+      <path d="M46 99 C31 94 19 78 20 60 C33 66 43 81 46 99 Z" fill="url(#ltMid)"/>
+      <path d="M50 99 C65 94 77 78 76 60 C63 66 53 81 50 99 Z" fill="url(#ltMid)"/>
+      <!-- centre petal holding the flame -->
+      <path d="M48 99 C37 90 35 71 48 55 C61 71 59 90 48 99 Z" fill="url(#ltMid)"/>
+      <circle cx="48" cy="80" r="15" fill="url(#ltGlow)"/>
+      <path d="M48 66 C52.5 72 53.5 79 48 84 C42.5 79 43.5 72 48 66 Z" fill="url(#ltFlame)"/>
+      <path d="M48 80 V84" stroke="#5a2a10" stroke-width="0.6" stroke-linecap="round"/>
+      <!-- side petals curving in -->
+      <path d="M47 104 C34 104 20 95 16 82 C29 82 42 91 47 104 Z" fill="url(#ltFront)"/>
+      <path d="M49 104 C62 104 76 95 80 82 C67 82 54 91 49 104 Z" fill="url(#ltFront)"/>
+      <path d="M45 103 C38 99 33 89 35 79 C42 84 46 93 45 103 Z" fill="url(#ltMid)"/>
+      <path d="M51 103 C58 99 63 89 61 79 C54 84 50 93 51 103 Z" fill="url(#ltMid)"/>
+      <!-- front cup petal -->
+      <path d="M48 107 C40 106 34 99 35 90 C41 95 45 96 48 96 C51 96 55 95 61 90 C62 99 56 106 48 107 Z" fill="url(#ltFront)"/>
+      <!-- drooping lower petals -->
+      <path d="M47 104 C40 115 29 119 21 114 C28 106 38 103 47 104 Z" fill="url(#ltMid)"/>
+      <path d="M49 104 C56 115 67 119 75 114 C68 106 58 103 49 104 Z" fill="url(#ltDeep)"/>
+      <!-- soft highlights -->
+      <path d="M25 66 C30 72 36 80 40 90 M71 66 C66 72 60 80 56 90 M12 86 C20 88 28 92 34 96" stroke="#fff" stroke-opacity="0.28" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      <!-- beads + big knot -->
+      <circle cx="48" cy="111" r="1.6" fill="#c2184b"/>
+      <circle cx="48" cy="115" r="1.6" fill="#c2184b"/>
+      <g fill="none" stroke="#c2184b" stroke-width="2.6">
+        <circle cx="48" cy="123" r="4.6"/>
+        <g transform="translate(48 140) rotate(45)">
+          <rect x="-7" y="-7" width="14" height="14"/>
+          <path d="M-7 -2.3 H7 M-7 2.3 H7 M-2.3 -7 V7 M2.3 -7 V7" stroke-width="1.7"/>
+          <path d="M7 -5 A5.4 5.4 0 1 1 7 5 M-7 -5 A5.4 5.4 0 1 0 -7 5 M-5 -7 A5.4 5.4 0 1 1 5 -7 M-5 7 A5.4 5.4 0 1 0 5 7"/>
+        </g>
+        <circle cx="48" cy="157" r="4.6"/>
+      </g>
+      <!-- tassel -->
+      <circle cx="48" cy="164" r="1.6" fill="#c2184b"/>
+      <path d="M48 166 L47 186 M48 166 L49.5 185 M48 166 L45 184 M48 166 L51 184 M48 166 L43.5 182 M48 166 L52.5 182" stroke="#d3243a" stroke-width="0.9" stroke-linecap="round"/>
     </svg>
   </button>
 
@@ -396,7 +415,7 @@
     lantern.addEventListener('click', () => {
       const next = curTheme() === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch(e){}
+      try { sessionStorage.setItem('theme', next); } catch(e){}
       lantern.setAttribute('aria-label', next === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
     });
 

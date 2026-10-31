@@ -1,15 +1,15 @@
 /* =========================================================================
-   Site cursor — the pink lotus artwork (cursor-lotus.png, 32×32). The tip of
-   its tallest petal is the pointer. Over anything clickable it switches to
+   Site cursor — the coral-pink lotus artwork (cursor-lotus.png, 32×32). The tip of
+   its upper-left petal is the pointer. Over anything clickable it switches to
    the same lotus in gold (cursor-lotus-gold.png). Touch devices, which have
    no cursor, simply ignore it; if an image can't load, the normal cursor shows.
    ========================================================================= */
 html, body {
-  cursor: url("cursor-lotus.png") 12 11, auto;
+  cursor: url("cursor-lotus.png") 8 12, auto;
 }
 /* Clickable things: the gold lotus. !important because several components
    set "cursor: pointer" on their own classes. */
 a, button, summary, label[for], select, [role="button"],
 .lantern, .nav-toggle, .filter-btn, .gbtn, .crbtn, .tm-phone {
-  cursor: url("cursor-lotus-gold.png") 12 11, pointer !important;
+  cursor: url("cursor-lotus-gold.png") 8 12, pointer !important;
 }

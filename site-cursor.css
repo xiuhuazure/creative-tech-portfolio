@@ -1,22 +1,22 @@
 /* =========================================================================
-   Site cursor — the coral-pink lotus artwork with a thin dark outline.
+   Site cursor — the coral-pink lotus artwork (40px) with a fine dark outline.
    The tip of its upper-left petal is the pointer. Over anything clickable it
    switches to the same lotus in gold.
-   Each comes in two sizes: 32px (cursor-lotus.png) and a 64px copy
+   Each comes in two sizes: 40px (cursor-lotus.png) and an 80px copy
    (cursor-lotus-2x.png) that high-resolution screens use so it stays sharp.
    Browsers that don't understand image-set() use the first line; touch
    devices have no cursor; if an image can't load, the normal cursor shows.
    ========================================================================= */
 html, body {
-  cursor: url("cursor-lotus.png") 8 11, auto;
-  cursor: -webkit-image-set(url("cursor-lotus.png") 1x, url("cursor-lotus-2x.png") 2x) 8 11, auto;
-  cursor: image-set(url("cursor-lotus.png") 1x, url("cursor-lotus-2x.png") 2x) 8 11, auto;
+  cursor: url("cursor-lotus.png") 10 14, auto;
+  cursor: -webkit-image-set(url("cursor-lotus.png") 1x, url("cursor-lotus-2x.png") 2x) 10 14, auto;
+  cursor: image-set(url("cursor-lotus.png") 1x, url("cursor-lotus-2x.png") 2x) 10 14, auto;
 }
 /* Clickable things: the gold lotus. !important because several components
    set "cursor: pointer" on their own classes. */
 a, button, summary, label[for], select, [role="button"],
 .lantern, .nav-toggle, .filter-btn, .gbtn, .crbtn, .tm-phone {
-  cursor: url("cursor-lotus-gold.png") 8 11, pointer !important;
-  cursor: -webkit-image-set(url("cursor-lotus-gold.png") 1x, url("cursor-lotus-gold-2x.png") 2x) 8 11, pointer !important;
-  cursor: image-set(url("cursor-lotus-gold.png") 1x, url("cursor-lotus-gold-2x.png") 2x) 8 11, pointer !important;
+  cursor: url("cursor-lotus-gold.png") 10 14, pointer !important;
+  cursor: -webkit-image-set(url("cursor-lotus-gold.png") 1x, url("cursor-lotus-gold-2x.png") 2x) 10 14, pointer !important;
+  cursor: image-set(url("cursor-lotus-gold.png") 1x, url("cursor-lotus-gold-2x.png") 2x) 10 14, pointer !important;
 }

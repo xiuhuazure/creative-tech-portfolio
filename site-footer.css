@@ -87,7 +87,8 @@
 .vf ul { list-style: none; margin: 0; padding: 0; }
 
 /* ---------- 1. Globe arc ---------- */
-.vf-globe { position: relative; width: 100%; height: 420px; background: var(--vf-bg); overflow: hidden; transition: background .4s ease; }
+/* Height grows with the screen width (same proportions as at 1440px) so on wide monitors the arc and its labels aren't cropped off the top */
+.vf-globe { position: relative; width: 100%; height: max(420px, 29.2vw); background: var(--vf-bg); overflow: hidden; transition: background .4s ease; }
 /* Feathered seam: fades from the page colour above into the footer */
 .vf-globe::before {
   content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8rem; z-index: 20; pointer-events: none;

@@ -156,3 +156,12 @@ body .gbtn-label, body .crbtn-label { white-space: nowrap; }
   body .gbtn, body .crbtn-clip { padding-left: 24px; padding-right: 24px; }
   body .gbtn-label, body .crbtn-label { font-size: 1rem; }
 }
+/* Section dividers: a line-art lotus between the two gold lines (replaces the ✦) */
+body .divider .mark { display: inline-flex; letter-spacing: 0; }
+body .divider .mark svg { width: 28px; height: 21px; display: block; }
+/* Closing call-to-action headings on inner pages: tighter lines */
+body .cta-banner h2, body .case-cta h2 { line-height: 1.15; }
+/* Section labels (kicker) hug their headings: no tall line box around the brush character */
+body article .kicker { line-height: 1; }
+body article .kicker .zh { line-height: 1; }
+body article h2 { line-height: 1.2; }

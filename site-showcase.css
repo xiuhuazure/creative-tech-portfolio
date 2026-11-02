@@ -129,7 +129,7 @@
 .pf-folder.is-top, .pf-folder.is-bottom { grid-column: 1 / -1; justify-self: center; }
 .pf-hint { position: relative; z-index: 1; text-align: center; color: var(--text-mute); font-size: 0.85rem; margin: 8vh 0 0; }
 
-.pf-folder { width: min(463px, calc(100vw - 24px)); aspect-ratio: 463 / 360; container-type: inline-size; cursor: pointer; }
+.pf-folder { width: min(473px, calc(100vw - 24px)); aspect-ratio: 463 / 360; container-type: inline-size; cursor: pointer; }
 .pf-move {
   --u: calc(100cqw / 463); position: relative; width: 100%; height: 100%;
   transform: rotate(calc(var(--tilt, 0) * 1deg)); will-change: transform;
@@ -181,7 +181,7 @@
 /* the glass front: an outer pane and a tinted inner pane */
 .pf-front {
   position: absolute; left: calc(var(--u) * 55); top: calc(var(--u) * 104); width: calc(var(--u) * 360); height: calc(var(--u) * 198);
-  box-sizing: border-box; padding: calc(var(--u) * 4); border-radius: calc(var(--u) * 18); pointer-events: none; transform-origin: 50% 100%; /* clicks go to the files */
+  box-sizing: border-box; padding: calc(var(--u) * 4); border-radius: calc(var(--u) * 18); transform-origin: 50% 100%; /* clicking the glass opens the folder dialog */
   -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
   box-shadow: inset 0 0 calc(var(--u) * 16) var(--pf-glow), 0 calc(var(--u) * -4) calc(var(--u) * 4) var(--pf-deep);
   transition: transform .45s cubic-bezier(.3, 1.35, .6, 1), box-shadow .45s ease;
@@ -207,6 +207,67 @@
 @media (prefers-reduced-motion: reduce) {
   .pf-file, .pf-front, .pf-back { transition: none; }
 }
+
+/* ------------------------------ Folder dialog ------------------------------
+   A glass panel in the middle of the screen with the folder's files as a sideways-scrolling row
+   of cards; the folder's name sits on a frosted strip along the bottom. */
+.pt {
+  width: min(1180px, calc(100vw - 24px)); max-width: none; padding: 0; margin: auto; border: 0; background: transparent; overflow: visible;
+  color: var(--pf-ink, #2b2418);
+}
+.pt::backdrop { background: rgba(6, 8, 10, 0.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.pt.is-closing::backdrop { opacity: 0; transition: opacity .3s ease; }
+.pt-panel {
+  position: relative; overflow: hidden; border-radius: 30px; padding: 30px 0 0;
+  background: linear-gradient(180deg, rgba(246, 214, 160, 0.5) 0%, rgba(232, 194, 108, 0.52) 34%, rgba(214, 170, 78, 0.58) 100%);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2);
+  box-shadow: inset 0 0 22px rgba(255, 246, 222, 0.8), inset 0 -2px 10px rgba(180, 138, 52, 0.45), 0 40px 90px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 248, 230, 0.55);
+}
+:root[data-theme="light"] .pt-panel { box-shadow: inset 0 0 22px rgba(255, 246, 222, 0.85), inset 0 -2px 10px rgba(180, 138, 52, 0.35), 0 40px 90px rgba(80, 60, 20, 0.3); }
+.pt-track {
+  display: flex; gap: 24px; overflow-x: auto; overflow-y: hidden; padding: 26px 44px 26px; justify-content: safe center;
+  scroll-snap-type: x proximity; scroll-padding: 0 44px; overscroll-behavior-x: contain; outline: none;
+  scrollbar-width: thin; scrollbar-color: rgba(120, 84, 20, 0.45) transparent;
+}
+.pt-track:focus-visible { box-shadow: inset 0 0 0 3px var(--gold); }
+.pt-card {
+  flex: 0 0 260px; min-height: 280px; box-sizing: border-box; padding: 22px 20px; border-radius: 12px; scroll-snap-align: start;
+  display: flex; flex-direction: column; gap: 6px; background: #f8f6f1; color: #2b2418; text-decoration: none;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 10px 30px rgba(60, 40, 0, 0.18);
+  transition: transform .25s cubic-bezier(.3, 1.35, .6, 1), box-shadow .25s ease;
+  animation: pt-rise .5s cubic-bezier(.2, .7, .2, 1) backwards; animation-delay: calc(.12s + var(--i, 0) * .05s);
+}
+.pt-card:nth-child(even) { margin-top: -12px; } /* the slight stagger in the reference */
+.pt-card:hover, .pt-card:focus-visible { transform: translateY(-6px); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 18px 40px rgba(60, 40, 0, 0.26); outline: none; }
+.pt-card strong { font-family: var(--serif); font-size: 1.2rem; line-height: 1.22; }
+.pt-card .pt-sub { font-size: 0.86rem; color: #6f675a; }
+.pt-card hr { width: 100%; border: 0; border-top: 1px solid rgba(43, 36, 24, 0.12); margin: 10px 0 8px; }
+.pt-card p { font-size: 0.9rem; line-height: 1.55; color: #4c4438; margin: 0; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.pt-strip { /* frosted strip over the bottom of the cards, with the folder's name */
+  position: absolute; left: 0; right: 0; bottom: 0; height: 64px; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(180deg, rgba(255, 238, 200, 0.35), rgba(222, 182, 96, 0.55));
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 248, 230, 0.55); box-shadow: inset 0 8px 16px rgba(255, 246, 222, 0.35);
+}
+.pt-label {
+  padding: 5px 14px; border-radius: 10px; font-size: 1rem; font-weight: 600; color: #fff; text-shadow: 0 1px 4px rgba(90, 60, 10, 0.45);
+  background: rgba(255, 255, 255, 0.16); box-shadow: -1px 1px 2px rgba(110, 78, 18, 0.2);
+}
+.pt-x {
+  position: absolute; top: 10px; right: 12px; z-index: 2; width: 34px; height: 34px; border-radius: 50%; border: 0; cursor: pointer;
+  display: grid; place-items: center; background: rgba(255, 255, 255, 0.35); color: #4e3c12; font-size: 0.95rem;
+}
+.pt-x:hover { background: rgba(255, 255, 255, 0.6); }
+.pt-x:focus:not(:focus-visible), .pt-panel:focus { outline: none; }
+@keyframes pt-rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@media (max-width: 720px) {
+  .pt-panel { border-radius: 24px; padding-top: 34px; }
+  .pt-track { gap: 14px; padding: 22px 20px 22px; scroll-padding: 0 20px; }
+  .pt-card { flex-basis: 220px; min-height: 262px; padding: 18px 16px; }
+  .pt-card:nth-child(even) { margin-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .pt-card { animation: none; } }
 
 /* ------------------------------ Project dialog ------------------------------ */
 .pd {

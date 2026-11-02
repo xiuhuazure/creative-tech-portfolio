@@ -118,8 +118,8 @@
   var fromEl = null, closing = null, opening = null;
   var EASE_IN = 'cubic-bezier(.05, .7, .1, 1)', EASE_OUT = 'cubic-bezier(.3, 0, .8, .15)';
 
-  var fromCard = function (el) {
-    var c = el.getBoundingClientRect(), d = dlg.getBoundingClientRect();
+  var fromCard = function (el, box) {
+    var c = el.getBoundingClientRect(), d = (box || dlg).getBoundingClientRect();
     return 'translate(' + ((c.left + c.width / 2) - (d.left + d.width / 2)) + 'px,' + ((c.top + c.height / 2) - (d.top + d.height / 2)) + 'px) scale(' +
       Math.max(0.2, c.width / d.width) + ',' + Math.max(0.2, c.height / d.height) + ')';
   };
@@ -191,33 +191,83 @@
     el.addEventListener('click', function (e) { if (PROJECTS[el.dataset.project]) { e.preventDefault(); openProject(el.dataset.project, el); } });
   });
 
-  /* ------------------------------ 3. Project folders ------------------------------
+  /* ------------------------------ 3. Folder dialog ------------------------------
+     Clicking a folder opens its files as a row of cards in a glass panel in the middle of the
+     screen (scrolls sideways). It grows out of the folder and shrinks back into it on close.
+     A card opens that project's dialog on top. */
+  var pt = document.createElement('dialog');
+  pt.className = 'pt'; pt.setAttribute('aria-labelledby', 'pt-title');
+  document.body.appendChild(pt);
+  var ptFrom = null, ptClosing = null, ptOpening = null;
+  var openFolder = function (f) {
+    if (ptClosing) { ptClosing.onfinish = null; ptClosing.cancel(); ptClosing = null; }
+    if (pt.open) pt.close();
+    ptFrom = f;
+    var label = f.querySelector('.pf-label');
+    var ids = [].map.call(f.querySelectorAll('.pf-file'), function (a) { return a.dataset.project; }).filter(function (id) { return PROJECTS[id]; });
+    pt.innerHTML =
+      '<div class="pt-panel" tabindex="-1" autofocus>' +
+        '<button class="pt-x" type="button" aria-label="Close">✕</button>' +
+        '<div class="pt-track" tabindex="0" aria-label="Files">' + ids.map(function (id, i) {
+          var p = PROJECTS[id];
+          return '<a class="pt-card" href="work.html" data-project="' + id + '" aria-haspopup="dialog" style="--i:' + i + '">' +
+            '<strong>' + esc(p.title) + '</strong><span class="pt-sub">' + esc(p.date) + '</span><hr><p>' + esc(p.desc) + '</p></a>';
+        }).join('') + '</div>' +
+        '<div class="pt-strip"><span class="pt-label" id="pt-title">' + esc(label ? label.textContent : 'files') + '</span></div>' +
+      '</div>';
+    pt.querySelector('.pt-x').addEventListener('click', function (e) { e.stopPropagation(); closeFolder(); });
+    pt.querySelectorAll('.pt-card').forEach(function (c) {
+      c.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); openProject(c.dataset.project, c); });
+    });
+    var track = pt.querySelector('.pt-track');
+    track.addEventListener('wheel', function (e) { // a normal mouse wheel scrolls the row sideways
+      if (track.scrollWidth <= track.clientWidth + 1 || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      e.preventDefault(); track.scrollLeft += e.deltaY;
+    }, { passive: false });
+    pt.showModal();
+    if (!reduce && pt.animate) {
+      ptOpening = pt.animate([{ transform: fromCard(f, pt), opacity: 0.2 }, { transform: 'none', opacity: 1 }], { duration: 480, easing: EASE_IN });
+    }
+  };
+  var closeFolder = function () {
+    if (!pt.open || ptClosing) return;
+    var back = ptFrom;
+    var done = function () { pt.close(); pt.innerHTML = ''; if (back) { var a = back.querySelector('.pf-file'); if (a) a.focus({ preventScroll: true }); } };
+    if (reduce || !pt.animate) return done();
+    if (ptOpening) { ptOpening.cancel(); ptOpening = null; }
+    pt.classList.add('is-closing');
+    var a = ptClosing = pt.animate([{ transform: 'none', opacity: 1 }, { transform: back ? fromCard(back, pt) : 'scale(0.9)', opacity: 0 }], { duration: 320, easing: EASE_OUT, fill: 'forwards' });
+    a.onfinish = function () { if (ptClosing !== a) return; ptClosing = null; pt.classList.remove('is-closing'); done(); a.cancel(); };
+  };
+  pt.addEventListener('cancel', function (e) { e.preventDefault(); closeFolder(); });
+  pt.addEventListener('click', function (e) {
+    if (ptClosing) { var a = ptClosing; ptClosing = null; a.onfinish = null; a.cancel(); pt.classList.remove('is-closing'); pt.close(); pt.innerHTML = ''; return; }
+    if (e.target === pt) closeFolder(); // tap outside the panel
+  });
+
+  /* ------------------------------ 4. Project folders ------------------------------
      Glass folders scroll over the big pinned title, straightening as they come up the screen.
-     Hover (or tap) a folder and its files pop up and splay out while the glass front leans;
-     on touch screens a folder also opens by itself while it's in the middle of the screen. */
+     Hover a folder and its files pop up and splay out while the glass front leans; on touch
+     screens the folder in the middle of the screen does this by itself. Clicking the folder
+     opens the folder dialog; clicking a file that's sticking out opens that project. */
   var folders = [].slice.call(document.querySelectorAll('.pf-folder'));
   if (!folders.length) return;
   var canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var setOpen = function (f, on) { f.classList.toggle('is-open', on); f.setAttribute('aria-expanded', on); };
   folders.forEach(function (f) {
     f.setAttribute('aria-expanded', 'false');
+    f.setAttribute('aria-haspopup', 'dialog');
     if (canHover) {
       f.addEventListener('mouseenter', function () { setOpen(f, true); });
       f.addEventListener('mouseleave', function () { if (!f.contains(document.activeElement)) setOpen(f, false); });
     }
     f.addEventListener('focusin', function () { setOpen(f, true); });
     f.addEventListener('focusout', function (e) { if (!f.contains(e.relatedTarget) && !(canHover && f.matches(':hover'))) setOpen(f, false); });
-    // A tap on a closed folder (or on one of its files) opens the folder first
     f.addEventListener('click', function (e) {
-      if (f.classList.contains('is-open')) return;
+      if (e.target.closest('.pf-file') && f.classList.contains('is-open')) return; // the file's own handler opens it
       e.preventDefault(); e.stopPropagation();
-      folders.forEach(function (o) { if (o !== f) setOpen(o, false); });
-      setOpen(f, true);
+      openFolder(f);
     }, true);
-  });
-  document.addEventListener('click', function (e) {
-    if (canHover || e.target.closest('.pf-folder') || dlg.open) return;
-    folders.forEach(function (o) { setOpen(o, false); });
   });
   if (reduce) return;
 

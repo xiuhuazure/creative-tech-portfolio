@@ -19,7 +19,7 @@
       tech: ['Premiere Pro', 'Meta Business Suite', 'Canva'],
       desc: 'Meta video ads built from UGC and product footage, with B-roll, motion text and audio design, plus graphic design and feed and story content for Instagram.',
       media: { video: 'media/emm-ad.mp4', poster: 'media/emm-ad.jpg' },
-      links: [['See them on Instagram ↗', 'https://www.instagram.com/earthmoonmagick_']]
+      links: [['Meta Ad Library ↗', 'https://www.facebook.com/ads/library/?id=1704592681676485'], ['Instagram ↗', 'https://www.instagram.com/earthmoonmagick_']]
     },
     'vsl': {
       title: 'Soul Oracle Kickstarter launch VSL', date: 'Earth Moon Magick · Freelance',
@@ -84,6 +84,19 @@
       media: { img: 'media/counter-app.webp', alt: 'Simple Counter app screen', contain: true },
       links: [['View on GitHub ↗', 'https://github.com/xiuhuazure/Simple-Counter-App']]
     }
+  };
+  /* Extra cards shown in a folder's dialog after its project files: links that open elsewhere.
+     A folder picks a list with data-extra="…" in index.html. */
+  var AD = 'Short-form video ad for Earth Moon Magick on Facebook and Instagram.';
+  var EXTRAS = {
+    'meta-ads': [
+      { title: 'Meta ad 01', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=1704592681676485' },
+      { title: 'Meta ad 02', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=2277647252773671' },
+      { title: 'Meta ad 03', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=1617862633244058' },
+      { title: 'Meta ad 04', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=1074319012100141' },
+      { title: 'Meta ad 05', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=2106932693517342' },
+      { title: 'Instagram post', sub: 'Earth Moon Magick · Instagram', desc: 'A short-form video I edited for Earth Moon Magick’s Instagram.', go: 'View on Instagram ↗', href: 'https://www.instagram.com/p/DcTGon8yxs2/' }
+    ]
   };
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
 
@@ -188,11 +201,14 @@
           var p = PROJECTS[id];
           return '<a class="pt-card" href="#projects" data-project="' + id + '" aria-haspopup="dialog" style="--i:' + i + '">' +
             '<strong>' + esc(p.title) + '</strong><span class="pt-sub">' + esc(p.date) + '</span><hr><p>' + esc(p.desc) + '</p></a>';
+        }).join('') + (EXTRAS[f.dataset.extra] || []).map(function (x, i) {
+          return '<a class="pt-card is-link" href="' + x.href + '" target="_blank" rel="noopener" style="--i:' + (ids.length + i) + '">' +
+            '<strong>' + esc(x.title) + '</strong><span class="pt-sub">' + esc(x.sub) + '</span><hr><p>' + esc(x.desc) + '</p><span class="pt-go">' + esc(x.go) + '</span></a>';
         }).join('') + '</div>' +
         '<div class="pt-strip"><span class="pt-label" id="pt-title">' + esc(label ? label.textContent : 'files') + '</span></div>' +
       '</div>';
     pt.querySelector('.pt-x').addEventListener('click', function (e) { e.stopPropagation(); closeFolder(); });
-    pt.querySelectorAll('.pt-card').forEach(function (c) {
+    pt.querySelectorAll('.pt-card[data-project]').forEach(function (c) {
       c.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); openProject(c.dataset.project, c); });
     });
     var track = pt.querySelector('.pt-track');

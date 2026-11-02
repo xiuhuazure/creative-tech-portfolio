@@ -88,7 +88,7 @@
 
 /* ---------- 1. Globe arc ---------- */
 /* Height grows with the screen width (same proportions as at 1440px) so on wide monitors the arc and its labels aren't cropped off the top */
-.vf-globe { position: relative; width: 100%; height: max(420px, 29.2vw); background: var(--vf-bg); overflow: hidden; transition: background .4s ease; }
+.vf-globe { position: relative; width: 100%; height: max(420px, 26vw); background: var(--vf-bg); overflow: hidden; transition: background .4s ease; }
 /* Feathered seam: fades from the page colour above into the footer */
 .vf-globe::before {
   content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8rem; z-index: 20; pointer-events: none;
@@ -198,7 +198,7 @@
 }
 @media (max-width: 640px) {
   .vf-globe { height: 320px; }
-  .vf-badge .pill { font-size: 11px; padding: 4px 9px; }
+  .vf-badge .pill { font-size: 12px; padding: 4px 9px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .vf-comet { animation: none; }

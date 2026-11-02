@@ -21,12 +21,47 @@
       media: { video: 'media/emm-ad.mp4', poster: 'media/emm-ad.jpg' },
       links: [['See all videos', 'work.html#videos']]
     },
-    'designs': {
-      title: 'Graphic design', date: 'Trial & test work',
-      tech: ['Ad design', 'Instagram posts'],
-      desc: 'Trial designs for a crystal brand (an amethyst lamp ad and a protection bracelet ad) and a test offer post for an AI agency: bold headlines, product focus and clear calls to action.',
-      media: { img: 'media/design-amethyst.webp', alt: 'Amethyst lamp ad design' },
-      links: [['See the designs', 'work.html#designs']]
+    'vsl': {
+      title: 'Soul Oracle Kickstarter launch VSL', date: 'Earth Moon Magick · Freelance',
+      tech: ['Premiere Pro', 'Long-form video'],
+      desc: 'A video sales letter for Earth Moon Magick’s Soul Oracle Kickstarter launch: a long-form edit that walks viewers through the deck and the offer.',
+      media: { yt: 'UuSD2wWrmIg' },
+      links: [['Watch on YouTube ↗', 'https://youtu.be/UuSD2wWrmIg'], ['See all videos', 'work.html#videos']]
+    },
+    'saru': {
+      title: 'Dr. Saru Bala’s most viewed', date: 'Doctor’s Making Videos agency',
+      tech: ['Video editing', 'Long-form video'],
+      desc: 'My most-viewed edit, made while I was with the Doctor’s Making Videos agency.',
+      media: { yt: '5hth3DJgcEw' },
+      links: [['Watch on YouTube ↗', 'https://youtu.be/5hth3DJgcEw'], ['See all videos', 'work.html#videos']]
+    },
+    'amethyst': {
+      title: 'Amethyst lamp ad', date: 'Trial design · Crystal brand',
+      tech: ['Ad design', 'Instagram'],
+      desc: 'A trial design for a crystal brand: a product ad with a bold headline and benefit callouts.',
+      media: { img: 'media/design-amethyst.webp', alt: 'Amethyst lamp ad design', contain: true },
+      links: [['See all designs', 'work.html#designs']]
+    },
+    'bracelet': {
+      title: 'Protection bracelet ad', date: 'Trial design · Crystal brand',
+      tech: ['Ad design', 'Instagram'],
+      desc: 'A trial design for the same brand: a punchy headline ad with three benefit icons.',
+      media: { img: 'media/design-bracelet.webp', alt: 'Protection bracelet ad design', contain: true },
+      links: [['See all designs', 'work.html#designs']]
+    },
+    'agency': {
+      title: 'AI agency offer post', date: 'Test design · AI agency',
+      tech: ['Social post', 'Instagram'],
+      desc: 'A test design for an AI agency: a text-led offer post with a clear call to action.',
+      media: { img: 'media/design-agency.webp', alt: 'AI agency offer post design', contain: true },
+      links: [['See all designs', 'work.html#designs']]
+    },
+    'portfolio': {
+      title: 'This portfolio website', date: '2026 · Personal project',
+      tech: ['HTML', 'CSS', 'JavaScript', 'Cloudflare', 'Claude'],
+      desc: 'The site you’re on: hand-written HTML, CSS and JavaScript with a lantern dark and light switch, scroll motion, glass folders and layouts that fit phones up to 27-inch screens. Built with Claude and deployed on Cloudflare.',
+      media: { img: 'media/portfolio-site.jpg', alt: 'Kimberly Yu portfolio homepage' },
+      links: [['See all works', 'work.html']]
     },
     'fslames': {
       title: 'FSLAMES', date: '2025 – 2026 · Thesis',
@@ -94,7 +129,8 @@
     if (dlg.open) dlg.close();
     fromEl = el;
     var m = p.media, media;
-    if (m.video) media = '<video src="' + m.video + '" poster="' + (m.poster || '') + '" autoplay muted loop playsinline aria-label="' + esc(p.title) + '"></video>';
+    if (m.yt) media = '<iframe src="https://www.youtube-nocookie.com/embed/' + m.yt + '?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0" title="' + esc(p.title) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    else if (m.video) media = '<video src="' + m.video + '" poster="' + (m.poster || '') + '" autoplay muted loop playsinline aria-label="' + esc(p.title) + '"></video>';
     else if (m.img) media = '<img src="' + m.img + '" alt="' + esc(m.alt || p.title) + '">';
     else media = '<div class="fw-ph"><div><b>' + m.ph + '</b>' + esc(m.text) + '</div></div>';
     dlg.innerHTML =
@@ -155,92 +191,53 @@
     el.addEventListener('click', function (e) { if (PROJECTS[el.dataset.project]) { e.preventDefault(); openProject(el.dataset.project, el); } });
   });
 
-  /* ------------------------------ 3. Project folder: scroll motion ------------------------------ */
-  var pf = document.querySelector('.pf');
-  if (!pf) return;
-  var stage = pf.querySelector('.pf-stage'), head = pf.querySelector('.pf-head'), hint = pf.querySelector('.pf-hint');
-  var cards = [].slice.call(pf.querySelectorAll('.pf-card'));
-  var back = document.createElement('div'); back.className = 'pf-back'; back.setAttribute('aria-hidden', 'true');
-  var tray = document.createElement('div'); tray.className = 'pf-tray'; tray.setAttribute('aria-hidden', 'true');
-  var front = document.createElement('div'); front.className = 'pf-front'; front.setAttribute('aria-hidden', 'true');
-  front.innerHTML = '<span class="pf-label">projects</span>';
-  stage.appendChild(back); stage.appendChild(tray); stage.appendChild(front);
-  pf.classList.add('pf-js');
-  if (reduce) pf.classList.add('pf-static');
+  /* ------------------------------ 3. Project folders ------------------------------
+     Glass folders scroll over the big pinned title. Each one tilts and settles as it passes
+     the middle of the screen. Hover (or tap) a folder and its files rise and fan out of it;
+     on touch screens a folder also opens by itself while it's in the middle of the screen. */
+  var folders = [].slice.call(document.querySelectorAll('.pf-folder'));
+  if (!folders.length) return;
+  var canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var setOpen = function (f, on) { f.classList.toggle('is-open', on); f.setAttribute('aria-expanded', on); };
+  folders.forEach(function (f) {
+    f.setAttribute('aria-expanded', 'false');
+    if (canHover) {
+      f.addEventListener('mouseenter', function () { setOpen(f, true); });
+      f.addEventListener('mouseleave', function () { if (!f.contains(document.activeElement)) setOpen(f, false); });
+    }
+    f.addEventListener('focusin', function () { setOpen(f, true); });
+    f.addEventListener('focusout', function (e) { if (!f.contains(e.relatedTarget) && !(canHover && f.matches(':hover'))) setOpen(f, false); });
+    // A tap on a closed folder (or on one of its files) opens the folder first
+    f.addEventListener('click', function (e) {
+      if (f.classList.contains('is-open')) return;
+      e.preventDefault(); e.stopPropagation();
+      folders.forEach(function (o) { if (o !== f) setOpen(o, false); });
+      setOpen(f, true);
+    }, true);
+  });
+  document.addEventListener('click', function (e) {
+    if (canHover || e.target.closest('.pf-folder') || dlg.open) return;
+    folders.forEach(function (o) { setOpen(o, false); });
+  });
+  if (reduce) return;
 
-  var L = null, ticking = false;
-  var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
-  var ease = function (t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
-  var lerp = function (a, b, t) { return a + (b - a) * t; };
-  var CW = 210, CH = 248; // base card size (matches the CSS)
-
-  var layout = function () {
-    var W = stage.clientWidth, n = cards.length, H = reduce ? 0 : stage.clientHeight;
-    // Final tray: a row on wide screens, a grid on narrow ones
-    var trayW = Math.min(W - 32, 1240), gap = 14, padX = 24;
-    var cols = (trayW - padX * 2 - (n - 1) * gap) / n >= 150 ? n : (W >= 700 ? 3 : 2);
-    var cw = Math.min(CW, (trayW - padX * 2 - (cols - 1) * gap) / cols), ch = cw * CH / CW;
-    var rows = Math.ceil(n / cols);
-    var gridH = rows * ch + (rows - 1) * gap, trayH = gridH + 24 + 44;
-    if (reduce) { H = trayH + 160 + (head ? head.offsetHeight : 0); stage.style.height = H + 'px'; }
-    var maxTray = H - 120;
-    if (trayH > maxTray) { var k = maxTray / trayH; cw *= k; ch *= k; gridH = rows * ch + (rows - 1) * gap; trayH = gridH + 24 + 44; }
-    var trayX = (W - trayW) / 2, trayY = reduce ? H - trayH - 40 : Math.max(84, (H - trayH) / 2 + H * 0.06);
-    var finals = cards.map(function (_, i) {
-      var r = Math.floor(i / cols), c = i % cols, inRow = Math.min(cols, n - r * cols);
-      var rowW = inRow * cw + (inRow - 1) * gap, x0 = trayX + (trayW - rowW) / 2;
-      return { x: x0 + c * (cw + gap), y: trayY + 24 + r * (ch + gap), r: 0, s: cw / CW };
-    });
-    // Folder (closed and fanned)
-    var fw0 = Math.min(460, W * 0.82), fh = fw0 * 0.62, fx = (W - fw0) / 2, fy = H * 0.5;
-    var bs = Math.min(1, (fw0 * 0.46) / CW), bw = CW * bs, bh = CH * bs, cx = W / 2;
-    var closed = cards.map(function (_, i) {
-      var o = i < 3 ? (i - 1) * bw * 0.3 : 0;
-      return { x: cx + o - bw / 2, y: fy + fh * 0.1, r: i < 3 ? (i - 1) * 3 : 0, s: bs * 0.94 };
-    });
-    var fanX = [-0.62, 0, 0.62], fanY = [0.38, 0.56, 0.4], fanR = [-9, 0, 8];
-    var fan = cards.map(function (_, i) {
-      if (i < 3) return { x: cx + fanX[i] * bw - bw / 2, y: fy - fanY[i] * bh, r: fanR[i], s: bs };
-      return { x: cx - bw / 2 + (i - 4) * 10, y: fy + fh * 0.04, r: (i - 4) * 2, s: bs };
-    });
-    L = { W: W, H: H, fx: fx, fy: fy, fw: fw0, fh: fh, trayX: trayX, trayY: trayY, trayW: trayW, trayH: trayH, closed: closed, fan: fan, finals: finals };
-  };
-
-  var put = function (el, x, y, w, h) { el.style.width = w + 'px'; el.style.height = h + 'px'; el.style.transform = 'translate(' + x + 'px,' + y + 'px)'; };
-
+  var ticking = false, clamp1 = function (v) { return v < -1 ? -1 : v > 1 ? 1 : v; };
   var render = function () {
     ticking = false;
-    if (!L) layout();
-    var p = 1;
-    if (!reduce) {
-      var r = pf.getBoundingClientRect(), span = pf.offsetHeight - L.H;
-      p = span > 0 ? clamp(-r.top / span) : 1;
-    }
-    var a = ease(clamp((p - 0.06) / 0.32)), b = ease(clamp((p - 0.46) / 0.36));
-    cards.forEach(function (c, i) {
-      var s0 = L.closed[i], s1 = L.fan[i], s2 = L.finals[i];
-      var x = lerp(lerp(s0.x, s1.x, a), s2.x, b), y = lerp(lerp(s0.y, s1.y, a), s2.y, b);
-      var rot = lerp(lerp(s0.r, s1.r, a), s2.r, b), s = lerp(lerp(s0.s, s1.s, a), s2.s, b);
-      c.style.transform = 'translate(' + x + 'px,' + y + 'px) rotate(' + rot + 'deg) scale(' + s + ')';
-      c.classList.toggle('is-live', b > 0.98);
+    var vh = window.innerHeight;
+    folders.forEach(function (f) {
+      var r = f.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      var d = clamp1(((r.top + r.height / 2) - vh / 2) / (vh * 0.75)); // -1 above … 0 centred … 1 below
+      var tilt = parseFloat(f.dataset.tilt) || 0, k = Math.abs(d);
+      var w = f.querySelector('.pf-move');
+      w.style.transform = 'translateY(' + (d * 46).toFixed(1) + 'px) rotate(' + (tilt * (1 + d * 0.9)).toFixed(2) + 'deg) scale(' + (1 - k * 0.1).toFixed(3) + ')';
+      w.style.opacity = (1 - Math.max(0, d - 0.55) * 1.6).toFixed(3);
+      if (!canHover && !f.contains(document.activeElement)) setOpen(f, k < 0.2);
     });
-    // Folder back fades away; the glass tray appears; the front pane becomes the tray's bottom strip
-    put(back, lerp(L.fx, L.trayX, b), lerp(L.fy, L.trayY, b), lerp(L.fw, L.trayW, b), lerp(L.fh, L.trayH, b));
-    back.style.opacity = 1 - b;
-    put(tray, lerp(L.fx, L.trayX, b), lerp(L.fy, L.trayY, b), lerp(L.fw, L.trayW, b), lerp(L.fh, L.trayH, b));
-    tray.style.opacity = b;
-    var fy0 = L.fy + L.fh * 0.22, fh0 = L.fh * 0.78, sh = 58;
-    var fx = lerp(L.fx, L.trayX, b), fyy = lerp(fy0, L.trayY + L.trayH - sh, b), fww = lerp(L.fw, L.trayW, b), fhh = lerp(fh0, sh, b);
-    front.style.width = fww + 'px'; front.style.height = fhh + 'px';
-    front.style.transform = 'translate(' + fx + 'px,' + fyy + 'px) perspective(900px) rotateX(' + (-22 * a * (1 - b)) + 'deg)';
-    if (head) head.style.opacity = 1 - 0.75 * b;
-    if (hint) hint.classList.toggle('is-on', b > 0.95);
   };
   var onScroll = function () { if (!ticking) { ticking = true; requestAnimationFrame(render); } };
-  var onResize = function () { L = null; onScroll(); };
-  if (reduce) { layout(); render(); window.addEventListener('resize', function () { layout(); render(); }); return; }
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onResize);
-  window.addEventListener('load', onResize);
+  window.addEventListener('resize', onScroll);
   render();
 })();

@@ -536,23 +536,56 @@
     </div>
   </section>
 
-  <!-- ===== Project folder: files rise and spread as you scroll; click one to open it ===== -->
+  <!-- ===== Project folders: glass folders scroll over the pinned title; hover or tap one and its
+       files fan out; click a file to open its details. Files' content lives in PROJECTS (site-showcase.js). ===== -->
   <section class="pf" id="projects" aria-labelledby="pf-title">
-    <div class="pf-stage">
-      <div class="pf-head">
-        <h2 class="pf-word" id="pf-title">things I’ve<br>built</h2>
-        <p class="pf-intro">Freelance work, my thesis and app projects. Open a file to see more.</p>
+    <h2 class="pf-word" id="pf-title">things I’ve<br>built</h2>
+    <div class="pf-grid">
+    <div class="pf-folder is-top" data-tilt="14" style="--tilt: 14" role="group" aria-label="web and shopify, 2 files">
+      <div class="pf-move">
+        <div class="pf-back" aria-hidden="true"></div>
+        <div class="pf-files n2">
+          <a class="pf-file" href="work.html" data-project="emm-store" aria-haspopup="dialog"><span class="pf-thumb"><img src="media/emm-site.webp" alt="" loading="lazy"></span><strong>Earth Moon Magick</strong><span class="pf-sub">Shopify storefront</span></a>
+          <a class="pf-file" href="work.html" data-project="portfolio" aria-haspopup="dialog"><span class="pf-thumb"><img src="media/portfolio-site.jpg" alt="" loading="lazy"></span><strong>This portfolio</strong><span class="pf-sub">HTML · CSS · JS</span></a>
+        </div>
+        <div class="pf-front" aria-hidden="true"><span class="pf-label">web &amp; shopify</span><span class="pf-count">2 files</span></div>
       </div>
-      <div class="pf-cards">
-        <a class="pf-card" href="work.html" data-project="emm-store" aria-haspopup="dialog"><strong>Earth Moon Magick</strong><span class="pf-sub">Storefront · Freelance</span><hr><p>Blog and product pages in GemPages, theme edits and product listings on Shopify.</p><span class="pf-open">Open file</span></a>
-        <a class="pf-card" href="work.html" data-project="emm-ads" aria-haspopup="dialog"><strong>Video ads</strong><span class="pf-sub">Earth Moon Magick · Freelance</span><hr><p>Meta video ads from UGC and product footage, plus graphics for Instagram.</p><span class="pf-open">Open file</span></a>
-        <a class="pf-card" href="work.html" data-project="designs" aria-haspopup="dialog"><strong>Graphic design</strong><span class="pf-sub">Trial &amp; test work</span><hr><p>Product ads for a crystal brand and an offer post for an AI agency.</p><span class="pf-open">Open file</span></a>
-        <a class="pf-card" href="work.html" data-project="fslames" aria-haspopup="dialog"><strong>FSLAMES</strong><span class="pf-sub">Thesis · 2025 – 2026</span><hr><p>A Filipino Sign Language learning app with ML sign recognition.</p><span class="pf-open">Open file</span></a>
-        <a class="pf-card" href="work.html" data-project="ueat" aria-haspopup="dialog"><strong>U-Eat Ordering System</strong><span class="pf-sub">Group project · 2024 – 2025</span><hr><p>Android canteen ordering: a customer app and a stall owner app.</p><span class="pf-open">Open file</span></a>
-        <a class="pf-card" href="work.html" data-project="counter" aria-haspopup="dialog"><strong>Simple Counter</strong><span class="pf-sub">School activity · 2025</span><hr><p>A Kotlin counter app with plus, minus, reset and quit.</p><span class="pf-open">Open file</span></a>
-      </div>
-      <p class="pf-hint">Tap a file to open it</p>
     </div>
+    <div class="pf-folder is-left" data-tilt="-11" style="--tilt: -11" role="group" aria-label="video editing, 3 files">
+      <div class="pf-move">
+        <div class="pf-back" aria-hidden="true"></div>
+        <div class="pf-files n3">
+          <a class="pf-file" href="work.html" data-project="emm-ads" aria-haspopup="dialog"><span class="pf-thumb"><img src="media/emm-ad.jpg" alt="" loading="lazy"></span><strong>EMM video ads</strong><span class="pf-sub">Meta short-form ads</span></a>
+          <a class="pf-file" href="work.html" data-project="vsl" aria-haspopup="dialog"><span class="pf-thumb"><img src="https://i.ytimg.com/vi/UuSD2wWrmIg/hqdefault.jpg" alt="" loading="lazy"></span><strong>Soul Oracle VSL</strong><span class="pf-sub">Kickstarter launch</span></a>
+          <a class="pf-file" href="work.html" data-project="saru" aria-haspopup="dialog"><span class="pf-thumb"><img src="https://i.ytimg.com/vi/5hth3DJgcEw/hqdefault.jpg" alt="" loading="lazy"></span><strong>Dr. Saru Bala</strong><span class="pf-sub">Most-viewed edit</span></a>
+        </div>
+        <div class="pf-front" aria-hidden="true"><span class="pf-label">video editing</span><span class="pf-count">3 files</span></div>
+      </div>
+    </div>
+    <div class="pf-folder is-right" data-tilt="8" style="--tilt: 8" role="group" aria-label="graphic design, 3 files">
+      <div class="pf-move">
+        <div class="pf-back" aria-hidden="true"></div>
+        <div class="pf-files n3">
+          <a class="pf-file" href="work.html" data-project="amethyst" aria-haspopup="dialog"><span class="pf-thumb"><img src="media/design-amethyst.webp" alt="" loading="lazy"></span><strong>Amethyst lamp ad</strong><span class="pf-sub">Crystal brand</span></a>
+          <a class="pf-file" href="work.html" data-project="bracelet" aria-haspopup="dialog"><span class="pf-thumb"><img src="media/design-bracelet.webp" alt="" loading="lazy"></span><strong>Bracelet ad</strong><span class="pf-sub">Crystal brand</span></a>
+          <a class="pf-file" href="work.html" data-project="agency" aria-haspopup="dialog"><span class="pf-thumb"><img src="media/design-agency.webp" alt="" loading="lazy"></span><strong>AI agency post</strong><span class="pf-sub">Offer post</span></a>
+        </div>
+        <div class="pf-front" aria-hidden="true"><span class="pf-label">graphic design</span><span class="pf-count">3 files</span></div>
+      </div>
+    </div>
+    <div class="pf-folder is-bottom" data-tilt="-3" style="--tilt: -3" role="group" aria-label="apps, 3 files">
+      <div class="pf-move">
+        <div class="pf-back" aria-hidden="true"></div>
+        <div class="pf-files n3">
+          <a class="pf-file" href="work.html" data-project="fslames" aria-haspopup="dialog"><span class="pf-thumb is-ph" aria-hidden="true">🤟</span><strong>FSLAMES</strong><span class="pf-sub">Thesis · Flutter + ML</span></a>
+          <a class="pf-file" href="work.html" data-project="ueat" aria-haspopup="dialog"><span class="pf-thumb is-ph" aria-hidden="true">🍱</span><strong>U-Eat</strong><span class="pf-sub">Kotlin · Firebase</span></a>
+          <a class="pf-file" href="work.html" data-project="counter" aria-haspopup="dialog"><span class="pf-thumb"><img src="media/counter-app.webp" alt="" loading="lazy"></span><strong>Simple Counter</strong><span class="pf-sub">Kotlin</span></a>
+        </div>
+        <div class="pf-front" aria-hidden="true"><span class="pf-label">apps</span><span class="pf-count">3 files</span></div>
+      </div>
+    </div>
+    </div>
+    <p class="pf-hint">Hover or tap a folder, then open a file.</p>
   </section>
 
   <!-- ===== About me (host card + dual marquee) ===== -->

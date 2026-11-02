@@ -27,3 +27,9 @@ after another, when the page loads and as it scrolls into view. It comes from
 
 If a page swaps content without scrolling (like the Work page tabs), call
 `window.siteReveal.replay(container)` afterwards to play the motion again.
+
+### Videos (every page)
+
+Every `<video>` autoplays muted and loops, and only plays while it's on screen. This comes from
+`site-motion.js`, so just add the video tag. Keep video files in `media/`, compressed under 25 MB
+(Cloudflare Pages' per-file limit). YouTube embeds use `?autoplay=1&mute=1` in their link.

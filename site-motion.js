@@ -46,6 +46,19 @@
     };
   }
 
+  // ---- Videos: every <video> autoplays muted and loops, playing only while on screen (saves data and battery) ----
+  var vids = document.querySelectorAll('video');
+  if (vids.length) {
+    var playIt = function (v) { v.muted = true; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); };
+    vids.forEach(function (v) { v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.autoplay = true; });
+    if ('IntersectionObserver' in window) {
+      var vio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) playIt(e.target); else e.target.pause(); });
+      }, { threshold: 0.25 });
+      vids.forEach(function (v) { vio.observe(v); });
+    } else vids.forEach(playIt);
+  }
+
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) return;
 

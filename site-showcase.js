@@ -19,49 +19,49 @@
       tech: ['Premiere Pro', 'Meta Business Suite', 'Canva'],
       desc: 'Meta video ads built from UGC and product footage, with B-roll, motion text and audio design, plus graphic design and feed and story content for Instagram.',
       media: { video: 'media/emm-ad.mp4', poster: 'media/emm-ad.jpg' },
-      links: [['See all videos', 'work.html#videos']]
+      links: [['See them on Instagram ↗', 'https://www.instagram.com/earthmoonmagick_']]
     },
     'vsl': {
       title: 'Soul Oracle Kickstarter launch VSL', date: 'Earth Moon Magick · Freelance',
       tech: ['Premiere Pro', 'Long-form video'],
       desc: 'A video sales letter for Earth Moon Magick’s Soul Oracle Kickstarter launch: a long-form edit that walks viewers through the deck and the offer.',
       media: { yt: 'UuSD2wWrmIg' },
-      links: [['Watch on YouTube ↗', 'https://youtu.be/UuSD2wWrmIg'], ['See all videos', 'work.html#videos']]
+      links: [['Watch on YouTube ↗', 'https://youtu.be/UuSD2wWrmIg']]
     },
     'saru': {
       title: 'Dr. Saru Bala’s most viewed', date: 'Doctor’s Making Videos agency',
       tech: ['Video editing', 'Long-form video'],
       desc: 'My most-viewed edit, made while I was with the Doctor’s Making Videos agency.',
       media: { yt: '5hth3DJgcEw' },
-      links: [['Watch on YouTube ↗', 'https://youtu.be/5hth3DJgcEw'], ['See all videos', 'work.html#videos']]
+      links: [['Watch on YouTube ↗', 'https://youtu.be/5hth3DJgcEw']]
     },
     'amethyst': {
       title: 'Amethyst lamp ad', date: 'Trial design · Crystal brand',
       tech: ['Ad design', 'Instagram'],
       desc: 'A trial design for a crystal brand: a product ad with a bold headline and benefit callouts.',
       media: { img: 'media/design-amethyst.webp', alt: 'Amethyst lamp ad design', contain: true },
-      links: [['See all designs', 'work.html#designs']]
+      links: []
     },
     'bracelet': {
       title: 'Protection bracelet ad', date: 'Trial design · Crystal brand',
       tech: ['Ad design', 'Instagram'],
       desc: 'A trial design for the same brand: a punchy headline ad with three benefit icons.',
       media: { img: 'media/design-bracelet.webp', alt: 'Protection bracelet ad design', contain: true },
-      links: [['See all designs', 'work.html#designs']]
+      links: []
     },
     'agency': {
       title: 'AI agency offer post', date: 'Test design · AI agency',
       tech: ['Social post', 'Instagram'],
       desc: 'A test design for an AI agency: a text-led offer post with a clear call to action.',
       media: { img: 'media/design-agency.webp', alt: 'AI agency offer post design', contain: true },
-      links: [['See all designs', 'work.html#designs']]
+      links: []
     },
     'portfolio': {
       title: 'This portfolio website', date: '2026 · Personal project',
       tech: ['HTML', 'CSS', 'JavaScript', 'Cloudflare', 'Claude'],
       desc: 'The site you’re on: hand-written HTML, CSS and JavaScript with a lantern dark and light switch, scroll motion, glass folders and layouts that fit phones up to 27-inch screens. Built with Claude and deployed on Cloudflare.',
       media: { img: 'media/portfolio-site.jpg', alt: 'Kimberly Yu portfolio homepage' },
-      links: [['See all works', 'work.html']]
+      links: []
     },
     'fslames': {
       title: 'FSLAMES', date: '2025 – 2026 · Thesis',
@@ -186,7 +186,7 @@
         '<button class="pt-x" type="button" aria-label="Close">✕</button>' +
         '<div class="pt-track" tabindex="0" aria-label="Files">' + ids.map(function (id, i) {
           var p = PROJECTS[id];
-          return '<a class="pt-card" href="work.html" data-project="' + id + '" aria-haspopup="dialog" style="--i:' + i + '">' +
+          return '<a class="pt-card" href="#projects" data-project="' + id + '" aria-haspopup="dialog" style="--i:' + i + '">' +
             '<strong>' + esc(p.title) + '</strong><span class="pt-sub">' + esc(p.date) + '</span><hr><p>' + esc(p.desc) + '</p></a>';
         }).join('') + '</div>' +
         '<div class="pt-strip"><span class="pt-label" id="pt-title">' + esc(label ? label.textContent : 'files') + '</span></div>' +

@@ -74,7 +74,7 @@
     '</div>' +
     '<div class="vf-links">' +
       '<div class="vf-grid">' +
-        col('Navigate', [['Home', 'index.html'], ['Work', 'work.html'], ['Case study', 'case-study.html'], ['About me', 'about.html']]) +
+        col('Navigate', [['Home', 'index.html'], ['Works', 'index.html#projects'], ['Case study', 'case-study.html'], ['About me', 'about.html']]) +
         col('What I do', [['Shopify & Liquid', 'index.html#services'], ['GemPages blog & product pages', 'index.html#services'], ['Video ads & motion graphics', 'index.html#services'], ['Android apps', 'index.html#services']]) +
         col('Contact', [['Email', 'mailto:' + EMAIL], ['LinkedIn', LINKEDIN], ['GitHub', GITHUB], ['Pangasinan, Philippines', null, 'pin']]) +
       '</div>' +

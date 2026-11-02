@@ -18,7 +18,7 @@
   --fw-gap: 8px; --fw-pad: clamp(14px, 2vw, 28px);
   --fw-in: calc(var(--fw-pad) + 26px);              /* tabs sit in from the page's rounded corners */
   --fw-slot: calc((100% - 2 * var(--fw-in) - 3 * var(--fw-gap)) / 4);
-  --fw-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  --fw-mono: var(--sans);              /* labels use the site sans (Jost), uppercase and spaced */
   position: relative; margin: 28px 0 0;               /* full screen width */
 }
 .fw-page {
@@ -112,7 +112,7 @@
    Measured from convodesign101's Resources & Events folders: a 463×360 folder, 360×275 back,
    360×198 two-layer glass front, 157×192 files. --u is one of those pixels at the current size. */
 .pf {
-  --pf-word: rgba(212, 175, 98, 0.12); --pf-paper: #fbf8f1; --pf-ink: #2b2418; --pf-dim: #7a7062;
+  --pf-word-rgb: 236, 222, 192; --pf-paper: #fbf8f1; /* title colour; its strength comes from --pf-a */ --pf-ink: #2b2418; --pf-dim: #7a7062;
   /* the folder colour (convodesign uses cyan; this is the site's gold) */
   --pf-back: linear-gradient(180deg, #e6c67e 0%, #e3c178 62%, #cfa75a 100%);
   --pf-glass-a: rgba(255, 190, 240, 0.5); --pf-glass-b: rgba(232, 194, 108, 0.5); --pf-glass-c: rgba(214, 170, 78, 0.5);
@@ -121,7 +121,7 @@
   scroll-margin-top: 74px; /* the navbar's Works link lands here, below the sticky header */
 }
 :root[data-theme="light"] .pf {
-  --pf-word: rgba(156, 118, 32, 0.13);
+  --pf-word-rgb: 43, 36, 24;
   --pf-back: linear-gradient(180deg, #edd393 0%, #e9cd8a 62%, #d8b468 100%);
   --pf-glass-a: rgba(255, 200, 240, 0.5); --pf-glass-b: rgba(238, 206, 132, 0.5); --pf-glass-c: rgba(222, 182, 96, 0.5);
 }
@@ -129,7 +129,7 @@
 .pf-word {
   position: sticky; top: 160px; z-index: 0; margin: 0;
   font-family: var(--serif); font-weight: 700; font-size: clamp(3.2rem, 11vw, 9.5rem); line-height: 0.92; letter-spacing: -0.03em;
-  text-align: center; color: var(--pf-word); user-select: none;
+  text-align: center; color: rgba(var(--pf-word-rgb), var(--pf-a, 0.13)); user-select: none;
 }
 .pf-grid {
   position: relative; z-index: 1; display: grid; grid-template-columns: repeat(2, auto); justify-content: center;
@@ -253,7 +253,7 @@
 .pt-card .pt-sub { font-size: 0.86rem; color: #6f675a; }
 .pt-card hr { width: 100%; border: 0; border-top: 1px solid rgba(43, 36, 24, 0.12); margin: 10px 0 8px; }
 .pt-card p { font-size: 0.9rem; line-height: 1.55; color: #4c4438; margin: 0; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
-.pt-card .pt-go { margin-top: 14px; font: 600 0.78rem/1 ui-monospace, Menlo, Consolas, monospace; letter-spacing: 0.06em; text-transform: uppercase; color: #9c7620; }
+.pt-card .pt-go { margin-top: 14px; font: 600 0.78rem/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: #9c7620; }
 .pt-card.is-link p { -webkit-line-clamp: 3; }
 .pt-strip { /* frosted strip over the bottom of the cards, with the folder's name */
   position: absolute; left: 0; right: 0; bottom: 0; height: 64px; display: flex; align-items: center; justify-content: center;
@@ -296,7 +296,7 @@
 .pd-media.is-contain img { object-fit: contain; padding: 20px; box-sizing: border-box; }
 .pd-media .fw-ph { color: #6b6152; }
 .pd-info { display: flex; flex-direction: column; min-height: 0; padding: 32px 32px 24px; overflow: hidden; }
-.pd-date { font: 600 0.74rem/1.3 ui-monospace, Menlo, Consolas, monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+.pd-date { font: 600 0.74rem/1.3 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
 .pd-title { font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height: 1.12; margin: 10px 0 14px; }
 .pd-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
 .pd-tech span { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; padding: 4px 10px; border-radius: 999px; border: 1px solid currentColor; opacity: 0.75; }

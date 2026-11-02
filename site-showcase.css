@@ -112,7 +112,7 @@
    Measured from convodesign101's Resources & Events folders: a 463×360 folder, 360×275 back,
    360×198 two-layer glass front, 157×192 files. --u is one of those pixels at the current size. */
 .pf {
-  --pf-word-rgb: 236, 222, 192; --pf-paper: #fbf8f1; /* title colour; its strength comes from --pf-a */ --pf-ink: #2b2418; --pf-dim: #7a7062;
+  --pf-word-rgb: 184, 142, 62;  /* darker gold */ --pf-paper: #fbf8f1; /* title colour; its strength comes from --pf-a */ --pf-ink: #2b2418; --pf-dim: #7a7062;
   /* the folder colour (convodesign uses cyan; this is the site's gold) */
   --pf-back: linear-gradient(180deg, #e6c67e 0%, #e3c178 62%, #cfa75a 100%);
   --pf-glass-a: rgba(255, 190, 240, 0.5); --pf-glass-b: rgba(232, 194, 108, 0.5); --pf-glass-c: rgba(214, 170, 78, 0.5);

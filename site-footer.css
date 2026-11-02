@@ -44,7 +44,7 @@
   background: var(--vf-bg);
   color: var(--vf-text);
   overflow: hidden;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--sans, "Jost", system-ui, sans-serif);
   -webkit-font-smoothing: antialiased;
   -webkit-user-select: none;
   user-select: none;

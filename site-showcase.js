@@ -244,6 +244,23 @@
      opens the folder dialog; clicking a file that's sticking out opens that project. */
   var folders = [].slice.call(document.querySelectorAll('.pf-folder'));
   if (!folders.length) return;
+
+  // The big title starts solid, then fades into the background once it pins and the folders
+  // begin sliding over it (over the next 40% of a screen of scrolling).
+  var pfSec = document.querySelector('.pf'), pfWord = document.querySelector('.pf-word');
+  if (pfSec && pfWord) {
+    var wordTick = false;
+    var wordFade = function () {
+      wordTick = false;
+      var vh = window.innerHeight, pin = parseFloat(getComputedStyle(pfWord).top) || 0;
+      var natural = pfSec.getBoundingClientRect().top + (parseFloat(getComputedStyle(pfSec).paddingTop) || 0); // where the title sits before it pins
+      var k = (pin - natural) / (vh * 0.4); k = k < 0 ? 0 : k > 1 ? 1 : k;
+      pfWord.style.setProperty('--pf-a', (1 - 0.87 * k).toFixed(3));
+    };
+    window.addEventListener('scroll', function () { if (!wordTick) { wordTick = true; requestAnimationFrame(wordFade); } }, { passive: true });
+    window.addEventListener('resize', wordFade);
+    wordFade();
+  }
   var canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var setOpen = function (f, on) { f.classList.toggle('is-open', on); f.setAttribute('aria-expanded', on); };
   folders.forEach(function (f) {

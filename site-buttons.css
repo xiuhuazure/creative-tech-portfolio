@@ -1,3 +1,6 @@
+/* Buttons and form fields use the site's fonts (browsers otherwise give them a system font) */
+button, input, textarea, select { font-family: inherit; }
+
 /* =========================================================================
    Site buttons — two swap components, ported 1:1 from the provided React code
    (the site is static HTML, so there is no React/Framer Motion to run them).

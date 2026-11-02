@@ -25,7 +25,7 @@ after another, when the page loads and as it scrolls into view. It comes from
    - `data-reveal-group` on a container: each direct child fades up, one after another
      (good for text columns, grids of cards, lists).
 
-If a page swaps content without scrolling (like the Work page tabs), call
+If a page swaps content without scrolling, call
 `window.siteReveal.replay(container)` afterwards to play the motion again.
 
 ### Videos (every page)
@@ -42,5 +42,5 @@ an entry to `PROJECTS` in `site-showcase.js` and a `.pf-card` with a matching `d
 
 ### Cache-busting
 
-The shared `site-*.css` / `site-*.js` links carry a version (`?v=20261102b`). When you change one of those
+The shared `site-*.css` / `site-*.js` links carry a version (`?v=20261102c`). When you change one of those
 files, bump the version on every page so visitors' browsers fetch the new file instead of a saved old copy.

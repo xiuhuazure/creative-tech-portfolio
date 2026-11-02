@@ -121,3 +121,38 @@ html .tilt.tilting {
   .cs-star { display: none; }
   .scroll-progress { display: none; }
 }
+
+/* ---------- Responsive polish (shared by every page) ---------- */
+/* Big monitors (27" etc.): let the content use more of the screen and grow the text a little,
+   instead of a narrow column floating in empty space. :root:root outranks each page's own --max. */
+@media (min-width: 1800px) {
+  :root:root { --max: 1320px; }
+  html { font-size: 17.5px; }
+}
+@media (min-width: 2300px) {
+  :root:root { --max: 1480px; }
+  html { font-size: 19px; }
+}
+/* Small uppercase tags stay readable (were ~11px) */
+body .work-tags span, body .case-tags span { font-size: 0.75rem; }
+/* Comfortable finger-sized tap targets */
+body .nav-toggle { min-width: 44px; min-height: 44px; }
+@media (max-width: 720px) {
+  body .tm-phone { width: 40px; height: 40px; flex: 0 0 40px; }
+  body .filter-btn { min-height: 42px; min-width: 44px; }
+}
+/* Section intros: the box grows with the text size (660px at normal size) and multi-line headings stay tight */
+body .section-head { max-width: 41.25rem; }
+body .section-head h2 { line-height: 1.15; }
+/* Phones: buttons keep their label on one line, the featured card is less padded,
+   and the tech-stack rail shows more logos (narrower fade-outs at the ends) */
+body .gbtn-label, body .crbtn-label { white-space: nowrap; }
+@media (max-width: 720px) {
+  body .featured-body { padding: 28px 22px; }
+  body .ts-mask { width: 14%; }
+  body .ts-slider { width: calc(100% - 48px); margin: 0 24px; }
+}
+@media (max-width: 380px) {
+  body .gbtn, body .crbtn-clip { padding-left: 24px; padding-right: 24px; }
+  body .gbtn-label, body .crbtn-label { font-size: 1rem; }
+}

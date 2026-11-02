@@ -23,7 +23,7 @@
   --c-drop: 0 40px 100px rgb(0 0 0 / 0.8);
 
   position: relative; z-index: 1;
-  min-height: 100vh; box-sizing: border-box;
+  min-height: min(100vh, 880px); box-sizing: border-box; /* capped so tall monitors don't get a huge empty band */
   display: flex; align-items: center; justify-content: center;
   padding: 24px; background: var(--c-bg);
   transition: background .4s ease;

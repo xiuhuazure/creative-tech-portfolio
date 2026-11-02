@@ -22,7 +22,7 @@
   --ts-tile-border: rgba(255, 255, 255, 0.06);
 }
 .ts-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
-.ts-inner { position: relative; z-index: 10; max-width: 1280px; margin: 0 auto; }
+.ts-inner { position: relative; z-index: 10; max-width: max(1280px, calc(var(--max, 1140px) + 140px)); margin: 0 auto; }
 
 /* ---------- Header: big headline left, short description right ---------- */
 .ts-head { display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 80px; }

@@ -100,78 +100,108 @@
   .fw-panel.is-entering .fw-in { animation: none; }
 }
 
-/* ------------------------------ 2. Project folder ------------------------------ */
+/* ------------------------------ 2. Project folders ------------------------------ */
 .pf {
   --pf-glass: rgba(255, 240, 214, 0.14); --pf-glass-edge: rgba(255, 244, 222, 0.42);
   --pf-back: rgba(212, 175, 98, 0.34); --pf-back-edge: rgba(242, 217, 153, 0.45);
   --pf-word: rgba(212, 175, 98, 0.12); --pf-paper: #fbf8f1; --pf-ink: #2b2418; --pf-dim: #7a7062;
-  position: relative; z-index: 1;
+  position: relative; z-index: 1; padding: 10vh 16px 12vh;
 }
 :root[data-theme="light"] .pf {
   --pf-glass: rgba(255, 255, 255, 0.42); --pf-glass-edge: rgba(255, 255, 255, 0.8);
   --pf-back: rgba(156, 118, 32, 0.24); --pf-back-edge: rgba(156, 118, 32, 0.4);
   --pf-word: rgba(156, 118, 32, 0.13);
 }
+/* the big faded title stays pinned while the folders scroll over it */
 .pf-word {
+  position: sticky; top: 15vh; z-index: 0; margin: 0;
   font-family: var(--serif); font-weight: 700; font-size: clamp(3.2rem, 11vw, 9.5rem); line-height: 0.92; letter-spacing: -0.03em;
   text-align: center; color: var(--pf-word); user-select: none;
 }
-.pf-intro { text-align: center; color: var(--text-dim); margin: 10px auto 0; max-width: 46ch; }
-.pf-hint { text-align: center; color: var(--text-mute); font-size: 0.85rem; margin-top: 18px; }
-
-/* Cards (files) */
-.pf-card {
-  display: flex; flex-direction: column; gap: 6px; width: 210px; height: 248px; padding: 18px 18px 16px; box-sizing: border-box;
-  border-radius: 14px; background: var(--pf-paper); color: var(--pf-ink); text-align: left; text-decoration: none;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22), 0 1px 0 rgba(255, 255, 255, 0.6) inset; overflow: hidden;
+.pf-grid {
+  position: relative; z-index: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12vh 5vw;
+  max-width: 1180px; margin: -4vh auto 0; justify-items: center;
 }
-.pf-card strong { font-family: var(--serif); font-size: 1.15rem; line-height: 1.2; }
-.pf-card .pf-sub { font-size: 0.8rem; color: var(--pf-dim); }
-.pf-card hr { width: 100%; border: 0; border-top: 1px solid rgba(43, 36, 24, 0.12); margin: 6px 0 4px; }
-.pf-card p { font-size: 0.8rem; line-height: 1.5; color: #4c4438; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
-.pf-card .pf-open { margin-top: auto; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #9c7620; }
-.pf-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.pf-folder.is-top, .pf-folder.is-bottom { grid-column: 1 / -1; }
+.pf-folder.is-left { justify-self: end; }
+.pf-folder.is-right { justify-self: start; margin-top: 12vh; }
+.pf-hint { position: relative; z-index: 1; text-align: center; color: var(--text-mute); font-size: 0.85rem; margin: 9vh 0 0; }
 
-/* Without the script: a plain grid of files */
-.pf-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 32px; }
-.pf-back, .pf-front, .pf-tray { display: none; }
-
-/* With the script: a sticky stage the folder animates in */
-.pf-js .pf-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
-.pf-js .pf-head { position: absolute; left: 0; right: 0; top: 13vh; z-index: 0; padding: 0 16px; }
-.pf-js .pf-cards { display: block; margin: 0; }
-.pf-js .pf-card, .pf-js .pf-back, .pf-js .pf-front, .pf-js .pf-tray { display: flex; position: absolute; left: 0; top: 0; will-change: transform; }
-.pf-js .pf-back, .pf-js .pf-front, .pf-js .pf-tray { pointer-events: none; } /* decorative: clicks go to the files */
-.pf-js .pf-card { z-index: 3; transform-origin: 0 0; cursor: pointer; transition: box-shadow .2s ease; }
-.pf-js .pf-card.is-live:hover { box-shadow: 0 26px 50px rgba(0, 0, 0, 0.3); }
+/* One folder: back panel, files, glass front */
+.pf-folder { width: min(440px, 84vw); aspect-ratio: 4 / 3; container-type: inline-size; cursor: pointer; }
+.pf-move { position: relative; width: 100%; height: 100%; will-change: transform; transform: rotate(calc(var(--tilt, 0) * 1deg)); }
+.pf-move::after { /* soft shadow on the "table" */
+  content: ""; position: absolute; left: 12%; right: 12%; bottom: -5%; height: 16%; border-radius: 50%;
+  background: rgba(0, 0, 0, 0.32); filter: blur(18px); z-index: -1;
+}
 .pf-back {
-  z-index: 1; border-radius: 22px; background: var(--pf-back); border: 1px solid var(--pf-back-edge);
+  position: absolute; inset: 9% 0 0 0; border-radius: 6cqw; background: var(--pf-back); border: 1px solid var(--pf-back-edge);
 }
 .pf-back::before { /* the folder tab */
-  content: ""; position: absolute; left: -1px; top: -26px; width: 38%; height: 30px; border-radius: 16px 22px 0 0;
+  content: ""; position: absolute; left: -1px; top: -6cqw; width: 36%; height: 7cqw; border-radius: 4cqw 5cqw 0 0;
   background: inherit; border: 1px solid var(--pf-back-edge); border-bottom: 0;
   clip-path: polygon(0 0, 78% 0, 100% 100%, 0 100%);
 }
-.pf-tray {
-  z-index: 1; border-radius: 28px; background: var(--pf-glass); border: 1px solid var(--pf-glass-edge);
-  -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2);
+.pf-files { position: absolute; inset: 0; z-index: 2; }
+.pf-file {
+  position: absolute; top: 17%; width: 40%; padding: 2.2cqw 2.2cqw 2.6cqw; box-sizing: border-box; border-radius: 3cqw;
+  display: flex; flex-direction: column; gap: 0.8cqw; background: var(--pf-paper); color: var(--pf-ink); text-decoration: none;
+  box-shadow: 0 1.5cqw 4cqw rgba(0, 0, 0, 0.22), 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+  transform: translate(0, 0) rotate(var(--r0, 0deg));
+  transition: transform .62s cubic-bezier(.34, 1.4, .58, 1), box-shadow .25s ease;
 }
+.pf-thumb { display: block; aspect-ratio: 16 / 10; border-radius: 2cqw; overflow: hidden; background: #e9e1cf; margin-bottom: 1cqw; }
+.pf-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pf-thumb.is-ph { display: grid; place-items: center; font-size: 8cqw; }
+.pf-file strong { font-family: var(--serif); font-size: max(0.8rem, 3.7cqw); line-height: 1.15; }
+.pf-file .pf-sub { font-size: max(0.7rem, 2.7cqw); line-height: 1.25; color: var(--pf-dim); }
+.pf-file:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+/* resting inside the folder */
+.pf-files.n3 .pf-file:nth-child(1) { left: 8%; --r0: -5deg; }
+.pf-files.n3 .pf-file:nth-child(2) { left: 30%; top: 13%; --r0: 1deg; }
+.pf-files.n3 .pf-file:nth-child(3) { left: 52%; --r0: 5deg; }
+.pf-files.n2 .pf-file:nth-child(1) { left: 15%; --r0: -4deg; }
+.pf-files.n2 .pf-file:nth-child(2) { left: 45%; --r0: 4deg; }
+/* opened: the files rise and fan out of the folder */
+.pf-folder.is-open .pf-files.n3 .pf-file:nth-child(1) { transform: translate(-42%, -50%) rotate(-13deg); }
+.pf-folder.is-open .pf-files.n3 .pf-file:nth-child(2) { transform: translate(0, -64%) rotate(0deg); transition-delay: .04s; }
+.pf-folder.is-open .pf-files.n3 .pf-file:nth-child(3) { transform: translate(42%, -50%) rotate(13deg); transition-delay: .08s; }
+.pf-folder.is-open .pf-files.n2 .pf-file:nth-child(1) { transform: translate(-30%, -56%) rotate(-10deg); }
+.pf-folder.is-open .pf-files.n2 .pf-file:nth-child(2) { transform: translate(30%, -56%) rotate(10deg); transition-delay: .05s; }
+.pf-folder.is-open .pf-file { box-shadow: 0 2.5cqw 6cqw rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.6) inset; }
+.pf-folder.is-open .pf-file:hover { z-index: 1; box-shadow: 0 3cqw 8cqw rgba(0, 0, 0, 0.42); }
 .pf-front {
-  z-index: 4; align-items: flex-end; padding: 16px; box-sizing: border-box; border-radius: 22px; transform-origin: 50% 100%;
-  background: linear-gradient(180deg, rgba(255, 228, 244, 0.22), var(--pf-glass) 45%);
-  border: 1px solid var(--pf-glass-edge); box-shadow: 0 24px 50px rgba(0, 0, 0, 0.25);
-  -webkit-backdrop-filter: blur(14px) saturate(1.25); backdrop-filter: blur(14px) saturate(1.25);
+  position: absolute; left: 0; right: 0; bottom: 0; height: 60%; z-index: 3; pointer-events: none; /* clicks go to the files */
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; padding: 4cqw; box-sizing: border-box;
+  border-radius: 6cqw; transform-origin: 50% 100%; transition: transform .55s cubic-bezier(.34, 1.3, .6, 1);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), var(--pf-glass) 45%, rgba(212, 175, 98, 0.12));
+  border: 1px solid var(--pf-glass-edge); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 6cqw 12cqw rgba(0, 0, 0, 0.22);
+  -webkit-backdrop-filter: blur(12px) saturate(1.25); backdrop-filter: blur(12px) saturate(1.25);
 }
+.pf-folder.is-open .pf-front { transform: perspective(900px) rotateX(-14deg); }
 .pf-label {
-  padding: 6px 14px; border-radius: 999px; font-size: 0.9rem; font-weight: 600; color: #fff;
+  padding: 1.4cqw 3.2cqw; border-radius: 999px; font-size: max(0.8rem, 3.4cqw); font-weight: 600; color: #fff; white-space: nowrap;
   background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.3);
 }
+.pf-count { font-size: max(0.72rem, 2.8cqw); color: rgba(255, 255, 255, 0.7); letter-spacing: 0.04em; }
 :root[data-theme="light"] .pf-label { color: #5e4a1c; background: rgba(255, 255, 255, 0.55); }
-.pf-js .pf-hint { position: absolute; left: 0; right: 0; bottom: 3vh; margin: 0; opacity: 0; transition: opacity .3s ease; z-index: 5; }
-.pf-js .pf-hint.is-on { opacity: 1; }
-
-/* Reduced motion: final layout only, no scroll scrubbing */
-.pf-static .pf-stage { position: relative; height: auto; }
+:root[data-theme="light"] .pf-count { color: #6b5520; }
+@media (min-width: 1800px) { .pf-folder { width: 540px; } .pf-grid { max-width: 1400px; } }
+@media (max-width: 980px) {
+  .pf-grid { grid-template-columns: minmax(0, 1fr); gap: 15vh; margin-top: 6vh; }
+  .pf-folder.is-left, .pf-folder.is-right { justify-self: center; margin-top: 0; }
+  .pf-word { top: 18vh; }
+}
+@media (max-width: 760px) {
+  /* a narrower fan so the files stay on screen */
+  .pf-folder.is-open .pf-files.n3 .pf-file:nth-child(1) { transform: translate(-24%, -50%) rotate(-10deg); }
+  .pf-folder.is-open .pf-files.n3 .pf-file:nth-child(3) { transform: translate(24%, -50%) rotate(10deg); }
+  .pf-folder.is-open .pf-files.n2 .pf-file:nth-child(1) { transform: translate(-18%, -56%) rotate(-8deg); }
+  .pf-folder.is-open .pf-files.n2 .pf-file:nth-child(2) { transform: translate(18%, -56%) rotate(8deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-file, .pf-front { transition: none; }
+}
 
 /* ------------------------------ Project dialog ------------------------------ */
 .pd {
@@ -184,7 +214,8 @@
 .pd.is-closing::backdrop { opacity: 0; transition: opacity .28s ease; }
 .pd-inner { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); height: min(88vh, 640px); }
 .pd-media { position: relative; overflow: hidden; background: #e9e1cf; }
-.pd-media img, .pd-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pd-media img, .pd-media video, .pd-media iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+.pd-media iframe { background: #000; }
 .pd-media.is-contain img { object-fit: contain; padding: 20px; box-sizing: border-box; }
 .pd-media .fw-ph { color: #6b6152; }
 .pd-info { display: flex; flex-direction: column; min-height: 0; padding: 32px 32px 24px; overflow: hidden; }
@@ -220,8 +251,3 @@
   .pd-actions { justify-content: flex-start; }
 }
 @media (prefers-reduced-motion: reduce) { .pd .pd-in { animation: none; } }
-/* the folder section is tall so scrolling drives the animation */
-.pf.pf-js { height: 300vh; }
-.pf.pf-js.pf-static { height: auto; }
-.pf-static .pf-head { top: 40px; }
-@media (max-width: 720px) { .pf.pf-js { height: 260vh; } }

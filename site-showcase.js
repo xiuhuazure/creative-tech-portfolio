@@ -87,24 +87,6 @@
   };
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
 
-  /* ------------------------------ 1. Featured work ------------------------------
-     The pages stack with CSS (position: sticky). See all works belongs to page 1, so it tucks
-     away once page 2 has slid halfway over page 1, and comes back when you scroll up. */
-  var fwPages = document.querySelectorAll('.fw-page'), fwAll = document.querySelector('.fw-all');
-  if (fwAll && fwPages.length > 1) {
-    var fwTick = false;
-    var fwCheck = function () {
-      fwTick = false;
-      var p1 = fwPages[0].getBoundingClientRect(), p2 = fwPages[1].getBoundingClientRect();
-      var away = p2.top < p1.top + p1.height * 0.5;
-      fwAll.classList.toggle('is-away', away);
-      if (away) fwAll.setAttribute('tabindex', '-1'); else fwAll.removeAttribute('tabindex');
-    };
-    window.addEventListener('scroll', function () { if (!fwTick) { fwTick = true; requestAnimationFrame(fwCheck); } }, { passive: true });
-    window.addEventListener('resize', fwCheck);
-    fwCheck();
-  }
-
   /* ------------------------------ 2. Project dialog ------------------------------ */
   var dlg = document.createElement('dialog');
   dlg.className = 'pd'; dlg.setAttribute('aria-labelledby', 'pd-title');

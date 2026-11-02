@@ -46,8 +46,7 @@
 .fw-tab::after { left: 100%; background: radial-gradient(circle at 100% 0, transparent 15.5px, var(--fw-paper) 16px); }
 .fw-all {
   left: auto; right: var(--fw-in); background: var(--ink-2, #12171c); color: var(--gold, #d4af62);
-  border: 1px solid var(--border-gold, rgba(212, 175, 98, 0.35)); border-bottom: 0;
-  transition: color .2s ease, opacity .3s ease, transform .4s cubic-bezier(.3, .7, .2, 1);
+  border: 1px solid var(--border-gold, rgba(212, 175, 98, 0.35)); border-bottom: 0; transition: color .2s ease;
 }
 .fw-all::before, .fw-all::after { display: none; }
 .fw-all .fw-arrow { margin-left: auto; transition: transform .2s ease; }
@@ -56,8 +55,6 @@
 .fw-all:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 :root[data-theme="light"] .fw-all { background: #2b2418; }
 .fw-all-short { display: none; }
-/* See all works belongs to page 1: once page 2 covers it, the tab tucks down behind page 2 */
-.fw-all.is-away { opacity: 0; transform: translateY(100%); pointer-events: none; }
 /* keep the tab clear of the lantern hanging in the top-right corner */
 @media (max-width: 1760px) and (min-width: 721px) { .fw-all { right: calc(var(--fw-in) + 60px); width: calc(var(--fw-slot) - 60px); } }
 @media (max-width: 1180px) and (min-width: 721px) { .fw-all-text { display: none; } .fw-all-short { display: inline; } .fw-all { padding: 0 14px; } }

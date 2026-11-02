@@ -105,15 +105,16 @@
    360×198 two-layer glass front, 157×192 files. --u is one of those pixels at the current size. */
 .pf {
   --pf-word: rgba(212, 175, 98, 0.12); --pf-paper: #fbf8f1; --pf-ink: #2b2418; --pf-dim: #7a7062;
-  --pf-back: linear-gradient(180deg, rgba(232, 200, 128, 0.5), rgba(176, 138, 58, 0.42));
-  --pf-glass-a: rgba(255, 190, 226, 0.26); --pf-glass-b: rgba(222, 184, 104, 0.22); --pf-glass-c: rgba(186, 146, 62, 0.34);
-  --pf-glow: rgba(255, 238, 206, 0.55); --pf-deep: rgba(120, 84, 20, 0.35);
+  /* the folder colour (convodesign uses cyan; this is the site's gold) */
+  --pf-back: linear-gradient(180deg, #e6c67e 0%, #e3c178 62%, #cfa75a 100%);
+  --pf-glass-a: rgba(255, 190, 240, 0.5); --pf-glass-b: rgba(232, 194, 108, 0.5); --pf-glass-c: rgba(214, 170, 78, 0.5);
+  --pf-glow: rgba(255, 246, 222, 0.8); --pf-deep: rgba(110, 78, 18, 0.2);
   position: relative; z-index: 1; padding: 10vh 16px 12vh;
 }
 :root[data-theme="light"] .pf {
   --pf-word: rgba(156, 118, 32, 0.13);
-  --pf-back: linear-gradient(180deg, rgba(222, 188, 112, 0.55), rgba(196, 156, 72, 0.45));
-  --pf-glass-a: rgba(255, 206, 232, 0.34); --pf-glass-b: rgba(236, 206, 140, 0.3); --pf-glass-c: rgba(210, 170, 88, 0.4);
+  --pf-back: linear-gradient(180deg, #edd393 0%, #e9cd8a 62%, #d8b468 100%);
+  --pf-glass-a: rgba(255, 200, 240, 0.5); --pf-glass-b: rgba(238, 206, 132, 0.5); --pf-glass-c: rgba(222, 182, 96, 0.5);
 }
 /* the big faded title stays pinned while the folders scroll over it */
 .pf-word {
@@ -135,18 +136,18 @@
 }
 .pf-move::before { /* soft shadow under the folder */
   content: ""; position: absolute; left: calc(var(--u) * 75); top: calc(var(--u) * 137); width: calc(var(--u) * 313); height: calc(var(--u) * 173);
-  border-radius: calc(var(--u) * 80); background: rgba(0, 0, 0, 0.28); filter: blur(calc(var(--u) * 14));
+  border-radius: calc(var(--u) * 80); background: rgba(0, 0, 0, 0.3); filter: blur(5px);
 }
+/* the folder back: one silhouette with the tab built in, plus a light rim along the edge and just inside it */
 .pf-back {
-  position: absolute; left: calc(var(--u) * 55); top: calc(var(--u) * 55); width: calc(var(--u) * 360); height: calc(var(--u) * 255);
-  border-radius: calc(var(--u) * 24); background: var(--pf-back); border: 1px solid rgba(255, 236, 196, 0.35);
+  position: absolute; left: calc(var(--u) * 55); top: calc(var(--u) * 42); width: calc(var(--u) * 360); height: calc(var(--u) * 259);
+  background: var(--pf-back);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 259' preserveAspectRatio='none'%3E%3Cpath d='M0 18Q0 0 18 0H109Q119 0 124 9L129 18Q131 21 136 21H341Q360 21 360 40V240Q360 259 341 259H19Q0 259 0 240Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 259' preserveAspectRatio='none'%3E%3Cpath d='M0 18Q0 0 18 0H109Q119 0 124 9L129 18Q131 21 136 21H341Q360 21 360 40V240Q360 259 341 259H19Q0 259 0 240Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
   transition: transform .45s cubic-bezier(.3, 1.35, .6, 1);
 }
-.pf-back::before { /* the folder tab */
-  content: ""; position: absolute; left: -1px; top: calc(var(--u) * -21); width: calc(var(--u) * 140); height: calc(var(--u) * 26);
-  border-radius: calc(var(--u) * 14) calc(var(--u) * 14) 0 0; background: rgba(232, 200, 128, 0.5);
-  border: 1px solid rgba(255, 236, 196, 0.35); border-bottom: 0;
-  clip-path: polygon(0 0, 80% 0, 100% 100%, 0 100%);
+.pf-back::after {
+  content: ""; position: absolute; inset: 0; background: rgba(255, 250, 236, 0.55);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 259' preserveAspectRatio='none' fill='none' stroke='%23000'%3E%3Cpath stroke-width='2.4' d='M0 18Q0 0 18 0H109Q119 0 124 9L129 18Q131 21 136 21H341Q360 21 360 40V240Q360 259 341 259H19Q0 259 0 240Z'/%3E%3Cpath stroke-width='1' transform='translate(5 5) scale(0.9722 0.9614)' d='M0 18Q0 0 18 0H109Q119 0 124 9L129 18Q131 21 136 21H341Q360 21 360 40V240Q360 259 341 259H19Q0 259 0 240Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 259' preserveAspectRatio='none' fill='none' stroke='%23000'%3E%3Cpath stroke-width='2.4' d='M0 18Q0 0 18 0H109Q119 0 124 9L129 18Q131 21 136 21H341Q360 21 360 40V240Q360 259 341 259H19Q0 259 0 240Z'/%3E%3Cpath stroke-width='1' transform='translate(5 5) scale(0.9722 0.9614)' d='M0 18Q0 0 18 0H109Q119 0 124 9L129 18Q131 21 136 21H341Q360 21 360 40V240Q360 259 341 259H19Q0 259 0 240Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
 }
 .pf-files { position: absolute; inset: 0; }
 .pf-file {
@@ -188,17 +189,16 @@
 .pf-glass {
   position: relative; display: block; width: 100%; height: 100%; border-radius: calc(var(--u) * 16);
   background: linear-gradient(180deg, var(--pf-glass-a) 0%, var(--pf-glass-b) 32%, var(--pf-glass-c) 89%);
-  -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
   box-shadow: inset 0 calc(var(--u) * -2) calc(var(--u) * 8) var(--pf-glass-c), inset calc(var(--u) * -2) calc(var(--u) * 4) calc(var(--u) * 16) calc(var(--u) * 4) var(--pf-glow), 0 0 calc(var(--u) * 16) var(--pf-deep);
 }
 .pf-folder.is-open .pf-front { transform: translateX(calc(var(--u) * 21)) skewX(-12deg); box-shadow: inset 0 0 calc(var(--u) * 16) var(--pf-glow), calc(var(--u) * -8) calc(var(--u) * -4) calc(var(--u) * 12) var(--pf-deep); }
 .pf-label {
   position: absolute; left: calc(var(--u) * 20); bottom: calc(var(--u) * 21); padding: calc(var(--u) * 4) calc(var(--u) * 8); border-radius: calc(var(--u) * 8);
-  font-size: max(0.75rem, calc(var(--u) * 14)); font-weight: 600; color: #fff; white-space: nowrap; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 43%, rgba(255, 220, 160, 0.14) 100%); box-shadow: -1px 1px 2px rgba(90, 60, 10, 0.25);
+  font-size: max(0.78rem, calc(var(--u) * 15)); font-weight: 600; color: #fff; white-space: nowrap; text-shadow: 0 1px 4px rgba(90, 60, 10, 0.4);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 43%, rgba(214, 170, 78, 0.1) 100%); box-shadow: -1px 1px 2px rgba(110, 78, 18, 0.2);
 }
-.pf-count { position: absolute; right: calc(var(--u) * 20); bottom: calc(var(--u) * 25); font-size: max(0.7rem, calc(var(--u) * 12)); color: rgba(255, 255, 255, 0.78); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
-:root[data-theme="light"] .pf-label, :root[data-theme="light"] .pf-count { color: #4e3c12; text-shadow: none; }
+:root[data-theme="light"] .pf-label { color: #fff; }
 @media (max-width: 1100px) {
   .pf-grid { grid-template-columns: auto; gap: 10px; }
   .pf-folder.is-top, .pf-folder.is-bottom { grid-column: auto; }

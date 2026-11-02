@@ -192,8 +192,8 @@
   });
 
   /* ------------------------------ 3. Project folders ------------------------------
-     Glass folders scroll over the big pinned title. Each one tilts and settles as it passes
-     the middle of the screen. Hover (or tap) a folder and its files rise and fan out of it;
+     Glass folders scroll over the big pinned title, straightening as they come up the screen.
+     Hover (or tap) a folder and its files pop up and splay out while the glass front leans;
      on touch screens a folder also opens by itself while it's in the middle of the screen. */
   var folders = [].slice.call(document.querySelectorAll('.pf-folder'));
   if (!folders.length) return;
@@ -221,19 +221,18 @@
   });
   if (reduce) return;
 
-  var ticking = false, clamp1 = function (v) { return v < -1 ? -1 : v > 1 ? 1 : v; };
+  // Each folder starts at its tilt and straightens as its top rises from the bottom of the
+  // screen to 60% of the way up (the same curve convodesign101 uses), then stays straight.
+  var ticking = false;
   var render = function () {
     ticking = false;
     var vh = window.innerHeight;
     folders.forEach(function (f) {
       var r = f.getBoundingClientRect();
-      if (r.bottom < -200 || r.top > vh + 200) return;
-      var d = clamp1(((r.top + r.height / 2) - vh / 2) / (vh * 0.75)); // -1 above … 0 centred … 1 below
-      var tilt = parseFloat(f.dataset.tilt) || 0, k = Math.abs(d);
-      var w = f.querySelector('.pf-move');
-      w.style.transform = 'translateY(' + (d * 46).toFixed(1) + 'px) rotate(' + (tilt * (1 + d * 0.9)).toFixed(2) + 'deg) scale(' + (1 - k * 0.1).toFixed(3) + ')';
-      w.style.opacity = (1 - Math.max(0, d - 0.55) * 1.6).toFixed(3);
-      if (!canHover && !f.contains(document.activeElement)) setOpen(f, k < 0.2);
+      if (r.bottom < -200 || r.top > vh + 400) return;
+      var k = (r.top - vh * 0.6) / (vh * 0.39); k = k < 0 ? 0 : k > 1 ? 1 : k;
+      f.querySelector('.pf-move').style.transform = 'rotate(' + ((parseFloat(f.dataset.tilt) || 0) * k).toFixed(2) + 'deg)';
+      if (!canHover && !f.contains(document.activeElement)) { var c = (r.top + r.height / 2) / vh; setOpen(f, c > 0.3 && c < 0.7); }
     });
   };
   var onScroll = function () { if (!ticking) { ticking = true; requestAnimationFrame(render); } };

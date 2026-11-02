@@ -100,107 +100,112 @@
   .fw-panel.is-entering .fw-in { animation: none; }
 }
 
-/* ------------------------------ 2. Project folders ------------------------------ */
+/* ------------------------------ 2. Project folders ------------------------------
+   Measured from convodesign101's Resources & Events folders: a 463×360 folder, 360×275 back,
+   360×198 two-layer glass front, 157×192 files. --u is one of those pixels at the current size. */
 .pf {
-  --pf-glass: rgba(255, 240, 214, 0.14); --pf-glass-edge: rgba(255, 244, 222, 0.42);
-  --pf-back: rgba(212, 175, 98, 0.34); --pf-back-edge: rgba(242, 217, 153, 0.45);
   --pf-word: rgba(212, 175, 98, 0.12); --pf-paper: #fbf8f1; --pf-ink: #2b2418; --pf-dim: #7a7062;
+  --pf-back: linear-gradient(180deg, rgba(232, 200, 128, 0.5), rgba(176, 138, 58, 0.42));
+  --pf-glass-a: rgba(255, 190, 226, 0.26); --pf-glass-b: rgba(222, 184, 104, 0.22); --pf-glass-c: rgba(186, 146, 62, 0.34);
+  --pf-glow: rgba(255, 238, 206, 0.55); --pf-deep: rgba(120, 84, 20, 0.35);
   position: relative; z-index: 1; padding: 10vh 16px 12vh;
 }
 :root[data-theme="light"] .pf {
-  --pf-glass: rgba(255, 255, 255, 0.42); --pf-glass-edge: rgba(255, 255, 255, 0.8);
-  --pf-back: rgba(156, 118, 32, 0.24); --pf-back-edge: rgba(156, 118, 32, 0.4);
   --pf-word: rgba(156, 118, 32, 0.13);
+  --pf-back: linear-gradient(180deg, rgba(222, 188, 112, 0.55), rgba(196, 156, 72, 0.45));
+  --pf-glass-a: rgba(255, 206, 232, 0.34); --pf-glass-b: rgba(236, 206, 140, 0.3); --pf-glass-c: rgba(210, 170, 88, 0.4);
 }
 /* the big faded title stays pinned while the folders scroll over it */
 .pf-word {
-  position: sticky; top: 15vh; z-index: 0; margin: 0;
+  position: sticky; top: 160px; z-index: 0; margin: 0;
   font-family: var(--serif); font-weight: 700; font-size: clamp(3.2rem, 11vw, 9.5rem); line-height: 0.92; letter-spacing: -0.03em;
   text-align: center; color: var(--pf-word); user-select: none;
 }
 .pf-grid {
-  position: relative; z-index: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12vh 5vw;
-  max-width: 1180px; margin: -4vh auto 0; justify-items: center;
+  position: relative; z-index: 1; display: grid; grid-template-columns: repeat(2, auto); justify-content: center;
+  gap: 10px 120px; margin: 4vh auto 0;
 }
-.pf-folder.is-top, .pf-folder.is-bottom { grid-column: 1 / -1; }
-.pf-folder.is-left { justify-self: end; }
-.pf-folder.is-right { justify-self: start; margin-top: 12vh; }
-.pf-hint { position: relative; z-index: 1; text-align: center; color: var(--text-mute); font-size: 0.85rem; margin: 9vh 0 0; }
+.pf-folder.is-top, .pf-folder.is-bottom { grid-column: 1 / -1; justify-self: center; }
+.pf-hint { position: relative; z-index: 1; text-align: center; color: var(--text-mute); font-size: 0.85rem; margin: 8vh 0 0; }
 
-/* One folder: back panel, files, glass front */
-.pf-folder { width: min(440px, 84vw); aspect-ratio: 4 / 3; container-type: inline-size; cursor: pointer; }
-.pf-move { position: relative; width: 100%; height: 100%; will-change: transform; transform: rotate(calc(var(--tilt, 0) * 1deg)); }
-.pf-move::after { /* soft shadow on the "table" */
-  content: ""; position: absolute; left: 12%; right: 12%; bottom: -5%; height: 16%; border-radius: 50%;
-  background: rgba(0, 0, 0, 0.32); filter: blur(18px); z-index: -1;
+.pf-folder { width: min(463px, calc(100vw - 24px)); aspect-ratio: 463 / 360; container-type: inline-size; cursor: pointer; }
+.pf-move {
+  --u: calc(100cqw / 463); position: relative; width: 100%; height: 100%;
+  transform: rotate(calc(var(--tilt, 0) * 1deg)); will-change: transform;
+}
+.pf-move::before { /* soft shadow under the folder */
+  content: ""; position: absolute; left: calc(var(--u) * 75); top: calc(var(--u) * 137); width: calc(var(--u) * 313); height: calc(var(--u) * 173);
+  border-radius: calc(var(--u) * 80); background: rgba(0, 0, 0, 0.28); filter: blur(calc(var(--u) * 14));
 }
 .pf-back {
-  position: absolute; inset: 9% 0 0 0; border-radius: 6cqw; background: var(--pf-back); border: 1px solid var(--pf-back-edge);
+  position: absolute; left: calc(var(--u) * 55); top: calc(var(--u) * 55); width: calc(var(--u) * 360); height: calc(var(--u) * 255);
+  border-radius: calc(var(--u) * 24); background: var(--pf-back); border: 1px solid rgba(255, 236, 196, 0.35);
+  transition: transform .45s cubic-bezier(.3, 1.35, .6, 1);
 }
 .pf-back::before { /* the folder tab */
-  content: ""; position: absolute; left: -1px; top: -6cqw; width: 36%; height: 7cqw; border-radius: 4cqw 5cqw 0 0;
-  background: inherit; border: 1px solid var(--pf-back-edge); border-bottom: 0;
-  clip-path: polygon(0 0, 78% 0, 100% 100%, 0 100%);
+  content: ""; position: absolute; left: -1px; top: calc(var(--u) * -21); width: calc(var(--u) * 140); height: calc(var(--u) * 26);
+  border-radius: calc(var(--u) * 14) calc(var(--u) * 14) 0 0; background: rgba(232, 200, 128, 0.5);
+  border: 1px solid rgba(255, 236, 196, 0.35); border-bottom: 0;
+  clip-path: polygon(0 0, 80% 0, 100% 100%, 0 100%);
 }
-.pf-files { position: absolute; inset: 0; z-index: 2; }
+.pf-files { position: absolute; inset: 0; }
 .pf-file {
-  position: absolute; top: 17%; width: 40%; padding: 2.2cqw 2.2cqw 2.6cqw; box-sizing: border-box; border-radius: 3cqw;
-  display: flex; flex-direction: column; gap: 0.8cqw; background: var(--pf-paper); color: var(--pf-ink); text-decoration: none;
-  box-shadow: 0 1.5cqw 4cqw rgba(0, 0, 0, 0.22), 0 1px 0 rgba(255, 255, 255, 0.6) inset;
-  transform: translate(0, 0) rotate(var(--r0, 0deg));
-  transition: transform .62s cubic-bezier(.34, 1.4, .58, 1), box-shadow .25s ease;
+  position: absolute; width: calc(var(--u) * 157); height: calc(var(--u) * 192); left: calc(var(--u) * var(--x)); top: calc(var(--u) * var(--y));
+  padding: calc(var(--u) * 10); box-sizing: border-box; border-radius: calc(var(--u) * 8);
+  display: flex; flex-direction: column; gap: calc(var(--u) * 4); background: var(--pf-paper); color: var(--pf-ink); text-decoration: none;
+  box-shadow: 0 calc(var(--u) * 4) calc(var(--u) * 14) rgba(0, 0, 0, 0.22);
+  transform: rotate(calc(var(--r) * 1deg));
+  transition: transform .45s cubic-bezier(.3, 1.35, .6, 1), box-shadow .25s ease;
 }
-.pf-thumb { display: block; aspect-ratio: 16 / 10; border-radius: 2cqw; overflow: hidden; background: #e9e1cf; margin-bottom: 1cqw; }
+.pf-thumb { display: block; flex: none; height: calc(var(--u) * 92); border-radius: calc(var(--u) * 5); overflow: hidden; background: #e9e1cf; }
 .pf-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.pf-thumb.is-ph { display: grid; place-items: center; font-size: 8cqw; }
-.pf-file strong { font-family: var(--serif); font-size: max(0.8rem, 3.7cqw); line-height: 1.15; }
-.pf-file .pf-sub { font-size: max(0.7rem, 2.7cqw); line-height: 1.25; color: var(--pf-dim); }
+.pf-thumb.is-ph { display: grid; place-items: center; font-size: calc(var(--u) * 40); }
+.pf-file strong { font-family: var(--serif); font-size: max(0.78rem, calc(var(--u) * 17)); line-height: 1.12; margin-top: calc(var(--u) * 4); }
+.pf-file .pf-sub { font-size: max(0.7rem, calc(var(--u) * 12)); line-height: 1.25; color: var(--pf-dim); }
 .pf-file:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
-/* resting inside the folder */
-.pf-files.n3 .pf-file:nth-child(1) { left: 8%; --r0: -5deg; }
-.pf-files.n3 .pf-file:nth-child(2) { left: 30%; top: 13%; --r0: 1deg; }
-.pf-files.n3 .pf-file:nth-child(3) { left: 52%; --r0: 5deg; }
-.pf-files.n2 .pf-file:nth-child(1) { left: 15%; --r0: -4deg; }
-.pf-files.n2 .pf-file:nth-child(2) { left: 45%; --r0: 4deg; }
-/* opened: the files rise and fan out of the folder */
-.pf-folder.is-open .pf-files.n3 .pf-file:nth-child(1) { transform: translate(-42%, -50%) rotate(-13deg); }
-.pf-folder.is-open .pf-files.n3 .pf-file:nth-child(2) { transform: translate(0, -64%) rotate(0deg); transition-delay: .04s; }
-.pf-folder.is-open .pf-files.n3 .pf-file:nth-child(3) { transform: translate(42%, -50%) rotate(13deg); transition-delay: .08s; }
-.pf-folder.is-open .pf-files.n2 .pf-file:nth-child(1) { transform: translate(-30%, -56%) rotate(-10deg); }
-.pf-folder.is-open .pf-files.n2 .pf-file:nth-child(2) { transform: translate(30%, -56%) rotate(10deg); transition-delay: .05s; }
-.pf-folder.is-open .pf-file { box-shadow: 0 2.5cqw 6cqw rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.6) inset; }
-.pf-folder.is-open .pf-file:hover { z-index: 1; box-shadow: 0 3cqw 8cqw rgba(0, 0, 0, 0.42); }
+/* resting in the folder (only the tops peek out above the glass) */
+.pf-files.n3 .pf-file:nth-child(1) { --x: 63; --y: 81; --r: 0; }
+.pf-files.n3 .pf-file:nth-child(2) { --x: 230; --y: 86; --r: 2; }
+.pf-files.n3 .pf-file:nth-child(3) { --x: 139; --y: 94; --r: 0; } /* the middle file sits in front */
+.pf-files.n2 .pf-file:nth-child(1) { --x: 88; --y: 84; --r: -2; }
+.pf-files.n2 .pf-file:nth-child(2) { --x: 214; --y: 90; --r: 2; }
+/* hovered: they pop up and splay out */
+.pf-folder.is-open .pf-files.n3 .pf-file:nth-child(1) { transform: translate(calc(var(--u) * -47), calc(var(--u) * -81)) rotate(-9deg); }
+.pf-folder.is-open .pf-files.n3 .pf-file:nth-child(2) { transform: translate(calc(var(--u) * 64), calc(var(--u) * -75)) rotate(4deg); }
+.pf-folder.is-open .pf-files.n3 .pf-file:nth-child(3) { transform: translate(calc(var(--u) * 18), calc(var(--u) * -76)); }
+.pf-folder.is-open .pf-files.n2 .pf-file:nth-child(1) { transform: translate(calc(var(--u) * -44), calc(var(--u) * -80)) rotate(-8deg); }
+.pf-folder.is-open .pf-files.n2 .pf-file:nth-child(2) { transform: translate(calc(var(--u) * 52), calc(var(--u) * -76)) rotate(5deg); }
+.pf-folder.is-open .pf-file:hover { box-shadow: 0 calc(var(--u) * 10) calc(var(--u) * 28) rgba(0, 0, 0, 0.35); }
+.pf-folder.is-open .pf-back { transform: skewX(8deg); }
+/* the glass front: an outer pane and a tinted inner pane */
 .pf-front {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 60%; z-index: 3; pointer-events: none; /* clicks go to the files */
-  display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; padding: 4cqw; box-sizing: border-box;
-  border-radius: 6cqw; transform-origin: 50% 100%; transition: transform .55s cubic-bezier(.34, 1.3, .6, 1);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), var(--pf-glass) 45%, rgba(212, 175, 98, 0.12));
-  border: 1px solid var(--pf-glass-edge); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 6cqw 12cqw rgba(0, 0, 0, 0.22);
-  -webkit-backdrop-filter: blur(12px) saturate(1.25); backdrop-filter: blur(12px) saturate(1.25);
+  position: absolute; left: calc(var(--u) * 55); top: calc(var(--u) * 104); width: calc(var(--u) * 360); height: calc(var(--u) * 198);
+  box-sizing: border-box; padding: calc(var(--u) * 4); border-radius: calc(var(--u) * 18); pointer-events: none; /* clicks go to the files */
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  box-shadow: inset 0 0 calc(var(--u) * 16) var(--pf-glow), 0 calc(var(--u) * -4) calc(var(--u) * 4) var(--pf-deep);
+  transition: transform .45s cubic-bezier(.3, 1.35, .6, 1), box-shadow .45s ease;
 }
-.pf-folder.is-open .pf-front { transform: perspective(900px) rotateX(-14deg); }
+.pf-glass {
+  position: relative; display: block; width: 100%; height: 100%; border-radius: calc(var(--u) * 16);
+  background: linear-gradient(180deg, var(--pf-glass-a) 0%, var(--pf-glass-b) 32%, var(--pf-glass-c) 89%);
+  -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+  box-shadow: inset 0 calc(var(--u) * -2) calc(var(--u) * 8) var(--pf-glass-c), inset calc(var(--u) * -2) calc(var(--u) * 4) calc(var(--u) * 16) calc(var(--u) * 4) var(--pf-glow), 0 0 calc(var(--u) * 16) var(--pf-deep);
+}
+.pf-folder.is-open .pf-front { transform: translateX(calc(var(--u) * 21)) skewX(-12deg); box-shadow: inset 0 0 calc(var(--u) * 16) var(--pf-glow), calc(var(--u) * -8) calc(var(--u) * -4) calc(var(--u) * 12) var(--pf-deep); }
 .pf-label {
-  padding: 1.4cqw 3.2cqw; border-radius: 999px; font-size: max(0.8rem, 3.4cqw); font-weight: 600; color: #fff; white-space: nowrap;
-  background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.3);
+  position: absolute; left: calc(var(--u) * 20); bottom: calc(var(--u) * 21); padding: calc(var(--u) * 4) calc(var(--u) * 8); border-radius: calc(var(--u) * 8);
+  font-size: max(0.75rem, calc(var(--u) * 14)); font-weight: 600; color: #fff; white-space: nowrap; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 43%, rgba(255, 220, 160, 0.14) 100%); box-shadow: -1px 1px 2px rgba(90, 60, 10, 0.25);
 }
-.pf-count { font-size: max(0.72rem, 2.8cqw); color: rgba(255, 255, 255, 0.7); letter-spacing: 0.04em; }
-:root[data-theme="light"] .pf-label { color: #5e4a1c; background: rgba(255, 255, 255, 0.55); }
-:root[data-theme="light"] .pf-count { color: #6b5520; }
-@media (min-width: 1800px) { .pf-folder { width: 540px; } .pf-grid { max-width: 1400px; } }
-@media (max-width: 980px) {
-  .pf-grid { grid-template-columns: minmax(0, 1fr); gap: 15vh; margin-top: 6vh; }
-  .pf-folder.is-left, .pf-folder.is-right { justify-self: center; margin-top: 0; }
-  .pf-word { top: 18vh; }
+.pf-count { position: absolute; right: calc(var(--u) * 20); bottom: calc(var(--u) * 25); font-size: max(0.7rem, calc(var(--u) * 12)); color: rgba(255, 255, 255, 0.78); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+:root[data-theme="light"] .pf-label, :root[data-theme="light"] .pf-count { color: #4e3c12; text-shadow: none; }
+@media (max-width: 1100px) {
+  .pf-grid { grid-template-columns: auto; gap: 10px; }
+  .pf-folder.is-top, .pf-folder.is-bottom { grid-column: auto; }
 }
-@media (max-width: 760px) {
-  /* a narrower fan so the files stay on screen */
-  .pf-folder.is-open .pf-files.n3 .pf-file:nth-child(1) { transform: translate(-24%, -50%) rotate(-10deg); }
-  .pf-folder.is-open .pf-files.n3 .pf-file:nth-child(3) { transform: translate(24%, -50%) rotate(10deg); }
-  .pf-folder.is-open .pf-files.n2 .pf-file:nth-child(1) { transform: translate(-18%, -56%) rotate(-8deg); }
-  .pf-folder.is-open .pf-files.n2 .pf-file:nth-child(2) { transform: translate(18%, -56%) rotate(8deg); }
-}
+@media (max-width: 760px) { .pf-word { top: 18vh; } }
 @media (prefers-reduced-motion: reduce) {
-  .pf-file, .pf-front { transition: none; }
+  .pf-file, .pf-front, .pf-back { transition: none; }
 }
 
 /* ------------------------------ Project dialog ------------------------------ */

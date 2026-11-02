@@ -480,58 +480,70 @@
 
   <div class="wrap"><div class="divider"><span class="l"></span><span class="mark" aria-hidden="true"><svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5C14.6 5.6 14.6 9.6 12 13C9.4 9.6 9.4 5.6 12 2.5Z"/><path d="M12 13C9 12.4 6.2 10 5.6 6.4C8.6 7 11 9.6 12 13Z"/><path d="M12 13C15 12.4 17.8 10 18.4 6.4C15.4 7 13 9.6 12 13Z"/><path d="M12 13C8.2 13.6 3.8 12.6 1.5 10C4.6 9.2 9 10.6 12 13Z"/><path d="M12 13C15.8 13.6 20.2 12.6 22.5 10C19.4 9.2 15 10.6 12 13Z"/><path d="M6.5 15.6Q12 17.2 17.5 15.6"/></svg></span><span class="l r"></span></div></div>
 
-  <!-- ===== Featured work ===== -->
-  <!-- ===== Featured work: soft folder tabs (styles/behaviour in site-showcase.css/js) ===== -->
-  <section class="block" id="work">
+  <!-- ===== Featured work: three pages that stack as you scroll (after wildyriftian.com). Each page sticks
+       under the header and the next slides over it; their soft tabs line up into one row. Styles in site-showcase.css. ===== -->
+  <section class="block fw-block" id="work">
     <div class="wrap">
       <div class="section-head">
         <span class="zh">作</span>
         <span class="kicker">Featured work</span>
         <h2>A closer look at three projects.</h2>
       </div>
-      <div class="fw" data-reveal>
-      <div class="fw-tabs" role="tablist" aria-label="Featured work">
-        <button class="fw-tab is-active" type="button" role="tab" id="fwt-01" aria-controls="fwp-01" aria-selected="true"><span class="fw-num">/ 01</span><span class="fw-name">Earth Moon Magick</span><span class="fw-dot" aria-hidden="true"></span></button>
-        <button class="fw-tab" type="button" role="tab" id="fwt-02" aria-controls="fwp-02" aria-selected="false" tabindex="-1"><span class="fw-num">/ 02</span><span class="fw-name">FSLAMES</span><span class="fw-dot" aria-hidden="true"></span></button>
-        <button class="fw-tab" type="button" role="tab" id="fwt-03" aria-controls="fwp-03" aria-selected="false" tabindex="-1"><span class="fw-num">/ 03</span><span class="fw-name">Graphic design</span><span class="fw-dot" aria-hidden="true"></span></button>
-        <a class="fw-tab fw-all" href="work.html"><span class="fw-num">/ 04</span><span class="fw-name">See all works →</span><span class="fw-short">All →</span></a>
-      </div>
-      <div class="fw-panel" id="fwp-01" role="tabpanel" aria-labelledby="fwt-01">
-        <div class="fw-head">
-          <h3 class="fw-title fw-in">Earth Moon Magick: storefront &amp; ad creative</h3>
-          <div class="fw-meta fw-in"><span>Dec 2025 – Present</span><span class="fw-type">Freelance · Shopify &amp; video</span><div class="fw-tags" aria-label="Tags"><div class="fw-tags-track"><span>Shopify</span><span>GemPages</span><span>Liquid</span><span>Premiere Pro</span><span>Meta ads</span><span>Instagram</span><span aria-hidden="true"></span><span aria-hidden="true">Shopify</span><span aria-hidden="true">GemPages</span><span aria-hidden="true">Liquid</span><span aria-hidden="true">Premiere Pro</span><span aria-hidden="true">Meta ads</span><span aria-hidden="true">Instagram</span></div></div></div>
+    </div>
+    <div class="fw">
+      <div class="fw-page fw-p1" style="--n: 0" role="group" aria-labelledby="fw-t1">
+        <div class="fw-bar">
+          <span class="fw-tab" id="fw-t1"><span class="fw-num">Featured work</span> 01<span class="fw-dot" aria-hidden="true"></span></span>
+          <a class="fw-tab fw-all" href="work.html" aria-label="See all works"><span class="fw-all-text">See all works</span><span class="fw-all-short" aria-hidden="true">All works</span><span class="fw-arrow" aria-hidden="true">→</span></a>
+        </div>
+        <div class="fw-panel">
+        <div class="fw-head" data-reveal>
+          <h3 class="fw-title">Earth Moon Magick: storefront &amp; ad creative</h3>
+          <div class="fw-meta"><span>Dec 2025 – Present</span><span class="fw-type">Freelance · Shopify &amp; video</span><div class="fw-tags" aria-label="Tags"><div class="fw-tags-track"><span>Shopify</span><span>GemPages</span><span>Liquid</span><span>Premiere Pro</span><span>Meta ads</span><span>Instagram</span><span aria-hidden="true"></span><span aria-hidden="true">Shopify</span><span aria-hidden="true">GemPages</span><span aria-hidden="true">Liquid</span><span aria-hidden="true">Premiere Pro</span><span aria-hidden="true">Meta ads</span><span aria-hidden="true">Instagram</span></div></div></div>
         </div>
         <hr class="fw-rule">
-        <div class="fw-body">
-          <div class="fw-desc fw-in"><p>Shopify Technical Specialist and Video Editor for a spiritual and wellness brand: blog and product pages in GemPages, theme edits, product listings, and the video ads and graphics that bring people to the store.</p><a class="fw-link" href="case-study.html">View project <span aria-hidden="true">→</span></a></div>
-          <div class="fw-media fw-main fw-in"><img src="media/emm-site.webp" alt="Earth Moon Magick homepage" loading="lazy"></div>
-          <div class="fw-side fw-in"><div class="fw-media"><video src="media/emm-ad.mp4" poster="media/emm-ad.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Video ad edited for Earth Moon Magick"></video></div></div>
+        <div class="fw-body" data-reveal-group>
+          <div class="fw-desc"><p>Shopify Technical Specialist and Video Editor for a spiritual and wellness brand: blog and product pages in GemPages, theme edits, product listings, and the video ads and graphics that bring people to the store.</p><a class="fw-link" href="case-study.html">View project <span aria-hidden="true">→</span></a></div>
+          <div class="fw-media fw-main"><img src="media/emm-site.webp" alt="Earth Moon Magick homepage" loading="lazy"></div>
+          <div class="fw-side"><div class="fw-media"><video src="media/emm-ad.mp4" poster="media/emm-ad.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Video ad edited for Earth Moon Magick"></video></div></div>
+        </div>
         </div>
       </div>
-      <div class="fw-panel" id="fwp-02" role="tabpanel" aria-labelledby="fwt-02" hidden>
-        <div class="fw-head">
-          <h3 class="fw-title fw-in">FSLAMES: learning Filipino Sign Language</h3>
-          <div class="fw-meta fw-in"><span>2025 – 2026</span><span class="fw-type">Thesis · Mobile &amp; machine learning</span><div class="fw-tags" aria-label="Tags"><div class="fw-tags-track"><span>Flutter</span><span>Python</span><span>MediaPipe</span><span>TensorFlow</span><span>Backend</span><span>UI design</span><span aria-hidden="true"></span><span aria-hidden="true">Flutter</span><span aria-hidden="true">Python</span><span aria-hidden="true">MediaPipe</span><span aria-hidden="true">TensorFlow</span><span aria-hidden="true">Backend</span><span aria-hidden="true">UI design</span></div></div></div>
+      <div class="fw-page fw-p2" style="--n: 1" role="group" aria-labelledby="fw-t2">
+        <div class="fw-bar">
+          <span class="fw-tab" id="fw-t2"><span class="fw-num">Featured work</span> 02<span class="fw-dot" aria-hidden="true"></span></span>
+          <a class="fw-tab fw-all" tabindex="-1" aria-hidden="true" href="work.html" aria-label="See all works"><span class="fw-all-text">See all works</span><span class="fw-all-short" aria-hidden="true">All works</span><span class="fw-arrow" aria-hidden="true">→</span></a>
+        </div>
+        <div class="fw-panel">
+        <div class="fw-head" data-reveal>
+          <h3 class="fw-title">FSLAMES: learning Filipino Sign Language</h3>
+          <div class="fw-meta"><span>2025 – 2026</span><span class="fw-type">Thesis · Mobile &amp; machine learning</span><div class="fw-tags" aria-label="Tags"><div class="fw-tags-track"><span>Flutter</span><span>Python</span><span>MediaPipe</span><span>TensorFlow</span><span>Backend</span><span>UI design</span><span aria-hidden="true"></span><span aria-hidden="true">Flutter</span><span aria-hidden="true">Python</span><span aria-hidden="true">MediaPipe</span><span aria-hidden="true">TensorFlow</span><span aria-hidden="true">Backend</span><span aria-hidden="true">UI design</span></div></div></div>
         </div>
         <hr class="fw-rule">
-        <div class="fw-body">
-          <div class="fw-desc fw-in"><p>A mobile education app with ML-based sign recognition. I handled backend development and documentation, designed app interfaces, assisted Android development, and helped collect the training dataset.</p><a class="fw-link" href="https://github.com/mr-dj123/fslames-mobile-app" target="_blank" rel="noopener">View on GitHub <span aria-hidden="true">→</span></a></div>
-          <div class="fw-media fw-main fw-in"><div class="fw-ph"><div><b>🤟</b>[FSLAMES app screenshots]</div></div></div>
-          <div class="fw-side fw-in"><div class="fw-media"><div class="fw-ph"><div>[Screenshot]</div></div></div><div class="fw-media"><div class="fw-ph"><div>[Screenshot]</div></div></div></div>
+        <div class="fw-body" data-reveal-group>
+          <div class="fw-desc"><p>A mobile education app with ML-based sign recognition. I handled backend development and documentation, designed app interfaces, assisted Android development, and helped collect the training dataset.</p><a class="fw-link" href="https://github.com/mr-dj123/fslames-mobile-app" target="_blank" rel="noopener">View on GitHub <span aria-hidden="true">→</span></a></div>
+          <div class="fw-media fw-main"><div class="fw-ph"><div><b>🤟</b>[FSLAMES app screenshots]</div></div></div>
+          <div class="fw-side"><div class="fw-media"><div class="fw-ph"><div>[Screenshot]</div></div></div><div class="fw-media"><div class="fw-ph"><div>[Screenshot]</div></div></div></div>
+        </div>
         </div>
       </div>
-      <div class="fw-panel" id="fwp-03" role="tabpanel" aria-labelledby="fwt-03" hidden>
-        <div class="fw-head">
-          <h3 class="fw-title fw-in">Ad &amp; social graphic design</h3>
-          <div class="fw-meta fw-in"><span>Trial &amp; test work</span><span class="fw-type">Graphic design · Instagram</span><div class="fw-tags" aria-label="Tags"><div class="fw-tags-track"><span>Ad design</span><span>Instagram posts</span><span>Product ads</span><span>Typography</span><span>Layout</span><span aria-hidden="true"></span><span aria-hidden="true">Ad design</span><span aria-hidden="true">Instagram posts</span><span aria-hidden="true">Product ads</span><span aria-hidden="true">Typography</span><span aria-hidden="true">Layout</span></div></div></div>
+      <div class="fw-page fw-p3" style="--n: 2" role="group" aria-labelledby="fw-t3">
+        <div class="fw-bar">
+          <span class="fw-tab" id="fw-t3"><span class="fw-num">Featured work</span> 03<span class="fw-dot" aria-hidden="true"></span></span>
+          <a class="fw-tab fw-all" tabindex="-1" aria-hidden="true" href="work.html" aria-label="See all works"><span class="fw-all-text">See all works</span><span class="fw-all-short" aria-hidden="true">All works</span><span class="fw-arrow" aria-hidden="true">→</span></a>
+        </div>
+        <div class="fw-panel">
+        <div class="fw-head" data-reveal>
+          <h3 class="fw-title">Ad &amp; social graphic design</h3>
+          <div class="fw-meta"><span>Trial &amp; test work</span><span class="fw-type">Graphic design · Instagram</span><div class="fw-tags" aria-label="Tags"><div class="fw-tags-track"><span>Ad design</span><span>Instagram posts</span><span>Product ads</span><span>Typography</span><span>Layout</span><span aria-hidden="true"></span><span aria-hidden="true">Ad design</span><span aria-hidden="true">Instagram posts</span><span aria-hidden="true">Product ads</span><span aria-hidden="true">Typography</span><span aria-hidden="true">Layout</span></div></div></div>
         </div>
         <hr class="fw-rule">
-        <div class="fw-body">
-          <div class="fw-desc fw-in"><p>Trial designs for a crystal brand and a test offer post for an AI agency: bold headlines, product focus, benefit callouts and a clear call to action.</p><a class="fw-link" href="work.html#designs">View designs <span aria-hidden="true">→</span></a></div>
-          <div class="fw-media fw-main fw-in"><img src="media/design-amethyst.webp" alt="Amethyst lamp ad design" loading="lazy"></div>
-          <div class="fw-side fw-in"><div class="fw-media"><img src="media/design-bracelet.webp" alt="Protection bracelet ad design" loading="lazy"></div><div class="fw-media"><img src="media/design-agency.webp" alt="AI agency offer post design" loading="lazy"></div></div>
+        <div class="fw-body" data-reveal-group>
+          <div class="fw-desc"><p>Trial designs for a crystal brand and a test offer post for an AI agency: bold headlines, product focus, benefit callouts and a clear call to action.</p><a class="fw-link" href="work.html#designs">View designs <span aria-hidden="true">→</span></a></div>
+          <div class="fw-media fw-main"><img src="media/design-amethyst.webp" alt="Amethyst lamp ad design" loading="lazy"></div>
+          <div class="fw-side"><div class="fw-media"><img src="media/design-bracelet.webp" alt="Protection bracelet ad design" loading="lazy"></div><div class="fw-media"><img src="media/design-agency.webp" alt="AI agency offer post design" loading="lazy"></div></div>
         </div>
-      </div>
+        </div>
       </div>
     </div>
   </section>

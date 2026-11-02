@@ -150,6 +150,7 @@
 .vf-grid a { transition: color .2s ease; }
 .vf-grid a:hover { color: var(--vf-head); }
 .vf-grid .plain { color: var(--vf-plain); }
+.vf-grid .plain .vf-pin-ico { display: inline-block; vertical-align: -2px; margin-right: 6px; }
 
 /* ---------- 3. Copyright bar ---------- */
 .vf-bar { background: var(--vf-bg-2); border-top: 1px dashed var(--vf-bar-border); transition: background .4s ease; }
@@ -193,7 +194,7 @@
 /* ---------- Responsive ---------- */
 @media (min-width: 768px) {
   .vf-links { padding: 64px; }
-  .vf-grid { grid-template-columns: repeat(4, 1fr); }
+  .vf-grid { grid-template-columns: repeat(3, 1fr); }
   .vf-bar-in { flex-direction: row; align-items: center; padding: 24px 64px; }
 }
 @media (max-width: 640px) {

@@ -10,6 +10,8 @@
   var EMAIL = 'kimberlydacucoyu@gmail.com';
   var LINKEDIN = 'https://linkedin.com/in/kimberly-d-yu';
   var GITHUB = 'https://github.com/xiuhuazure';
+  // Map pin (Feather icon via Streamline), drawn in the text colour
+  var PIN_ICON = '<svg class="vf-pin-ico" viewBox="-0.5 -0.5 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true"><path d="M13.125 6.25c0 4.375 -5.625 8.125 -5.625 8.125s-5.625 -3.75 -5.625 -8.125a5.625 5.625 0 0 1 11.25 0z" stroke-width="1"/><path d="M5.625 6.25a1.875 1.875 0 1 0 3.75 0 1.875 1.875 0 1 0 -3.75 0" stroke-width="1"/></svg>';
 
   // Pins sit on the arc ellipse: centre (700, 430), radii a = 860, b = 200
   var CX = 700, CY = 430, A = 860, B = 200;
@@ -45,7 +47,7 @@
 
   function col(title, items) {
     return '<div><h4>' + title + '</h4><ul>' + items.map(function (it) {
-      if (!it[1]) return '<li class="plain">' + esc(it[0]) + '</li>';
+      if (!it[1]) return '<li class="plain">' + (it[2] === 'pin' ? PIN_ICON : '') + esc(it[0]) + '</li>';
       var ext = /^https?:/.test(it[1]) ? ' target="_blank" rel="noopener"' : '';
       return '<li><a href="' + it[1] + '"' + ext + '>' + esc(it[0]) + '</a></li>';
     }).join('') + '</ul></div>';
@@ -73,14 +75,13 @@
     '<div class="vf-links">' +
       '<div class="vf-grid">' +
         col('Navigate', [['Home', 'index.html'], ['Work', 'work.html'], ['Case study', 'case-study.html'], ['About me', 'about.html']]) +
-        col('What I do', [['Shopify & Liquid', 'index.html#services'], ['GemPages landing pages', 'index.html#services'], ['Video ads & motion graphics', 'index.html#services'], ['Android apps', 'index.html#services']]) +
-        col('Projects', [['Earth Moon Magick', 'case-study.html'], ['FSLAMES (thesis)', 'work.html'], ['U-Eat Ordering System', 'work.html']]) +
-        col('Contact', [['Email me', 'mailto:' + EMAIL], ['LinkedIn', LINKEDIN], ['GitHub', GITHUB], ['Pangasinan, Philippines', null]]) +
+        col('What I do', [['Shopify & Liquid', 'index.html#services'], ['GemPages blog & product pages', 'index.html#services'], ['Video ads & motion graphics', 'index.html#services'], ['Android apps', 'index.html#services']]) +
+        col('Contact', [['Email', 'mailto:' + EMAIL], ['LinkedIn', LINKEDIN], ['GitHub', GITHUB], ['Pangasinan, Philippines', null, 'pin']]) +
       '</div>' +
     '</div>' +
     '<div class="vf-bar"><div class="vf-bar-in">' +
       '<span>© 2026 Kimberly D. Yu. All rights reserved.</span>' +
-      '<span>BS Computer Science · Open to OJT</span>' +
+      '<span>Built with Claude · Cloudflare</span>' +
     '</div></div>' +
     '<div class="vf-brand"><p class="vf-word" aria-hidden="true">KIMBERLY</p></div>';
 

@@ -28,10 +28,13 @@
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var note = form.querySelector('.cta2-input').value.trim();
+      // The site has no server, so the message opens in the visitor's email app, ready to send
+      var f = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; };
+      var name = f('name'), email = f('email'), note = f('message');
+      var body = note + '\n\n— ' + name + (email ? ' (' + email + ')' : '');
       var url = 'mailto:' + form.getAttribute('data-email') +
-        '?subject=' + encodeURIComponent('OJT opportunity') +
-        (note ? '&body=' + encodeURIComponent(note) : '');
+        '?subject=' + encodeURIComponent('OJT opportunity' + (name ? ' from ' + name : '')) +
+        '&body=' + encodeURIComponent(body);
       window.location.href = url;
     });
   }

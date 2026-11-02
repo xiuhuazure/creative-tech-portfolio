@@ -155,3 +155,24 @@
 @media (prefers-reduced-motion: reduce) {
   .cta2-icon { animation: none; box-shadow: 0 0 40px rgb(212 175 98 / 0.5), 0 0 80px rgb(200 80 58 / 0.2); }
 }
+
+/* ---------- Contact form: Name, Email, Message + Send ---------- */
+.cta2 .cta2-form {
+  display: grid; gap: 14px; width: 100%; max-width: 560px; margin: 0 auto 16px;
+  padding: 22px; border-radius: 20px; text-align: left;
+}
+.cta2-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.cta2-field { display: grid; gap: 6px; }
+.cta2-field > span { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--c-dim); }
+.cta2 .cta2-input {
+  width: 100%; box-sizing: border-box; padding: 11px 14px; border-radius: 12px; text-align: left;
+  background: rgb(0 0 0 / 0.18); border: 1px solid var(--c-pill-border); font-size: 15px;
+}
+:root[data-theme="light"] .cta2 .cta2-input { background: rgb(255 255 255 / 0.6); }
+.cta2 .cta2-input:focus { border-color: rgb(var(--c-gold) / 0.7); }
+.cta2 textarea.cta2-input { resize: vertical; min-height: 110px; line-height: 1.5; font-family: inherit; }
+.cta2 .cta2-btn { width: 100%; padding: 13px 24px; font-size: 15px; }
+@media (max-width: 640px) {
+  .cta2 .cta2-form { padding: 16px; }
+  .cta2-row { grid-template-columns: 1fr; }
+}

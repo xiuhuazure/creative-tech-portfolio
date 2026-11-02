@@ -169,6 +169,24 @@
     .deliv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 24px 0 8px; }
     .deliv .col { position: relative; background: linear-gradient(160deg, var(--surface), var(--ink-2)); border: 1px solid var(--border); padding: 24px; clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px); }
     .deliv .col .ico { font-size: 1.5rem; margin-bottom: 10px; }
+    .deliv-media { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 5; margin: -8px -8px 16px; overflow: hidden; border-radius: 6px; border: 1px solid var(--border); background: linear-gradient(135deg, var(--thumb-a), var(--thumb-b)); color: var(--text-mute); font-size: 0.82rem; font-style: italic; text-align: center; }
+    .deliv-media img, .deliv-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+    .deliv-ph { padding: 12px; }
+    .deliv-go { position: absolute; top: 8px; right: 8px; z-index: 2; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-style: normal; background: rgba(0,0,0,0.55); color: #fff; font-size: 0.85rem; opacity: 0; transition: opacity .2s; }
+    a.deliv-media:hover .deliv-go, a.deliv-media:focus-visible .deliv-go { opacity: 1; }
+    /* Case media: browser window around the live site */
+    .site-frame { display: flex; flex-direction: column; place-items: stretch; padding: 0; text-decoration: none; position: relative; }
+    .site-bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; background: rgba(0,0,0,0.35); border-bottom: 1px solid var(--border-gold); }
+    .site-bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.25); }
+    .site-url { margin-left: 12px; padding: 3px 14px; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--text-dim); font-size: 0.78rem; letter-spacing: 0.02em; }
+    .site-view { position: relative; flex: 1; display: grid; place-items: center; color: var(--text-mute); font-style: italic; overflow: hidden; }
+    .site-view img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .site-cta { position: absolute; right: 16px; bottom: 16px; padding: 8px 16px; border-radius: 999px; background: rgba(12,15,18,0.78); color: var(--gold-bright); font-size: 0.85rem; font-weight: 600; transition: transform .2s; }
+    .site-frame:hover .site-cta { transform: translateY(-2px); }
+    /* Section rhythm: the big gap sits before each label, and the label hugs its heading */
+    article .kicker { margin-top: 56px; }
+    article > .kicker:first-child { margin-top: 0; }
+    article .kicker + h2 { margin-top: 10px; }
     .deliv .col h4 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 6px; }
     .deliv .col p { font-size: 0.9rem; color: var(--text-dim); margin: 0; }
 
@@ -319,7 +337,14 @@
         <div class="m"><div class="k">My role</div><div class="v">Shopify · Video · Design</div></div>
         <div class="m"><div class="k">Tools</div><div class="v">Shopify, GemPages, Meta Business Suite, Adobe Premiere Pro</div></div>
       </div>
-      <div class="case-media"><span style="font-size:3.4rem">🛍️ 🎬 📱</span></div>
+      <!-- Case media: a browser window linking to the live store.
+           PLACEHOLDER: save a screenshot of earthmoonmagick.com as emm-site.jpg and swap the <span> below for
+           <img src="emm-site.jpg" alt="Earth Moon Magick homepage"> -->
+      <a class="case-media site-frame" href="https://earthmoonmagick.com/" target="_blank" rel="noopener" aria-label="Visit earthmoonmagick.com">
+        <span class="site-bar"><i></i><i></i><i></i><span class="site-url">earthmoonmagick.com</span></span>
+        <span class="site-view"><span class="site-ph">[Screenshot of earthmoonmagick.com]</span></span>
+        <span class="site-cta">Visit the live store ↗</span>
+      </a>
     </div>
   </section>
 
@@ -327,7 +352,7 @@
   <div class="results">
     <div class="wrap">
       <div class="results-grid">
-        <div class="result"><div class="n grad">Storefront</div><div class="l">Landing pages, theme edits, listings</div></div>
+        <div class="result"><div class="n grad">Storefront</div><div class="l">Blog &amp; product pages, theme edits, listings</div></div>
         <div class="result"><div class="n grad">Ads</div><div class="l">Meta video and motion creative</div></div>
         <div class="result"><div class="n grad">Social</div><div class="l">Instagram feed and story content</div></div>
       </div>
@@ -343,26 +368,37 @@
 
       <span class="kicker"><span class="zh">謀</span> What I do</span>
       <h2>Day to day</h2>
-      <h3>1. Landing pages and theme work</h3>
-      <p>I customize responsive landing pages using GemPages and make theme modifications with Shopify Liquid, HTML and CSS to improve the user experience and how layouts respond on different screens.</p>
+      <h3>1. Blog and product pages, plus theme work</h3>
+      <p>I build the brand’s blog pages and new product pages in GemPages, and make theme modifications with Shopify Liquid, HTML and CSS to improve the user experience and how layouts respond on different screens.</p>
       <h3>2. Product listings</h3>
       <p>I manage product listings end to end, troubleshooting variant configurations, media galleries and listing data directly in Shopify.</p>
       <h3>3. Meta video ads</h3>
       <p>I produce video ads from UGC and product footage, adding dynamic B-roll, motion text and audio design.</p>
-      <h3>4. Ad graphics</h3>
-      <p>I design on-brand static and motion graphics for Meta ad campaigns in Meta Business Suite, following mobile aspect ratios and the brand’s standard operating procedures.</p>
-      <h3>5. Instagram</h3>
-      <p>As an Instagram assistant, I create feed and story assets, draft copy, and publish and schedule content to keep the brand consistent.</p>
+      <h3>4. Instagram</h3>
+      <p>As an Instagram assistant, I create feed and story assets, and publish and schedule content to keep the brand consistent.</p>
 
       <span class="kicker"><span class="zh">獻</span> What I deliver</span>
       <h2>The deliverables</h2>
+      <!-- Deliverables with media. PLACEHOLDERS:
+           - Development: swap the <span> for <img src="deliv-dev.jpg" alt="..."> (links to the live store)
+           - Video: put your file at deliv-video.mp4 (under 25 MB); it plays automatically, muted and looping
+           - Design & social: swap the <span> for <img src="deliv-social.jpg" alt="..."> (links to Instagram) -->
       <div class="deliv">
-        <div class="col"><div class="ico">⛩️</div><h4>Development</h4><p>GemPages landing pages, Liquid / HTML / CSS theme edits, and product listing fixes.</p></div>
-        <div class="col"><div class="ico">🎬</div><h4>Video</h4><p>Ads from UGC and product footage with B-roll, motion text and audio design.</p></div>
-        <div class="col"><div class="ico">🖌️</div><h4>Design &amp; social</h4><p>Static and motion ad graphics, plus Instagram feed and story assets.</p></div>
+        <div class="col">
+          <a class="deliv-media" href="https://earthmoonmagick.com/" target="_blank" rel="noopener" aria-label="Visit the Earth Moon Magick store"><span class="deliv-ph">[Photo of the website]</span><span class="deliv-go">↗</span></a>
+          <h4>Development</h4><p>GemPages blog and product pages, Liquid / HTML / CSS theme edits, and product listing fixes.</p>
+        </div>
+        <div class="col">
+          <div class="deliv-media"><video src="deliv-video.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Video ad edited for Earth Moon Magick"></video><span class="deliv-ph">[Video plays here]</span></div>
+          <h4>Video</h4><p>Ads from UGC and product footage with B-roll, motion text and audio design.</p>
+        </div>
+        <div class="col">
+          <a class="deliv-media" href="https://www.instagram.com/earthmoonmagick/" target="_blank" rel="noopener" aria-label="See Earth Moon Magick on Instagram"><span class="deliv-ph">[Photo of the Instagram feed]</span><span class="deliv-go">↗</span></a>
+          <h4>Design &amp; social</h4><p>Motion ad creatives for Meta, plus Instagram feed and story assets.</p>
+        </div>
       </div>
 
-      <div class="divider"><span class="l"></span><span class="mark">✦</span><span class="l r"></span></div>
+      <div class="divider"><span class="l"></span><span class="mark" aria-hidden="true"><svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5C14.6 5.6 14.6 9.6 12 13C9.4 9.6 9.4 5.6 12 2.5Z"/><path d="M12 13C9 12.4 6.2 10 5.6 6.4C8.6 7 11 9.6 12 13Z"/><path d="M12 13C15 12.4 17.8 10 18.4 6.4C15.4 7 13 9.6 12 13Z"/><path d="M12 13C8.2 13.6 3.8 12.6 1.5 10C4.6 9.2 9 10.6 12 13Z"/><path d="M12 13C15.8 13.6 20.2 12.6 22.5 10C19.4 9.2 15 10.6 12 13Z"/><path d="M6.5 15.6Q12 17.2 17.5 15.6"/></svg></span><span class="l r"></span></div>
 
       <span class="kicker"><span class="zh">具</span> Tools &amp; skills</span>
       <h2>What I used</h2>
@@ -370,8 +406,10 @@
         <li>Shopify, Shopify Liquid, GemPages</li>
         <li>HTML, CSS and responsive web design</li>
         <li>Meta Business Suite</li>
-        <li>Adobe Premiere Pro for video ads</li>
-        <li>Video editing, motion graphics and graphic design</li>
+        <li>Adobe Premiere Pro</li>
+        <li>Canva</li>
+        <li>Notion</li>
+        <li>ChatGPT</li>
       </ul>
     </article>
   </div>
@@ -381,7 +419,6 @@
     <div class="case-cta">
       <span class="zh">緣</span>
       <h2>Want this kind of work<br /> on your team?</h2>
-      <p>I’m open to OJT placements in web development, IT support, and creative roles.</p>
       <div class="cta-actions">
         <span class="sbtn"><span class="gbtn-wrap"><a class="gbtn" href="mailto:kimberlydacucoyu@gmail.com?subject=OJT%20opportunity"><span class="gbtn-sheen"></span><span class="gbtn-ring"></span><span class="gbtn-label">Email me →</span></a><span class="gbtn-aura" aria-hidden="true"></span></span><a class="crbtn" href="mailto:kimberlydacucoyu@gmail.com?subject=OJT%20opportunity"><span class="crbtn-clip"><span class="crbtn-spot" aria-hidden="true"></span><span class="crbtn-label">Email me →</span></span></a></span>
         <span class="sbtn"><span class="gbtn-wrap"><a class="gbtn" href="work.html"><span class="gbtn-sheen"></span><span class="gbtn-ring"></span><span class="gbtn-label">See more work</span></a><span class="gbtn-aura" aria-hidden="true"></span></span><a class="crbtn" href="work.html"><span class="crbtn-clip"><span class="crbtn-spot" aria-hidden="true"></span><span class="crbtn-label">See more work</span></span></a></span>
@@ -405,6 +442,11 @@
   <script src="site-buttons.js"></script>
 
   <script>
+    document.querySelectorAll('.deliv-media video').forEach(v => {
+      v.addEventListener('loadeddata', () => { const ph = v.parentElement.querySelector('.deliv-ph'); if (ph) ph.remove(); });
+      v.addEventListener('error', () => v.remove());
+    });
+
     const toggle = document.getElementById('navToggle');
     const links = document.getElementById('navLinks');
     toggle.addEventListener('click', () => links.classList.toggle('open'));

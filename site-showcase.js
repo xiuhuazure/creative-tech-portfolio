@@ -87,30 +87,6 @@
   };
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
 
-  /* ------------------------------ 1. Featured work tabs ------------------------------ */
-  var fw = document.querySelector('.fw');
-  if (fw) {
-    var tabs = [].slice.call(fw.querySelectorAll('.fw-tab[role="tab"]'));
-    var show = function (tab, focus) {
-      tabs.forEach(function (t) {
-        var on = t === tab, panel = document.getElementById(t.getAttribute('aria-controls'));
-        t.classList.toggle('is-active', on); t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
-        if (!panel) return;
-        panel.hidden = !on;
-        if (on && !reduce) { panel.classList.remove('is-entering'); void panel.offsetWidth; panel.classList.add('is-entering'); }
-        panel.querySelectorAll('video').forEach(function (v) { if (on) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else v.pause(); });
-      });
-      if (focus) tab.focus();
-    };
-    tabs.forEach(function (t, i) {
-      t.addEventListener('click', function () { show(t); });
-      t.addEventListener('keydown', function (e) {
-        var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-        if (k) { e.preventDefault(); show(tabs[(i + k + tabs.length) % tabs.length], true); }
-      });
-    });
-  }
-
   /* ------------------------------ 2. Project dialog ------------------------------ */
   var dlg = document.createElement('dialog');
   dlg.className = 'pd'; dlg.setAttribute('aria-labelledby', 'pd-title');

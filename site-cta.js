@@ -33,7 +33,7 @@
       var name = f('name'), email = f('email'), note = f('message');
       var body = note + '\n\n— ' + name + (email ? ' (' + email + ')' : '');
       var url = 'mailto:' + form.getAttribute('data-email') +
-        '?subject=' + encodeURIComponent('OJT opportunity' + (name ? ' from ' + name : '')) +
+        '?subject=' + encodeURIComponent('Work opportunity' + (name ? ' from ' + name : '')) +
         '&body=' + encodeURIComponent(body);
       window.location.href = url;
     });

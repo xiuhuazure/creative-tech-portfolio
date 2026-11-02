@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kimberly D. Yu — CS Student · Shopify &amp; Creative</title>
-  <meta name="description" content="Kimberly D. Yu, Computer Science student in Pangasinan, Philippines: Shopify storefront work, Meta video ads and motion graphics, and Android app projects. Open to OJT." />
+  <meta name="description" content="Kimberly D. Yu, Computer Science student in Pangasinan, Philippines: Shopify storefront work, Meta video ads and motion graphics, and Android app projects. Open for work." />
   <script>
     /* Apply saved theme before paint (no flash). Default: dark. */
     (function(){ try { var t = sessionStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch(e){} })();
@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="site-cursor.css" />
   <link rel="stylesheet" href="site-techstack.css" />
   <link rel="stylesheet" href="site-cta.css" />
+  <link rel="stylesheet" href="site-showcase.css" />
   <style>
     /* ============ THEME TOKENS ============ */
     :root {
@@ -365,7 +366,6 @@
       <div class="nav-right">
         <nav class="nav-links" id="navLinks">
           <a href="work.html">Work</a>
-          <a href="#services">Skills</a>
           <a href="about.html">About</a>
           <a href="#contact" class="nav-cta">Let's talk</a>
         </nav>
@@ -383,11 +383,11 @@
       <h1>I build storefronts and apps — and <span class="grad">the visuals that bring them to life.</span></h1>
       <p class="sub">
         Hi, I’m Kimberly — a Computer Science student at PHINMA UPang College Urdaneta. I customize Shopify stores,
-        edit Meta video ads, and help build Android apps. I’m looking for an OJT opportunity.
+        edit Meta video ads, and help build Android apps. I’m open for work.
       </p>
       <div class="hero-actions">
         <span class="sbtn"><span class="gbtn-wrap"><a class="gbtn" href="work.html"><span class="gbtn-sheen"></span><span class="gbtn-ring"></span><span class="gbtn-label">See my work →</span></a><span class="gbtn-aura" aria-hidden="true"></span></span><a class="crbtn" href="work.html"><span class="crbtn-clip"><span class="crbtn-spot" aria-hidden="true"></span><span class="crbtn-label">See my work →</span></span></a></span>
-        <span class="sbtn"><span class="gbtn-wrap"><a class="gbtn" href="#contact"><span class="gbtn-sheen"></span><span class="gbtn-ring"></span><span class="gbtn-label">Hire me for OJT</span></a><span class="gbtn-aura" aria-hidden="true"></span></span><a class="crbtn" href="#contact"><span class="crbtn-clip"><span class="crbtn-spot" aria-hidden="true"></span><span class="crbtn-label">Hire me for OJT</span></span></a></span>
+        <span class="sbtn"><span class="gbtn-wrap"><a class="gbtn" href="#contact"><span class="gbtn-sheen"></span><span class="gbtn-ring"></span><span class="gbtn-label">Hire me</span></a><span class="gbtn-aura" aria-hidden="true"></span></span><a class="crbtn" href="#contact"><span class="crbtn-clip"><span class="crbtn-spot" aria-hidden="true"></span><span class="crbtn-label">Hire me</span></span></a></span>
       </div>
     </div>
     <div class="cloud-strip" aria-hidden="true">
@@ -481,55 +481,77 @@
   <div class="wrap"><div class="divider"><span class="l"></span><span class="mark" aria-hidden="true"><svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5C14.6 5.6 14.6 9.6 12 13C9.4 9.6 9.4 5.6 12 2.5Z"/><path d="M12 13C9 12.4 6.2 10 5.6 6.4C8.6 7 11 9.6 12 13Z"/><path d="M12 13C15 12.4 17.8 10 18.4 6.4C15.4 7 13 9.6 12 13Z"/><path d="M12 13C8.2 13.6 3.8 12.6 1.5 10C4.6 9.2 9 10.6 12 13Z"/><path d="M12 13C15.8 13.6 20.2 12.6 22.5 10C19.4 9.2 15 10.6 12 13Z"/><path d="M6.5 15.6Q12 17.2 17.5 15.6"/></svg></span><span class="l r"></span></div></div>
 
   <!-- ===== Featured work ===== -->
+  <!-- ===== Featured work: soft folder tabs (styles/behaviour in site-showcase.css/js) ===== -->
   <section class="block" id="work">
     <div class="wrap">
       <div class="section-head">
         <span class="zh">作</span>
-        <span class="kicker">Selected work</span>
-        <h2>Things I’ve actually built.</h2>
-        <p>Freelance Shopify and ad work, my thesis, and a team-built Android app.</p>
+        <span class="kicker">Featured work</span>
+        <h2>A closer look at three projects.</h2>
       </div>
-      <div class="work-grid">
-        <article class="work-card">
-          <div class="work-thumb"><span style="font-size:2.6rem">🛍️</span></div>
-          <div class="work-body">
-            <div class="work-tags"><span>Shopify</span><span>GemPages</span><span>Liquid</span></div>
-            <h3><a href="case-study.html">Earth Moon Magick — Storefront</a></h3>
-            <p>GemPages blog and product pages and theme customizations, plus product listings, variants and media galleries managed directly in Shopify.</p>
-            <p class="work-metric"><span>Freelance</span> Dec 2025 – Present</p>
-          </div>
-        </article>
-        <article class="work-card">
-          <div class="work-thumb"><span style="font-size:2.6rem">🎬</span></div>
-          <div class="work-body">
-            <div class="work-tags"><span>Premiere Pro</span><span>Video</span><span>Motion</span><span>Meta</span></div>
-            <h3><a href="case-study.html">Earth Moon Magick — Ads &amp; Social</a></h3>
-            <p>Meta video ads from UGC and product footage, plus graphic design and feed and story content for Instagram.</p>
-            <p class="work-metric"><span>Freelance</span> Dec 2025 – Present</p>
-          </div>
-        </article>
-        <article class="work-card">
-          <div class="work-thumb"><span style="font-size:2.6rem">🤟</span></div>
-          <div class="work-body">
-            <div class="work-tags"><span>Python</span><span>TensorFlow</span><span>Android</span></div>
-            <h3>FSLAMES</h3>
-            <p>Filipino Sign Language Automated Mobile Education System, an app with ML-based sign recognition. I worked on the backend and documentation, designed app interfaces, and helped collect the training dataset.</p>
-            <p class="work-metric"><span>Thesis</span> 2025 – 2026</p>
-          </div>
-        </article>
-        <article class="work-card">
-          <div class="work-thumb"><span style="font-size:2.6rem">🍱</span></div>
-          <div class="work-body">
-            <div class="work-tags"><span>Kotlin</span><span>Firebase</span><span>Android</span></div>
-            <h3>U-Eat Ordering System</h3>
-            <p>An Android canteen-ordering app for customers and stall owners. I prototyped the interfaces in Kotlin and prepared the technical documentation.</p>
-            <p class="work-metric"><span>Group project</span> 2024 – 2025</p>
-          </div>
-        </article>
+      <div class="fw" data-reveal>
+      <div class="fw-tabs" role="tablist" aria-label="Featured work">
+        <button class="fw-tab is-active" type="button" role="tab" id="fwt-01" aria-controls="fwp-01" aria-selected="true"><span class="fw-num">/ 01</span><span class="fw-name">Earth Moon Magick</span><span class="fw-dot" aria-hidden="true"></span></button>
+        <button class="fw-tab" type="button" role="tab" id="fwt-02" aria-controls="fwp-02" aria-selected="false" tabindex="-1"><span class="fw-num">/ 02</span><span class="fw-name">FSLAMES</span><span class="fw-dot" aria-hidden="true"></span></button>
+        <button class="fw-tab" type="button" role="tab" id="fwt-03" aria-controls="fwp-03" aria-selected="false" tabindex="-1"><span class="fw-num">/ 03</span><span class="fw-name">Graphic design</span><span class="fw-dot" aria-hidden="true"></span></button>
+        <a class="fw-tab fw-all" href="work.html"><span class="fw-num">/ 04</span><span class="fw-name">See all works →</span><span class="fw-short">All →</span></a>
       </div>
-      <div class="work-more">
-        <span class="sbtn"><span class="gbtn-wrap"><a class="gbtn" href="work.html"><span class="gbtn-sheen"></span><span class="gbtn-ring"></span><span class="gbtn-label">View all projects →</span></a><span class="gbtn-aura" aria-hidden="true"></span></span><a class="crbtn" href="work.html"><span class="crbtn-clip"><span class="crbtn-spot" aria-hidden="true"></span><span class="crbtn-label">View all projects →</span></span></a></span>
+      <div class="fw-panel" id="fwp-01" role="tabpanel" aria-labelledby="fwt-01">
+        <div class="fw-head">
+          <h3 class="fw-title fw-in">Earth Moon Magick: storefront &amp; ad creative</h3>
+          <div class="fw-meta fw-in"><span>Dec 2025 – Present</span><span class="fw-type">Freelance · Shopify &amp; video</span><div class="fw-tags" aria-label="Tags"><div class="fw-tags-track"><span>Shopify</span><span>GemPages</span><span>Liquid</span><span>Premiere Pro</span><span>Meta ads</span><span>Instagram</span><span aria-hidden="true"></span><span aria-hidden="true">Shopify</span><span aria-hidden="true">GemPages</span><span aria-hidden="true">Liquid</span><span aria-hidden="true">Premiere Pro</span><span aria-hidden="true">Meta ads</span><span aria-hidden="true">Instagram</span></div></div></div>
+        </div>
+        <hr class="fw-rule">
+        <div class="fw-body">
+          <div class="fw-desc fw-in"><p>Shopify Technical Specialist and Video Editor for a spiritual and wellness brand: blog and product pages in GemPages, theme edits, product listings, and the video ads and graphics that bring people to the store.</p><a class="fw-link" href="case-study.html">View project <span aria-hidden="true">→</span></a></div>
+          <div class="fw-media fw-main fw-in"><img src="media/emm-site.webp" alt="Earth Moon Magick homepage" loading="lazy"></div>
+          <div class="fw-side fw-in"><div class="fw-media"><video src="media/emm-ad.mp4" poster="media/emm-ad.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Video ad edited for Earth Moon Magick"></video></div></div>
+        </div>
       </div>
+      <div class="fw-panel" id="fwp-02" role="tabpanel" aria-labelledby="fwt-02" hidden>
+        <div class="fw-head">
+          <h3 class="fw-title fw-in">FSLAMES: learning Filipino Sign Language</h3>
+          <div class="fw-meta fw-in"><span>2025 – 2026</span><span class="fw-type">Thesis · Mobile &amp; machine learning</span><div class="fw-tags" aria-label="Tags"><div class="fw-tags-track"><span>Flutter</span><span>Python</span><span>MediaPipe</span><span>TensorFlow</span><span>Backend</span><span>UI design</span><span aria-hidden="true"></span><span aria-hidden="true">Flutter</span><span aria-hidden="true">Python</span><span aria-hidden="true">MediaPipe</span><span aria-hidden="true">TensorFlow</span><span aria-hidden="true">Backend</span><span aria-hidden="true">UI design</span></div></div></div>
+        </div>
+        <hr class="fw-rule">
+        <div class="fw-body">
+          <div class="fw-desc fw-in"><p>A mobile education app with ML-based sign recognition. I handled backend development and documentation, designed app interfaces, assisted Android development, and helped collect the training dataset.</p><a class="fw-link" href="https://github.com/mr-dj123/fslames-mobile-app" target="_blank" rel="noopener">View on GitHub <span aria-hidden="true">→</span></a></div>
+          <div class="fw-media fw-main fw-in"><div class="fw-ph"><div><b>🤟</b>[FSLAMES app screenshots]</div></div></div>
+          <div class="fw-side fw-in"><div class="fw-media"><div class="fw-ph"><div>[Screenshot]</div></div></div><div class="fw-media"><div class="fw-ph"><div>[Screenshot]</div></div></div></div>
+        </div>
+      </div>
+      <div class="fw-panel" id="fwp-03" role="tabpanel" aria-labelledby="fwt-03" hidden>
+        <div class="fw-head">
+          <h3 class="fw-title fw-in">Ad &amp; social graphic design</h3>
+          <div class="fw-meta fw-in"><span>Trial &amp; test work</span><span class="fw-type">Graphic design · Instagram</span><div class="fw-tags" aria-label="Tags"><div class="fw-tags-track"><span>Ad design</span><span>Instagram posts</span><span>Product ads</span><span>Typography</span><span>Layout</span><span aria-hidden="true"></span><span aria-hidden="true">Ad design</span><span aria-hidden="true">Instagram posts</span><span aria-hidden="true">Product ads</span><span aria-hidden="true">Typography</span><span aria-hidden="true">Layout</span></div></div></div>
+        </div>
+        <hr class="fw-rule">
+        <div class="fw-body">
+          <div class="fw-desc fw-in"><p>Trial designs for a crystal brand and a test offer post for an AI agency: bold headlines, product focus, benefit callouts and a clear call to action.</p><a class="fw-link" href="work.html#designs">View designs <span aria-hidden="true">→</span></a></div>
+          <div class="fw-media fw-main fw-in"><img src="media/design-amethyst.webp" alt="Amethyst lamp ad design" loading="lazy"></div>
+          <div class="fw-side fw-in"><div class="fw-media"><img src="media/design-bracelet.webp" alt="Protection bracelet ad design" loading="lazy"></div><div class="fw-media"><img src="media/design-agency.webp" alt="AI agency offer post design" loading="lazy"></div></div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Project folder: files rise and spread as you scroll; click one to open it ===== -->
+  <section class="pf" id="projects" aria-labelledby="pf-title">
+    <div class="pf-stage">
+      <div class="pf-head">
+        <h2 class="pf-word" id="pf-title">things I’ve<br>built</h2>
+        <p class="pf-intro">Freelance work, my thesis and app projects. Open a file to see more.</p>
+      </div>
+      <div class="pf-cards">
+        <a class="pf-card" href="work.html" data-project="emm-store" aria-haspopup="dialog"><strong>Earth Moon Magick</strong><span class="pf-sub">Storefront · Freelance</span><hr><p>Blog and product pages in GemPages, theme edits and product listings on Shopify.</p><span class="pf-open">Open file</span></a>
+        <a class="pf-card" href="work.html" data-project="emm-ads" aria-haspopup="dialog"><strong>Video ads</strong><span class="pf-sub">Earth Moon Magick · Freelance</span><hr><p>Meta video ads from UGC and product footage, plus graphics for Instagram.</p><span class="pf-open">Open file</span></a>
+        <a class="pf-card" href="work.html" data-project="designs" aria-haspopup="dialog"><strong>Graphic design</strong><span class="pf-sub">Trial &amp; test work</span><hr><p>Product ads for a crystal brand and an offer post for an AI agency.</p><span class="pf-open">Open file</span></a>
+        <a class="pf-card" href="work.html" data-project="fslames" aria-haspopup="dialog"><strong>FSLAMES</strong><span class="pf-sub">Thesis · 2025 – 2026</span><hr><p>A Filipino Sign Language learning app with ML sign recognition.</p><span class="pf-open">Open file</span></a>
+        <a class="pf-card" href="work.html" data-project="ueat" aria-haspopup="dialog"><strong>U-Eat Ordering System</strong><span class="pf-sub">Group project · 2024 – 2025</span><hr><p>Android canteen ordering: a customer app and a stall owner app.</p><span class="pf-open">Open file</span></a>
+        <a class="pf-card" href="work.html" data-project="counter" aria-haspopup="dialog"><strong>Simple Counter</strong><span class="pf-sub">School activity · 2025</span><hr><p>A Kotlin counter app with plus, minus, reset and quit.</p><span class="pf-open">Open file</span></a>
+      </div>
+      <p class="pf-hint">Tap a file to open it</p>
     </div>
   </section>
 
@@ -550,7 +572,7 @@
         </div>
       </div>
       <div class="tm-quote">
-        <p>“Hi, I’m Kimberly. I’m a Computer Science student and quick learner who loves troubleshooting systems and helping people solve everyday digital problems. I bring hands-on experience in Shopify storefront support, ad video editing and digital asset pipelines, and I’m looking for an OJT opportunity where I can contribute and keep learning.”</p>
+        <p>“Hi, I’m Kimberly. I’m a Computer Science student and quick learner who loves troubleshooting systems and helping people solve everyday digital problems. I bring hands-on experience in Shopify storefront support, ad video editing and digital asset pipelines, and I’m open for work where I can contribute and keep learning.”</p>
       </div>
       <div class="tm-more">
         <span class="sbtn"><span class="gbtn-wrap"><a class="gbtn" href="about.html"><span class="gbtn-sheen"></span><span class="gbtn-ring"></span><span class="gbtn-label">Learn more about me →</span></a><span class="gbtn-aura" aria-hidden="true"></span></span><a class="crbtn" href="about.html"><span class="crbtn-clip"><span class="crbtn-spot" aria-hidden="true"></span><span class="crbtn-label">Learn more about me →</span></span></a></span>
@@ -603,7 +625,7 @@
           </svg>
         </div>
 
-        <h2 class="cta2-title" id="cta2-title">Looking for an OJT intern<br class="cta2-br"> who can code and create?</h2>
+        <h2 class="cta2-title" id="cta2-title">Looking for someone<br class="cta2-br"> who can code and create?</h2>
         <p class="cta2-sub">I’m open to working in web development, IT support, and creative or digital marketing roles. Tell me a little about the role and I’ll get back to you 😉</p>
 
         <div class="cta2-cta">
@@ -633,6 +655,7 @@
   <script src="site-buttons.js"></script>
   <script src="site-techstack.js"></script>
   <script src="site-cta.js"></script>
+  <script src="site-showcase.js"></script>
 
   <script>
     // Mobile nav

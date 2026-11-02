@@ -33,3 +33,9 @@ If a page swaps content without scrolling (like the Work page tabs), call
 Every `<video>` autoplays muted and loops, and only plays while it's on screen. This comes from
 `site-motion.js`, so just add the video tag. Keep video files in `media/`, compressed under 25 MB
 (Cloudflare Pages' per-file limit). YouTube embeds use `?autoplay=1&mute=1` in their link.
+
+### Homepage showcase
+
+`site-showcase.css` + `site-showcase.js` run the homepage's featured-work folder (3 project tabs plus
+"See all works"), the scroll-driven project folder, and the project pop-up. To add a project, add
+an entry to `PROJECTS` in `site-showcase.js` and a `.pf-card` with a matching `data-project` in `index.html`.

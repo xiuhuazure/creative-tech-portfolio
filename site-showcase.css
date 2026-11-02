@@ -253,6 +253,8 @@
 .pt-card .pt-sub { font-size: 0.86rem; color: #6f675a; }
 .pt-card hr { width: 100%; border: 0; border-top: 1px solid rgba(43, 36, 24, 0.12); margin: 10px 0 8px; }
 .pt-card p { font-size: 0.9rem; line-height: 1.55; color: #4c4438; margin: 0; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.pt-card .pt-go { margin-top: 14px; font: 600 0.78rem/1 ui-monospace, Menlo, Consolas, monospace; letter-spacing: 0.06em; text-transform: uppercase; color: #9c7620; }
+.pt-card.is-link p { -webkit-line-clamp: 3; }
 .pt-strip { /* frosted strip over the bottom of the cards, with the folder's name */
   position: absolute; left: 0; right: 0; bottom: 0; height: 64px; display: flex; align-items: center; justify-content: center;
   background: linear-gradient(180deg, rgba(255, 238, 200, 0.35), rgba(222, 182, 96, 0.55));

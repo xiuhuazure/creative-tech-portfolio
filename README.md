@@ -39,3 +39,8 @@ Every `<video>` autoplays muted and loops, and only plays while it's on screen. 
 `site-showcase.css` + `site-showcase.js` run the homepage's featured-work folder (3 project tabs plus
 "See all works"), the scroll-driven project folder, and the project pop-up. To add a project, add
 an entry to `PROJECTS` in `site-showcase.js` and a `.pf-card` with a matching `data-project` in `index.html`.
+
+### Cache-busting
+
+The shared `site-*.css` / `site-*.js` links carry a version (`?v=20261102b`). When you change one of those
+files, bump the version on every page so visitors' browsers fetch the new file instead of a saved old copy.

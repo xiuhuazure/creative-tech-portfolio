@@ -210,6 +210,12 @@
     .work-body h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; }
     .work-body p { color: var(--text-dim); margin-top: 6px; font-size: 0.92rem; }
     .work-metric { margin-top: 14px; font-weight: 600; font-size: 0.9rem; }
+    .work-card { display: flex; flex-direction: column; }
+    .work-body { flex: 1; display: flex; flex-direction: column; }
+    .card-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 16px; }
+    .card-btn { display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 7px 16px; border-radius: 999px; border: 1px solid var(--border-gold); background: transparent; color: var(--gold); font: inherit; font-size: 0.84rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: background .2s, color .2s, border-color .2s; }
+    .card-btn svg { width: 15px; height: 15px; }
+    .card-btn:hover { background: var(--gold); border-color: var(--gold); color: #fffdf8; }
     .work-metric span { color: var(--gold); font-family: var(--serif); font-size: 1.1rem; }
     .is-hidden { display: none; }
 
@@ -251,7 +257,8 @@
     /* Graphic Design tab */
     .designs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 28px; }
     .design { display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .design-frame { width: 100%; aspect-ratio: 4 / 5; display: grid; place-items: center; overflow: hidden; border-radius: 10px; border: 1px dashed var(--border-gold); background: linear-gradient(135deg, var(--thumb-a), var(--thumb-b)); color: var(--text-mute); font-style: italic; font-size: 0.9rem; box-shadow: 0 16px 34px rgba(60, 40, 10, 0.12); transition: transform .3s ease; }
+    .designs-sub { color: var(--text-dim); margin-top: 8px; }
+    .design-frame { width: 100%; aspect-ratio: 1 / 1; display: grid; place-items: center; overflow: hidden; border-radius: 10px; border: 1px dashed var(--border-gold); background: linear-gradient(135deg, var(--thumb-a), var(--thumb-b)); color: var(--text-mute); font-style: italic; font-size: 0.9rem; box-shadow: 0 16px 34px rgba(60, 40, 10, 0.12); transition: transform .3s ease; }
     .design:hover .design-frame { transform: translateY(-6px); }
     .design-frame img { width: 100%; height: 100%; object-fit: cover; }
     .design h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; margin-top: 18px; }
@@ -399,8 +406,8 @@
     <div class="folder">
     <div class="filters" id="filters" role="tablist" aria-label="Filter work">
       <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" aria-controls="workPage">All</button>
-      <button class="filter-btn" data-filter="video" role="tab" aria-selected="false" aria-controls="workPage">Videos</button>
       <button class="filter-btn" data-filter="apps" role="tab" aria-selected="false" aria-controls="workPage">Apps</button>
+      <button class="filter-btn" data-filter="video" role="tab" aria-selected="false" aria-controls="workPage">Videos</button>
       <button class="filter-btn" data-filter="design" role="tab" aria-selected="false" aria-controls="workPage">Graphic Design</button>
     </div>
     <div class="folder-page" id="workPage" role="tabpanel">
@@ -486,9 +493,7 @@
         <div class="vid">
           <div class="phone">
             <div class="phone-screen">
-              <!-- Replace this placeholder with your video, e.g.:
-                   <video src="videos/short-5.mp4" poster="videos/short-5.jpg" muted loop playsinline controls></video> -->
-              <div><div class="play" aria-hidden="true">▶</div><small>Meta ad</small></div>
+              <video src="media/emm-ad.mp4" poster="media/emm-ad.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Meta video ad edited for Earth Moon Magick"></video>
             </div>
           </div>
           <h3 class="ph">[Video title]</h3>
@@ -515,7 +520,7 @@
           <div class="laptop">
             <div class="laptop-lid">
               <div class="phone-screen">
-                <iframe src="https://www.youtube-nocookie.com/embed/UuSD2wWrmIg" title="Soul Oracle Kickstarter launch VSL" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/UuSD2wWrmIg?autoplay=1&amp;mute=1&amp;playsinline=1&amp;loop=1&amp;playlist=UuSD2wWrmIg" title="Soul Oracle Kickstarter launch VSL" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
               </div>
             </div>
             <div class="laptop-base"></div>
@@ -528,7 +533,7 @@
           <div class="laptop">
             <div class="laptop-lid">
               <div class="phone-screen">
-                <iframe src="https://www.youtube-nocookie.com/embed/5hth3DJgcEw" title="Dr. Saru Bala’s most viewed" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/5hth3DJgcEw?autoplay=1&amp;mute=1&amp;playsinline=1&amp;loop=1&amp;playlist=5hth3DJgcEw" title="Dr. Saru Bala’s most viewed" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
               </div>
             </div>
             <div class="laptop-base"></div>
@@ -547,48 +552,29 @@
       <div class="vids-head">
         <span class="kicker">Graphic design</span>
         <h2 id="designsTitle">Design work</h2>
+        <p class="designs-sub">Trial and test designs for brands and an agency.</p>
       </div>
       <div class="designs-grid">
         <div class="design">
-          <div class="design-frame"><span>[Design 1]</span></div>
-          <h3 class="ph">[Design title]</h3>
-          <p class="ph">[What it is, who it was for, and the tools you used.]</p>
-          <a class="vid-link" href="" target="_blank" rel="noopener">View design →</a>
+          <div class="design-frame"><img src="media/design-amethyst.webp" alt="Ad design for an amethyst lamp: headline, product shot and four benefit callouts" loading="lazy"></div>
+          <h3>Amethyst lamp ad</h3>
+          <p>A trial design for a crystal brand: a product ad with a bold headline and benefit callouts.</p>
         </div>
         <div class="design">
-          <div class="design-frame"><span>[Design 2]</span></div>
-          <h3 class="ph">[Design title]</h3>
-          <p class="ph">[What it is, who it was for, and the tools you used.]</p>
-          <a class="vid-link" href="" target="_blank" rel="noopener">View design →</a>
+          <div class="design-frame"><img src="media/design-bracelet.webp" alt="Ad design for a protection bracelet: headline “Your mute button for toxic people” and three benefit icons" loading="lazy"></div>
+          <h3>Protection bracelet ad</h3>
+          <p>A trial design for the same brand: a punchy headline ad with three benefit icons.</p>
         </div>
         <div class="design">
-          <div class="design-frame"><span>[Design 3]</span></div>
-          <h3 class="ph">[Design title]</h3>
-          <p class="ph">[What it is, who it was for, and the tools you used.]</p>
-          <a class="vid-link" href="" target="_blank" rel="noopener">View design →</a>
-        </div>
-        <div class="design">
-          <div class="design-frame"><span>[Design 4]</span></div>
-          <h3 class="ph">[Design title]</h3>
-          <p class="ph">[What it is, who it was for, and the tools you used.]</p>
-          <a class="vid-link" href="" target="_blank" rel="noopener">View design →</a>
-        </div>
-        <div class="design">
-          <div class="design-frame"><span>[Design 5]</span></div>
-          <h3 class="ph">[Design title]</h3>
-          <p class="ph">[What it is, who it was for, and the tools you used.]</p>
-          <a class="vid-link" href="" target="_blank" rel="noopener">View design →</a>
-        </div>
-        <div class="design">
-          <div class="design-frame"><span>[Design 6]</span></div>
-          <h3 class="ph">[Design title]</h3>
-          <p class="ph">[What it is, who it was for, and the tools you used.]</p>
-          <a class="vid-link" href="" target="_blank" rel="noopener">View design →</a>
+          <div class="design-frame"><img src="media/design-agency.webp" alt="Text-led social post for an AI agency: “You only need 48 hours”, join today for $37" loading="lazy"></div>
+          <h3>AI agency offer post</h3>
+          <p>A test design for an AI agency: a text-led offer post with a clear call to action.</p>
         </div>
       </div>
     </section>
 
     <!-- ===== Work grid ===== -->
+    <svg class="ts-sprite" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden"><symbol id="gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol></svg>
     <div class="work-grid" id="workGrid">
       <article class="work-card" data-cat="summary">
         <div class="work-thumb"><span style="font-size:2.4rem">🎬</span></div>
@@ -597,15 +583,17 @@
           <h3>Meta video ads</h3>
           <p>Video ads built from UGC and product footage, with dynamic B-roll, motion text and audio design.</p>
           <p class="work-metric"><span>Earth Moon Magick</span> freelance</p>
+          <div class="card-actions"><button type="button" class="card-btn" data-goto="video">See videos →</button></div>
         </div>
       </article>
       <article class="work-card" data-cat="summary">
         <div class="work-thumb"><span style="font-size:2.4rem">✨</span></div>
         <div class="work-body">
-          <div class="work-tags"><span>Motion</span><span>Design</span><span>Instagram</span></div>
-          <h3>Ad creatives &amp; social</h3>
-          <p>On-brand static and motion graphics for Meta campaigns sized for mobile, plus Instagram feed and story assets, copy and scheduling.</p>
+          <div class="work-tags"><span>Design</span><span>Instagram</span></div>
+          <h3>Graphic design &amp; social</h3>
+          <p>On-brand graphic design for Instagram, plus feed and story assets and scheduling.</p>
           <p class="work-metric"><span>Earth Moon Magick</span> freelance</p>
+          <div class="card-actions"><button type="button" class="card-btn" data-goto="design">See designs →</button></div>
         </div>
       </article>
       <article class="work-card" data-cat="apps">
@@ -615,6 +603,7 @@
           <h3>FSLAMES</h3>
           <p>Filipino Sign Language Automated Mobile Education System. I handled backend development and documentation, designed app interfaces, assisted Android development, and helped collect the ML training dataset.</p>
           <p class="work-metric"><span>Thesis</span> 2025 – 2026</p>
+          <div class="card-actions"><a class="card-btn" href="https://github.com/mr-dj123/fslames-mobile-app" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#gh"/></svg> View on GitHub</a></div>
         </div>
       </article>
       <article class="work-card" data-cat="apps">
@@ -624,15 +613,17 @@
           <h3>U-Eat Ordering System</h3>
           <p>An Android canteen-ordering app supporting customer orders and stall-owner order management. I prototyped interfaces in Kotlin and prepared technical documentation.</p>
           <p class="work-metric"><span>Group project</span> 2024 – 2025</p>
+          <div class="card-actions"><a class="card-btn" href="https://github.com/mr-dj123/UEatUser" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#gh"/></svg> User app</a><a class="card-btn" href="https://github.com/mr-dj123/UEatStallOwner" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#gh"/></svg> Stall owner app</a></div>
         </div>
       </article>
       <article class="work-card" data-cat="apps">
-        <div class="work-thumb work-thumb-shot"><img src="counter-app.webp" alt="Simple Counter app on an Android phone: Counter title, minus and plus buttons, Reset and Quit" loading="lazy"></div>
+        <div class="work-thumb work-thumb-shot"><img src="media/counter-app.webp" alt="Simple Counter app on an Android phone: Counter title, minus and plus buttons, Reset and Quit" loading="lazy"></div>
         <div class="work-body">
           <div class="work-tags"><span>Kotlin</span><span>Android Studio</span></div>
           <h3>Simple Counter Android App</h3>
           <p>A counter app with plus, minus and reset buttons and a quit option, built in Kotlin in Android Studio.</p>
           <p class="work-metric"><span>School activity</span> 2025</p>
+          <div class="card-actions"><a class="card-btn" href="https://github.com/xiuhuazure/Simple-Counter-App" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#gh"/></svg> View on GitHub</a></div>
         </div>
       </article>
     </div>
@@ -712,6 +703,15 @@
     }
     // The video section starts hidden, so arm its pieces for scrolling once the page is ready
     if (motionOK) document.querySelectorAll('.vids-head, .vids-sub, .vid, .design').forEach(el => tabIO.observe(el));
+
+    // Card buttons that jump to another tab (See videos / See designs)
+    document.querySelectorAll('.card-btn[data-goto]').forEach(b => b.addEventListener('click', () => {
+      const tab = document.querySelector('.filter-btn[data-filter="' + b.dataset.goto + '"]');
+      if (!tab) return;
+      tab.click();
+      const top = document.querySelector('.folder').getBoundingClientRect().top + scrollY - 90;
+      scrollTo({ top, behavior: 'smooth' });
+    }));
 
     // Solid header while it's over the white folder page
     (function(){

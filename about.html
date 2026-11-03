@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — Kimberly D. Yu</title>
-  <meta name="description" content="About Kimberly D. Yu: how I work, what I value, and who I am outside of work." />
+  <meta name="description" content="About Kimberly D. Yu: a Computer Science student in the Philippines working in Shopify, video ads and Android apps, open for remote work." />
   <script>
     (function(){ try { var t = sessionStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch(e){} })();
   </script>
@@ -15,12 +15,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site-footer.css?v=20261103j" />
-  <link rel="stylesheet" href="site-motion.css?v=20261103j" />
-  <link rel="stylesheet" href="site-buttons.css?v=20261103j" />
-  <link rel="stylesheet" href="site-cursor.css?v=20261103j" />
-  <link rel="stylesheet" href="site-showcase.css?v=20261103j" />
-  <link rel="stylesheet" href="site-certs.css?v=20261103j" />
+  <link rel="stylesheet" href="site-footer.css?v=20261103k" />
+  <link rel="stylesheet" href="site-motion.css?v=20261103k" />
+  <link rel="stylesheet" href="site-buttons.css?v=20261103k" />
+  <link rel="stylesheet" href="site-cursor.css?v=20261103k" />
+  <link rel="stylesheet" href="site-showcase.css?v=20261103k" />
+  <link rel="stylesheet" href="site-certs.css?v=20261103k" />
   <style>
     :root {
       --ink: #0c0f12; --ink-2: #12171c; --surface: #171d23; --surface-2: #1c242b;
@@ -220,6 +220,36 @@
     @keyframes tm-marquee-left { 0% { transform: translateX(0); } 100% { transform: translateX(-25%); } }
     @keyframes tm-marquee-right { 0% { transform: translateX(-25%); } 100% { transform: translateX(0); } }
     @media (prefers-reduced-motion: reduce) { .tm-track.left, .tm-track.right { animation: none; } }
+    .about-photo.has-img { padding: 0; border: 0; overflow: hidden; border-radius: 4px; }
+    .about-photo.has-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* Outside work: small illustrated strip at the bottom of each card */
+    .hb .col { display: flex; flex-direction: column; }
+    .hb-art { margin-top: auto; padding-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .hb-game { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 12px; border-radius: 10px; box-sizing: border-box;
+      background: linear-gradient(120deg, var(--g2), color-mix(in srgb, var(--g2) 60%, #000)); border: 1px solid color-mix(in srgb, var(--g1) 45%, transparent); }
+    .hb-game .g-mark { width: 28px; height: 28px; flex: none; display: grid; place-items: center; border-radius: 50%; color: var(--g2);
+      background: radial-gradient(circle at 35% 30%, #fff, var(--g1)); font-size: 0.95rem; font-weight: 700; }
+    .hb-game .g-name { font-family: var(--serif); font-size: 1.02rem; font-weight: 600; color: #f4efe4; letter-spacing: 0.01em; }
+    .hb-lang { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); font-size: 0.86rem; color: var(--text); }
+    .hb-lang .flag { width: 30px; height: 20px; flex: none; border-radius: 3px; overflow: hidden; box-shadow: 0 0 0 1px rgba(0,0,0,0.25); }
+    .hb-lang .flag svg { display: block; width: 100%; height: 100%; }
+    .hb-shelf { align-items: flex-end; justify-content: space-between; flex-wrap: nowrap; gap: 14px; }
+    .hb-books { display: flex; align-items: flex-end; gap: 4px; }
+    .hb-book { width: 26px; height: 92px; border-radius: 3px 3px 2px 2px; background: linear-gradient(90deg, rgba(0,0,0,0.25), transparent 30%, rgba(255,255,255,0.08) 60%, rgba(0,0,0,0.2)), var(--b);
+      box-shadow: inset 0 6px 0 rgba(217,181,106,0.5), inset 0 -6px 0 rgba(217,181,106,0.5); display: grid; place-items: center; overflow: hidden; }
+    .hb-book:nth-child(2) { height: 104px; } .hb-book:nth-child(3) { height: 84px; transform: rotate(6deg); transform-origin: bottom left; }
+    .hb-book span { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.6rem; color: rgba(244,220,154,0.85); white-space: nowrap; }
+    .hb-discs { display: flex; }
+    .hb-disc { position: relative; width: 74px; height: 74px; flex: none; }
+    .hb-disc + .hb-disc { margin-left: -26px; margin-top: 18px; }
+    .hb-disc .vinyl { position: absolute; inset: 0; border-radius: 50%; z-index: 0;
+      background: radial-gradient(circle, var(--gold) 0 11%, #111 12% 14%, transparent 15%), repeating-radial-gradient(circle, #151515 0 2px, #222 2px 3px); transition: transform .6s ease; }
+    .hb-disc .cover { position: absolute; z-index: 1; left: -10px; top: 6px; width: 62px; height: 62px; border-radius: 4px; display: grid; place-items: center; text-align: center; overflow: hidden;
+      font-size: 0.55rem; line-height: 1.2; padding: 4px; box-sizing: border-box; color: var(--text-mute); background: var(--surface-2); border: 1px dashed var(--border-gold); }
+    .hb-disc .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .hb-disc .cover:has(img) { border: 0; }
+    .hb .col:hover .hb-disc .vinyl { transform: translateX(16px) rotate(200deg); }
+    @media (prefers-reduced-motion: reduce) { .hb .col:hover .hb-disc .vinyl { transform: translateX(16px); } }
   </style>
 </head>
 <body>
@@ -317,16 +347,16 @@
     <div class="wrap about-grid">
       <div data-reveal-group>
         <div class="case-tags"><span>About me</span></div>
-        <h1 class="ph">[Your headline: who you are, in one line]</h1>
-        <p class="lede ph">[A short intro, 2–3 sentences: what you do, what drives you, and what you’re looking for right now.]</p>
+        <h1>A Computer Science student who builds, edits and troubleshoots.</h1>
+        <p class="lede">I work across code and creative: Shopify storefronts, Meta video ads and Android apps, with a growing focus on front-end development and cybersecurity. I like figuring out why something isn’t working and leaving it better than I found it. Right now I’m open for remote work.</p>
         <div class="case-meta">
-          <div class="m"><div class="k">Based in</div><div class="v ph">[Location]</div></div>
-          <div class="m"><div class="k">Studying</div><div class="v ph">[Course / school]</div></div>
-          <div class="m"><div class="k">Currently</div><div class="v ph">[Current role]</div></div>
-          <div class="m"><div class="k">Open to</div><div class="v ph">[Roles you want]</div></div>
+          <div class="m"><div class="k">Based in</div><div class="v">Philippines · remote</div></div>
+          <div class="m"><div class="k">Studying</div><div class="v">BS Computer Science</div></div>
+          <div class="m"><div class="k">Currently</div><div class="v">Shopify Technical Specialist</div></div>
+          <div class="m"><div class="k">Open to</div><div class="v">Web, IT &amp; creative roles</div></div>
         </div>
       </div>
-      <div class="about-photo" aria-label="Photo placeholder" data-reveal>[Photo of you: candid or at work]</div>
+      <div class="about-photo has-img" data-reveal><img src="media/portrait.jpg" alt="Illustrated portrait of Kimberly"></div>
     </div>
   </section>
 
@@ -334,9 +364,9 @@
   <div class="results">
     <div class="wrap">
       <div class="results-grid" data-reveal-group>
-        <div class="result"><div class="n grad">[Fact]</div><div class="l ph">[A quick fact about you]</div></div>
-        <div class="result"><div class="n grad">[Fact]</div><div class="l ph">[A quick fact about you]</div></div>
-        <div class="result"><div class="n grad">[Fact]</div><div class="l ph">[A quick fact about you]</div></div>
+        <div class="result"><div class="n grad">6</div><div class="l">Certifications in IT, data science and cybersecurity</div></div>
+        <div class="result"><div class="n grad">2024</div><div class="l">Freelancing since</div></div>
+        <div class="result"><div class="n grad">Remote</div><div class="l">Available for work anywhere</div></div>
       </div>
     </div>
   </div>
@@ -345,16 +375,16 @@
   <div class="wrap">
     <article class="measure" data-reveal-group>
       <span class="kicker"><span class="zh">我</span> My story</span>
-      <h2 class="ph">[How I got here]</h2>
-      <p class="ph">[How you got into tech and creative work: the moment it clicked, what you studied, and how it led to what you do now.]</p>
-      <p class="ph">[Where you’re headed: what you want to learn or build next, and why.]</p>
+      <h2>How I got here</h2>
+      <p>I started freelancing in 2024 while studying Computer Science, editing videos for a medical content agency. That led to Earth Moon Magick, a spiritual and wellness brand, where I now work as a Shopify Technical Specialist and video editor: building pages in GemPages, making theme edits in Liquid, HTML and CSS, and cutting the Meta ads that bring people to the store.</p>
+      <p>At school I’ve built Android apps and worked on FSLAMES, a Filipino Sign Language learning app with machine-learning sign recognition. Alongside that I’ve been earning certifications in IT, data science and cybersecurity. Next, I want to grow as a front-end developer and go deeper into security.</p>
 
       <span class="kicker"><span class="zh">道</span> How I work</span>
       <h2>My work style</h2>
       <div class="deliv" data-reveal-group>
-        <div class="col"><div class="num">01</div><h4 class="ph">[Trait]</h4><p class="ph">[How this shows up in your work, with a small example.]</p></div>
-        <div class="col"><div class="num">02</div><h4 class="ph">[Trait]</h4><p class="ph">[How this shows up in your work, with a small example.]</p></div>
-        <div class="col"><div class="num">03</div><h4 class="ph">[Trait]</h4><p class="ph">[How this shows up in your work, with a small example.]</p></div>
+        <div class="col"><div class="num">01</div><h4>Quick learner</h4><p>I pick up new tools on the job and back them with courses: six certifications so far, earned while studying and freelancing.</p></div>
+        <div class="col"><div class="num">02</div><h4>Problem solver</h4><p>I like tracking down why something broke, whether it’s a theme edit, an app bug or a video export, and fixing it at the root.</p></div>
+        <div class="col"><div class="num">03</div><h4>Code and creative</h4><p>I move between storefront code and ad edits, so I think about how things work and how they look at the same time.</p></div>
       </div>
 
       <div class="quote">
@@ -383,10 +413,12 @@
 
       <span class="kicker"><span class="zh">趣</span> Outside work</span>
       <h2>When I’m not working</h2>
-      <div class="deliv" data-reveal-group>
-        <div class="col"><div class="num">01</div><h4 class="ph">[Hobby or interest]</h4><p class="ph">[A line about it.]</p></div>
-        <div class="col"><div class="num">02</div><h4 class="ph">[Hobby or interest]</h4><p class="ph">[A line about it.]</p></div>
-        <div class="col"><div class="num">03</div><h4 class="ph">[Hobby or interest]</h4><p class="ph">[A line about it.]</p></div>
+      <!-- Hobbies. Books & music are placeholders: swap a [Book title] for the title, and put an album or single cover image
+           inside a disc's <span class="cover"> as <img src="media/…" alt="">. Game names only (no account names or IDs). -->
+      <div class="deliv hb" data-reveal-group>
+        <div class="col"><div class="num">01</div><h4>Gaming</h4><p>Open-world adventures I keep coming back to.</p><div class="hb-art hb-games"><span class="hb-game" style="--g1:#c9a24a;--g2:#3b5c8a"><span class="g-mark" aria-hidden="true">✦</span><span class="g-name">Genshin Impact</span></span><span class="hb-game" style="--g1:#9fd3e6;--g2:#1d3a4a"><span class="g-mark" aria-hidden="true">≋</span><span class="g-name">Wuthering Waves</span></span><span class="hb-game" style="--g1:#e0c38a;--g2:#5a2e22"><span class="g-mark" aria-hidden="true">☵</span><span class="g-name">Where Winds Meet</span></span></div></div>
+        <div class="col"><div class="num">02</div><h4>Languages</h4><p>I speak English and Filipino, and I’m learning Chinese.</p><div class="hb-art hb-langs"><span class="hb-lang"><span class="flag"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.3" width="30" height="1.54"/><rect y="15.4" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/><g fill="#fff"><circle cx="2.2" cy="2" r=".6"/><circle cx="5.4" cy="2" r=".6"/><circle cx="8.6" cy="2" r=".6"/><circle cx="11" cy="2" r=".6"/><circle cx="3.8" cy="4.2" r=".6"/><circle cx="7" cy="4.2" r=".6"/><circle cx="10" cy="4.2" r=".6"/><circle cx="2.2" cy="6.4" r=".6"/><circle cx="5.4" cy="6.4" r=".6"/><circle cx="8.6" cy="6.4" r=".6"/><circle cx="11" cy="6.4" r=".6"/><circle cx="3.8" cy="8.6" r=".6"/><circle cx="7" cy="8.6" r=".6"/><circle cx="10" cy="8.6" r=".6"/></g></svg></span>English</span><span class="hb-lang"><span class="flag"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="10" fill="#0038a8"/><rect y="10" width="30" height="10" fill="#ce1126"/><path d="M0 0 L17.3 10 L0 20z" fill="#fff"/><g fill="#fcd116"><circle cx="5.8" cy="10" r="2"/><path d="M5.8 6.4v7.2M2.2 10h7.2M3.25 7.45l5.1 5.1M8.35 7.45l-5.1 5.1" stroke="#fcd116" stroke-width=".7"/><circle cx="1.6" cy="2.6" r=".75"/><circle cx="1.6" cy="17.4" r=".75"/><circle cx="14.4" cy="10" r=".75"/></g></svg></span>Filipino</span><span class="hb-lang"><span class="flag"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#de2910"/><g fill="#ffde00"><path d="M5 2.2l1.06 3.27h3.44l-2.78 2.02 1.06 3.27L5 8.74l-2.78 2.02 1.06-3.27L.5 5.47h3.44z"/><circle cx="10.2" cy="2" r=".75"/><circle cx="12.2" cy="4" r=".75"/><circle cx="12.2" cy="7" r=".75"/><circle cx="10.2" cy="9" r=".75"/></g></svg></span>Chinese</span></div></div>
+        <div class="col"><div class="num">03</div><h4>Books &amp; music</h4><p class="ph">[A line about what you read and listen to.]</p><div class="hb-art hb-shelf"><span class="hb-books"><span class="hb-book" style="--b:#7e2b22" aria-hidden="true"><span>[Book title]</span></span><span class="hb-book" style="--b:#24324a" aria-hidden="true"><span>[Book title]</span></span><span class="hb-book" style="--b:#1f4a3c" aria-hidden="true"><span>[Book title]</span></span></span><span class="hb-discs"><span class="hb-disc" aria-hidden="true"><span class="cover">[Album cover]</span><span class="vinyl"></span></span><span class="hb-disc" aria-hidden="true"><span class="cover">[Album cover]</span><span class="vinyl"></span></span></span></div></div>
       </div>
     </article>
   </div>
@@ -478,11 +510,11 @@
       <span><a href="index.html#contact">Contact</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
     </div></div>
   </footer>
-  <script src="site-footer.js?v=20261103j"></script>
-  <script src="site-motion.js?v=20261103j"></script>
-  <script src="site-buttons.js?v=20261103j"></script>
-  <script src="site-showcase.js?v=20261103j"></script>
-  <script src="site-certs.js?v=20261103j"></script>
+  <script src="site-footer.js?v=20261103k"></script>
+  <script src="site-motion.js?v=20261103k"></script>
+  <script src="site-buttons.js?v=20261103k"></script>
+  <script src="site-showcase.js?v=20261103k"></script>
+  <script src="site-certs.js?v=20261103k"></script>
 
   <script>
     const toggle = document.getElementById('navToggle');

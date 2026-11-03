@@ -14,19 +14,43 @@
   if (!sec) return;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Details shown in the pop-up. Placeholders for now. */
-  var ph = function (n, badge) {
+  /* Details shown in the pop-up, newest first (keep the same order as the holders in about.html).
+     The Cisco entries still need their course names, dates and certificate images. */
+  var credly = function (id) { return ['Verify on Credly ↗', 'https://www.credly.com/badges/' + id + '/public_url']; };
+  var cisco = function (when, id) {
     return {
-      title: '[Certificate name ' + n + ']', date: '[Issuer] · [Month Year]',
-      tech: badge ? ['[Skill]', '[Skill]', 'Credly badge'] : ['[Skill]', '[Skill]'],
-      desc: '[What this certification covers and what you learned.] [Credential ID]' + (badge ? ' [The Verify on Credly link goes here.]' : ''),
-      media: { ph: badge ? '🏅' : '📜', text: '[Certificate image]' },
-      links: []
+      title: '[Cisco course name]', date: 'Cisco · ' + when,
+      tech: ['[Skill]', '[Skill]', 'Credly badge'],
+      desc: '[What this Cisco course covers.] Verified with a Credly badge.',
+      media: { ph: '🏅', text: '[Cisco certificate image]' },
+      links: [credly(id)]
     };
   };
   var CERTS = {
-    'cert-1': ph(1, true), 'cert-2': ph(2, false), 'cert-3': ph(3, true),
-    'cert-4': ph(4, false), 'cert-5': ph(5, true), 'cert-6': ph(6, false)
+    'ibm-itf': {
+      title: 'Information Technology Fundamentals', date: 'IBM SkillsBuild · Oct 31, 2026',
+      tech: ['IT fundamentals', 'Hardware & software', 'Networking', 'Credly badge'],
+      desc: 'An IBM SkillsBuild course on the foundations of information technology: hardware, software, networking and security basics. Verified with a Credly badge.',
+      media: { img: 'media/certs/ibm-it-fundamentals.jpg', alt: 'IBM SkillsBuild Information Technology Fundamentals certificate for Kimberly D. Yu', contain: true },
+      links: [credly('5d70aee7-7b52-41b3-a010-70b1a3233019')]
+    },
+    'cisco-mar26': cisco('Mar 2026', 'd03be857-67bd-4bcf-8a60-c1e86cf9d7b8'),
+    'thm-presec': {
+      title: 'Pre Security Learning Path', date: 'TryHackMe · Feb 22, 2026',
+      tech: ['Networking', 'How the web works', 'Linux', 'Windows'],
+      desc: 'TryHackMe’s Pre Security learning path (19 hours 10 minutes): the groundwork for cyber security, from networking and how the web works to Linux and Windows basics. Credential ID THM-6OBCH9ERDF.',
+      media: { img: 'media/certs/thm-pre-security.jpg', alt: 'TryHackMe Pre Security learning path certificate for Kimberly D. Yu', contain: true },
+      links: [['View certificate ↗', 'https://tryhackme.com/certificate/THM-6OBCH9ERDF']]
+    },
+    'thm-aoc25': {
+      title: 'Advent of Cyber 2025', date: 'TryHackMe · Dec 28, 2025',
+      tech: ['Cyber security', '24 challenges'],
+      desc: 'Completed all 24 cyber security challenges in TryHackMe’s Advent of Cyber 2025, showing an understanding of cyber security fundamentals. Credential ID THM-WLI1VROODS.',
+      media: { img: 'media/certs/thm-advent-of-cyber-2025.jpg', alt: 'TryHackMe Advent of Cyber 2025 certificate for Kimberly D. Yu', contain: true },
+      links: [['View certificate ↗', 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-WLI1VROODS.pdf']]
+    },
+    'cisco-dec25a': cisco('Dec 2025', '301d9f3b-a84b-4a72-b63c-51c9bd489dd8'),
+    'cisco-dec25b': cisco('Dec 2025', '2068e9f7-bd38-4be8-b898-90f148040809')
   };
   if (window.siteProjects) window.siteProjects.add(CERTS);
 

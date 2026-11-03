@@ -16,13 +16,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site-footer.css?v=20261103g" />
-  <link rel="stylesheet" href="site-motion.css?v=20261103g" />
-  <link rel="stylesheet" href="site-buttons.css?v=20261103g" />
-  <link rel="stylesheet" href="site-cursor.css?v=20261103g" />
-  <link rel="stylesheet" href="site-techstack.css?v=20261103g" />
-  <link rel="stylesheet" href="site-cta.css?v=20261103g" />
-  <link rel="stylesheet" href="site-showcase.css?v=20261103g" />
+  <link rel="stylesheet" href="site-footer.css?v=20261103h" />
+  <link rel="stylesheet" href="site-motion.css?v=20261103h" />
+  <link rel="stylesheet" href="site-buttons.css?v=20261103h" />
+  <link rel="stylesheet" href="site-cursor.css?v=20261103h" />
+  <link rel="stylesheet" href="site-techstack.css?v=20261103h" />
+  <link rel="stylesheet" href="site-cta.css?v=20261103h" />
+  <link rel="stylesheet" href="site-showcase.css?v=20261103h" />
   <style>
     /* ============ THEME TOKENS ============ */
     :root {
@@ -145,7 +145,7 @@
     .tm-phone { width: 28px; height: 28px; margin-left: 4px; border-radius: 50%; display: grid; place-items: center; color: var(--gold); background: rgba(212,175,98,0.10); border: 1px solid var(--border-gold); transition: background .2s, color .2s; cursor: pointer; }
     .tm-phone:hover { background: var(--gold); color: var(--btn-ink); }
     .tm-quote { max-width: 560px; margin: 0 auto 28px; text-align: center; padding: 0 16px; }
-    .tm-more { text-align: center; margin: 0 0 48px; }
+    .tm-more { text-align: center; margin: 0; }
     .tm-quote p { font-family: var(--serif); font-style: italic; font-size: clamp(1.1rem, 2.3vw, 1.45rem); line-height: 1.6; color: var(--text-dim); }
     .tm-rows { display: flex; flex-direction: column; gap: 12px; }
     .tm-row { position: relative; display: flex; overflow: hidden; }
@@ -167,7 +167,7 @@
       .tm-chip .pic { width: 52px; height: 52px; font-size: 1.4rem; }
       .tm-chip .lbl { font-size: 1.75rem; }
     }
-    @media (min-width: 768px) { .tm { padding: 110px 0 120px; } .tm-chip .lbl { font-size: 2rem; } }
+    @media (min-width: 768px) { .tm { padding: 110px 0 100px; } .tm-chip .lbl { font-size: 2rem; } }
     @media (prefers-reduced-motion: reduce) { .tm-track.left, .tm-track.right { animation: none; } }
 
     /* ---------- Header ---------- */
@@ -629,10 +629,6 @@
       </div>
     </div>
     <!-- Full-bleed marquee rows (chips generated x4 in JS for a seamless -25% loop) -->
-    <div class="tm-rows">
-      <div class="tm-row"><div class="tm-track left" id="tmRow1"></div></div>
-      <div class="tm-row"><div class="tm-track right" id="tmRow2"></div></div>
-    </div>
   </section>
 
   <!-- ===== CTA (adapted from "CTA 01 Velara"; styles in site-cta.css) ===== -->
@@ -700,12 +696,12 @@
       <span><a href="mailto:kimberlydacucoyu@gmail.com">Email</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
     </div></div>
   </footer>
-  <script src="site-footer.js?v=20261103g"></script>
-  <script src="site-motion.js?v=20261103g"></script>
-  <script src="site-buttons.js?v=20261103g"></script>
-  <script src="site-techstack.js?v=20261103g"></script>
-  <script src="site-cta.js?v=20261103g"></script>
-  <script src="site-showcase.js?v=20261103g"></script>
+  <script src="site-footer.js?v=20261103h"></script>
+  <script src="site-motion.js?v=20261103h"></script>
+  <script src="site-buttons.js?v=20261103h"></script>
+  <script src="site-techstack.js?v=20261103h"></script>
+  <script src="site-cta.js?v=20261103h"></script>
+  <script src="site-showcase.js?v=20261103h"></script>
 
   <script>
     // Mobile nav
@@ -759,21 +755,6 @@
       els.forEach(function(el){ io.observe(el); });
     })();
 
-    // Testimonial marquees — each row holds its set exactly 4x so translateX(-25%) loops seamlessly
-    (function(){
-      var r1 = document.getElementById('tmRow1'), r2 = document.getElementById('tmRow2');
-      if (!r1 || !r2) return;
-      // [icon id, colour ('' = theme colour), label]: brand logos from the Tech stack sprite, line icons for skills
-      var ROW1 = [['ts-shopify','#7AB55C','Shopify Liquid'],['li-gempages','','GemPages'],['ts-html5','#E34F26','HTML &amp; CSS'],['ts-javascript','#F7DF1E','JavaScript'],['ts-python','#3776AB','Python'],['ts-openjdk','','Java'],['ts-php','#777BB4','PHP'],['ts-kotlin','#7F52FF','Kotlin'],['ts-firebase','#DD2C00','Firebase'],['ts-mysql','#4479A1','MySQL'],['ts-git','#F03C2E','Git']];
-      var ROW2 = [['li-video','','Video Editing'],['li-motion','','Motion Graphics'],['li-design','','Graphic Design'],['ts-meta','#0467DF','Meta Business Suite'],['ts-android','#3DDC84','Android Development'],['li-tools','','Technical Troubleshooting'],['li-search','','Research &amp; Investigation']];
-      function fill(el, items){
-        var html = '';
-        for (var k = 0; k < 4; k++) for (var i = 0; i < items.length; i++)
-          html += '<div class="tm-chip"' + (k ? ' aria-hidden="true"' : '') + '><div class="pic"><svg aria-hidden="true"' + (items[i][1] ? ' style="color:' + items[i][1] + '"' : '') + '><use href="#' + items[i][0] + '"/></svg></div><span class="lbl">' + items[i][2] + '</span></div>';
-        el.innerHTML = html;
-      }
-      fill(r1, ROW1); fill(r2, ROW2);
-    })();
   </script>
 
 </body>

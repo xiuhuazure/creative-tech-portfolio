@@ -180,6 +180,9 @@
     el.addEventListener('click', function (e) { if (PROJECTS[el.dataset.project]) { e.preventDefault(); openProject(el.dataset.project, el); } });
   });
 
+  // Other pages (like About's certificate holders) add their own entries and reuse this dialog
+  window.siteProjects = { add: function (o) { for (var k in o) PROJECTS[k] = o[k]; }, open: openProject };
+
   /* ------------------------------ 3. Folder dialog ------------------------------
      Clicking a folder opens its files as a row of cards in a glass panel in the middle of the
      screen (scrolls sideways). It grows out of the folder and shrinks back into it on close.

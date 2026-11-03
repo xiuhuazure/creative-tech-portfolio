@@ -7,7 +7,6 @@
   var host = document.getElementById('site-footer');
   if (!host) return;
 
-  var EMAIL = 'kimberlydacucoyu@gmail.com';
   var LINKEDIN = 'https://linkedin.com/in/kimberly-d-yu';
   var GITHUB = 'https://github.com/xiuhuazure';
   // Map pin (Feather icon via Streamline), drawn in the text colour
@@ -76,7 +75,7 @@
       '<div class="vf-grid">' +
         col('Navigate', [['Home', 'index.html'], ['Works', 'index.html#work'], ['Case study', 'case-study.html'], ['About me', 'about.html']]) +
         col('What I do', [['Shopify & Liquid', 'index.html#services'], ['Front-end development', 'index.html#services'], ['Cybersecurity', 'index.html#services'], ['Android apps', 'index.html#services'], ['Video ads & motion graphics', 'index.html#services'], ['Graphic design', 'index.html#services']]) +
-        col('Contact', [['Email', 'mailto:' + EMAIL], ['LinkedIn', LINKEDIN], ['GitHub', GITHUB], ['Pangasinan, Philippines', null, 'pin']]) +
+        col('Contact', [['Contact form', 'index.html#contact'], ['LinkedIn', LINKEDIN], ['GitHub', GITHUB], ['Philippines', null, 'pin'], ['Available for remote work', null]]) +
       '</div>' +
     '</div>' +
     '<div class="vf-bar"><div class="vf-bar-in">' +

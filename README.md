@@ -42,7 +42,7 @@ an entry to `PROJECTS` in `site-showcase.js` and a `.pf-card` with a matching `d
 
 ### Cache-busting
 
-The shared `site-*.css` / `site-*.js` links carry a version (`?v=20261103i`). When you change one of those
+The shared `site-*.css` / `site-*.js` links carry a version (`?v=20261103j`). When you change one of those
 files, bump the version on every page so visitors' browsers fetch the new file instead of a saved old copy.
 
 ### Certifications & badges (About page)
@@ -50,3 +50,8 @@ files, bump the version on every page so visitors' browsers fetch the new file i
 `site-certs.css` + `site-certs.js` run the certificate holders. Each holder is one certificate; give it a Credly
 badge by keeping the `.ch-badge` on its cover (or put `<img>` of the badge inside it). Fill in the pop-up details in
 `CERTS` in `site-certs.js` (it reuses the project pop-up, so `site-showcase.js` must load first).
+
+### Contact form
+
+The homepage form sends through Web3Forms. Put the free access key from https://web3forms.com in `FORM_KEY`
+in `site-cta.js`; until then the form falls back to opening the visitor's email app.

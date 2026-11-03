@@ -176,3 +176,8 @@
   .cta2 .cta2-form { padding: 16px; }
   .cta2-row { grid-template-columns: 1fr; }
 }
+
+/* Contact form status line */
+.cta2-status { min-height: 1.4em; margin: 10px 0 0; font-size: 0.92rem; color: var(--c-text); opacity: 0.85; }
+.cta2-status.is-ok { color: #6fbf73; opacity: 1; }
+.cta2-status.is-err { color: #e0675a; opacity: 1; }

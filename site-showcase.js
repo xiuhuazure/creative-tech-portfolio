@@ -67,7 +67,7 @@
       title: 'FSLAMES', date: '2025 – 2026 · Thesis',
       tech: ['Flutter', 'Python', 'MediaPipe', 'TensorFlow'],
       desc: 'Filipino Sign Language Automated Mobile Education System: a learning app with ML-based sign recognition. I handled backend development and documentation, designed app interfaces, assisted Android development, and helped collect the training dataset.',
-      media: { ph: '🤟', text: '[FSLAMES app screenshots]' },
+      media: { img: 'media/fslames-mockup-dark.jpg', imgLight: 'media/fslames-mockup-light.jpg', alt: 'FSLAMES app screens: practice map, sign feedback and home' },
       links: [['View on GitHub ↗', 'https://github.com/mr-dj123/fslames-mobile-app']]
     },
     'ueat': { tall: true,
@@ -120,6 +120,7 @@
     var m = p.media, media;
     if (m.yt) media = '<iframe src="https://www.youtube-nocookie.com/embed/' + m.yt + '?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0" title="' + esc(p.title) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
     else if (m.video) media = '<video src="' + m.video + '" poster="' + (m.poster || '') + '" autoplay muted loop playsinline aria-label="' + esc(p.title) + '"></video>';
+    else if (m.img && m.imgLight) media = '<img class="only-dark" src="' + m.img + '" alt="' + esc(m.alt || p.title) + '"><img class="only-light" src="' + m.imgLight + '" alt="' + esc(m.alt || p.title) + '">'; // follows the site theme
     else if (m.img) media = '<img src="' + m.img + '" alt="' + esc(m.alt || p.title) + '">';
     else media = '<div class="fw-ph"><div><b>' + m.ph + '</b>' + esc(m.text) + '</div></div>';
     // Landscape and square content: picture on top, details below. Portrait (video ads, phone apps): side by side.

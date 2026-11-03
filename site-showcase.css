@@ -8,6 +8,11 @@
    Behaviour lives in site-showcase.js.
    ========================================================================= */
 
+/* Images with a dark and a light version: show the one that matches the site theme */
+.only-light { display: none !important; }
+:root[data-theme="light"] .only-light { display: block !important; }
+:root[data-theme="light"] .only-dark { display: none !important; }
+
 /* ------------------------------ 1. Featured work ------------------------------
    Three pages that stack as you scroll (the logic of wildyriftian.com's featured works): each page
    sticks just under the header and the next one slides up over it. Each page's soft tab sits one
@@ -368,3 +373,4 @@
   .pd.is-wide .pd-desc { -webkit-line-clamp: 5; }
 }
 @media (prefers-reduced-motion: reduce) { .pd .pd-in { animation: none; } }
+.pf-thumb img.only-dark, .pf-thumb img.only-light { object-position: 50% 45%; } /* show the middle phone */

@@ -15,10 +15,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site-footer.css?v=20261102g" />
-  <link rel="stylesheet" href="site-motion.css?v=20261102g" />
-  <link rel="stylesheet" href="site-buttons.css?v=20261102g" />
-  <link rel="stylesheet" href="site-cursor.css?v=20261102g" />
+  <link rel="stylesheet" href="site-footer.css?v=20261103a" />
+  <link rel="stylesheet" href="site-motion.css?v=20261103a" />
+  <link rel="stylesheet" href="site-buttons.css?v=20261103a" />
+  <link rel="stylesheet" href="site-cursor.css?v=20261103a" />
+  <link rel="stylesheet" href="site-showcase.css?v=20261103a" />
+  <link rel="stylesheet" href="site-certs.css?v=20261103a" />
   <style>
     :root {
       --ink: #0c0f12; --ink-2: #12171c; --surface: #171d23; --surface-2: #1c242b;
@@ -370,6 +372,55 @@
     </article>
   </div>
 
+  <!-- ===== Certifications & badges: one certificate holder per certificate, with its Credly badge
+       pinned to the cover when it has one (styles/behaviour in site-certs.css/js; details in CERTS in site-certs.js).
+       To use a logo instead of the issuer's name, swap <span class="ch-issuer">…</span> for <img class="ch-logo" src="…" alt="…">. ===== -->
+  <section class="cb" id="certs" aria-labelledby="cb-title">
+    <h2 class="cb-word" id="cb-title">certifications<br>&amp; badges</h2>
+    <div class="cb-grid">
+      <button class="ch is-top" type="button" data-cert="cert-1" data-tilt="12" style="--tilt: 12" aria-haspopup="dialog" aria-label="[Issuer]: [Certificate name 1], with a Credly badge">
+        <span class="ch-move">
+          <span class="ch-paper" aria-hidden="true"><span class="ch-paper-in"><span class="k">Certificate</span><span class="t">[Certificate name]</span><span class="l"></span><span class="s">[Awarded to Kimberly D. Yu]</span><span class="seal"></span></span></span>
+          <span class="ch-cover" aria-hidden="true"><span class="ch-lining"></span><span class="ch-face"><span class="ch-inner"><span class="ch-kicker">Certificate</span><span class="ch-issuer">[Issuer]</span><span class="ch-rule"></span><span class="ch-name">[Certificate name 1]</span></span></span></span>
+          <span class="ch-badge" aria-hidden="true"><span>Credly badge</span></span>
+        </span>
+      </button>
+      <button class="ch is-ink" type="button" data-cert="cert-2" data-tilt="-10" style="--tilt: -10" aria-haspopup="dialog" aria-label="[Issuer]: [Certificate name 2]">
+        <span class="ch-move">
+          <span class="ch-paper" aria-hidden="true"><span class="ch-paper-in"><span class="k">Certificate</span><span class="t">[Certificate name]</span><span class="l"></span><span class="s">[Awarded to Kimberly D. Yu]</span><span class="seal"></span></span></span>
+          <span class="ch-cover" aria-hidden="true"><span class="ch-lining"></span><span class="ch-face"><span class="ch-inner"><span class="ch-kicker">Certificate</span><span class="ch-issuer">[Issuer]</span><span class="ch-rule"></span><span class="ch-name">[Certificate name 2]</span></span></span></span>
+        </span>
+      </button>
+      <button class="ch is-jade" type="button" data-cert="cert-3" data-tilt="8" style="--tilt: 8" aria-haspopup="dialog" aria-label="[Issuer]: [Certificate name 3], with a Credly badge">
+        <span class="ch-move">
+          <span class="ch-paper" aria-hidden="true"><span class="ch-paper-in"><span class="k">Certificate</span><span class="t">[Certificate name]</span><span class="l"></span><span class="s">[Awarded to Kimberly D. Yu]</span><span class="seal"></span></span></span>
+          <span class="ch-cover" aria-hidden="true"><span class="ch-lining"></span><span class="ch-face"><span class="ch-inner"><span class="ch-kicker">Certificate</span><span class="ch-issuer">[Issuer]</span><span class="ch-rule"></span><span class="ch-name">[Certificate name 3]</span></span></span></span>
+          <span class="ch-badge" aria-hidden="true"><span>Credly badge</span></span>
+        </span>
+      </button>
+      <button class="ch" type="button" data-cert="cert-4" data-tilt="-7" style="--tilt: -7" aria-haspopup="dialog" aria-label="[Issuer]: [Certificate name 4]">
+        <span class="ch-move">
+          <span class="ch-paper" aria-hidden="true"><span class="ch-paper-in"><span class="k">Certificate</span><span class="t">[Certificate name]</span><span class="l"></span><span class="s">[Awarded to Kimberly D. Yu]</span><span class="seal"></span></span></span>
+          <span class="ch-cover" aria-hidden="true"><span class="ch-lining"></span><span class="ch-face"><span class="ch-inner"><span class="ch-kicker">Certificate</span><span class="ch-issuer">[Issuer]</span><span class="ch-rule"></span><span class="ch-name">[Certificate name 4]</span></span></span></span>
+        </span>
+      </button>
+      <button class="ch is-ink" type="button" data-cert="cert-5" data-tilt="9" style="--tilt: 9" aria-haspopup="dialog" aria-label="[Issuer]: [Certificate name 5], with a Credly badge">
+        <span class="ch-move">
+          <span class="ch-paper" aria-hidden="true"><span class="ch-paper-in"><span class="k">Certificate</span><span class="t">[Certificate name]</span><span class="l"></span><span class="s">[Awarded to Kimberly D. Yu]</span><span class="seal"></span></span></span>
+          <span class="ch-cover" aria-hidden="true"><span class="ch-lining"></span><span class="ch-face"><span class="ch-inner"><span class="ch-kicker">Certificate</span><span class="ch-issuer">[Issuer]</span><span class="ch-rule"></span><span class="ch-name">[Certificate name 5]</span></span></span></span>
+          <span class="ch-badge" aria-hidden="true"><span>Credly badge</span></span>
+        </span>
+      </button>
+      <button class="ch is-bottom is-jade" type="button" data-cert="cert-6" data-tilt="0" style="--tilt: 0" aria-haspopup="dialog" aria-label="[Issuer]: [Certificate name 6]">
+        <span class="ch-move">
+          <span class="ch-paper" aria-hidden="true"><span class="ch-paper-in"><span class="k">Certificate</span><span class="t">[Certificate name]</span><span class="l"></span><span class="s">[Awarded to Kimberly D. Yu]</span><span class="seal"></span></span></span>
+          <span class="ch-cover" aria-hidden="true"><span class="ch-lining"></span><span class="ch-face"><span class="ch-inner"><span class="ch-kicker">Certificate</span><span class="ch-issuer">[Issuer]</span><span class="ch-rule"></span><span class="ch-name">[Certificate name 6]</span></span></span></span>
+        </span>
+      </button>
+    </div>
+    <p class="cb-hint">Hover or tap a certificate to open it.</p>
+  </section>
+
   <!-- ===== CTA ===== -->
   <div class="wrap">
     <div class="case-cta" data-reveal>
@@ -394,9 +445,11 @@
       <span><a href="mailto:kimberlydacucoyu@gmail.com">Email</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
     </div></div>
   </footer>
-  <script src="site-footer.js?v=20261102g"></script>
-  <script src="site-motion.js?v=20261102g"></script>
-  <script src="site-buttons.js?v=20261102g"></script>
+  <script src="site-footer.js?v=20261103a"></script>
+  <script src="site-motion.js?v=20261103a"></script>
+  <script src="site-buttons.js?v=20261103a"></script>
+  <script src="site-showcase.js?v=20261103a"></script>
+  <script src="site-certs.js?v=20261103a"></script>
 
   <script>
     const toggle = document.getElementById('navToggle');

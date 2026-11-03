@@ -1,0 +1,107 @@
+/* =========================================================================
+   Certifications & badges (About page): the "things I've built" idea with
+   certificate holders instead of folders. Behaviour in site-certs.js; the
+   pop-up is the shared project dialog from site-showcase.css/js.
+   ========================================================================= */
+.cb {
+  --cb-word-rgb: 184, 142, 62;                  /* darker gold title in dark mode */
+  --cb-gold: #d9b56a; --cb-gold-hi: #f4dc9a; --cb-gold-lo: #9c7426;
+  position: relative; z-index: 1; padding: 10vh 16px 12vh; scroll-margin-top: 74px;
+}
+:root[data-theme="light"] .cb { --cb-word-rgb: 43, 36, 24; }
+/* big title pinned behind the holders; starts solid, fades as they slide over it */
+.cb-word {
+  position: sticky; top: 160px; z-index: 0; margin: 0;
+  font-family: var(--serif); font-weight: 700; font-size: clamp(3rem, 10vw, 8.6rem); line-height: 0.92; letter-spacing: -0.03em;
+  text-align: center; color: rgba(var(--cb-word-rgb), var(--cb-a, 0.13)); user-select: none;
+}
+.cb-grid {
+  position: relative; z-index: 1; display: grid; grid-template-columns: repeat(2, auto); justify-content: center;
+  gap: 56px 110px; margin: 6vh auto 0;
+}
+.ch.is-top, .ch.is-bottom { grid-column: 1 / -1; justify-self: center; }
+.cb-hint { position: relative; z-index: 1; text-align: center; color: var(--text-mute); font-size: 0.85rem; margin: 8vh 0 0; }
+
+/* ---- one certificate holder ---- */
+.ch {
+  --leather-a: #7e2b22; --leather-b: #4f1712;     /* cinnabar leather */
+  position: relative; display: block; width: min(440px, calc(100vw - 48px)); aspect-ratio: 4 / 3; padding: 0; border: 0; background: none;
+  container-type: inline-size; cursor: pointer; color: inherit; font: inherit; text-align: center;
+}
+.ch.is-ink  { --leather-a: #24324a; --leather-b: #121a28; }  /* ink-blue leather */
+.ch.is-jade { --leather-a: #1f4a3c; --leather-b: #0f2a21; }  /* jade leather */
+.ch:focus-visible { outline: 3px solid var(--gold); outline-offset: 8px; border-radius: 18px; }
+.ch-move { position: relative; display: block; width: 100%; height: 100%; perspective: 1400px; transform: rotate(calc(var(--tilt, 0) * 1deg)); will-change: transform; }
+.ch-move::before { /* soft shadow under the holder */
+  content: ""; position: absolute; left: 8%; right: 8%; bottom: -5%; height: 18%; border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35); filter: blur(14px);
+}
+/* the certificate inside (seen when the cover swings open) */
+.ch-paper {
+  position: absolute; inset: 0; display: grid; place-items: center; box-sizing: border-box; padding: 7cqw;
+  border-radius: 3cqw; background: linear-gradient(160deg, #fffdf6, #f3ead6); color: #4a3d26;
+  box-shadow: inset 0 0 0 1.4cqw #f8f1e2, inset 0 0 0 calc(1.4cqw + 1px) rgba(156, 116, 38, 0.55), 0 1cqw 3cqw rgba(0, 0, 0, 0.25);
+}
+.ch-paper-in { display: grid; gap: 1.6cqw; justify-items: center; }
+.ch-paper .k { font: 600 2.4cqw/1 var(--sans); letter-spacing: 0.3em; text-transform: uppercase; color: #9c7426; }
+.ch-paper .t { font: 700 6cqw/1.1 var(--serif); }
+.ch-paper .l { width: 46cqw; height: 1px; background: rgba(74, 61, 38, 0.3); }
+.ch-paper .s { font: 400 2.8cqw/1.3 var(--sans); color: #7a6a4c; font-style: italic; }
+.ch-paper .seal { width: 10cqw; height: 10cqw; border-radius: 50%; margin-top: 1cqw; background: radial-gradient(circle at 35% 30%, #e0473a, #9e2a20 70%); box-shadow: 0 0 0 0.8cqw rgba(158, 42, 32, 0.25); }
+/* the cover: leather, gold foil frame, stitching, issuer in the middle; hinged on the left */
+.ch-cover {
+  position: absolute; inset: 0; display: block; border-radius: 3cqw; transform-origin: 0 50%; transform-style: preserve-3d;
+  transition: transform .7s cubic-bezier(.3, 1.2, .5, 1);
+}
+.ch-face, .ch-lining { position: absolute; inset: 0; border-radius: inherit; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.ch-face {
+  display: grid; place-items: center; box-sizing: border-box; padding: 9cqw;
+  background:
+    radial-gradient(120% 90% at 30% 20%, rgba(255, 255, 255, 0.10), transparent 55%),
+    repeating-radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 3px),
+    linear-gradient(150deg, var(--leather-a), var(--leather-b));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 -1.5cqw 4cqw rgba(0, 0, 0, 0.35), 0 1.4cqw 4cqw rgba(0, 0, 0, 0.35);
+}
+.ch-face::before { /* stitching */
+  content: ""; position: absolute; inset: 2.2cqw; border-radius: 2cqw; border: 1px dashed rgba(244, 220, 154, 0.35);
+}
+.ch-face::after { /* gold foil frame */
+  content: ""; position: absolute; inset: 5cqw; border-radius: 1cqw;
+  border: 1.5px solid var(--cb-gold); box-shadow: inset 0 0 0 3px transparent, inset 0 0 0 4px rgba(217, 181, 106, 0.6);
+}
+.ch-inner { position: relative; z-index: 1; display: grid; gap: 2.2cqw; justify-items: center; }
+.ch-kicker { font: 600 2.5cqw/1 var(--sans); letter-spacing: 0.34em; text-transform: uppercase; color: var(--cb-gold); }
+.ch-issuer {
+  font: 700 7.6cqw/1.05 var(--serif); letter-spacing: 0.02em;
+  background: linear-gradient(180deg, var(--cb-gold-hi), var(--cb-gold) 55%, var(--cb-gold-lo)); -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+}
+.ch-logo { max-width: 46cqw; max-height: 16cqw; object-fit: contain; filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.3)); }
+.ch-rule { width: 22cqw; height: 1px; background: linear-gradient(90deg, transparent, var(--cb-gold), transparent); }
+.ch-name { font: 500 2.9cqw/1.3 var(--sans); color: rgba(244, 220, 154, 0.8); max-width: 60cqw; }
+.ch-lining { /* inside of the cover, seen when it swings open */
+  transform: rotateY(180deg); background: linear-gradient(150deg, var(--leather-b), var(--leather-a));
+  box-shadow: inset 0 0 0 2.4cqw rgba(0, 0, 0, 0.18);
+}
+/* the badge pinned to the cover (when the certificate has one) */
+.ch-badge {
+  position: absolute; z-index: 3; top: -4.5cqw; right: -3.5cqw; width: 19cqw; aspect-ratio: 1; display: grid; place-items: center;
+  clip-path: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+  background: linear-gradient(160deg, var(--cb-gold-hi), var(--cb-gold) 45%, var(--cb-gold-lo));
+  transition: transform .5s cubic-bezier(.3, 1.4, .5, 1);
+  filter: drop-shadow(0 1cqw 1.5cqw rgba(0, 0, 0, 0.35));
+}
+.ch-badge::before { content: ""; position: absolute; inset: 1.4cqw; clip-path: inherit; background: linear-gradient(160deg, #1d2730, #10161c); }
+.ch-badge span { position: relative; font: 600 2.3cqw/1.15 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--cb-gold-hi); padding: 0 3cqw; }
+.ch-badge img { position: relative; width: 82%; height: 82%; object-fit: contain; }
+
+/* opened (hover, focus, or centred on touch screens): the cover swings open and the badge lifts */
+.ch.is-open .ch-cover { transform: rotateY(-62deg); }
+.ch.is-open .ch-badge { transform: translate(-1cqw, -1.5cqw) rotate(8deg) scale(1.06); }
+
+@media (max-width: 1020px) {
+  .cb-grid { grid-template-columns: auto; gap: 64px; }
+  .ch.is-top, .ch.is-bottom { grid-column: auto; }
+}
+@media (max-width: 760px) { .cb-word { top: 18vh; } }
+@media (prefers-reduced-motion: reduce) { .ch-cover, .ch-badge { transition: none; } }

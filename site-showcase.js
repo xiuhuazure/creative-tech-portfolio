@@ -14,7 +14,7 @@
       media: { img: 'media/emm-site.webp', alt: 'Earth Moon Magick homepage' },
       links: [['Read the case study', 'case-study.html'], ['Visit the store ↗', 'https://earthmoonmagick.com/']]
     },
-    'emm-ads': {
+    'emm-ads': { tall: true,
       title: 'Earth Moon Magick — Video ads', date: 'Dec 2025 – Present · Freelance',
       tech: ['Premiere Pro', 'Meta Business Suite', 'Canva'],
       desc: 'Meta video ads built from UGC and product footage, with B-roll, motion text and audio design, plus graphic design and feed and story content for Instagram.',
@@ -63,21 +63,21 @@
       media: { img: 'media/portfolio-site.jpg', alt: 'Kimberly Yu portfolio homepage' },
       links: []
     },
-    'fslames': {
+    'fslames': { tall: true,
       title: 'FSLAMES', date: '2025 – 2026 · Thesis',
       tech: ['Flutter', 'Python', 'MediaPipe', 'TensorFlow'],
       desc: 'Filipino Sign Language Automated Mobile Education System: a learning app with ML-based sign recognition. I handled backend development and documentation, designed app interfaces, assisted Android development, and helped collect the training dataset.',
       media: { ph: '🤟', text: '[FSLAMES app screenshots]' },
       links: [['View on GitHub ↗', 'https://github.com/mr-dj123/fslames-mobile-app']]
     },
-    'ueat': {
+    'ueat': { tall: true,
       title: 'U-Eat Ordering System', date: '2024 – 2025 · Group project',
       tech: ['Kotlin', 'Firebase', 'Android Studio'],
       desc: 'An Android canteen-ordering system with two apps: one for customers to order and one for stall owners to manage orders. I prototyped the interfaces in Kotlin and prepared the technical documentation.',
       media: { ph: '🍱', text: '[U-Eat app screenshots]' },
       links: [['User app ↗', 'https://github.com/mr-dj123/UEatUser'], ['Stall owner app ↗', 'https://github.com/mr-dj123/UEatStallOwner']]
     },
-    'counter': {
+    'counter': { tall: true,
       title: 'Simple Counter Android App', date: '2025 · School activity',
       tech: ['Kotlin', 'Android Studio'],
       desc: 'A counter app with plus, minus and reset buttons and a quit option, built in Kotlin in Android Studio.',
@@ -122,6 +122,8 @@
     else if (m.video) media = '<video src="' + m.video + '" poster="' + (m.poster || '') + '" autoplay muted loop playsinline aria-label="' + esc(p.title) + '"></video>';
     else if (m.img) media = '<img src="' + m.img + '" alt="' + esc(m.alt || p.title) + '">';
     else media = '<div class="fw-ph"><div><b>' + m.ph + '</b>' + esc(m.text) + '</div></div>';
+    // Landscape and square content: picture on top, details below. Portrait (video ads, phone apps): side by side.
+    dlg.classList.toggle('is-wide', !p.tall);
     dlg.innerHTML =
       '<button class="pd-x" type="button" aria-label="Close">✕</button>' +
       '<div class="pd-inner">' +

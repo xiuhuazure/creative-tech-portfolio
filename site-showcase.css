@@ -318,6 +318,19 @@
 .pd .pd-in { animation: fw-rise .5s cubic-bezier(.2, .7, .2, 1) both; }
 .pd .pd-in:nth-child(2) { animation-delay: .05s; } .pd .pd-in:nth-child(3) { animation-delay: .1s; }
 .pd .pd-in:nth-child(4) { animation-delay: .15s; } .pd .pd-in:nth-child(5) { animation-delay: .2s; }
+/* Wide layout (landscape/square content): the picture fills the top, details sit in two columns underneath */
+.pd.is-wide { width: min(1040px, calc(100vw - 32px)); max-height: min(92vh, 880px); }
+.pd.is-wide .pd-inner { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; height: min(92vh, 880px); }
+.pd.is-wide .pd-media.is-contain img { padding: 24px; }
+.pd.is-wide .pd-info {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); grid-template-rows: auto auto 1fr; column-gap: 44px;
+  padding: 24px 32px 22px;
+}
+.pd.is-wide .pd-date, .pd.is-wide .pd-title, .pd.is-wide .pd-tech { grid-column: 1; }
+.pd.is-wide .pd-title { margin: 8px 0 12px; }
+.pd.is-wide .pd-tech { margin-bottom: 0; align-self: start; }
+.pd.is-wide .pd-desc { grid-column: 2; grid-row: 1 / 3; -webkit-line-clamp: 4; align-self: start; }
+.pd.is-wide .pd-actions { grid-column: 2; grid-row: 3; align-self: end; padding-top: 14px; }
 @media (max-width: 720px) {
   .pd { border-radius: 24px; max-height: calc(100dvh - 32px); }
   /* fixed height: the info takes what it needs and the picture shrinks to fit, so it never scrolls */
@@ -326,5 +339,7 @@
   .pd-title { margin: 6px 0 10px; }
   .pd-desc { font-size: 0.9rem; -webkit-line-clamp: 5; }
   .pd-actions { justify-content: flex-start; }
+  .pd.is-wide .pd-info { display: flex; padding: 20px 20px 16px; }
+  .pd.is-wide .pd-desc { -webkit-line-clamp: 5; }
 }
 @media (prefers-reduced-motion: reduce) { .pd .pd-in { animation: none; } }

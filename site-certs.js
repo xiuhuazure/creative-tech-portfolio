@@ -15,14 +15,13 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* Details shown in the pop-up, newest first (keep the same order as the holders in about.html).
-     The Cisco entries still need their course names, dates and certificate images. */
+ */
   var credly = function (id) { return ['Verify on Credly ↗', 'https://www.credly.com/badges/' + id + '/public_url']; };
-  var cisco = function (when, id) {
+  var cisco = function (title, when, tech, desc, img, id) {
     return {
-      title: '[Cisco course name]', date: 'Cisco · ' + when,
-      tech: ['[Skill]', '[Skill]', 'Credly badge'],
-      desc: '[What this Cisco course covers.] Verified with a Credly badge.',
-      media: { ph: '🏅', text: '[Cisco certificate image]' },
+      title: title, date: 'Cisco Networking Academy · ' + when, tech: tech.concat(['Credly badge']),
+      desc: desc + ' Verified with a Credly badge.',
+      media: { img: img, alt: 'Cisco Networking Academy ' + title + ' certificate for Kimberly D. Yu', contain: true },
       links: [credly(id)]
     };
   };
@@ -34,7 +33,9 @@
       media: { img: 'media/certs/ibm-it-fundamentals.jpg', alt: 'IBM SkillsBuild Information Technology Fundamentals certificate for Kimberly D. Yu', contain: true },
       links: [credly('5d70aee7-7b52-41b3-a010-70b1a3233019')]
     },
-    'cisco-mar26': cisco('Mar 2026', 'd03be857-67bd-4bcf-8a60-c1e86cf9d7b8'),
+    'cisco-eh': cisco('Ethical Hacker', 'Mar 16, 2026', ['Ethical hacking', 'Penetration testing'],
+      'Cisco Networking Academy’s Ethical Hacker course: planning and running penetration tests, finding and exploiting vulnerabilities, and reporting what you find.',
+      'media/certs/cisco-ethical-hacker.jpg', 'd03be857-67bd-4bcf-8a60-c1e86cf9d7b8'),
     'thm-presec': {
       title: 'Pre Security Learning Path', date: 'TryHackMe · Feb 22, 2026',
       tech: ['Networking', 'How the web works', 'Linux', 'Windows'],
@@ -49,8 +50,12 @@
       media: { img: 'media/certs/thm-advent-of-cyber-2025.jpg', alt: 'TryHackMe Advent of Cyber 2025 certificate for Kimberly D. Yu', contain: true },
       links: [['View certificate ↗', 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-WLI1VROODS.pdf']]
     },
-    'cisco-dec25a': cisco('Dec 2025', '301d9f3b-a84b-4a72-b63c-51c9bd489dd8'),
-    'cisco-dec25b': cisco('Dec 2025', '2068e9f7-bd38-4be8-b898-90f148040809')
+    'cisco-ds': cisco('Introduction to Data Science', 'Dec 27, 2025', ['Data science', 'Data analysis'],
+      'Cisco Networking Academy’s introduction to data science: how data is collected, analysed and used to make decisions.',
+      'media/certs/cisco-intro-data-science.jpg', '2068e9f7-bd38-4be8-b898-90f148040809'),
+    'cisco-ics': cisco('Introduction to Cybersecurity', 'Dec 15, 2025', ['Cybersecurity', 'Online safety'],
+      'Cisco Networking Academy’s introduction to cybersecurity: common threats and attacks, how to protect yourself and organisations online, and careers in the field.',
+      'media/certs/cisco-intro-cybersecurity.jpg', '301d9f3b-a84b-4a72-b63c-51c9bd489dd8')
   };
   if (window.siteProjects) window.siteProjects.add(CERTS);
 

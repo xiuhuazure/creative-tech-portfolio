@@ -84,6 +84,29 @@
 .fw-media img, .fw-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .fw-side { min-height: 0; display: flex; flex-direction: column; gap: clamp(12px, 2vh, 20px); }
 .fw-side .fw-media { flex: 1; }
+/* Phone-shaped slots for app projects: three portrait screens (the middle one a little bigger).
+   An empty slot shows a dashed phone outline; once it holds an <img>, the box disappears so a
+   transparent-background mockup sits straight on the page. */
+.fw-phones {
+  grid-column: 2 / -1; min-height: 0; container-type: size;
+  display: flex; justify-content: center; align-items: center; gap: clamp(14px, 3vw, 44px);
+}
+.fw-phone {
+  --fw-ph-h: min(100cqh, calc((100cqw - 2 * clamp(14px, 3vw, 44px)) / 3 * 19.5 / 9));
+  position: relative; flex: none; height: calc(var(--fw-ph-h) * 0.86); aspect-ratio: 9 / 19.5;
+  display: grid; place-items: center; box-sizing: border-box; border-radius: 13% / 6%;
+  border: 1.5px dashed var(--fw-line); background: var(--fw-chip);
+}
+.fw-phone.is-hero { height: var(--fw-ph-h); }
+.fw-phone::before { /* the speaker notch */
+  content: ""; position: absolute; top: 3.2%; left: 50%; width: 30%; height: 2.2%; border-radius: 99px; transform: translateX(-50%);
+  background: var(--fw-line);
+}
+.fw-phone-ph { padding: 12px; text-align: center; font-size: 0.8rem; font-style: italic; color: var(--fw-dim); }
+.fw-phone-ph b { display: block; font-size: 2.2rem; font-style: normal; margin-bottom: 6px; }
+.fw-phone:has(img) { border: 0; background: none; }
+.fw-phone:has(img)::before { display: none; }
+.fw-phone img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 18px 30px rgba(60, 40, 10, 0.28)); }
 .fw-ph { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px; font-size: 0.85rem; font-style: italic; color: #6b6152; }
 .fw-ph b { display: block; font-size: 2.6rem; font-style: normal; margin-bottom: 8px; }
 
@@ -93,6 +116,7 @@
   .fw-tags { grid-column: 1 / -1; margin-top: 2px; }
   .fw-body { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
   .fw-side { display: none; }
+  .fw-phones { grid-column: 2; }
 }
 @media (max-width: 720px) {
   .fw { --fw-top: 80px; --fw-gap: 5px; }
@@ -104,6 +128,7 @@
   .fw-desc p { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; font-size: 0.78rem; }
   .fw-link { margin-top: 2px; }
   .fw-main { order: 2; }
+  .fw-phones { grid-column: 1; }
 }
 @media (max-height: 640px) and (min-width: 721px) { .fw-desc p { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; } }
 @media (prefers-reduced-motion: reduce) { .fw-tags-track { animation: none; } }

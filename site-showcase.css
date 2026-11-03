@@ -97,12 +97,13 @@
   display: flex; justify-content: center; align-items: center; gap: clamp(14px, 3vw, 44px);
 }
 .fw-phone {
-  --fw-ph-h: min(100cqh, calc((100cqw - 2 * clamp(14px, 3vw, 44px)) / 3 * 19.5 / 9));
-  position: relative; flex: none; height: calc(var(--fw-ph-h) * 0.86); aspect-ratio: 9 / 19.5;
+  --fw-ph-h: min(100cqh, calc((100cqw - (var(--count, 3) - 1) * clamp(14px, 3vw, 44px)) / var(--count, 3) * 19.5 / 9));
+  --h: calc(var(--fw-ph-h) * 0.86);
+  position: relative; flex: none; height: var(--h); aspect-ratio: 9 / 19.5;
   display: grid; place-items: center; box-sizing: border-box; border-radius: 13% / 6%;
   border: 1.5px dashed var(--fw-line); background: var(--fw-chip);
 }
-.fw-phone.is-hero { height: var(--fw-ph-h); }
+.fw-phone.is-hero { --h: var(--fw-ph-h); }
 .fw-phone::before { /* the speaker notch */
   content: ""; position: absolute; top: 3.2%; left: 50%; width: 30%; height: 2.2%; border-radius: 99px; transform: translateX(-50%);
   background: var(--fw-line);
@@ -111,6 +112,16 @@
 .fw-phone-ph b { display: block; font-size: 2.2rem; font-style: normal; margin-bottom: 6px; }
 .fw-phone:has(img) { border: 0; background: none; }
 .fw-phone:has(img)::before { display: none; }
+.fw-phone.is-framed { /* a dark phone body around the screenshot */
+  border: 0; padding: calc(var(--h) * 0.0133); background: linear-gradient(160deg, #2a2a2c, #0e0e10);
+  aspect-ratio: 476 / 1000; /* so the screen inside the bezel matches the 923×2000 screenshots exactly (no cropping) */
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.10), 0 22px 40px rgba(60, 40, 10, 0.30);
+}
+.fw-phone.is-framed::before { /* front camera */
+  display: block !important; z-index: 2; top: 2.4%; width: 3.6%; height: auto; aspect-ratio: 1; border-radius: 50%; background: #0b0b0c;
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.06);
+}
+.fw-phone.is-framed img { position: relative; inset: auto; display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 11% / 5.2%; filter: none; }
 .fw-phone img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 18px 30px rgba(60, 40, 10, 0.28)); }
 .fw-ph { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px; font-size: 0.85rem; font-style: italic; color: #6b6152; }
 .fw-ph b { display: block; font-size: 2.6rem; font-style: normal; margin-bottom: 8px; }
@@ -133,7 +144,8 @@
   .fw-desc p { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; font-size: 0.78rem; }
   .fw-link { margin-top: 2px; }
   .fw-main { order: 2; }
-  .fw-phones { grid-column: 1; }
+  .fw-phones { grid-column: 1; --count: 2 !important; }
+  .fw-phone:not(.is-hero) { display: none; }
 }
 @media (max-height: 640px) and (min-width: 721px) { .fw-desc p { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; } }
 @media (prefers-reduced-motion: reduce) { .fw-tags-track { animation: none; } }

@@ -221,12 +221,20 @@
 .pf-files.n3 .pf-file:nth-child(1) { --x: 63; --y: 81; --r: 0; }
 .pf-files.n3 .pf-file:nth-child(2) { --x: 230; --y: 86; --r: 2; }
 .pf-files.n3 .pf-file:nth-child(3) { --x: 139; --y: 94; --r: 0; } /* the middle file sits in front */
+.pf-files.n4 .pf-file:nth-child(1) { --x: 52; --y: 88; --r: -3; }
+.pf-files.n4 .pf-file:nth-child(2) { --x: 118; --y: 82; --r: -1; }
+.pf-files.n4 .pf-file:nth-child(3) { --x: 190; --y: 84; --r: 1; }
+.pf-files.n4 .pf-file:nth-child(4) { --x: 258; --y: 90; --r: 3; }
 .pf-files.n2 .pf-file:nth-child(1) { --x: 88; --y: 84; --r: -2; }
 .pf-files.n2 .pf-file:nth-child(2) { --x: 214; --y: 90; --r: 2; }
 /* hovered: they pop up and splay out */
 .pf-folder.is-open .pf-files.n3 .pf-file:nth-child(1) { transform: translate(calc(var(--u) * -47), calc(var(--u) * -81)) rotate(-9deg); }
 .pf-folder.is-open .pf-files.n3 .pf-file:nth-child(2) { transform: translate(calc(var(--u) * 64), calc(var(--u) * -75)) rotate(4deg); }
 .pf-folder.is-open .pf-files.n3 .pf-file:nth-child(3) { transform: translate(calc(var(--u) * 18), calc(var(--u) * -76)); }
+.pf-folder.is-open .pf-files.n4 .pf-file:nth-child(1) { transform: translate(calc(var(--u) * -62), calc(var(--u) * -70)) rotate(-13deg); }
+.pf-folder.is-open .pf-files.n4 .pf-file:nth-child(2) { transform: translate(calc(var(--u) * -22), calc(var(--u) * -82)) rotate(-4deg); }
+.pf-folder.is-open .pf-files.n4 .pf-file:nth-child(3) { transform: translate(calc(var(--u) * 22), calc(var(--u) * -82)) rotate(4deg); }
+.pf-folder.is-open .pf-files.n4 .pf-file:nth-child(4) { transform: translate(calc(var(--u) * 62), calc(var(--u) * -70)) rotate(13deg); }
 .pf-folder.is-open .pf-files.n2 .pf-file:nth-child(1) { transform: translate(calc(var(--u) * -44), calc(var(--u) * -80)) rotate(-8deg); }
 .pf-folder.is-open .pf-files.n2 .pf-file:nth-child(2) { transform: translate(calc(var(--u) * 52), calc(var(--u) * -76)) rotate(5deg); }
 .pf-folder.is-open .pf-file:hover { box-shadow: 0 calc(var(--u) * 10) calc(var(--u) * 28) rgba(0, 0, 0, 0.35); }
@@ -257,6 +265,13 @@
   .pf-folder.is-top, .pf-folder.is-bottom { grid-column: auto; }
 }
 @media (max-width: 760px) { .pf-word { top: 18vh; } }
+@media (max-width: 560px) { /* narrower fans so the files stay on screen */
+  .pf-folder.is-open .pf-files.n4 .pf-file:nth-child(1) { transform: translate(calc(var(--u) * -28), calc(var(--u) * -70)) rotate(-9deg); }
+  .pf-folder.is-open .pf-files.n4 .pf-file:nth-child(2) { transform: translate(calc(var(--u) * -8), calc(var(--u) * -80)) rotate(-3deg); }
+  .pf-folder.is-open .pf-files.n4 .pf-file:nth-child(3) { transform: translate(calc(var(--u) * 8), calc(var(--u) * -80)) rotate(3deg); }
+  .pf-folder.is-open .pf-files.n4 .pf-file:nth-child(4) { transform: translate(calc(var(--u) * 28), calc(var(--u) * -70)) rotate(9deg); }
+  .pf-folder.is-open .pf-files.n3 .pf-file:nth-child(1) { transform: translate(calc(var(--u) * -28), calc(var(--u) * -78)) rotate(-7deg); }
+}
 @media (prefers-reduced-motion: reduce) {
   .pf-file, .pf-front, .pf-back { transition: none; }
 }

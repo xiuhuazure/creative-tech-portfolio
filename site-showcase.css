@@ -36,7 +36,9 @@
 :root[data-theme="light"] .fw-p3 { --fw-paper: #2a2620; }
 
 /* the tab row: transparent except the tab(s) */
-.fw-bar { position: relative; flex: none; height: 50px; }
+.fw-bar { position: relative; flex: none; height: 50px; pointer-events: none; } /* empty parts of a later page's tab row let clicks through to See all works */
+.fw-page { pointer-events: none; }
+.fw-bar .fw-tab, .fw-panel { pointer-events: auto; }
 .fw-tab {
   position: absolute; bottom: 0; left: calc(var(--fw-in) + var(--n) * (var(--fw-slot) + var(--fw-gap))); width: var(--fw-slot);
   height: 50px; box-sizing: border-box; display: flex; align-items: center; gap: 10px; padding: 0 20px;

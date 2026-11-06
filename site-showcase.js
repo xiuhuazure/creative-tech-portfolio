@@ -56,6 +56,13 @@
       media: { img: 'media/design-agency.webp', alt: 'AI agency offer post design', contain: true },
       links: []
     },
+    'dailyrituals': {
+      title: 'Daily Rituals carousel', date: 'Trial design · Instagram page',
+      tech: ['Instagram carousel', 'Product design'],
+      desc: 'A trial two-slide carousel for the Instagram page Daily Rituals: a script-and-serif hook slide, then the product with its benefits laid out around it.',
+      media: { img: 'media/design-dailyrituals.webp', alt: 'Daily Rituals carousel: the hook slide and the product benefits slide', contain: true },
+      links: []
+    },
     'portfolio': {
       title: 'This portfolio website', date: '2026 · Personal project',
       tech: ['HTML', 'CSS', 'JavaScript', 'Cloudflare', 'Claude'],
@@ -64,9 +71,9 @@
       links: []
     },
     'fslames': { tall: true,
-      title: 'FSLAMES', date: '2025 – 2026 · Thesis',
+      title: 'FSLAMES: Filipino Sign Language Automated Mobile Education System', date: '2025 – 2026 · Thesis',
       tech: ['Flutter', 'Python', 'MediaPipe', 'TensorFlow'],
-      desc: 'Filipino Sign Language Automated Mobile Education System: a learning app with ML-based sign recognition. I handled backend development and documentation, designed app interfaces, assisted Android development, and helped collect the training dataset.',
+      desc: 'A Filipino Sign Language learning app with ML-based sign recognition. I handled backend development and documentation, designed app interfaces, assisted Android development, and helped collect the training dataset.',
       media: { img: 'media/fslames-mockup-dark.jpg', imgLight: 'media/fslames-mockup-light.jpg', alt: 'FSLAMES app screens: practice map, sign feedback and home' },
       links: [['View on GitHub ↗', 'https://github.com/mr-dj123/fslames-mobile-app']]
     },

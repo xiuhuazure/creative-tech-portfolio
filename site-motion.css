@@ -179,3 +179,5 @@ body article h2 { line-height: 1.2; }
   .fw { --fw-top: 64px !important; }
   .pf, .cb { scroll-margin-top: 58px; }
 }
+/* Phone menu: no gold underline under the current page (it ran the full width of the menu) */
+@media (max-width: 720px) { header .nav-links.open a::after { display: none; } }

@@ -175,7 +175,7 @@ body article h2 { line-height: 1.2; }
   header .nav-toggle { font-size: 1.3rem; }
   header .nav-links.open { top: 58px; }
   #lantern.lantern { width: 38px; height: 74px; right: 12px; }
-  #lantern.lantern svg { width: 38px; height: 74px; }
+  #lantern.lantern > svg { width: 38px; height: 74px; } /* the lantern only, not its sparkle stars */
   .fw { --fw-top: 64px !important; }
   .pf, .cb { scroll-margin-top: 58px; }
 }

@@ -165,3 +165,17 @@ body .cta-banner h2, body .case-cta h2 { line-height: 1.15; }
 body article .kicker { line-height: 1; }
 body article .kicker .zh { line-height: 1; }
 body article h2 { line-height: 1.2; }
+
+/* ---- Smaller header on phones (all pages) ---- */
+@media (max-width: 720px) {
+  header .nav { height: 58px; }
+  header .brand { gap: 10px; }
+  header .seal { width: 32px; height: 32px; flex-basis: 32px; font-size: 1.2rem; }
+  header .brand .name { font-size: 1.12rem; }
+  header .nav-toggle { font-size: 1.3rem; }
+  header .nav-links.open { top: 58px; }
+  #lantern.lantern { width: 38px; height: 74px; right: 12px; }
+  #lantern.lantern svg { width: 38px; height: 74px; }
+  .fw { --fw-top: 64px !important; }
+  .pf, .cb { scroll-margin-top: 58px; }
+}

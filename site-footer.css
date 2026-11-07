@@ -195,9 +195,12 @@
 
 /* ---------- Responsive ---------- */
 @media (min-width: 768px) {
-  .vf-links { padding: 64px; }
-  .vf-grid { grid-template-columns: repeat(3, 1fr); }
-  .vf-bar-in { flex-direction: row; align-items: center; padding: 24px 64px; }
+  .vf-links { padding: 40px 64px 36px; }
+  .vf-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1200px; }
+  .vf-grid h4 { margin-bottom: 14px; }
+  .vf-grid ul { gap: 4px; }
+  .vf-grid li { line-height: 1.8; }
+  .vf-bar-in { flex-direction: row; align-items: center; padding: 16px 64px; max-width: calc(1200px + 128px); }
 }
 @media (max-width: 640px) {
   /* Globe: a smaller arc that shows more of its curve, cropped just below it (no big empty band) */

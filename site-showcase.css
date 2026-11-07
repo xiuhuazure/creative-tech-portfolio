@@ -415,3 +415,28 @@
 
 /* the gallery wrapper only matters on phones; elsewhere its children sit in the grid as before */
 .fw-gallery { display: contents; }
+
+/* Phones: every pop-up has the same layout. The picture keeps its real shape (9:16 video, square
+   design, wide website), shown whole and scaled to fit, centred above the details. */
+@media (max-width: 720px) {
+  .pd .pd-inner, .pd.is-wide .pd-inner { display: flex; flex-direction: column; height: auto; max-height: calc(100dvh - 32px); }
+  .pd .pd-media, .pd.is-wide .pd-media {
+    position: relative; flex: none; display: block; box-sizing: border-box;
+    --mh: 46dvh; aspect-ratio: var(--ar, 1); width: min(calc(100% - 40px), calc(var(--mh) * var(--ar, 1))); height: auto;
+    margin: 56px auto 0; border-radius: 14px; overflow: hidden; background: #0d1014;
+  }
+  .pd .pd-media img, .pd .pd-media video, .pd .pd-media iframe, .pd .pd-media.is-contain img, .pd.is-wide .pd-media.is-contain img { object-fit: contain; padding: 0; }
+  .pd .pd-info, .pd.is-wide .pd-info { display: flex; flex-direction: column; padding: 18px 20px 14px; min-height: 0; }
+  .pd .pd-tech { margin-bottom: 12px; }
+  .pd .pd-desc { -webkit-line-clamp: 5; }
+  .pd .pd-actions { justify-content: flex-start; padding-top: 14px; }
+  .pd .pd-x { top: 10px; right: 10px; width: 36px; height: 36px; }
+}
+@media (max-width: 720px) and (max-height: 700px) {
+  .pd .pd-media, .pd.is-wide .pd-media { --mh: 28dvh; margin-top: 50px; width: min(calc(100% - 40px), calc(28dvh * var(--ar, 1))); }
+  .pd .pd-desc { -webkit-line-clamp: 3; }
+  .pd .pd-info, .pd.is-wide .pd-info { padding: 14px 18px 10px; }
+  .pd .pd-tech { margin-bottom: 8px; }
+  .pd .pd-actions { padding-top: 8px; gap: 6px; }
+  .pd .pd-actions a, .pd .pd-actions button { min-height: 34px; padding: 0 14px; font-size: 0.82rem; }
+}

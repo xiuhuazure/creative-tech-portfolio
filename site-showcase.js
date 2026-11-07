@@ -132,6 +132,7 @@
     else media = '<div class="fw-ph"><div><b>' + m.ph + '</b>' + esc(m.text) + '</div></div>';
     // Landscape and square content: picture on top, details below. Portrait (video ads, phone apps): side by side.
     dlg.classList.toggle('is-wide', !p.tall);
+    dlg.dataset.project = id;
     // The picture's real shape, so phones can show it whole at its own aspect ratio
     var ar = m.yt ? 16 / 9 : m.video ? 9 / 16 : m.ph ? 3 / 4 : 1;
     dlg.innerHTML =

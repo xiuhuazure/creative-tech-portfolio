@@ -439,4 +439,5 @@
   .pd .pd-tech { margin-bottom: 8px; }
   .pd .pd-actions { padding-top: 8px; gap: 6px; }
   .pd .pd-actions a, .pd .pd-actions button { min-height: 34px; padding: 0 14px; font-size: 0.82rem; }
+  .pd[data-project="emm-store"] .pd-desc { -webkit-line-clamp: 2; } /* the storefront card has the most text and two links */
 }

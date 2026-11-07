@@ -75,7 +75,7 @@
       tech: ['Flutter', 'Python', 'MediaPipe', 'TensorFlow'],
       desc: 'A Filipino Sign Language learning app with ML-based sign recognition. I handled backend development and documentation, designed app interfaces, assisted Android development, and helped collect the training dataset.',
       media: { img: 'media/fslames-mockup-dark.jpg', imgLight: 'media/fslames-mockup-light.jpg', alt: 'FSLAMES app screens: practice map, sign feedback and home' },
-      links: [['View on GitHub ↗', 'https://github.com/mr-dj123/fslames-mobile-app']]
+      links: []
     },
     'ueat': { tall: true,
       title: 'U-Eat Ordering System', date: '2024 – 2025 · Group project',

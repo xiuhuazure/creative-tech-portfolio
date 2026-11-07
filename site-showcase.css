@@ -403,3 +403,7 @@
 }
 @media (prefers-reduced-motion: reduce) { .pd .pd-in { animation: none; } }
 .pf-thumb img.only-dark, .pf-thumb img.only-light { object-position: 50% 45%; } /* show the middle phone */
+
+/* Featured work 03 (graphic design): show each square design whole, as large as its slot allows */
+.fw-p3 .fw-media { background: none; display: flex; align-items: center; justify-content: center; }
+.fw-p3 .fw-media img { position: static; width: auto; height: auto; max-width: 100%; max-height: 100%; aspect-ratio: 1; object-fit: contain; border-radius: 14px; }

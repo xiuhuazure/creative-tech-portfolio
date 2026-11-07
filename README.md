@@ -42,7 +42,7 @@ an entry to `PROJECTS` in `site-showcase.js` and a `.pf-card` with a matching `d
 
 ### Cache-busting
 
-The shared `site-*.css` / `site-*.js` links carry a version (`?v=20261107j`). When you change one of those
+The shared `site-*.css` / `site-*.js` links carry a version (`?v=20261107k`). When you change one of those
 files, bump the version on every page so visitors' browsers fetch the new file instead of a saved old copy.
 
 ### Certifications & badges (About page)

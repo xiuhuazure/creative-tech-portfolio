@@ -186,3 +186,10 @@ body article h2 { line-height: 1.2; }
   header .nav-links.open { align-items: center; }
   header .nav-links.open a.nav-cta { width: auto !important; align-self: center; padding: 9px 28px !important; font-size: 0.86rem; margin-top: 8px; }
 }
+/* Homepage "Worked with · Built with" strip: tighter on phones */
+@media (max-width: 720px) {
+  div.trust .wrap { padding: 22px 20px; }
+  .trust .trust-label { margin-bottom: 12px; }
+  .trust .trust-logos { gap: 6px 22px; }
+  .trust .trust-logos span { font-size: 1.1rem; }
+}

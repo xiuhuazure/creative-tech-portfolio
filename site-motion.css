@@ -193,3 +193,16 @@ body article h2 { line-height: 1.2; }
   .trust .trust-logos { gap: 6px 22px; }
   .trust .trust-logos span { font-size: 1.1rem; }
 }
+/* Phones: tighter gaps between homepage sections */
+@media (max-width: 720px) {
+  body section.block { padding: 56px 0; }
+  body section.block.fw-block { padding-bottom: 0; }
+  section.ts { padding-top: 56px; padding-bottom: 56px; }
+  /* Featured work 03: use the empty space under the main design for the two side designs */
+  .fw-p3 .fw-body { grid-template-rows: auto minmax(0, 1fr) minmax(0, 0.55fr); }
+  .fw-p3 .fw-side { display: flex; flex-direction: row; grid-column: 1; order: 3; }
+  .fw .fw-p3 .fw-side { gap: 12px; }
+  .fw .fw-p3 .fw-side .fw-media { flex: 1 1 0; justify-content: flex-end; }
+  .fw .fw-p3 .fw-side .fw-media + .fw-media { justify-content: flex-start; }
+  .fw .fw-p3 .fw-main { justify-content: center; }
+}

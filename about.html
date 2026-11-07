@@ -18,12 +18,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site-footer.css?v=20261107p" />
-  <link rel="stylesheet" href="site-motion.css?v=20261107p" />
-  <link rel="stylesheet" href="site-buttons.css?v=20261107p" />
-  <link rel="stylesheet" href="site-cursor.css?v=20261107p" />
-  <link rel="stylesheet" href="site-showcase.css?v=20261107p" />
-  <link rel="stylesheet" href="site-certs.css?v=20261107p" />
+  <link rel="stylesheet" href="site-footer.css?v=20261107q" />
+  <link rel="stylesheet" href="site-motion.css?v=20261107q" />
+  <link rel="stylesheet" href="site-buttons.css?v=20261107q" />
+  <link rel="stylesheet" href="site-cursor.css?v=20261107q" />
+  <link rel="stylesheet" href="site-showcase.css?v=20261107q" />
+  <link rel="stylesheet" href="site-certs.css?v=20261107q" />
   <style>
     :root {
       --ink: #0c0f12; --ink-2: #12171c; --surface: #171d23; --surface-2: #1c242b;
@@ -252,6 +252,22 @@
     .hb-disc .cover:has(img) { border: 0; }
     .hb .col:hover .hb-disc .vinyl { transform: translateX(16px) rotate(200deg); }
     @media (prefers-reduced-motion: reduce) { .hb .col:hover .hb-disc .vinyl { transform: translateX(16px); } }
+    /* Phones: tighter gaps between sections */
+    @media (max-width: 720px) {
+      .case-hero { padding-bottom: 32px; }
+      .results-grid { padding: 32px 0; gap: 22px; }
+      article .kicker { margin-top: 36px; }
+      article h2 { margin-top: 34px; }
+      .deliv { margin: 18px 0 4px; }
+      .quote { margin: 24px 0; }
+      .sk { padding-top: 44px; }
+      .cb { padding-top: 6vh; padding-bottom: 7vh; }
+      .cb .cb-grid { gap: 30px; margin-top: 3vh; }
+      .cb .cb-hint { margin-top: 4vh; }
+      .case-cta { margin-top: 36px; padding: 40px 24px; }
+      .pager { margin-top: 28px; }
+      footer.vf { margin-top: 40px; }
+    }
   </style>
 </head>
 <body>
@@ -515,11 +531,11 @@
       <span><a href="index.html#contact">Contact</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
     </div></div>
   </footer>
-  <script src="site-footer.js?v=20261107p"></script>
-  <script src="site-motion.js?v=20261107p"></script>
-  <script src="site-buttons.js?v=20261107p"></script>
-  <script src="site-showcase.js?v=20261107p"></script>
-  <script src="site-certs.js?v=20261107p"></script>
+  <script src="site-footer.js?v=20261107q"></script>
+  <script src="site-motion.js?v=20261107q"></script>
+  <script src="site-buttons.js?v=20261107q"></script>
+  <script src="site-showcase.js?v=20261107q"></script>
+  <script src="site-certs.js?v=20261107q"></script>
 
   <script>
     const toggle = document.getElementById('navToggle');

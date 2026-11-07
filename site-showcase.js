@@ -132,6 +132,8 @@
     else media = '<div class="fw-ph"><div><b>' + m.ph + '</b>' + esc(m.text) + '</div></div>';
     // Landscape and square content: picture on top, details below. Portrait (video ads, phone apps): side by side.
     dlg.classList.toggle('is-wide', !p.tall);
+    // The picture's real shape, so phones can show it whole at its own aspect ratio
+    var ar = m.yt ? 16 / 9 : m.video ? 9 / 16 : m.ph ? 3 / 4 : 1;
     dlg.innerHTML =
       '<button class="pd-x" type="button" aria-label="Close">✕</button>' +
       '<div class="pd-inner">' +
@@ -146,6 +148,10 @@
           }).join('') + '<button class="pd-close-btn" type="button">Close</button></div>' +
         '</div>' +
       '</div>';
+    var mediaBox = dlg.querySelector('.pd-media');
+    mediaBox.style.setProperty('--ar', ar);
+    var firstImg = mediaBox.querySelector('img');
+    if (firstImg) { var setAr = function () { if (firstImg.naturalWidth) mediaBox.style.setProperty('--ar', firstImg.naturalWidth / firstImg.naturalHeight); }; if (firstImg.complete) setAr(); else firstImg.addEventListener('load', setAr); }
     dlg.querySelectorAll('.pd-x, .pd-close-btn').forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); closeProject(); }); });
     var v = dlg.querySelector('video'); if (v) { v.muted = true; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
     dlg.classList.remove('is-closing');

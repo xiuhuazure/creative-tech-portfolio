@@ -200,8 +200,26 @@
   .vf-bar-in { flex-direction: row; align-items: center; padding: 24px 64px; }
 }
 @media (max-width: 640px) {
-  .vf-globe { height: 320px; }
-  .vf-badge .pill { font-size: 12px; padding: 4px 9px; }
+  /* Globe: a smaller arc that shows more of its curve, cropped just below it (no big empty band) */
+  .vf-globe { height: 168px; }
+  .vf-globe svg { height: 228px; }
+  .vf-globe::before { height: 4rem; }
+  .vf-badge .pill { font-size: 11.5px; padding: 4px 9px; }
+  .vf-badge:not(.active) { opacity: 0; } /* one label at a time on a narrow screen */
+  .vf-badge .line { height: 26px; }
+  .vf-badge.active .line { height: 30px; }
+  /* Links: tighter, two columns, with What I do across the bottom in two columns */
+  .vf-links { padding: 28px 24px 24px; }
+  .vf-links::before { top: -48px; height: 48px; }
+  .vf-grid { gap: 26px 20px; }
+  .vf-grid > :nth-child(2) { order: 3; grid-column: 1 / -1; }
+  .vf-grid > :nth-child(2) ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; }
+  .vf-grid h4 { margin: 0 0 10px; font-size: 14px; }
+  .vf-grid ul { gap: 4px; }
+  .vf-grid li { font-size: 13.5px; line-height: 1.7; }
+  .vf-bar-in { padding: 14px 24px; gap: 4px; font-size: 12px; text-align: center; align-items: center; }
+  .vf-brand { height: 112px; }
+  .vf-brand::after { height: 36px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .vf-comet { animation: none; }

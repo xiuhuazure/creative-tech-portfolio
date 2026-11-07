@@ -412,3 +412,6 @@
 .fw-p3 .fw-side .fw-media { justify-content: flex-start; }
 .fw-p3 .fw-side { justify-content: center; }
 .fw-p3 .fw-side .fw-media { flex: 0 1 auto; min-height: 0; }
+
+/* the gallery wrapper only matters on phones; elsewhere its children sit in the grid as before */
+.fw-gallery { display: contents; }

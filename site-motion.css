@@ -181,3 +181,8 @@ body article h2 { line-height: 1.2; }
 }
 /* Phone menu: no gold underline under the current page (it ran the full width of the menu) */
 @media (max-width: 720px) { header .nav-links.open a::after { display: none; } }
+/* Phone menu: a compact Let's talk button, centred, instead of a full-width block */
+@media (max-width: 720px) {
+  header .nav-links.open { align-items: center; }
+  header .nav-links.open a.nav-cta { width: auto !important; align-self: center; padding: 9px 28px !important; font-size: 0.86rem; margin-top: 8px; }
+}

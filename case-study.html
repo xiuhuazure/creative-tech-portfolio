@@ -78,8 +78,7 @@
     .leaves-back { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .leaves-back .leaf svg { opacity: 0.6; filter: blur(0.6px); }
     @keyframes leafFall {
-      0% { transform: translate(0, -12vh) rotate(0deg); opacity: 0; }
-      6% { opacity: 0.8; }
+      0% { transform: translate(0, -12vh) rotate(0deg); opacity: 0.8; }
       50% { transform: translate(calc(var(--drift, 0px) * 0.6), 48vh) rotate(calc(var(--spin, 180deg) * 0.5)); opacity: 0.32; }
       75% { opacity: 0.1; }
       100% { transform: translate(var(--drift, 0px), 114vh) rotate(var(--spin, 360deg)); opacity: 0; }

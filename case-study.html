@@ -18,10 +18,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site-footer.css?v=20261107q" />
-  <link rel="stylesheet" href="site-motion.css?v=20261107q" />
-  <link rel="stylesheet" href="site-buttons.css?v=20261107q" />
-  <link rel="stylesheet" href="site-cursor.css?v=20261107q" />
+  <link rel="stylesheet" href="site-footer.css?v=20261107r" />
+  <link rel="stylesheet" href="site-motion.css?v=20261107r" />
+  <link rel="stylesheet" href="site-buttons.css?v=20261107r" />
+  <link rel="stylesheet" href="site-cursor.css?v=20261107r" />
   <style>
     :root {
       --ink: #0c0f12; --ink-2: #12171c; --surface: #171d23; --surface-2: #1c242b;
@@ -246,6 +246,21 @@
     @keyframes tm-marquee-left { 0% { transform: translateX(0); } 100% { transform: translateX(-25%); } }
     @keyframes tm-marquee-right { 0% { transform: translateX(-25%); } 100% { transform: translateX(0); } }
     @media (prefers-reduced-motion: reduce) { .tm-track.left, .tm-track.right { animation: none; } }
+    /* Phones: tighter gaps between sections */
+    @media (max-width: 720px) {
+      .case-hero { padding-bottom: 32px; }
+      .results-grid { padding: 32px 0; gap: 22px; }
+      article .kicker { margin-top: 36px; }
+      article h2 { margin-top: 34px; }
+      article h3 { margin-top: 22px; }
+      .deliv { margin: 18px 0 4px; }
+      .quote { margin: 24px 0; }
+      .gallery { margin: 18px 0; gap: 12px; }
+      .tm-rows { margin-top: 16px; }
+      .case-cta { margin-top: 36px; padding: 40px 24px; }
+      .pager { margin-top: 28px; }
+      footer.vf { margin-top: 40px; }
+    }
   </style>
 </head>
 <body>
@@ -446,9 +461,9 @@
       <span><a href="index.html#contact">Contact</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
     </div></div>
   </footer>
-  <script src="site-footer.js?v=20261107q"></script>
-  <script src="site-motion.js?v=20261107q"></script>
-  <script src="site-buttons.js?v=20261107q"></script>
+  <script src="site-footer.js?v=20261107r"></script>
+  <script src="site-motion.js?v=20261107r"></script>
+  <script src="site-buttons.js?v=20261107r"></script>
 
   <script>
     document.querySelectorAll('.deliv-media video').forEach(v => {

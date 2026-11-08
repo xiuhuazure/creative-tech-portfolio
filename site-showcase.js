@@ -23,15 +23,15 @@
     },
     'vsl': {
       title: 'Soul Oracle Kickstarter launch VSL', date: 'Earth Moon Magick · Freelance',
-      tech: ['Premiere Pro', 'Long video'],
-      desc: 'A video sales letter for Earth Moon Magick’s Soul Oracle Kickstarter launch: a long edit that walks viewers through the deck and the offer.',
+      tech: ['Premiere Pro', 'Long-form video'],
+      desc: 'A video sales letter for Earth Moon Magick’s Soul Oracle Kickstarter launch: a long-form edit that walks viewers through the deck and the offer.',
       media: { yt: 'UuSD2wWrmIg' },
       links: [['Watch on YouTube ↗', 'https://youtu.be/UuSD2wWrmIg']]
     },
     'saru': {
       title: 'Dr. Saru Bala’s most viewed', date: 'Doctor’s Making Videos agency',
-      tech: ['Video editing', 'Long video'],
-      desc: 'My most viewed edit, made while I was with the Doctor’s Making Videos agency.',
+      tech: ['Video editing', 'Long-form video'],
+      desc: 'My most-viewed edit, made while I was with the Doctor’s Making Videos agency.',
       media: { yt: '5hth3DJgcEw' },
       links: [['Watch on YouTube ↗', 'https://youtu.be/5hth3DJgcEw']]
     },
@@ -52,35 +52,35 @@
     'agency': {
       title: 'AI agency offer post', date: 'Test design · AI agency',
       tech: ['Social post', 'Instagram'],
-      desc: 'A test design for an AI agency: a text focused offer post with a clear call to action.',
+      desc: 'A test design for an AI agency: a text-led offer post with a clear call to action.',
       media: { img: 'media/design-agency.webp', alt: 'AI agency offer post design', contain: true },
       links: []
     },
     'dailyrituals': {
       title: 'Daily Rituals carousel', date: 'Trial design · Instagram page',
       tech: ['Instagram carousel', 'Product design'],
-      desc: 'A trial carousel of two slides for the Instagram page Daily Rituals: a hook slide in script and serif type, then the product with its benefits laid out around it.',
+      desc: 'A trial two-slide carousel for the Instagram page Daily Rituals: a script-and-serif hook slide, then the product with its benefits laid out around it.',
       media: { img: 'media/design-dailyrituals.webp', alt: 'Daily Rituals carousel: the hook slide and the product benefits slide', contain: true },
       links: []
     },
     'portfolio': {
       title: 'Portfolio website', date: '2026 · Personal project',
       tech: ['HTML', 'CSS', 'JavaScript', 'Cloudflare', 'Claude'],
-      desc: 'The site you’re on: handwritten HTML, CSS and JavaScript with a lantern dark and light switch, scroll motion, glass folders and layouts that fit every screen, from phones to 27 inch monitors. Built with Claude and deployed on Cloudflare.',
+      desc: 'The site you’re on: hand-written HTML, CSS and JavaScript with a lantern dark and light switch, scroll motion, glass folders and layouts that fit phones up to 27-inch screens. Built with Claude and deployed on Cloudflare.',
       media: { img: 'media/portfolio-site.jpg', alt: 'Kimberly Yu portfolio homepage' },
       links: []
     },
     'fslames': { tall: true,
       title: 'FSLAMES: Filipino Sign Language Automated Mobile Education System', date: '2025 – 2026 · Thesis',
       tech: ['Flutter', 'Python', 'MediaPipe', 'TensorFlow'],
-      desc: 'A Filipino Sign Language learning app with sign recognition powered by machine learning. I handled backend development and documentation, designed app interfaces, assisted Android development, and helped collect the training dataset.',
+      desc: 'A Filipino Sign Language learning app with ML-based sign recognition. I handled backend development and documentation, designed app interfaces, assisted Android development, and helped collect the training dataset.',
       media: { img: 'media/fslames-mockup-dark.jpg', imgLight: 'media/fslames-mockup-light.jpg', alt: 'FSLAMES app screens: practice map, sign feedback and home' },
       links: []
     },
     'ueat': { tall: true,
       title: 'U-Eat Ordering System', date: '2024 – 2025 · Group project',
       tech: ['Kotlin', 'Firebase', 'Android Studio'],
-      desc: 'An Android canteen ordering system with two apps: one for customers to order and one for stall owners to manage orders. I prototyped the interfaces in Kotlin and prepared the technical documentation.',
+      desc: 'An Android canteen-ordering system with two apps: one for customers to order and one for stall owners to manage orders. I prototyped the interfaces in Kotlin and prepared the technical documentation.',
       media: { ph: '🍱', text: '[U-Eat app screenshots]' },
       links: [['User app ↗', 'https://github.com/mr-dj123/UEatUser'], ['Stall owner app ↗', 'https://github.com/mr-dj123/UEatStallOwner']]
     },
@@ -94,7 +94,7 @@
   };
   /* Extra cards shown in a folder's dialog after its project files: links that open elsewhere.
      A folder picks a list with data-extra="…" in index.html. */
-  var AD = 'Short video ad for Earth Moon Magick on Facebook and Instagram.';
+  var AD = 'Short-form video ad for Earth Moon Magick on Facebook and Instagram.';
   var EXTRAS = {
     'meta-ads': [
       { title: 'Meta ad 01', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=1704592681676485' },
@@ -102,7 +102,7 @@
       { title: 'Meta ad 03', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=1617862633244058' },
       { title: 'Meta ad 04', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=1074319012100141' },
       { title: 'Meta ad 05', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=2106932693517342' },
-      { title: 'Instagram post', sub: 'Earth Moon Magick · Instagram', desc: 'A short video I edited for Earth Moon Magick’s Instagram.', go: 'View on Instagram ↗', href: 'https://www.instagram.com/p/DcTGon8yxs2/' }
+      { title: 'Instagram post', sub: 'Earth Moon Magick · Instagram', desc: 'A short-form video I edited for Earth Moon Magick’s Instagram.', go: 'View on Instagram ↗', href: 'https://www.instagram.com/p/DcTGon8yxs2/' }
     ]
   };
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };

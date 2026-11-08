@@ -114,6 +114,8 @@
     header.at-top { background: transparent; backdrop-filter: none; }
     /* keep clear of the lantern only when the screen is too narrow for the margin to do it */
     .nav { display: flex; align-items: center; justify-content: space-between; height: 74px; padding-right: max(0px, 110px - max(0px, (100vw - var(--max)) / 2)); }
+    /* on wide screens, pull the links up to 40px further right, never closer than 110px to the screen edge (lantern) */
+    .nav > .nav-right { margin-right: calc(-1 * min(40px, max(0px, (100vw - var(--max)) / 2 - 110px))); }
     .brand { display: flex; align-items: center; gap: 12px; }
     .brand .name { font-family: var(--serif); font-weight: 700; font-size: 1.35rem; letter-spacing: 0.02em; }
     .brand .name span { color: var(--gold); }

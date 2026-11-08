@@ -201,6 +201,12 @@
     .hero h1 .grad, .grad { background: linear-gradient(100deg, var(--gold-bright), var(--gold) 40%, var(--cinnabar)); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .hero p.sub { margin-top: 28px; font-size: clamp(1.05rem, 2.1vw, 1.32rem); color: var(--text-dim); max-width: 54ch; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 40px; }
+    /* hero content centred */
+    .hero .wrap { text-align: center; }
+    .hero .eyebrow { justify-content: center; }
+    .eyebrow .line.r { background: linear-gradient(270deg, var(--gold), transparent); }
+    .hero h1, .hero p.sub { margin-left: auto; margin-right: auto; }
+    .hero .hero-actions { justify-content: center; }
     .btn { display: inline-flex; align-items: center; gap: 9px; padding: 14px 30px; font-weight: 600; font-size: 0.98rem; letter-spacing: 0.03em; transition: all .2s; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); }
     .btn-primary { background: linear-gradient(120deg, var(--gold), var(--gold-bright)); color: var(--btn-ink); }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(212,175,98,0.32); }
@@ -362,7 +368,6 @@
   <header>
     <div class="wrap nav">
       <a href="index.html" class="brand">
-        <span class="seal">匠</span>
         <span class="name">Kimberly <span>Yu</span></span>
       </a>
       <div class="nav-right">
@@ -378,10 +383,8 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero">
-    <div class="kanji-bg" aria-hidden="true">境</div>
-    <div class="disc" aria-hidden="true"></div>
     <div class="wrap">
-      <span class="eyebrow"><span class="line"></span> <span><span class="typed" aria-hidden="true" data-words="Shopify Technical Specialist|Video Editor|Motion Graphics|Android Developer">Shopify Technical Specialist</span><span class="sr-only">Shopify Technical Specialist, video editor, motion graphics, Android developer</span></span></span>
+      <span class="eyebrow"><span class="line"></span> <span><span class="typed" aria-hidden="true" data-words="Shopify Technical Specialist|Video Editor|Motion Graphics|Android Developer">Shopify Technical Specialist</span><span class="sr-only">Shopify Technical Specialist, video editor, motion graphics, Android developer</span></span> <span class="line r"></span></span>
       <h1>I build storefronts and apps, and <span class="grad">the visuals that bring them to life.</span></h1>
       <p class="sub">
         Hi, I’m Kimberly, a Computer Science student in the Philippines. I customize Shopify stores,

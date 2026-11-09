@@ -90,6 +90,13 @@
       desc: 'A counter app with plus, minus and reset buttons and a quit option, built in Kotlin in Android Studio.',
       media: { img: 'media/counter-app.webp', alt: 'Simple Counter app screen', contain: true },
       links: [['View on GitHub ↗', 'https://github.com/xiuhuazure/Simple-Counter-App']]
+    },
+    'leapyear': { tall: true,
+      title: 'Leap Year Calculator Android App', date: '2025 · School activity',
+      tech: ['Kotlin', 'Android Studio'],
+      desc: 'Type in a year and the app tells you right away if it’s a leap year. I wrote the conditional logic and input handling myself in Kotlin, practising the Android lifecycle and UI design.',
+      media: { img: 'media/leap-year-app.webp', alt: 'Leap Year Calculator app screen', contain: true },
+      links: [['View on GitHub ↗', 'https://github.com/xiuhuazure/Leap-Year-Calculator-App']]
     }
   };
   /* Extra cards shown in a folder's dialog after its project files: links that open elsewhere.

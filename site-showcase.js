@@ -50,10 +50,10 @@
       links: []
     },
     'agency': {
-      title: 'AI agency offer post', date: 'Test design · AI agency',
-      tech: ['Social post', 'Instagram'],
-      desc: 'A test design for an AI agency: a text-led offer post with a clear call to action.',
-      media: { img: 'media/design-agency.webp', alt: 'AI agency offer post design', contain: true },
+      title: 'AI agency offer ad', date: 'Test design · AI agency',
+      tech: ['Social ad', 'Instagram'],
+      desc: 'A test design for an AI agency: a text-led offer ad with a clear call to action.',
+      media: { img: 'media/design-agency.webp', alt: 'AI agency offer ad design', contain: true },
       links: []
     },
     'dailyrituals': {

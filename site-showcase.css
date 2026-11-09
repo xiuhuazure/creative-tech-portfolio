@@ -203,6 +203,7 @@
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 259' preserveAspectRatio='none' fill='none' stroke='%23000'%3E%3Cpath stroke-width='2.4' d='M0 18Q0 0 18 0H109Q119 0 124 9L129 18Q131 21 136 21H341Q360 21 360 40V240Q360 259 341 259H19Q0 259 0 240Z'/%3E%3Cpath stroke-width='1' transform='translate(5 5) scale(0.9722 0.9614)' d='M0 18Q0 0 18 0H109Q119 0 124 9L129 18Q131 21 136 21H341Q360 21 360 40V240Q360 259 341 259H19Q0 259 0 240Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 259' preserveAspectRatio='none' fill='none' stroke='%23000'%3E%3Cpath stroke-width='2.4' d='M0 18Q0 0 18 0H109Q119 0 124 9L129 18Q131 21 136 21H341Q360 21 360 40V240Q360 259 341 259H19Q0 259 0 240Z'/%3E%3Cpath stroke-width='1' transform='translate(5 5) scale(0.9722 0.9614)' d='M0 18Q0 0 18 0H109Q119 0 124 9L129 18Q131 21 136 21H341Q360 21 360 40V240Q360 259 341 259H19Q0 259 0 240Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
 }
 .pf-files { position: absolute; inset: 0; }
+.pf-file[hidden] { display: none !important; } /* kept for the folder dialog, not shown on the folder */
 .pf-file {
   position: absolute; width: calc(var(--u) * 157); height: calc(var(--u) * 192); left: calc(var(--u) * var(--x)); top: calc(var(--u) * var(--y));
   padding: calc(var(--u) * 10); box-sizing: border-box; border-radius: calc(var(--u) * 8);

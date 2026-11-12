@@ -80,7 +80,6 @@
     '</div>' +
     '<div class="vf-bar"><div class="vf-bar-in">' +
       '<span>© 2026 Kimberly D. Yu. All rights reserved.</span>' +
-      '<span>Built with Claude · Cloudflare</span>' +
     '</div></div>' +
     '<div class="vf-brand"><p class="vf-word" aria-hidden="true">KIMBERLY</p></div>';
 

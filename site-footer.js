@@ -75,7 +75,7 @@
       '<div class="vf-grid">' +
         col('Navigate', [['Home', 'index.html'], ['Works', 'index.html#work'], ['Case study', 'case-study.html'], ['About me', 'about.html']]) +
         col('What I do', [['Shopify & Liquid', 'index.html#services'], ['Front-end development', 'index.html#services'], ['Cybersecurity', 'index.html#services'], ['Android apps', 'index.html#services'], ['Video ads & motion graphics', 'index.html#services'], ['Graphic design', 'index.html#services']]) +
-        col('Contact', [['Contact form', 'index.html#contact'], ['LinkedIn', LINKEDIN], ['GitHub', GITHUB], ['Philippines', null, 'pin']]) +
+        col('Contact', [['Email', 'index.html#contact'], ['LinkedIn', LINKEDIN], ['GitHub', GITHUB], ['Philippines', null, 'pin']]) +
       '</div>' +
     '</div>' +
     '<div class="vf-bar"><div class="vf-bar-in">' +

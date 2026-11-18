@@ -84,6 +84,13 @@
       media: { img: 'media/fslames-mockup-dark.jpg', imgLight: 'media/fslames-mockup-light.jpg', alt: 'FSLAMES app screens: practice map, sign feedback and home' },
       links: [['Visit the landing page ↗', 'https://fslames.vercel.app/']]
     },
+    'kidzo': {
+      title: 'Kidzo: Learning games for kids', date: '2025 · Group project',
+      tech: ['Kotlin', 'Android Studio', 'Firebase'],
+      desc: 'An Android learning app for young kids: 25 mini-games for letters, numbers, math, shapes, colors and animals, with levels, stars and a progress page. I built 12 of the games, including the memory cards, Ice Cream Math, Grocery Store, Spelling and the sorting games.',
+      media: { img: 'media/kidzo-app.jpg', alt: 'Kidzo app: home screen, Space Math and Ice Cream Math', contain: true },
+      links: []
+    },
     'ueat': { tall: true,
       title: 'U-Eat Ordering System', date: '2024 – 2025 · Group project',
       tech: ['Kotlin', 'Firebase', 'Android Studio'],

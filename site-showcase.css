@@ -31,6 +31,8 @@
   position: sticky; top: var(--fw-top); height: calc(100vh - var(--fw-top)); height: calc(100svh - var(--fw-top));
   display: flex; flex-direction: column;
 }
+/* a short pause before the next page's tab rises into view */
+.fw-page + .fw-page { margin-top: 14vh; }
 .fw-p2 { --fw-paper: #f1dca4; --fw-ink: #2b2112; --fw-dim: #6a5532; --fw-line: rgba(60, 40, 10, 0.28); --fw-chip: rgba(60, 40, 10, 0.08); }
 .fw-p3 { --fw-paper: #1d242b; --fw-ink: #f4efe4; --fw-dim: #a8a196; --fw-line: rgba(244, 239, 228, 0.22); --fw-chip: rgba(244, 239, 228, 0.07); }
 :root[data-theme="light"] .fw-p3 { --fw-paper: #2a2620; }
@@ -68,7 +70,7 @@
 
 .fw-panel {
   flex: 1; min-height: 0; display: flex; flex-direction: column; box-sizing: border-box;
-  padding: clamp(18px, 3.2vh, 34px) var(--fw-pad) clamp(18px, 3.6vh, 36px); border-radius: 0;
+  padding: clamp(18px, 3.2vh, 34px) var(--fw-pad) clamp(32px, 7vh, 72px); border-radius: 0;
   background: var(--fw-paper); color: var(--fw-ink);
 }
 .fw-head { flex: none; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: 32px; align-items: start; }
@@ -370,8 +372,7 @@
 }
 .pd-actions a { background: rgba(212, 175, 98, 0.18); color: inherit; }
 .pd-actions a:hover { background: rgba(212, 175, 98, 0.32); }
-.pd-actions .pd-close-btn { background: transparent; color: var(--gold); }
-.pd-actions .pd-close-btn:hover { background: rgba(212, 175, 98, 0.12); }
+.pd-actions:empty { display: none; }
 .pd-x {
   position: absolute; top: 14px; right: 14px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer;
   display: grid; place-items: center; background: rgba(12, 15, 18, 0.55); color: #fff; font-size: 1.1rem;

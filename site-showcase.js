@@ -290,7 +290,7 @@
         '<div class="pt-pages">' + files.map(function (a, i) {
           var p = PROJECTS[a.dataset.project], th = a.querySelector('.pf-thumb');
           return '<a class="pt-card" href="#projects" data-project="' + a.dataset.project + '" aria-haspopup="dialog" style="--rot:' + ROT[i % ROT.length] + '">' +
-            '<span class="pt-thumb">' + (th ? th.innerHTML : '') + '</span>' +
+            '<span class="pt-thumb' + (p.tall ? ' is-tall' : '') + '">' + (th ? th.innerHTML : '') + '</span>' + // tall (phone) mockups show whole, not cropped
             '<strong>' + esc(p.title) + '</strong><span class="pt-sub">' + esc(p.date) + '</span><p>' + esc(p.desc) + '</p></a>';
         }).join('') + extras.map(function (x, i) {
           return '<a class="pt-card is-link" href="' + x.href + '" target="_blank" rel="noopener" style="--rot:' + ROT[(files.length + i) % ROT.length] + '">' +

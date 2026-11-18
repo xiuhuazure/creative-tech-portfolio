@@ -377,6 +377,12 @@
   display: grid; place-items: center; background: rgba(12, 15, 18, 0.55); color: #fff; font-size: 1.1rem;
 }
 .pd-x:hover { background: rgba(12, 15, 18, 0.8); }
+/* Previous / Next: sits at the start of the button row, the project buttons and Close stay on the right */
+.pd-actions .pd-nav { display: flex; align-items: center; gap: 2px; margin-right: auto; padding: 0 4px; height: 40px; border-radius: 999px; background: rgba(212, 175, 98, 0.12); }
+.pd-actions .pd-step { width: 34px; min-height: 34px; height: 34px; padding: 0 0 3px; justify-content: center; border-radius: 50%; background: transparent; color: var(--gold); font-size: 1.5rem; }
+.pd-actions .pd-step:hover { background: rgba(212, 175, 98, 0.2); }
+.pd-step:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.pd-count { font: 600 0.74rem/1 var(--sans, system-ui); letter-spacing: 0.06em; min-width: 3.6em; text-align: center; opacity: 0.8; font-variant-numeric: tabular-nums; }
 .pd .pd-in { animation: fw-rise .5s cubic-bezier(.2, .7, .2, 1) both; }
 .pd .pd-in:nth-child(2) { animation-delay: .05s; } .pd .pd-in:nth-child(3) { animation-delay: .1s; }
 .pd .pd-in:nth-child(4) { animation-delay: .15s; } .pd .pd-in:nth-child(5) { animation-delay: .2s; }
@@ -434,6 +440,8 @@
   .pd .pd-desc { -webkit-line-clamp: 5; }
   .pd .pd-actions { justify-content: flex-start; padding-top: 14px; }
   .pd .pd-x { top: 10px; right: 10px; width: 36px; height: 36px; }
+  .pd .pd-actions .pd-nav { height: 36px; }
+  .pd .pd-actions .pd-step { width: 30px; height: 30px; min-height: 30px; padding: 0 0 3px; }
 }
 @media (max-width: 720px) and (max-height: 700px) {
   .pd .pd-media, .pd.is-wide .pd-media { --mh: 28dvh; margin-top: 50px; width: min(calc(100% - 40px), calc(28dvh * var(--ar, 1))); }

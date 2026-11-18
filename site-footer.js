@@ -81,7 +81,7 @@
     '</div>' +
     '<div class="vf-links">' +
       '<div class="vf-grid">' +
-        col('Navigate', [['Home', 'index.html'], ['Works', 'index.html#work'], ['Case study', 'case-study.html'], ['About me', 'about.html']]) +
+        col('Navigate', [['Home', 'index.html'], ['Works', 'index.html#projects'], ['Case study', 'case-study.html'], ['About me', 'about.html']]) +
         col('What I do', [['Shopify & Liquid', 'index.html#folder-web'], ['Front-end development', 'index.html#folder-web'], ['Video ads & motion graphics', 'index.html#folder-video'], ['Graphic design', 'index.html#folder-design'], ['Android apps', 'index.html#folder-apps'], ['Cybersecurity', 'about.html#certs']]) +
         col('Contact', [['Email', 'index.html#contact'], ['LinkedIn', LINKEDIN], ['GitHub', GITHUB], ['Philippines', null, 'pin']]) +
       '</div>' +

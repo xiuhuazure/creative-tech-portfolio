@@ -4,7 +4,7 @@
      homepage folders) while the big title pins and fades behind them.
    - Hover (or focus) swings the cover open; on touch screens the holder in
      the middle of the screen opens by itself.
-   - Clicking a holder opens its details in the shared project dialog
+   - Clicking an open holder shows its details in the shared project dialog
      (site-showcase.js), so load that file first.
    To fill in a real certificate: edit its entry in CERTS below (and the cover
    text or logo in about.html).
@@ -71,6 +71,8 @@
     h.addEventListener('blur', function () { if (!(canHover && h.matches(':hover'))) setOpen(h, false); });
     h.addEventListener('click', function (e) {
       e.preventDefault();
+      // first tap on a closed holder (touch screens) just opens it to show the certificate; a click on an open one shows the details
+      if (!h.classList.contains('is-open')) { setOpen(h, true); return; }
       if (window.siteProjects) window.siteProjects.open(h.dataset.cert, h);
     });
   });

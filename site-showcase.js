@@ -147,10 +147,22 @@
     return 'translate(' + ((c.left + c.width / 2) - (d.left + d.width / 2)) + 'px,' + ((c.top + c.height / 2) - (d.top + d.height / 2)) + 'px) scale(' +
       Math.max(0.2, c.width / d.width) + ',' + Math.max(0.2, c.height / d.height) + ')';
   };
-  var openProject = function (id, el) {
+  // Every project file on the page, in folder order: Previous / Next step through them all (wrapping round).
+  var ORDER = [];
+  document.querySelectorAll('.pf-file[data-project]').forEach(function (a) {
+    var id = a.dataset.project; if (PROJECTS[id] && ORDER.indexOf(id) < 0) ORDER.push(id);
+  });
+  var cardFor = function (id) { return document.querySelector('.pf-file[data-project="' + id + '"]'); };
+  var step = function (dir) {
+    var i = ORDER.indexOf(dlg.dataset.project); if (i < 0 || !dlg.open || closing) return;
+    var id = ORDER[(i + dir + ORDER.length) % ORDER.length];
+    openProject(id, cardFor(id), dir);
+  };
+  var openProject = function (id, el, swap) {
     var p = PROJECTS[id]; if (!p) return;
     stopClosing(); // a new tap ends any close that's still animating
-    if (dlg.open) dlg.close();
+    swap = swap && dlg.open; // Previous / Next: change the contents in place, no close and reopen
+    if (dlg.open && !swap) dlg.close();
     fromEl = el;
     var m = p.media, media;
     if (m.yt) media = '<iframe src="https://www.youtube-nocookie.com/embed/' + m.yt + '?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0" title="' + esc(p.title) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
@@ -163,6 +175,12 @@
     dlg.dataset.project = id;
     // The picture's real shape, so phones can show it whole at its own aspect ratio
     var ar = m.yt ? 16 / 9 : m.video ? 9 / 16 : m.ph ? 3 / 4 : 1;
+    var at = ORDER.indexOf(id), nav = at < 0 ? '' :
+      '<div class="pd-nav">' +
+        '<button class="pd-step" type="button" data-step="-1" aria-label="Previous project: ' + esc(PROJECTS[ORDER[(at - 1 + ORDER.length) % ORDER.length]].title) + '">‹</button>' +
+        '<span class="pd-count" aria-hidden="true">' + (at + 1) + ' / ' + ORDER.length + '</span>' +
+        '<button class="pd-step" type="button" data-step="1" aria-label="Next project: ' + esc(PROJECTS[ORDER[(at + 1) % ORDER.length]].title) + '">›</button>' +
+      '</div>';
     dlg.innerHTML =
       '<button class="pd-x" type="button" aria-label="Close">✕</button>' +
       '<div class="pd-inner">' +
@@ -172,7 +190,7 @@
           '<h2 class="pd-title pd-in" id="pd-title">' + esc(p.title) + '</h2>' +
           '<div class="pd-tech pd-in">' + p.tech.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' +
           '<p class="pd-desc pd-in">' + esc(p.desc) + '</p>' +
-          '<div class="pd-actions pd-in">' + p.links.map(function (l) {
+          '<div class="pd-actions pd-in">' + nav + p.links.map(function (l) {
             var ext = /^https?:/.test(l[1]); return '<a href="' + l[1] + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + esc(l[0]) + '</a>';
           }).join('') + '<button class="pd-close-btn" type="button">Close</button></div>' +
         '</div>' +
@@ -182,8 +200,15 @@
     var firstImg = mediaBox.querySelector('img');
     if (firstImg) { var setAr = function () { if (firstImg.naturalWidth) mediaBox.style.setProperty('--ar', firstImg.naturalWidth / firstImg.naturalHeight); }; if (firstImg.complete) setAr(); else firstImg.addEventListener('load', setAr); }
     dlg.querySelectorAll('.pd-x, .pd-close-btn').forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); closeProject(); }); });
+    dlg.querySelectorAll('.pd-step').forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); step(+b.dataset.step); }); });
     var v = dlg.querySelector('video'); if (v) { v.muted = true; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
     dlg.classList.remove('is-closing');
+    if (swap) {
+      var keep = dlg.querySelector('.pd-step[data-step="' + (swap < 0 ? -1 : 1) + '"]'); if (keep) keep.focus({ preventScroll: true });
+      var inner = dlg.querySelector('.pd-inner');
+      if (!reduce && inner.animate) inner.animate([{ opacity: 0, transform: 'translateX(' + (swap * 28) + 'px)' }, { opacity: 1, transform: 'none' }], { duration: 320, easing: EASE_IN });
+      return;
+    }
     dlg.showModal();
     if (!reduce && dlg.animate && el) {
       opening = dlg.animate([{ transform: fromCard(el), opacity: 0.2, borderRadius: '14px' }, { transform: 'none', opacity: 1, borderRadius: '28px' }],
@@ -207,6 +232,17 @@
     a.onfinish = function () { if (closing !== a) return; closing = null; done(); a.cancel(); };
   };
   dlg.addEventListener('cancel', function (e) { e.preventDefault(); closeProject(); });   // Esc
+  dlg.addEventListener('keydown', function (e) { // ← → step through the projects
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    if (e.target.closest && e.target.closest('video, iframe, input')) return;
+    e.preventDefault(); step(e.key === 'ArrowLeft' ? -1 : 1);
+  });
+  var tx = null, ty = 0; // swipe sideways on a phone for Previous / Next
+  dlg.addEventListener('touchstart', function (e) { if (e.touches.length === 1) { tx = e.touches[0].clientX; ty = e.touches[0].clientY; } else tx = null; }, { passive: true });
+  dlg.addEventListener('touchend', function (e) {
+    if (tx === null) return; var t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty; tx = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) step(dx < 0 ? 1 : -1);
+  }, { passive: true });
   dlg.addEventListener('click', function (e) {
     if (closing) {
       // A tap while it's still shrinking away: finish closing now and pass the tap to the file underneath.

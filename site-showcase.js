@@ -77,6 +77,13 @@
       media: { img: 'media/jonathan-photography.jpg', alt: 'Jonathan Photography booking dashboard and phone screens', contain: true },
       links: [['View on GitHub ↗', 'https://github.com/NeriVlad21/jonathan-photography']]
     },
+    'barangayone': {
+      title: 'BarangayONE: Barangay services platform', date: '2026 · Final requirement, group project',
+      tech: ['HTML', 'CSS', 'JavaScript', 'UI/UX'],
+      desc: 'A prototype that lets residents of Brgy. Sinauna request barangay documents, track their status, and find announcements and emergency hotlines in one mobile app. Barangay staff review, approve and release every request from a web dashboard.',
+      media: { img: 'media/barangayone/card.jpg', alt: 'BarangayONE staff dashboard on a laptop with the resident app on two phones', contain: true },
+      links: [['View project', 'barangayone.html']]
+    },
     'fslames': { tall: true,
       title: 'FSLAMES: Filipino Sign Language Automated Mobile Education System', date: '2025 – 2026 · Thesis',
       tech: ['Flutter', 'Python', 'MediaPipe', 'TensorFlow'],

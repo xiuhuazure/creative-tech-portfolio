@@ -95,7 +95,7 @@
       title: 'Kidzo: Learning games for kids', date: '2025 · School project · Group project',
       tech: ['Kotlin', 'Android Studio', 'Firebase'],
       desc: 'An Android learning app for young kids: 25 mini-games for letters, numbers, math, shapes, colors and animals, with levels, stars and a progress page. I built 12 of the games, including the memory cards, Ice Cream Math, Grocery Store, Spelling and the sorting games.',
-      media: { img: 'media/kidzo-mockup.jpg', alt: 'Kidzo app screens: Space Math, the home screen and Ice Cream Math' },
+      media: { img: 'media/kidzo-mockup.jpg?v=2', alt: 'Kidzo app screens: Space Math, the home screen and Ice Cream Math' },
       links: []
     },
     'ueat': { tall: true,

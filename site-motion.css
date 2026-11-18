@@ -265,3 +265,18 @@ html body .vf .vf-links, html body .vf .vf-bar { background: rgba(18, 23, 28, 0.
 html body .vf .vf-globe ellipse[fill^="url"] { opacity: 0.7; }
 html body .vf .vf-globe svg { -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%); mask-image: linear-gradient(to bottom, #000 62%, transparent 100%); }
 @media (max-width: 640px) { html body .vf .vf-globe svg { -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 73%); mask-image: linear-gradient(to bottom, #000 45%, transparent 73%); } }
+
+/* Footer arc: no solid "planet" fill under the line. A soft band of light sits behind the arc
+   instead, faded on all four edges so it has no hard shape. */
+html body .vf .vf-globe ellipse[fill^="url"] { opacity: 0 !important; }
+html body .vf .vf-globe::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 34%; height: 58%; z-index: 0; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(212, 175, 98, 0) 0%, rgba(212, 175, 98, 0.16) 30%, rgba(200, 80, 58, 0.08) 65%, rgba(212, 175, 98, 0) 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
+}
+:root[data-theme="light"] body .vf .vf-globe::after {
+  background: linear-gradient(to bottom, rgba(226, 184, 92, 0) 0%, rgba(226, 184, 92, 0.22) 30%, rgba(226, 184, 92, 0.1) 65%, rgba(226, 184, 92, 0) 100%);
+}
+html body .vf .vf-globe svg { position: relative; z-index: 1; }
+@media (max-width: 640px) { html body .vf .vf-globe::after { top: 52%; height: 48%; } }

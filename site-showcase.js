@@ -82,7 +82,7 @@
       tech: ['Flutter', 'Python', 'MediaPipe', 'TensorFlow'],
       desc: 'A Filipino Sign Language learning app with ML-based sign recognition. I handled backend development and documentation, designed app interfaces, assisted Android development, and helped collect the training dataset.',
       media: { img: 'media/fslames-mockup-dark.jpg', imgLight: 'media/fslames-mockup-light.jpg', alt: 'FSLAMES app screens: practice map, sign feedback and home' },
-      links: []
+      links: [['Visit the landing page ↗', 'https://fslames.vercel.app/']]
     },
     'ueat': { tall: true,
       title: 'U-Eat Ordering System', date: '2024 – 2025 · Group project',
@@ -222,10 +222,10 @@
   pt.className = 'pt'; pt.setAttribute('aria-labelledby', 'pt-title');
   document.body.appendChild(pt);
   var ptFrom = null, ptClosing = null, ptOpening = null;
-  var openFolder = function (f) {
+  var openFolder = function (f, direct) {
     if (ptClosing) { ptClosing.onfinish = null; ptClosing.cancel(); ptClosing = null; }
     if (pt.open) pt.close();
-    ptFrom = f;
+    ptFrom = direct ? null : f; // opened from a link elsewhere: no grow/shrink from the folder
     var label = f.querySelector('.pf-label');
     var ids = [].map.call(f.querySelectorAll('.pf-file'), function (a) { return a.dataset.project; }).filter(function (id) { return PROJECTS[id]; });
     pt.innerHTML =
@@ -252,7 +252,7 @@
     }, { passive: false });
     pt.showModal();
     if (!reduce && pt.animate) {
-      ptOpening = pt.animate([{ transform: fromCard(f, pt), opacity: 0.2 }, { transform: 'none', opacity: 1 }], { duration: 480, easing: EASE_IN });
+      ptOpening = pt.animate([{ transform: direct ? 'scale(0.92)' : fromCard(f, pt), opacity: direct ? 0 : 0.2 }, { transform: 'none', opacity: 1 }], { duration: direct ? 380 : 480, easing: EASE_IN });
     }
   };
   var closeFolder = function () {
@@ -266,6 +266,23 @@
     a.onfinish = function () { if (ptClosing !== a) return; ptClosing = null; pt.classList.remove('is-closing'); done(); a.cancel(); };
   };
   pt.addEventListener('cancel', function (e) { e.preventDefault(); closeFolder(); });
+
+  /* Links straight into a folder (one click from anywhere on the page): <a href="#folder-design"
+     data-open-folder="design"> opens the folder whose data-folder="design" without scrolling to it.
+     The same hash in a URL (index.html#folder-design) opens it when the page loads. */
+  var folderById = function (id) { return document.querySelector('.pf-folder[data-folder="' + id + '"]'); };
+  document.querySelectorAll('[data-open-folder]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var f = folderById(a.dataset.openFolder);
+      if (!f) return;
+      e.preventDefault();
+      openFolder(f, true);
+    });
+  });
+  var fromHash = /^#folder-([\w-]+)$/.exec(location.hash);
+  if (fromHash && folderById(fromHash[1])) {
+    window.addEventListener('load', function () { openFolder(folderById(fromHash[1]), true); });
+  }
   pt.addEventListener('click', function (e) {
     if (ptClosing) { var a = ptClosing; ptClosing = null; a.onfinish = null; a.cancel(); pt.classList.remove('is-closing'); pt.close(); pt.innerHTML = ''; return; }
     if (e.target === pt) closeFolder(); // tap outside the panel

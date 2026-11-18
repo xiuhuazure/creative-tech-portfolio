@@ -192,14 +192,14 @@
           '<p class="pd-desc pd-in">' + esc(p.desc) + '</p>' +
           '<div class="pd-actions pd-in">' + nav + p.links.map(function (l) {
             var ext = /^https?:/.test(l[1]); return '<a href="' + l[1] + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + esc(l[0]) + '</a>';
-          }).join('') + '<button class="pd-close-btn" type="button">Close</button></div>' +
+          }).join('') + '</div>' +
         '</div>' +
       '</div>';
     var mediaBox = dlg.querySelector('.pd-media');
     mediaBox.style.setProperty('--ar', ar);
     var firstImg = mediaBox.querySelector('img');
     if (firstImg) { var setAr = function () { if (firstImg.naturalWidth) mediaBox.style.setProperty('--ar', firstImg.naturalWidth / firstImg.naturalHeight); }; if (firstImg.complete) setAr(); else firstImg.addEventListener('load', setAr); }
-    dlg.querySelectorAll('.pd-x, .pd-close-btn').forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); closeProject(); }); });
+    dlg.querySelectorAll('.pd-x').forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); closeProject(); }); });
     dlg.querySelectorAll('.pd-step').forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); step(+b.dataset.step); }); });
     var v = dlg.querySelector('video'); if (v) { v.muted = true; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
     dlg.classList.remove('is-closing');

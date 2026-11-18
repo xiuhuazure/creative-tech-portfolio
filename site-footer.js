@@ -45,17 +45,10 @@
     return '<div class="vf-badge" data-i="' + i + '"><a class="pill" href="' + p.href + '">' + esc(p.label) + '</a><div class="line"></div></div>';
   }).join('');
 
-  // Phones: the arc is too narrow for five labels, so they become a swipeable slideshow at its top
-  var slide = '<div class="vf-slide">' +
-      '<p class="vf-slide-cap">What I do</p>' +
-      '<div class="vf-slide-track">' + PINS.map(function (p) {
-        return '<div class="vf-slide-item"><a class="pill" href="' + p.href + '">' + esc(p.label) + '</a></div>';
-      }).join('') + '</div>' +
-      '<div class="vf-slide-dots">' + PINS.map(function (p, i) {
-        return '<button type="button" aria-label="Show ' + esc(p.label.replace(/^\S+\s/, '')) + '"></button>';
-      }).join('') + '</div>' +
-      '<div class="line"></div>' +
-    '</div>';
+  // Phones and tablets: the arc is too narrow for five labels, so it becomes an orbit. The
+  // checkpoints travel along the line and each one stops at the top, in focus, with its label.
+  var orbit = '<div class="vf-orbit"><p class="vf-slide-cap">What I do</p>' +
+    '<a class="pill" href="' + PINS[0].href + '">' + esc(PINS[0].label) + '</a><div class="line"></div></div>';
 
   function col(title, items) {
     return '<div><h4>' + title + '</h4><ul>' + items.map(function (it) {
@@ -84,7 +77,7 @@
         '<circle class="vf-top" cx="700" cy="230" r="4"/>' +
       '</svg>' +
       '<p class="vf-cap">What I do</p>' +
-      badges + slide +
+      badges + orbit +
     '</div>' +
     '<div class="vf-links">' +
       '<div class="vf-grid">' +
@@ -112,10 +105,25 @@
     }
   }
 
+  // Each pin's place on the arc ellipse (x = CX + A·cos θ, y = CY − B·sin θ)
+  var HOME = PINS.map(function (p) { return Math.acos((p.x - CX) / A); });
+  function placePin(i, theta, focus) {
+    var x = (CX + A * Math.cos(theta)).toFixed(1), y = (CY - B * Math.sin(theta)).toFixed(1);
+    var halo = pinEls[i].querySelector('.halo'), dot = pinEls[i].querySelector('.dot');
+    halo.setAttribute('cx', x); halo.setAttribute('cy', y); dot.setAttribute('cx', x); dot.setAttribute('cy', y);
+    halo.setAttribute('r', (14 + 9 * focus).toFixed(1)); dot.setAttribute('r', (4 + 2.5 * focus).toFixed(2));
+    halo.style.opacity = (0.18 + 0.5 * focus).toFixed(2);
+  }
+  function resetPins() {
+    for (var i = 0; i < pinEls.length; i++) { placePin(i, HOME[i], 0); pinEls[i].querySelector('.halo').style.opacity = ''; }
+  }
+
   // Anchor each badge to its pin's real on-screen position (the SVG is "slice"-scaled,
   // so fixed percentages drift); hide badges whose pin is cropped off the edge.
+  var orbiting = false;
   function layout() {
     globe.classList.remove('is-slides'); // measure the labels on the arc first
+    resetPins();
     var g = globe.getBoundingClientRect();
     visible = [];
     for (var i = 0; i < pinEls.length; i++) {
@@ -131,55 +139,67 @@
       if (fits) visible.push(i);
     }
     if (visible.indexOf(current) === -1 && visible.length) { step = 0; setActive(visible[0]); }
-    // Not every label fits on the arc: show them all as a slideshow instead
-    globe.classList.toggle('is-slides', visible.length < pinEls.length);
+    // Not every label fits on the arc: switch to the orbit
+    orbiting = visible.length < pinEls.length;
+    globe.classList.toggle('is-slides', orbiting);
+    if (orbiting) { measureOrbit(); drawOrbit(pos); placeLabel(); }
   }
 
-  // ---- Phone slideshow: swipe, tap a dot, or let it advance on its own ----
-  var slideEl = host.querySelector('.vf-slide'), track = host.querySelector('.vf-slide-track');
-  var dots = host.querySelectorAll('.vf-slide-dots button'), slideAt = 0, heldUntil = 0;
-  function showSlide(i, smooth) {
-    slideAt = (i + dots.length) % dots.length;
-    track.scrollTo({ left: slideAt * track.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
-    for (var k = 0; k < dots.length; k++) dots[k].classList.toggle('on', k === slideAt);
+  // ---- Orbit ----
+  var orbitEl = host.querySelector('.vf-orbit'), orbitPill = orbitEl.querySelector('.pill');
+  var svg = globe.querySelector('svg'), N = PINS.length, pos = 0, step0 = 0.2, moving = false, lastMove = 0;
+  // Spacing between checkpoints: the next one sits near the edge of the screen, the rest beyond it
+  function measureOrbit() {
+    var r = svg.getBoundingClientRect(), scale = Math.max(r.width / 1400, r.height / 420);
+    var half = (globe.getBoundingClientRect().width / 2) / scale; // half the visible width, in SVG units
+    step0 = Math.asin(Math.min(0.95, (half * 0.74) / A));
   }
-  [].forEach.call(dots, function (d, i) { d.addEventListener('click', function () { heldUntil = Date.now() + 8000; showSlide(i, true); }); });
-  var settle = 0; // after a swipe comes to rest, light the dot for the label in view
-  track.addEventListener('scroll', function () {
-    clearTimeout(settle);
-    settle = setTimeout(function () {
-      var i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
-      if (i < 0 || i >= dots.length) return;
-      slideAt = i;
-      for (var k = 0; k < dots.length; k++) dots[k].classList.toggle('on', k === i);
-    }, 140);
-  }, { passive: true });
-  ['touchstart', 'pointerdown'].forEach(function (t) { track.addEventListener(t, function () { heldUntil = Date.now() + 8000; }, { passive: true }); });
-  // Sit the slideshow on the top of the arc
-  function placeSlide() {
-    if (getComputedStyle(slideEl).display === 'none') return;
+  function drawOrbit(p) {
+    for (var i = 0; i < N; i++) {
+      var d = ((i - p) % N + N + N / 2) % N - N / 2; // -2.5 … 2.5: where this pin is relative to the top
+      placePin(i, Math.PI / 2 - d * step0, Math.max(0, 1 - Math.abs(d) * 1.6));
+    }
+  }
+  function placeLabel() {
     var g = globe.getBoundingClientRect(), t = host.querySelector('.vf-top').getBoundingClientRect();
-    slideEl.style.top = (t.top + t.height / 2 - g.top) + 'px';
+    orbitEl.style.top = (t.top + t.height / 2 - g.top) + 'px';
   }
-  showSlide(0, false);
-
-  layout(); placeSlide();
-  window.addEventListener('load', function () { layout(); placeSlide(); });
-  var raf = 0;
-  window.addEventListener('resize', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { layout(); placeSlide(); showSlide(slideAt, false); }); });
-
+  function setLabel(i) {
+    orbitPill.textContent = PINS[i].label.replace(/&amp;/g, '&');
+    orbitPill.href = PINS[i].href;
+  }
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduce) {
-    setInterval(function () {
-      if (!visible.length) return;
-      step = (step + 1) % visible.length;
-      setActive(visible[step]);
-    }, 2500);
-    setInterval(function () {
-      if (Date.now() < heldUntil || getComputedStyle(slideEl).display === 'none') return;
-      showSlide(slideAt + 1, true);
-    }, 2800);
+  function travel() {
+    if (!orbiting || moving) return;
+    lastMove = Date.now();
+    var from = pos, to = Math.round(pos) + 1, t0 = 0, dur = reduce ? 0 : 1200;
+    moving = true; orbitEl.classList.add('is-moving');
+    var ease = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+    var frame = function (now) {
+      if (!t0) t0 = now;
+      var k = dur ? Math.min(1, (now - t0) / dur) : 1;
+      pos = from + (to - from) * ease(k);
+      drawOrbit(pos);
+      if (k < 1) return requestAnimationFrame(frame);
+      pos = to % N; moving = false;
+      setLabel(pos); orbitEl.classList.remove('is-moving');
+    };
+    requestAnimationFrame(frame);
   }
+  globe.addEventListener('click', function (e) { if (orbiting && !e.target.closest('a')) travel(); }); // tap to move on
+
+  layout();
+  window.addEventListener('load', layout);
+  var raf = 0;
+  window.addEventListener('resize', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(layout); });
+
+  setInterval(function () {
+    if (document.hidden) return;
+    if (orbiting) { if (Date.now() - lastMove > 2500) travel(); return; } // a tap restarts the wait
+    if (reduce || !visible.length) return;
+    step = (step + 1) % visible.length;
+    setActive(visible[step]);
+  }, 3200);
 
   // ---- Wordmark: rise + colour shift each time it scrolls into view ----
   var brand = host.querySelector('.vf-brand');

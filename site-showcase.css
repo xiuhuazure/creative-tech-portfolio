@@ -185,7 +185,7 @@
   gap: 10px 120px; margin: 4vh auto 0;
 }
 .pf-folder.is-top, .pf-folder.is-bottom { grid-column: 1 / -1; justify-self: center; }
-.pf-hint { position: relative; z-index: 1; text-align: center; color: var(--text-mute); font-size: 0.85rem; margin: 8vh 0 0; }
+.pf-hint { position: relative; z-index: 1; text-align: center; color: var(--text-dim); font-size: 0.9rem; margin: 3vh auto 0; max-width: 34ch; } /* sits under the title, before the folders */
 
 .pf-folder { width: min(473px, calc(100vw - 24px)); aspect-ratio: 463 / 360; container-type: inline-size; cursor: pointer; }
 .pf-move {
@@ -248,15 +248,15 @@
 /* the glass front: an outer pane and a tinted inner pane */
 .pf-front {
   position: absolute; left: calc(var(--u) * 55); top: calc(var(--u) * 104); width: calc(var(--u) * 360); height: calc(var(--u) * 198);
-  box-sizing: border-box; padding: calc(var(--u) * 4); border-radius: calc(var(--u) * 18); transform-origin: 50% 100%; /* clicking the glass opens the folder dialog */
-  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  box-sizing: border-box; padding: calc(var(--u) * 4); border-radius: calc(var(--u) * 18); transform-origin: 50% 100%; /* clicking the glass opens the folder */
+  -webkit-backdrop-filter: blur(1px); backdrop-filter: blur(1px); /* light blur: the files behind stay readable */
   box-shadow: inset 0 0 calc(var(--u) * 16) var(--pf-glow), 0 calc(var(--u) * -4) calc(var(--u) * 4) var(--pf-deep);
   transition: transform .45s cubic-bezier(.3, 1.35, .6, 1), box-shadow .45s ease;
 }
 .pf-glass {
   position: relative; display: block; width: 100%; height: 100%; border-radius: calc(var(--u) * 16);
   background: linear-gradient(180deg, var(--pf-glass-a) 0%, var(--pf-glass-b) 32%, var(--pf-glass-c) 89%);
-  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(1.5px); backdrop-filter: blur(1.5px);
   box-shadow: inset 0 calc(var(--u) * -2) calc(var(--u) * 8) var(--pf-glass-c), inset calc(var(--u) * -2) calc(var(--u) * 4) calc(var(--u) * 16) calc(var(--u) * 4) var(--pf-glow), 0 0 calc(var(--u) * 16) var(--pf-deep);
 }
 .pf-folder.is-open .pf-front { transform: skewX(-12deg); box-shadow: inset 0 0 calc(var(--u) * 16) var(--pf-glow), calc(var(--u) * -8) calc(var(--u) * -4) calc(var(--u) * 12) var(--pf-deep); }
@@ -282,68 +282,88 @@
   .pf-file, .pf-front, .pf-back { transition: none; }
 }
 
-/* ------------------------------ Folder dialog ------------------------------
-   A glass panel in the middle of the screen with the folder's files as a sideways-scrolling row
-   of cards; the folder's name sits on a frosted strip along the bottom. */
+/* ------------------------------ Inside a folder ------------------------------
+   Opening a folder zooms into it: the folder grows out of its spot to fill the screen, its glass
+   front falls away past the viewer, and the projects rise out of it as paper pages. */
 .pt {
-  width: min(1180px, calc(100vw - 24px)); max-width: none; padding: 0; margin: auto; border: 0; background: transparent; overflow: visible;
-  color: var(--pf-ink, #2b2418);
+  width: min(1180px, calc(100vw - 32px)); max-width: none; height: min(calc(100dvh - 48px), 880px); max-height: none;
+  padding: 0; margin: auto; border: 0; background: transparent; overflow: visible; color: #2b2418;
 }
-.pt::backdrop { background: rgba(6, 8, 10, 0.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
-.pt.is-closing::backdrop { opacity: 0; transition: opacity .3s ease; }
-.pt-panel {
-  position: relative; overflow: hidden; border-radius: 30px; padding: 30px 0 0;
-  background: linear-gradient(180deg, rgba(246, 214, 160, 0.5) 0%, rgba(232, 194, 108, 0.52) 34%, rgba(214, 170, 78, 0.58) 100%);
-  -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2);
-  box-shadow: inset 0 0 22px rgba(255, 246, 222, 0.8), inset 0 -2px 10px rgba(180, 138, 52, 0.45), 0 40px 90px rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(255, 248, 230, 0.55);
+.pt::backdrop { background: rgba(6, 8, 10, 0.62); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.pt.is-closing::backdrop { opacity: 0; transition: opacity .35s ease; }
+.pt-folder { /* the inside of the folder: its back panel, with the tab sticking up on the left */
+  position: absolute; inset: 40px 0 0; border-radius: 0 26px 26px 26px; outline: none;
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(110, 78, 18, 0.28), transparent 60%),          /* the shadow just inside the opening */
+    linear-gradient(180deg, #e6c67e 0%, #e3c178 62%, #cfa75a 100%);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 250, 236, 0.55), inset 0 0 40px rgba(110, 78, 18, 0.18), 0 40px 90px rgba(0, 0, 0, 0.45);
 }
-:root[data-theme="light"] .pt-panel { box-shadow: inset 0 0 22px rgba(255, 246, 222, 0.85), inset 0 -2px 10px rgba(180, 138, 52, 0.35), 0 40px 90px rgba(80, 60, 20, 0.3); }
-.pt-track {
-  display: flex; gap: 24px; overflow-x: auto; overflow-y: hidden; padding: 26px 44px 26px; justify-content: safe center;
-  scroll-snap-type: x proximity; scroll-padding: 0 44px; overscroll-behavior-x: contain; outline: none;
+:root[data-theme="light"] .pt-folder { box-shadow: inset 0 0 0 1.5px rgba(255, 250, 236, 0.6), inset 0 0 40px rgba(110, 78, 18, 0.14), 0 40px 90px rgba(80, 60, 20, 0.3); }
+.pt-tab {
+  position: absolute; left: 0; bottom: 100%; height: 42px; display: flex; align-items: center; gap: 12px; padding: 0 26px 0 22px;
+  border-radius: 18px 18px 0 0; background: #e6c67e; box-shadow: inset 0 1.5px 0 rgba(255, 250, 236, 0.55);
+}
+.pt-tab::after { /* the soft shoulder where the tab meets the folder */
+  content: ""; position: absolute; left: 100%; bottom: 0; width: 18px; height: 18px;
+  background: radial-gradient(circle at 100% 0, transparent 17.5px, #e6c67e 18px);
+}
+.pt-label { font: 600 1.05rem/1 var(--sans); color: #fff; text-shadow: 0 1px 4px rgba(90, 60, 10, 0.45); white-space: nowrap; }
+.pt-count { font: 600 0.72rem/1 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: rgba(78, 56, 14, 0.7); white-space: nowrap; }
+.pt-x {
+  position: absolute; top: 14px; right: 16px; z-index: 3; width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer;
+  display: grid; place-items: center; background: rgba(255, 255, 255, 0.4); color: #4e3c12; font-size: 1rem;
+}
+.pt-x:hover { background: rgba(255, 255, 255, 0.7); }
+.pt-x:focus:not(:focus-visible), .pt-folder:focus { outline: none; }
+.pt-pages {
+  position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; border-radius: inherit;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); align-content: start; gap: 34px 28px;
+  padding: 44px clamp(20px, 4vw, 52px) 56px;
   scrollbar-width: thin; scrollbar-color: rgba(120, 84, 20, 0.45) transparent;
 }
-.pt-track:focus-visible { box-shadow: inset 0 0 0 3px var(--gold); }
+/* a project page: paper with a strip of tape, sitting slightly crooked until you point at it */
 .pt-card {
-  flex: 0 0 260px; min-height: 280px; box-sizing: border-box; padding: 22px 20px; border-radius: 12px; scroll-snap-align: start;
-  display: flex; flex-direction: column; gap: 6px; background: #f8f6f1; color: #2b2418; text-decoration: none;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 10px 30px rgba(60, 40, 0, 0.18);
-  transition: transform .25s cubic-bezier(.3, 1.35, .6, 1), box-shadow .25s ease;
-  animation: pt-rise .5s cubic-bezier(.2, .7, .2, 1) backwards; animation-delay: calc(.12s + var(--i, 0) * .05s);
+  position: relative; display: flex; flex-direction: column; gap: 6px; box-sizing: border-box; padding: 12px 12px 18px;
+  border-radius: 6px; background: #fbf8f1; color: #2b2418; text-decoration: none;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 12px 26px rgba(80, 54, 6, 0.22), 0 2px 4px rgba(80, 54, 6, 0.12);
+  transform: rotate(calc(var(--rot, 0) * 1deg));
+  transition: transform .3s cubic-bezier(.3, 1.35, .6, 1), box-shadow .25s ease;
 }
-.pt-card:nth-child(even) { margin-top: -12px; } /* the slight stagger in the reference */
-.pt-card:hover, .pt-card:focus-visible { transform: translateY(-6px); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 18px 40px rgba(60, 40, 0, 0.26); outline: none; }
-.pt-card strong { font-family: var(--serif); font-size: 1.2rem; line-height: 1.22; }
-.pt-card .pt-sub { font-size: 0.86rem; color: #6f675a; }
-.pt-card hr { width: 100%; border: 0; border-top: 1px solid rgba(43, 36, 24, 0.12); margin: 10px 0 8px; }
-.pt-card p { font-size: 0.9rem; line-height: 1.55; color: #4c4438; margin: 0; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
-.pt-card .pt-go { margin-top: 14px; font: 600 0.78rem/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: #9c7620; }
-.pt-card.is-link p { -webkit-line-clamp: 3; }
-.pt-strip { /* frosted strip over the bottom of the cards, with the folder's name */
-  position: absolute; left: 0; right: 0; bottom: 0; height: 64px; display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(180deg, rgba(255, 238, 200, 0.35), rgba(222, 182, 96, 0.55));
+.pt-card::before { /* tape */
+  content: ""; position: absolute; top: -9px; left: 50%; width: 64px; height: 18px; translate: -50% 0; rotate: calc(var(--rot, 0) * -2deg);
+  background: rgba(255, 252, 240, 0.62); box-shadow: 0 1px 2px rgba(80, 54, 6, 0.15);
+}
+.pt-card:hover, .pt-card:focus-visible { transform: translateY(-6px) rotate(0deg); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 22px 40px rgba(80, 54, 6, 0.3); outline: none; }
+.pt-card:focus-visible { outline: 3px solid #8f6a24; outline-offset: 3px; }
+.pt-thumb { position: relative; display: block; aspect-ratio: 16 / 10; border-radius: 3px; overflow: hidden; background: #e9e1cf; margin-bottom: 6px; }
+.pt-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+.pt-thumb.is-play { display: grid; place-items: center; background: linear-gradient(150deg, #2b2418, #4a3a1c); color: #f2d999; font: 600 0.8rem/1 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; }
+.pt-card strong { font-family: var(--serif); font-size: 1.18rem; line-height: 1.2; }
+.pt-card .pt-sub { font-size: 0.8rem; line-height: 1.35; color: #7a6a4c; }
+.pt-card p { font-size: 0.86rem; line-height: 1.5; color: #4c4438; margin: 4px 0 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.pt-card .pt-go { margin-top: auto; padding-top: 10px; font: 600 0.74rem/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: #9c7620; }
+/* the folder's glass front: it covers the opening at first, then falls away as you go in */
+.pt-flap {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 58%; z-index: 2; pointer-events: none; border-radius: 26px; transform-origin: 50% 100%;
+  background: linear-gradient(180deg, rgba(255, 190, 240, 0.5) 0%, rgba(232, 194, 108, 0.62) 32%, rgba(214, 170, 78, 0.7) 89%);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 248, 230, 0.55); box-shadow: inset 0 8px 16px rgba(255, 246, 222, 0.35);
+  box-shadow: inset 0 0 22px rgba(255, 246, 222, 0.8), 0 -6px 12px rgba(110, 78, 18, 0.2);
+  opacity: 0; visibility: hidden;
 }
-.pt-label {
-  padding: 5px 14px; border-radius: 10px; font-size: 1rem; font-weight: 600; color: #fff; text-shadow: 0 1px 4px rgba(90, 60, 10, 0.45);
-  background: rgba(255, 255, 255, 0.16); box-shadow: -1px 1px 2px rgba(110, 78, 18, 0.2);
-}
-.pt-x {
-  position: absolute; top: 10px; right: 12px; z-index: 2; width: 34px; height: 34px; border-radius: 50%; border: 0; cursor: pointer;
-  display: grid; place-items: center; background: rgba(255, 255, 255, 0.35); color: #4e3c12; font-size: 0.95rem;
-}
-.pt-x:hover { background: rgba(255, 255, 255, 0.6); }
-.pt-x:focus:not(:focus-visible), .pt-panel:focus { outline: none; }
-@keyframes pt-rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
 @media (max-width: 720px) {
-  .pt-panel { border-radius: 24px; padding-top: 34px; }
-  .pt-track { gap: 14px; padding: 22px 20px 22px; scroll-padding: 0 20px; }
-  .pt-card { flex-basis: 220px; min-height: 262px; padding: 18px 16px; }
-  .pt-card:nth-child(even) { margin-top: 0; }
+  .pt { width: calc(100vw - 16px); height: calc(100dvh - 24px); }
+  .pt-folder { inset: 36px 0 0; border-radius: 0 20px 20px 20px; }
+  .pt-tab { height: 38px; padding: 0 18px 0 16px; }
+  .pt-label { font-size: 0.95rem; }
+  .pt-pages { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 14px; padding: 58px 14px 40px; }
+  .pt-card { padding: 8px 8px 12px; }
+  .pt-card strong { font-size: 0.98rem; }
+  .pt-card .pt-sub { font-size: 0.72rem; }
+  .pt-card p { display: none; }
+  .pt-card .pt-go { font-size: 0.66rem; }
+  .pt-x { top: 10px; right: 10px; width: 36px; height: 36px; }
 }
-@media (prefers-reduced-motion: reduce) { .pt-card { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .pt-card { transition: none; } }
 
 /* ------------------------------ Project dialog ------------------------------ */
 .pd {

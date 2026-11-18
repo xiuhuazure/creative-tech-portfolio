@@ -280,3 +280,29 @@ html body .vf .vf-globe::after {
 }
 html body .vf .vf-globe svg { position: relative; z-index: 1; }
 @media (max-width: 640px) { html body .vf .vf-globe::after { top: 52%; height: 48%; } }
+
+/* ---- Phones: the three menu links sit in the header (no ☰ menu to open) ---- */
+@media (max-width: 720px) {
+  header .nav-toggle { display: none !important; }
+  header .nav-links, header .nav-links.open {
+    display: flex !important; position: static; flex-direction: row; align-items: center; gap: 14px;
+    background: none; border: 0; padding: 0;
+  }
+  header .nav-links a, header .nav-links.open a { padding: 6px 0 !important; width: auto !important; font-size: 0.84rem; }
+  header .nav-links a.nav-cta, header .nav-links.open a.nav-cta { padding: 7px 12px !important; margin: 0 !important; font-size: 0.8rem; }
+  header .nav-links a:not(.nav-cta)::after { bottom: 0; }
+}
+@media (max-width: 370px) {
+  header .brand .name { font-size: 1rem; }
+  header .nav-links, header .nav-links.open { gap: 10px; }
+  header .nav-links a, header .nav-links.open a { font-size: 0.78rem; }
+  header .nav-links a.nav-cta, header .nav-links.open a.nav-cta { padding: 6px 9px !important; font-size: 0.74rem; }
+}
+@media (max-width: 720px) { header .brand .name, header .nav-links a { white-space: nowrap; } }
+@media (max-width: 340px) {
+  header .brand .name { font-size: 0.92rem; }
+  header .nav-links, header .nav-links.open { gap: 8px; }
+  header .nav-links a, header .nav-links.open a { font-size: 0.74rem; }
+  header .nav-links a.nav-cta, header .nav-links.open a.nav-cta { padding: 5px 7px !important; font-size: 0.7rem; }
+  header .nav { padding-right: 56px; }
+}

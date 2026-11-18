@@ -11,7 +11,7 @@
       title: 'Earth Moon Magick: Storefront', date: 'Dec 2025 – Present · Freelance',
       tech: ['Shopify', 'Liquid', 'GemPages', 'HTML / CSS'],
       desc: 'Shopify Technical Specialist for a spiritual and wellness brand. I build blog and new product pages in GemPages, make theme edits in Shopify Liquid, HTML and CSS, and manage product listings, variants and media galleries.',
-      media: { img: 'media/emm-site.webp?v=2', alt: 'Earth Moon Magick homepage' },
+      media: { img: 'media/emm-site.webp?v=2', alt: 'Earth Moon Magick homepage', contain: true, fit: true },
       links: [['Read the case study', 'case-study.html'], ['Visit the store ↗', 'https://earthmoonmagick.com/']]
     },
     'emm-ads': { tall: true,
@@ -290,7 +290,7 @@
         '<div class="pt-pages">' + files.map(function (a, i) {
           var p = PROJECTS[a.dataset.project], th = a.querySelector('.pf-thumb');
           return '<a class="pt-card" href="#projects" data-project="' + a.dataset.project + '" aria-haspopup="dialog" style="--rot:' + ROT[i % ROT.length] + '">' +
-            '<span class="pt-thumb' + (p.tall ? ' is-tall' : '') + '">' + (th ? th.innerHTML : '') + '</span>' + // tall (phone) mockups show whole, not cropped
+            '<span class="pt-thumb' + (p.tall ? ' is-tall' : '') + (p.media.fit ? ' is-fit' : '') + '">' + (th ? th.innerHTML : '') + '</span>' + // tall (phone) mockups show whole, not cropped
             '<strong>' + esc(p.title) + '</strong><span class="pt-sub">' + esc(p.date) + '</span><p>' + esc(p.desc) + '</p></a>';
         }).join('') + extras.map(function (x, i) {
           return '<a class="pt-card is-link" href="' + x.href + '" target="_blank" rel="noopener" style="--rot:' + ROT[(files.length + i) % ROT.length] + '">' +

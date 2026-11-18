@@ -11,7 +11,7 @@
       title: 'Earth Moon Magick: Storefront', date: 'Dec 2025 – Present · Freelance',
       tech: ['Shopify', 'Liquid', 'GemPages', 'HTML / CSS'],
       desc: 'Shopify Technical Specialist for a spiritual and wellness brand. I build blog and new product pages in GemPages, make theme edits in Shopify Liquid, HTML and CSS, and manage product listings, variants and media galleries.',
-      media: { img: 'media/emm-site.webp', alt: 'Earth Moon Magick homepage' },
+      media: { img: 'media/emm-site.webp?v=2', alt: 'Earth Moon Magick homepage' },
       links: [['Read the case study', 'case-study.html'], ['Visit the store ↗', 'https://earthmoonmagick.com/']]
     },
     'emm-ads': { tall: true,

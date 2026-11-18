@@ -67,7 +67,7 @@
       title: 'Portfolio website', date: '2026 · Personal project · Individual project',
       tech: ['HTML', 'CSS', 'JavaScript', 'Cloudflare', 'Claude'],
       desc: 'The site you’re on: hand-written HTML, CSS and JavaScript with a lantern dark and light switch, scroll motion, glass folders and layouts that fit phones up to 27-inch screens. Built with Claude and deployed on Cloudflare.',
-      media: { img: 'media/portfolio-site.jpg', alt: 'Kimberly Yu portfolio homepage' },
+      media: { img: 'media/portfolio-site.jpg', alt: 'Kimberly Yu portfolio website on a laptop and a phone', contain: true },
       links: []
     },
     'jonathan': {

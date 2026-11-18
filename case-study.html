@@ -18,10 +18,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site-footer.css?v=20261118zk" />
-  <link rel="stylesheet" href="site-motion.css?v=20261118zk" />
-  <link rel="stylesheet" href="site-buttons.css?v=20261118zk" />
-  <link rel="stylesheet" href="site-cursor.css?v=20261118zk" />
+  <link rel="stylesheet" href="site-footer.css?v=20261118zl" />
+  <link rel="stylesheet" href="site-motion.css?v=20261118zl" />
+  <link rel="stylesheet" href="site-buttons.css?v=20261118zl" />
+  <link rel="stylesheet" href="site-cursor.css?v=20261118zl" />
   <style>
     :root {
       --ink: #0c0f12; --ink-2: #12171c; --surface: #171d23; --surface-2: #1c242b;
@@ -177,6 +177,12 @@
     .deliv-media { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 5; margin: -8px -8px 16px; overflow: hidden; border-radius: 6px; border: 1px solid var(--border); background: linear-gradient(135deg, var(--thumb-a), var(--thumb-b)); color: var(--text-mute); font-size: 0.82rem; font-style: italic; text-align: center; }
     .deliv-media img, .deliv-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
     .deliv-ph { padding: 12px; }
+    /* a wide screenshot shown whole in the tall card: a small browser window in the middle */
+    .deliv-media.is-fit { padding: 12px; }
+    .deliv-shot { position: relative; z-index: 1; display: block; width: 100%; border-radius: 6px; overflow: hidden; box-shadow: 0 10px 26px rgba(0,0,0,0.4); background: #1a1418; }
+    .deliv-dots { display: flex; gap: 4px; padding: 6px 8px; background: rgba(255,255,255,0.08); }
+    .deliv-dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+    .deliv-media.is-fit img { position: static; display: block; width: 100%; height: auto; }
     .deliv-ig { display: grid; justify-items: center; gap: 8px; padding: 16px; text-align: center; color: #fff; }
     .deliv-ig svg { width: 46px; height: 46px; }
     .deliv-ig b { font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em; }
@@ -422,7 +428,7 @@
       <!-- Deliverables with media. Design & social shows an Instagram tile; to use a photo instead, swap <span class="deliv-ig"> for <img src="media/…" alt="…"> -->
       <div class="deliv">
         <div class="col">
-          <a class="deliv-media" href="https://earthmoonmagick.com/" target="_blank" rel="noopener" aria-label="Visit the Earth Moon Magick store"><img src="media/emm-site.webp?v=2" alt="Earth Moon Magick website" loading="lazy"><span class="deliv-go">↗</span></a>
+          <a class="deliv-media is-fit" href="https://earthmoonmagick.com/" target="_blank" rel="noopener" aria-label="Visit the Earth Moon Magick store"><span class="deliv-shot"><span class="deliv-dots" aria-hidden="true"><i></i><i></i><i></i></span><img src="media/emm-site.webp?v=2" alt="Earth Moon Magick website" loading="lazy"></span><span class="deliv-go">↗</span></a>
           <h4>Development</h4><p>GemPages blog and product pages, Liquid / HTML / CSS theme edits, and product listing fixes.</p>
         </div>
         <div class="col">
@@ -466,9 +472,9 @@
       <span><a href="index.html#contact">Contact</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
     </div></div>
   </footer>
-  <script src="site-footer.js?v=20261118zk"></script>
-  <script src="site-motion.js?v=20261118zk"></script>
-  <script src="site-buttons.js?v=20261118zk"></script>
+  <script src="site-footer.js?v=20261118zl"></script>
+  <script src="site-motion.js?v=20261118zl"></script>
+  <script src="site-buttons.js?v=20261118zl"></script>
 
   <script>
     document.querySelectorAll('.deliv-media video').forEach(v => {

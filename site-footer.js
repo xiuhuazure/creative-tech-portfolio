@@ -195,11 +195,11 @@
 
   setInterval(function () {
     if (document.hidden) return;
-    if (orbiting) { if (Date.now() - lastMove > 2500) travel(); return; } // a tap restarts the wait
+    if (orbiting) { if (Date.now() - lastMove > 4000) travel(); return; } // a tap restarts the wait
     if (reduce || !visible.length) return;
     step = (step + 1) % visible.length;
     setActive(visible[step]);
-  }, 3000); // a new skill every 3 seconds (1.2 s of travel, then 1.8 s in focus)
+  }, 4500); // a new skill every 4.5 seconds (1.2 s of travel, then 3.3 s in focus)
 
   // ---- Wordmark: rise + colour shift each time it scrolls into view ----
   var brand = host.querySelector('.vf-brand');

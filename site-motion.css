@@ -209,3 +209,16 @@ body article h2 { line-height: 1.2; }
   .fw .fw-p3 .fw-gallery img { width: 100%; height: 100%; max-width: none; max-height: none; object-fit: cover; }
   .fw .fw-p3 .fw-main { justify-content: center; }
 }
+
+/* Gold highlight text (.grad): the same gold as the "Things I've built" title, with a rough,
+   printed grain (an SVG noise mask punches small specks out of the letters). Light mode uses
+   a deeper gold so it stays readable on the paper background. */
+html .grad, html .hero h1 .grad {
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -7 5.3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background: none; color: rgb(184, 142, 62);
+  -webkit-text-fill-color: currentColor;
+  -webkit-mask-image: var(--grain); mask-image: var(--grain);
+  -webkit-mask-size: 160px 160px; mask-size: 160px 160px;
+  text-shadow: none;
+}
+:root[data-theme="light"] .grad { color: #8f6a24; }

@@ -16,11 +16,11 @@
   var CX = 700, CY = 430, A = 860, B = 200;
   // Each skill links straight to its work (index.html#folder-… opens that folder; see site-showcase.js)
   var PINS = [
-    { x: 190,  label: '🛍️ Shopify & Liquid', href: 'index.html#folder-web' },
-    { x: 370,  label: '🎬 Video Editing', href: 'index.html#folder-video' },
+    { x: 190,  label: '🛍️ Shopify & Liquid', href: 'index.html#folder-client' },
+    { x: 370,  label: '🎬 Video Editing', href: 'index.html#folder-client' },
     { x: 680,  label: '🛡️ Cybersecurity', href: 'about.html#certs' },
-    { x: 870,  label: '💻 Front-end Development', href: 'index.html#folder-web' },
-    { x: 1180, label: '📱 Android Apps', href: 'index.html#folder-apps' }
+    { x: 870,  label: '💻 Front-end Development', href: 'index.html#folder-school' },
+    { x: 1180, label: '📱 Android Apps', href: 'index.html#folder-school' }
   ];
   function arcY(x) { var t = (x - CX) / A; return CY - B * Math.sqrt(1 - t * t); }
   function esc(s) { return s.replace(/&/g, '&amp;'); }
@@ -47,7 +47,7 @@
 
   // Phones and tablets: the arc is too narrow for five labels, so it becomes an orbit. The
   // checkpoints travel along the line and each one stops at the top, in focus, with its label.
-  var orbit = '<div class="vf-orbit"><p class="vf-slide-cap">What I do</p>' +
+  var orbit = '<div class="vf-orbit">' +
     '<a class="pill" href="' + PINS[0].href + '">' + esc(PINS[0].label) + '</a><div class="line"></div></div>';
 
   function col(title, items) {
@@ -76,13 +76,12 @@
         sparkles + pins +
         '<circle class="vf-top" cx="700" cy="230" r="4"/>' +
       '</svg>' +
-      '<p class="vf-cap">What I do</p>' +
       badges + orbit +
     '</div>' +
     '<div class="vf-links">' +
       '<div class="vf-grid">' +
         col('Navigate', [['Home', 'index.html'], ['Works', 'index.html#projects'], ['Case study', 'case-study.html'], ['About me', 'about.html']]) +
-        col('What I do', [['Shopify & Liquid', 'index.html#folder-web'], ['Front-end development', 'index.html#folder-web'], ['Video ads & motion graphics', 'index.html#folder-video'], ['Graphic design', 'index.html#folder-design'], ['Android apps', 'index.html#folder-apps'], ['Cybersecurity', 'about.html#certs']]) +
+        col('What I do', [['Shopify & Liquid', 'index.html#folder-client'], ['Front-end development', 'index.html#folder-school'], ['Video ads & motion graphics', 'index.html#folder-client'], ['Graphic design', 'index.html#folder-personal'], ['Android apps', 'index.html#folder-school'], ['Cybersecurity', 'about.html#certs']]) +
         col('Contact', [['Email', 'index.html#contact'], ['LinkedIn', LINKEDIN], ['GitHub', GITHUB], ['Philippines', null, 'pin']]) +
       '</div>' +
     '</div>' +

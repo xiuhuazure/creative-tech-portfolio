@@ -264,61 +264,88 @@
   // Other pages (like About's certificate holders) add their own entries and reuse this dialog
   window.siteProjects = { add: function (o) { for (var k in o) PROJECTS[k] = o[k]; }, open: openProject };
 
-  /* ------------------------------ 3. Folder dialog ------------------------------
-     Clicking a folder opens its files as a row of cards in a glass panel in the middle of the
-     screen (scrolls sideways). It grows out of the folder and shrinks back into it on close.
-     A card opens that project's dialog on top. */
+  /* ------------------------------ 3. Inside a folder ------------------------------
+     Clicking a folder goes inside it: the folder grows out of its spot to fill the screen, its
+     glass front falls away past you, and its projects rise out as paper pages (styles: "Inside a
+     folder" in site-showcase.css). A page opens that project's dialog on top. */
   var pt = document.createElement('dialog');
   pt.className = 'pt'; pt.setAttribute('aria-labelledby', 'pt-title');
   document.body.appendChild(pt);
-  var ptFrom = null, ptClosing = null, ptOpening = null;
+  var ptFrom = null, ptAnims = [], ptClosing = null;
+  var ptStop = function () { ptAnims.forEach(function (a) { a.cancel(); }); ptAnims = []; };
+  var ROT = [-1.6, 1.1, -0.6, 1.5, -1.2, 0.7, -0.4, 1.3]; // a little crooked, like real paper
   var openFolder = function (f, direct) {
-    if (ptClosing) { ptClosing.onfinish = null; ptClosing.cancel(); ptClosing = null; }
+    if (ptClosing) { ptClosing.onfinish = null; ptClosing.cancel(); ptClosing = null; pt.classList.remove('is-closing'); }
+    ptStop();
     if (pt.open) pt.close();
-    ptFrom = direct ? null : f; // opened from a link elsewhere: no grow/shrink from the folder
+    ptFrom = direct ? null : f; // opened from a link elsewhere: no zoom out of the folder
     var label = f.querySelector('.pf-label');
-    var ids = [].map.call(f.querySelectorAll('.pf-file'), function (a) { return a.dataset.project; }).filter(function (id) { return PROJECTS[id]; });
+    var files = [].filter.call(f.querySelectorAll('.pf-file'), function (a) { return PROJECTS[a.dataset.project]; });
+    var extras = EXTRAS[f.dataset.extra] || [];
+    var n = files.length + extras.length;
     pt.innerHTML =
-      '<div class="pt-panel" tabindex="-1" autofocus>' +
+      '<div class="pt-folder" tabindex="-1">' +
+        '<div class="pt-tab"><span class="pt-label" id="pt-title">' + esc(label ? label.textContent : 'files') + '</span><span class="pt-count">' + n + (n === 1 ? ' file' : ' files') + '</span></div>' +
         '<button class="pt-x" type="button" aria-label="Close">✕</button>' +
-        '<div class="pt-track" tabindex="0" aria-label="Files">' + ids.map(function (id, i) {
-          var p = PROJECTS[id];
-          return '<a class="pt-card" href="#projects" data-project="' + id + '" aria-haspopup="dialog" style="--i:' + i + '">' +
-            '<strong>' + esc(p.title) + '</strong><span class="pt-sub">' + esc(p.date) + '</span><hr><p>' + esc(p.desc) + '</p></a>';
-        }).join('') + (EXTRAS[f.dataset.extra] || []).map(function (x, i) {
-          return '<a class="pt-card is-link" href="' + x.href + '" target="_blank" rel="noopener" style="--i:' + (ids.length + i) + '">' +
-            '<strong>' + esc(x.title) + '</strong><span class="pt-sub">' + esc(x.sub) + '</span><hr><p>' + esc(x.desc) + '</p><span class="pt-go">' + esc(x.go) + '</span></a>';
+        '<div class="pt-pages">' + files.map(function (a, i) {
+          var p = PROJECTS[a.dataset.project], th = a.querySelector('.pf-thumb');
+          return '<a class="pt-card" href="#projects" data-project="' + a.dataset.project + '" aria-haspopup="dialog" style="--rot:' + ROT[i % ROT.length] + '">' +
+            '<span class="pt-thumb">' + (th ? th.innerHTML : '') + '</span>' +
+            '<strong>' + esc(p.title) + '</strong><span class="pt-sub">' + esc(p.date) + '</span><p>' + esc(p.desc) + '</p></a>';
+        }).join('') + extras.map(function (x, i) {
+          return '<a class="pt-card is-link" href="' + x.href + '" target="_blank" rel="noopener" style="--rot:' + ROT[(files.length + i) % ROT.length] + '">' +
+            '<span class="pt-thumb is-play" aria-hidden="true">▶ ' + esc(x.title) + '</span>' +
+            '<strong>' + esc(x.title) + '</strong><span class="pt-sub">' + esc(x.sub) + '</span><p>' + esc(x.desc) + '</p><span class="pt-go">' + esc(x.go) + '</span></a>';
         }).join('') + '</div>' +
-        '<div class="pt-strip"><span class="pt-label" id="pt-title">' + esc(label ? label.textContent : 'files') + '</span></div>' +
+        '<div class="pt-flap" aria-hidden="true"></div>' +
       '</div>';
     pt.querySelector('.pt-x').addEventListener('click', function (e) { e.stopPropagation(); closeFolder(); });
     pt.querySelectorAll('.pt-card[data-project]').forEach(function (c) {
       c.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); openProject(c.dataset.project, c); });
     });
-    var track = pt.querySelector('.pt-track');
-    track.addEventListener('wheel', function (e) { // a normal mouse wheel scrolls the row sideways
-      if (track.scrollWidth <= track.clientWidth + 1 || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-      e.preventDefault(); track.scrollLeft += e.deltaY;
-    }, { passive: false });
     pt.showModal();
-    if (!reduce && pt.animate) {
-      ptOpening = pt.animate([{ transform: direct ? 'scale(0.92)' : fromCard(f, pt), opacity: direct ? 0 : 0.2 }, { transform: 'none', opacity: 1 }], { duration: direct ? 380 : 480, easing: EASE_IN });
-    }
+    var box = pt.querySelector('.pt-folder'); box.focus({ preventScroll: true });
+    if (reduce || !box.animate) return;
+    var back = !direct && f.querySelector('.pf-back');
+    var go = function (el, k, o) { var a = el.animate(k, o); ptAnims.push(a); return a; };
+    // 1. the folder grows from where it sits on the page to fill the screen (like walking up to it)
+    go(box, [{ transform: back ? fromCard(back, box) : 'scale(0.86)', opacity: back ? 1 : 0, borderRadius: '14px' },
+             { transform: 'none', opacity: 1, borderRadius: '0 26px 26px 26px' }],
+       { duration: 720, easing: 'cubic-bezier(.6, .02, .2, 1)' });
+    // 2. the glass front tips toward you and drops out of view, as if you pass through it
+    var flap = box.querySelector('.pt-flap');
+    go(flap, [{ visibility: 'visible', opacity: 1, transform: 'perspective(900px) rotateX(0deg)' },
+              { visibility: 'visible', opacity: 1, transform: 'perspective(900px) rotateX(0deg)', offset: 0.42 },
+              { visibility: 'visible', opacity: 0, transform: 'perspective(900px) rotateX(-58deg) translateY(55%) scale(1.25)' }],
+       { duration: 1100, easing: 'cubic-bezier(.5, 0, .3, 1)' });
+    // 3. the pages rise out of the folder, one after another
+    [].forEach.call(box.querySelectorAll('.pt-card'), function (c, i) {
+      var r = parseFloat(c.style.getPropertyValue('--rot')) || 0;
+      go(c, [{ opacity: 0, transform: 'translateY(90px) rotate(' + (r * 4) + 'deg) scale(0.94)' }, { opacity: 1, transform: 'rotate(' + r + 'deg)' }],
+         { duration: 620, delay: 560 + Math.min(i, 9) * 70, easing: 'cubic-bezier(.2, .8, .2, 1)', fill: 'backwards' });
+    });
   };
   var closeFolder = function () {
     if (!pt.open || ptClosing) return;
-    var back = ptFrom;
-    var done = function () { pt.close(); pt.innerHTML = ''; if (back) { var a = back.querySelector('.pf-file'); if (a) a.focus({ preventScroll: true }); } };
-    if (reduce || !pt.animate) return done();
-    if (ptOpening) { ptOpening.cancel(); ptOpening = null; }
+    var f = ptFrom;
+    var done = function () { pt.classList.remove('is-closing'); pt.close(); pt.innerHTML = ''; if (f) { var a = f.querySelector('.pf-file'); if (a) a.focus({ preventScroll: true }); } };
+    var box = pt.querySelector('.pt-folder');
+    if (reduce || !box || !box.animate) return done();
+    ptStop();
     pt.classList.add('is-closing');
-    var a = ptClosing = pt.animate([{ transform: 'none', opacity: 1 }, { transform: back ? fromCard(back, pt) : 'scale(0.9)', opacity: 0 }], { duration: 320, easing: EASE_OUT, fill: 'forwards' });
-    a.onfinish = function () { if (ptClosing !== a) return; ptClosing = null; pt.classList.remove('is-closing'); done(); a.cancel(); };
+    // the pages drop back in, the glass front swings back up, and the folder shrinks back into its spot
+    [].forEach.call(box.querySelectorAll('.pt-card'), function (c) { ptAnims.push(c.animate([{ opacity: 1 }, { opacity: 0, transform: 'translateY(60px)' }], { duration: 220, easing: 'ease-in', fill: 'forwards' })); });
+    ptAnims.push(box.querySelector('.pt-flap').animate([{ visibility: 'visible', opacity: 0, transform: 'perspective(900px) rotateX(-40deg) translateY(30%)' }, { visibility: 'visible', opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out', fill: 'forwards' }));
+    var back = f && f.querySelector('.pf-back');
+    var target = back && back.getBoundingClientRect().width ? fromCard(back, box) : 'scale(0.9)';
+    var a = ptClosing = box.animate([{ transform: 'none', opacity: 1 }, { transform: 'none', opacity: 1, offset: 0.35 }, { transform: target, opacity: back ? 0.4 : 0 }],
+      { duration: 560, easing: 'cubic-bezier(.5, 0, .7, .2)', fill: 'forwards' });
+    a.onfinish = function () { if (ptClosing !== a) return; ptClosing = null; ptStop(); done(); a.cancel(); };
   };
   pt.addEventListener('cancel', function (e) { e.preventDefault(); closeFolder(); });
 
-  /* Links straight into a folder (one click from anywhere): <a href="#folder-design"> or
-     <a href="index.html#folder-design"> opens the folder whose data-folder="design" without
+  /* Links straight into a folder (one click from anywhere): <a href="#folder-school"> or
+     <a href="index.html#folder-school"> opens the folder whose data-folder="school" without
      scrolling to it; from another page, the same link opens it as the homepage loads. */
   var folderById = function (id) { return document.querySelector('.pf-folder[data-folder="' + id + '"]'); };
   var fromHash = /^#folder-([\w-]+)$/.exec(location.hash);
@@ -335,8 +362,8 @@
     openFolder(f, true);
   });
   pt.addEventListener('click', function (e) {
-    if (ptClosing) { var a = ptClosing; ptClosing = null; a.onfinish = null; a.cancel(); pt.classList.remove('is-closing'); pt.close(); pt.innerHTML = ''; return; }
-    if (e.target === pt) closeFolder(); // tap outside the panel
+    if (ptClosing) { var a = ptClosing; ptClosing = null; a.onfinish = null; a.cancel(); ptStop(); pt.classList.remove('is-closing'); pt.close(); pt.innerHTML = ''; return; }
+    if (e.target === pt) closeFolder(); // tap outside the folder
   });
 
   /* ------------------------------ 4. Project folders ------------------------------

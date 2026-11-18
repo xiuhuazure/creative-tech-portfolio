@@ -188,3 +188,21 @@
     }
   }
 })();
+
+/* Videos marked <video data-src="…"> load only once they come near the screen. One that is
+   hidden (like the featured-work video on phones) never downloads at all. */
+(function () {
+  var vids = [].slice.call(document.querySelectorAll('video[data-src]'));
+  if (!vids.length) return;
+  var load = function (v) {
+    if (!v.dataset.src) return;
+    v.src = v.dataset.src; v.removeAttribute('data-src'); v.preload = 'auto';
+    var p = v.play(); if (p && p.catch) p.catch(function () {});
+  };
+  if (!('IntersectionObserver' in window)) { vids.forEach(load); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { load(e.target); io.unobserve(e.target); } });
+  }, { rootMargin: '300px 0px' });
+  vids.forEach(function (v) { io.observe(v); });
+})();
+

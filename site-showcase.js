@@ -70,6 +70,13 @@
       media: { img: 'media/portfolio-site.jpg', alt: 'Kimberly Yu portfolio homepage' },
       links: []
     },
+    'jonathan': {
+      title: 'Jonathan Photography: Booking & portfolio system', date: '2026 · Capstone, group project',
+      tech: ['React', 'Vite', 'PHP', 'MySQL'],
+      desc: 'A full-stack website my team built for a real photography studio. Clients browse the work, build a package estimate and request a date. The owner manages requests, the booking calendar, services, prices and website content from one dashboard.',
+      media: { img: 'media/jonathan-photography.jpg', alt: 'Jonathan Photography booking dashboard and phone screens', contain: true },
+      links: [['View on GitHub ↗', 'https://github.com/NeriVlad21/jonathan-photography']]
+    },
     'fslames': { tall: true,
       title: 'FSLAMES: Filipino Sign Language Automated Mobile Education System', date: '2025 – 2026 · Thesis',
       tech: ['Flutter', 'Python', 'MediaPipe', 'TensorFlow'],

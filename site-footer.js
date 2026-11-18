@@ -199,7 +199,7 @@
     if (reduce || !visible.length) return;
     step = (step + 1) % visible.length;
     setActive(visible[step]);
-  }, 3200);
+  }, 3000); // a new skill every 3 seconds (1.2 s of travel, then 1.8 s in focus)
 
   // ---- Wordmark: rise + colour shift each time it scrolls into view ----
   var brand = host.querySelector('.vf-brand');

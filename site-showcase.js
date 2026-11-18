@@ -267,22 +267,23 @@
   };
   pt.addEventListener('cancel', function (e) { e.preventDefault(); closeFolder(); });
 
-  /* Links straight into a folder (one click from anywhere on the page): <a href="#folder-design"
-     data-open-folder="design"> opens the folder whose data-folder="design" without scrolling to it.
-     The same hash in a URL (index.html#folder-design) opens it when the page loads. */
+  /* Links straight into a folder (one click from anywhere): <a href="#folder-design"> or
+     <a href="index.html#folder-design"> opens the folder whose data-folder="design" without
+     scrolling to it; from another page, the same link opens it as the homepage loads. */
   var folderById = function (id) { return document.querySelector('.pf-folder[data-folder="' + id + '"]'); };
-  document.querySelectorAll('[data-open-folder]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      var f = folderById(a.dataset.openFolder);
-      if (!f) return;
-      e.preventDefault();
-      openFolder(f, true);
-    });
-  });
   var fromHash = /^#folder-([\w-]+)$/.exec(location.hash);
   if (fromHash && folderById(fromHash[1])) {
     window.addEventListener('load', function () { openFolder(folderById(fromHash[1]), true); });
   }
+  // Links to index.html#folder-… clicked on this same page (e.g. in the footer) open the folder in place
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="#folder-"]');
+    if (!a || a.target === '_blank' || a.pathname !== location.pathname) return;
+    var m = /^#folder-([\w-]+)$/.exec(a.hash), f = m && folderById(m[1]);
+    if (!f) return;
+    e.preventDefault();
+    openFolder(f, true);
+  });
   pt.addEventListener('click', function (e) {
     if (ptClosing) { var a = ptClosing; ptClosing = null; a.onfinish = null; a.cancel(); pt.classList.remove('is-closing'); pt.close(); pt.innerHTML = ''; return; }
     if (e.target === pt) closeFolder(); // tap outside the panel

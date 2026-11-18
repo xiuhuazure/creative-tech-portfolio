@@ -14,12 +14,13 @@
 
   // Pins sit on the arc ellipse: centre (700, 430), radii a = 860, b = 200
   var CX = 700, CY = 430, A = 860, B = 200;
+  // Each skill links straight to its work (index.html#folder-… opens that folder; see site-showcase.js)
   var PINS = [
-    { x: 190,  label: '🛍️ Shopify & Liquid' },
-    { x: 370,  label: '🎬 Video Editing' },
-    { x: 680,  label: '🛡️ Cybersecurity' },
-    { x: 870,  label: '💻 Front-end Development' },
-    { x: 1180, label: '📱 Android Apps' }
+    { x: 190,  label: '🛍️ Shopify & Liquid', href: 'index.html#folder-web' },
+    { x: 370,  label: '🎬 Video Editing', href: 'index.html#folder-video' },
+    { x: 680,  label: '🛡️ Cybersecurity', href: 'about.html#certs' },
+    { x: 870,  label: '💻 Front-end Development', href: 'index.html#folder-web' },
+    { x: 1180, label: '📱 Android Apps', href: 'index.html#folder-apps' }
   ];
   function arcY(x) { var t = (x - CX) / A; return CY - B * Math.sqrt(1 - t * t); }
   function esc(s) { return s.replace(/&/g, '&amp;'); }
@@ -41,8 +42,20 @@
   }).join('');
 
   var badges = PINS.map(function (p, i) {
-    return '<div class="vf-badge" data-i="' + i + '"><div class="pill">' + esc(p.label) + '</div><div class="line"></div></div>';
+    return '<div class="vf-badge" data-i="' + i + '"><a class="pill" href="' + p.href + '">' + esc(p.label) + '</a><div class="line"></div></div>';
   }).join('');
+
+  // Phones: the arc is too narrow for five labels, so they become a swipeable slideshow at its top
+  var slide = '<div class="vf-slide">' +
+      '<p class="vf-slide-cap">What I do</p>' +
+      '<div class="vf-slide-track">' + PINS.map(function (p) {
+        return '<div class="vf-slide-item"><a class="pill" href="' + p.href + '">' + esc(p.label) + '</a></div>';
+      }).join('') + '</div>' +
+      '<div class="vf-slide-dots">' + PINS.map(function (p, i) {
+        return '<button type="button" aria-label="Show ' + esc(p.label.replace(/^\S+\s/, '')) + '"></button>';
+      }).join('') + '</div>' +
+      '<div class="line"></div>' +
+    '</div>';
 
   function col(title, items) {
     return '<div><h4>' + title + '</h4><ul>' + items.map(function (it) {
@@ -68,13 +81,15 @@
         '<ellipse class="vf-ring-glow" cx="700" cy="430" rx="860" ry="200" fill="none" stroke="#f2d999" stroke-width="12" opacity="0.15" filter="url(#vfGlow)"/>' +
         '<path class="vf-comet" d="M -160 430 A 860 200 0 0 1 1560 430" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.6" filter="url(#vfGlow)"/>' +
         sparkles + pins +
+        '<circle class="vf-top" cx="700" cy="230" r="4"/>' +
       '</svg>' +
-      badges +
+      '<p class="vf-cap">What I do</p>' +
+      badges + slide +
     '</div>' +
     '<div class="vf-links">' +
       '<div class="vf-grid">' +
         col('Navigate', [['Home', 'index.html'], ['Works', 'index.html#work'], ['Case study', 'case-study.html'], ['About me', 'about.html']]) +
-        col('What I do', [['Shopify & Liquid', 'index.html#services'], ['Front-end development', 'index.html#services'], ['Cybersecurity', 'index.html#services'], ['Android apps', 'index.html#services'], ['Video ads & motion graphics', 'index.html#services'], ['Graphic design', 'index.html#services']]) +
+        col('What I do', [['Shopify & Liquid', 'index.html#folder-web'], ['Front-end development', 'index.html#folder-web'], ['Video ads & motion graphics', 'index.html#folder-video'], ['Graphic design', 'index.html#folder-design'], ['Android apps', 'index.html#folder-apps'], ['Cybersecurity', 'about.html#certs']]) +
         col('Contact', [['Email', 'index.html#contact'], ['LinkedIn', LINKEDIN], ['GitHub', GITHUB], ['Philippines', null, 'pin']]) +
       '</div>' +
     '</div>' +
@@ -100,6 +115,7 @@
   // Anchor each badge to its pin's real on-screen position (the SVG is "slice"-scaled,
   // so fixed percentages drift); hide badges whose pin is cropped off the edge.
   function layout() {
+    globe.classList.remove('is-slides'); // measure the labels on the arc first
     var g = globe.getBoundingClientRect();
     visible = [];
     for (var i = 0; i < pinEls.length; i++) {
@@ -115,12 +131,42 @@
       if (fits) visible.push(i);
     }
     if (visible.indexOf(current) === -1 && visible.length) { step = 0; setActive(visible[0]); }
+    // Not every label fits on the arc: show them all as a slideshow instead
+    globe.classList.toggle('is-slides', visible.length < pinEls.length);
   }
 
-  layout();
-  window.addEventListener('load', layout);
+  // ---- Phone slideshow: swipe, tap a dot, or let it advance on its own ----
+  var slideEl = host.querySelector('.vf-slide'), track = host.querySelector('.vf-slide-track');
+  var dots = host.querySelectorAll('.vf-slide-dots button'), slideAt = 0, heldUntil = 0;
+  function showSlide(i, smooth) {
+    slideAt = (i + dots.length) % dots.length;
+    track.scrollTo({ left: slideAt * track.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
+    for (var k = 0; k < dots.length; k++) dots[k].classList.toggle('on', k === slideAt);
+  }
+  [].forEach.call(dots, function (d, i) { d.addEventListener('click', function () { heldUntil = Date.now() + 8000; showSlide(i, true); }); });
+  var settle = 0; // after a swipe comes to rest, light the dot for the label in view
+  track.addEventListener('scroll', function () {
+    clearTimeout(settle);
+    settle = setTimeout(function () {
+      var i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+      if (i < 0 || i >= dots.length) return;
+      slideAt = i;
+      for (var k = 0; k < dots.length; k++) dots[k].classList.toggle('on', k === i);
+    }, 140);
+  }, { passive: true });
+  ['touchstart', 'pointerdown'].forEach(function (t) { track.addEventListener(t, function () { heldUntil = Date.now() + 8000; }, { passive: true }); });
+  // Sit the slideshow on the top of the arc
+  function placeSlide() {
+    if (getComputedStyle(slideEl).display === 'none') return;
+    var g = globe.getBoundingClientRect(), t = host.querySelector('.vf-top').getBoundingClientRect();
+    slideEl.style.top = (t.top + t.height / 2 - g.top) + 'px';
+  }
+  showSlide(0, false);
+
+  layout(); placeSlide();
+  window.addEventListener('load', function () { layout(); placeSlide(); });
   var raf = 0;
-  window.addEventListener('resize', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(layout); });
+  window.addEventListener('resize', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { layout(); placeSlide(); showSlide(slideAt, false); }); });
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reduce) {
@@ -129,6 +175,10 @@
       step = (step + 1) % visible.length;
       setActive(visible[step]);
     }, 2500);
+    setInterval(function () {
+      if (Date.now() < heldUntil || getComputedStyle(slideEl).display === 'none') return;
+      showSlide(slideAt + 1, true);
+    }, 2800);
   }
 
   // ---- Wordmark: rise + colour shift each time it scrolls into view ----

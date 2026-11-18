@@ -132,28 +132,24 @@
 .vf-badge.active .pill { border-color: var(--vf-accent); color: var(--vf-pill-text-on); }
 .vf-badge .pill { pointer-events: auto; text-decoration: none; } /* each label opens that work */
 .vf-badge .pill:hover, .vf-badge .pill:focus-visible { border-color: var(--vf-accent); color: var(--vf-pill-text-on); }
-.vf-top { fill: var(--vf-dot-on); opacity: 0; }
+.vf-top { opacity: 0; }
 /* "What I do": says what the labels on the arc are */
 .vf-cap { position: absolute; z-index: 10; left: 50%; top: 40px; transform: translateX(-50%); white-space: nowrap; margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--vf-accent); }
 /* Phone slideshow (hidden on wider screens, where every label fits on the arc) */
-.vf-slide { display: none; }
-/* Slideshow mode (set in site-footer.js when the five labels don't all fit on the arc,
- * e.g. on phones and tablets): one label at a time, centred on the top of the arc */
+/* Orbit mode (set in site-footer.js when the five labels don't all fit on the arc, e.g. on
+ * phones and tablets): the checkpoints travel along the line; the one at the top is in focus
+ * and its label sits above it */
+.vf-orbit { display: none; }
 .vf-globe.is-slides .vf-badge { display: none !important; }
-.vf-globe.is-slides .vf-pin .halo, .vf-globe.is-slides .vf-pin .dot { opacity: 0.35; transform: none !important; }
-.vf-globe.is-slides .vf-top { opacity: 1; filter: drop-shadow(0 0 6px var(--vf-accent)); }
 .vf-globe.is-slides .vf-cap { display: none; }
+.vf-globe.is-slides .vf-pin .halo, .vf-globe.is-slides .vf-pin .dot { transform: none !important; transition: none; }
+.vf-globe.is-slides .vf-pin .dot { fill: var(--vf-dot-on); }
+.vf-globe.is-slides .vf-orbit { display: flex; position: absolute; z-index: 10; left: 50%; top: 120px; transform: translate(-50%, -100%); flex-direction: column; align-items: center; pointer-events: none; }
 .vf-slide-cap { margin: 0 0 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--vf-accent); }
-.vf-globe.is-slides .vf-slide { display: flex; position: absolute; z-index: 10; left: 50%; top: 120px; width: min(300px, calc(100% - 32px)); transform: translate(-50%, -100%); flex-direction: column; align-items: center; }
-.vf-globe.is-slides .vf-slide-track { display: flex; width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
-.vf-globe.is-slides .vf-slide-track::-webkit-scrollbar { display: none; }
-.vf-globe.is-slides .vf-slide-item { flex: 0 0 100%; display: flex; justify-content: center; padding: 4px 0; scroll-snap-align: center; }
-.vf-globe.is-slides .vf-slide .pill { display: inline-block; text-decoration: none; background: var(--vf-pill-bg); border: 1px solid var(--vf-accent); border-radius: 6px; padding: 6px 12px; white-space: nowrap; font-size: 13px; font-weight: 500; color: var(--vf-pill-text-on); box-shadow: 0 10px 15px -3px var(--vf-pill-shadow); }
-.vf-globe.is-slides .vf-slide-dots { display: flex; gap: 2px; margin-top: 4px; }
-.vf-globe.is-slides .vf-slide-dots button { width: 22px; height: 18px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
-.vf-globe.is-slides .vf-slide-dots button::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--vf-pill-border); transition: background .3s ease, transform .3s ease; }
-.vf-globe.is-slides .vf-slide-dots button.on::before { background: var(--vf-accent); transform: scale(1.25); }
-.vf-globe.is-slides .vf-slide .line { width: 1px; height: 18px; opacity: 0.8; background: linear-gradient(to bottom, var(--vf-accent), transparent); }
+.vf-orbit .pill { pointer-events: auto; display: inline-block; text-decoration: none; background: var(--vf-pill-bg); border: 1px solid var(--vf-accent); border-radius: 6px; padding: 6px 12px; white-space: nowrap; font-size: 13px; font-weight: 500; color: var(--vf-pill-text-on); box-shadow: 0 10px 15px -3px var(--vf-pill-shadow); transition: opacity .35s ease, transform .35s ease; }
+.vf-orbit .line { width: 1px; height: 26px; margin-top: 4px; opacity: 0.8; background: linear-gradient(to bottom, var(--vf-accent), transparent); transition: opacity .35s ease, height .35s ease; }
+.vf-orbit.is-moving .pill { opacity: 0; transform: translateY(6px) scale(0.96); }
+.vf-orbit.is-moving .line { opacity: 0; height: 10px; }
 .vf-badge .line {
   width: 1px; height: 40px; margin-top: 4px; opacity: 0.3;
   background: linear-gradient(to bottom, var(--vf-accent), transparent);

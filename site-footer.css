@@ -235,6 +235,11 @@
   .vf-grid h4 { margin: 0 0 10px; font-size: 14px; }
   .vf-grid ul { gap: 4px; }
   .vf-grid li { font-size: 13.5px; line-height: 1.7; }
+  /* bigger tap areas: each link is a ~40px-tall target, with the rows packed so the list looks about the same */
+  .vf-grid ul { gap: 0; }
+  .vf-grid li { line-height: 1.4; }
+  .vf-grid li a { display: inline-block; padding: 10px 0; }
+  .vf-grid > :nth-child(2) ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; } /* What I do: two columns, so the taller rows don't make it long */
   .vf-bar-in { padding: 14px 24px; gap: 4px; font-size: 12px; text-align: center; align-items: center; }
   .vf-brand { height: 112px; }
   .vf-brand::after { height: 36px; }

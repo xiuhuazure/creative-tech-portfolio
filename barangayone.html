@@ -18,10 +18,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site-footer.css?v=20261118i" />
-  <link rel="stylesheet" href="site-motion.css?v=20261118i" />
-  <link rel="stylesheet" href="site-buttons.css?v=20261118i" />
-  <link rel="stylesheet" href="site-cursor.css?v=20261118i" />
+  <link rel="stylesheet" href="site-footer.css?v=20261118j" />
+  <link rel="stylesheet" href="site-motion.css?v=20261118j" />
+  <link rel="stylesheet" href="site-buttons.css?v=20261118j" />
+  <link rel="stylesheet" href="site-cursor.css?v=20261118j" />
   <style>
     :root {
       --ink: #0c0f12; --ink-2: #12171c; --surface: #171d23; --surface-2: #1c242b;
@@ -268,6 +268,10 @@
     /* ---- BarangayONE project page ---- */
     .bo-hero { display: block; margin-top: 36px; border: 1px solid var(--border-gold); overflow: hidden; clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px); background: #f4efe4; }
     .bo-hero img { display: block; width: 100%; height: auto; }
+    .bo-visit { display: inline-flex; align-items: center; gap: 8px; margin-top: 30px; padding: 11px 20px; border: 1px solid var(--border-gold); border-radius: 999px; color: var(--gold-bright); font-weight: 600; font-size: 0.92rem; letter-spacing: 0.02em; background: rgba(212,175,98,0.08); transition: background .2s ease, transform .2s ease; }
+    .bo-visit:hover { background: rgba(212,175,98,0.18); transform: translateY(-2px); }
+    .bo-visit + .bo-hero { margin-top: 22px; }
+    article .bo-list a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
     .bo-note { margin-top: 14px; font-size: 0.86rem; color: var(--text-mute); font-style: italic; }
     .bo-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 6px; padding: 0; list-style: none; }
     .bo-chips li { border: 1px solid var(--border-gold); border-radius: 999px; padding: 8px 16px; font-size: 0.9rem; color: var(--text); background: rgba(212,175,98,0.06); }
@@ -391,10 +395,12 @@
       <div class="case-meta">
         <div class="m"><div class="k">Project</div><div class="v">Final requirement</div></div>
         <div class="m"><div class="k">Type</div><div class="v">Group project</div></div>
+        <div class="m"><div class="k">My role</div><div class="v">HTML coder</div></div>
         <div class="m"><div class="k">Year</div><div class="v">2026</div></div>
         <div class="m"><div class="k">Built with</div><div class="v">HTML, CSS, JavaScript</div></div>
         <div class="m"><div class="k">Status</div><div class="v">Clickable prototype</div></div>
       </div>
+      <a class="bo-visit" href="https://barangayone.pages.dev/" target="_blank" rel="noopener">Visit the landing page <span aria-hidden="true">↗</span></a>
       <a class="bo-hero" href="media/barangayone/01-hero-classic.webp" target="_blank" rel="noopener" aria-label="Open the BarangayONE hero image">
         <img src="media/barangayone/01-hero-classic.webp" alt="BarangayONE staff dashboard on a laptop with the resident app on two phones" width="2000" height="1125">
       </a>
@@ -426,12 +432,21 @@
       <h3>2. Staff web dashboard</h3>
       <p>Authorized personnel see every request in one queue, filter by status, and start a review, return a request with a note, reject it with a reason, approve it, or mark it as released. They also publish announcements, keep hotlines and office details current, view monthly reports, manage Clerk, Official and Admin accounts, and check an audit log of every change.</p>
 
+      <span class="kicker">My role</span>
+      <h2>The HTML coder</h2>
+      <p>I was the team’s HTML coder (front-end developer). I turned the designs into working pages:</p>
+      <ul class="bo-list">
+        <li>Built the standalone clickable prototype in HTML, CSS and JavaScript, with the resident app and the staff dashboard sharing one set of data.</li>
+        <li>Built the public landing page, with a one-click download of the prototype.</li>
+        <li>Tested it from 360 to 1440 px wide, with the keyboard, for contrast, and offline.</li>
+      </ul>
+
       <span class="kicker">Deliverables</span>
       <h2>What we delivered</h2>
       <ul class="bo-list">
         <li>A 10-slide stakeholder pitch.</li>
         <li>A clickable prototype of both apps, about 40 screens, including sign-up with mobile verification, forgot password, an editable profile, and Terms and Privacy pages.</li>
-        <li>A public landing page with a one-click download of the prototype.</li>
+        <li>A public landing page with a one-click download of the prototype, live at <a href="https://barangayone.pages.dev/" target="_blank" rel="noopener">barangayone.pages.dev</a>.</li>
       </ul>
       <p>After the panel review, we added an in-app footer with legal links, unified the type system to one font, and made the Terms and Conditions reachable from inside the app.</p>
 
@@ -460,7 +475,7 @@
         <figure><a href="media/barangayone/05-social-portrait.webp" target="_blank" rel="noopener"><img src="media/barangayone/05-social-portrait.webp" alt="Portrait mockup: barangay documents, from home" loading="lazy" width="1080" height="1350"></a><figcaption>A portrait version for Instagram or LinkedIn.</figcaption></figure>
         </div>
       </div>
-      <p class="bo-note">BarangayONE is a student prototype. It is not deployed yet, and all names, numbers and records shown are sample data.</p>
+      <p class="bo-note">BarangayONE is a student prototype: the landing page is live, the apps are a clickable prototype, and all names, numbers and records shown are sample data.</p>
     </div>
   </section>
 
@@ -487,9 +502,9 @@
       <span><a href="index.html#contact">Contact</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
     </div></div>
   </footer>
-  <script src="site-footer.js?v=20261118i"></script>
-  <script src="site-motion.js?v=20261118i"></script>
-  <script src="site-buttons.js?v=20261118i"></script>
+  <script src="site-footer.js?v=20261118j"></script>
+  <script src="site-motion.js?v=20261118j"></script>
+  <script src="site-buttons.js?v=20261118j"></script>
 
   <script>
     document.querySelectorAll('.deliv-media video').forEach(v => {

@@ -99,11 +99,11 @@
       links: []
     },
     'ueat': { tall: true,
-      title: 'U-Eat Ordering System', date: '2024 – 2025 · School project · Group project',
-      tech: ['Kotlin', 'Firebase', 'Android Studio'],
-      desc: 'An Android canteen-ordering system with two apps: one for customers to order and one for stall owners to manage orders. I prototyped the interfaces in Kotlin and prepared the technical documentation.',
-      media: { ph: '🍱', text: '[U-Eat app screenshots]' },
-      links: [['User app ↗', 'https://github.com/mr-dj123/UEatUser'], ['Stall owner app ↗', 'https://github.com/mr-dj123/UEatStallOwner']]
+      title: 'U-Eat: Canteen ordering system', date: '2025 · School project · Group project',
+      tech: ['Kotlin', 'Firebase', 'Android Studio', 'UI design'],
+      desc: 'Two Android apps on one Firebase backend: students browse stalls, order and pay from their phone, and stall owners manage the order queue, menu and sales. I designed the user interfaces and worked on parts of the backend, including the customer app’s cart.',
+      media: { img: 'media/ueat-mockup.jpg', alt: 'U-Eat app screens: food details, the stalls home screen and the stall owner’s order queue' },
+      links: []
     },
     'counter': { tall: true,
       title: 'Simple Counter Android App', date: '2025 · School activity · Individual project',

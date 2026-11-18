@@ -231,6 +231,7 @@
 .pf-files.n4 .pf-file:nth-child(2) { --x: 118; --y: 82; --r: -1; }
 .pf-files.n4 .pf-file:nth-child(3) { --x: 190; --y: 84; --r: 1; }
 .pf-files.n4 .pf-file:nth-child(4) { --x: 258; --y: 90; --r: 3; }
+.pf-files.n1 .pf-file { --x: 153; --y: 86; --r: -1; }
 .pf-files.n2 .pf-file:nth-child(1) { --x: 88; --y: 84; --r: -2; }
 .pf-files.n2 .pf-file:nth-child(2) { --x: 214; --y: 90; --r: 2; }
 /* hovered: they pop up and splay out */
@@ -241,6 +242,7 @@
 .pf-folder.is-open .pf-files.n4 .pf-file:nth-child(2) { transform: translate(calc(var(--u) * -22), calc(var(--u) * -82)) rotate(-4deg); }
 .pf-folder.is-open .pf-files.n4 .pf-file:nth-child(3) { transform: translate(calc(var(--u) * 22), calc(var(--u) * -82)) rotate(4deg); }
 .pf-folder.is-open .pf-files.n4 .pf-file:nth-child(4) { transform: translate(calc(var(--u) * 62), calc(var(--u) * -70)) rotate(13deg); }
+.pf-folder.is-open .pf-files.n1 .pf-file { transform: translate(0, calc(var(--u) * -80)) rotate(2deg); }
 .pf-folder.is-open .pf-files.n2 .pf-file:nth-child(1) { transform: translate(calc(var(--u) * -44), calc(var(--u) * -80)) rotate(-8deg); }
 .pf-folder.is-open .pf-files.n2 .pf-file:nth-child(2) { transform: translate(calc(var(--u) * 52), calc(var(--u) * -76)) rotate(5deg); }
 .pf-folder.is-open .pf-file:hover { box-shadow: 0 calc(var(--u) * 10) calc(var(--u) * 28) rgba(0, 0, 0, 0.35); }
@@ -283,8 +285,8 @@
 }
 
 /* ------------------------------ Inside a folder ------------------------------
-   Opening a folder zooms into it: the folder grows out of its spot to fill the screen, its glass
-   front falls away past the viewer, and the projects rise out of it as paper pages. */
+   Opening a folder goes inside it (motion in site-showcase.js): the folder's front falls open,
+   the inside opens out from where the folder sits, and the projects rise out as paper pages. */
 .pt {
   width: min(1180px, calc(100vw - 32px)); max-width: none; height: min(calc(100dvh - 48px), 880px); max-height: none;
   padding: 0; margin: auto; border: 0; background: transparent; overflow: visible; color: #2b2418;
@@ -342,14 +344,6 @@
 .pt-card .pt-sub { font-size: 0.8rem; line-height: 1.35; color: #7a6a4c; }
 .pt-card p { font-size: 0.86rem; line-height: 1.5; color: #4c4438; margin: 4px 0 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .pt-card .pt-go { margin-top: auto; padding-top: 10px; font: 600 0.74rem/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: #9c7620; }
-/* the folder's glass front: it covers the opening at first, then falls away as you go in */
-.pt-flap {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 58%; z-index: 2; pointer-events: none; border-radius: 26px; transform-origin: 50% 100%;
-  background: linear-gradient(180deg, rgba(255, 190, 240, 0.5) 0%, rgba(232, 194, 108, 0.62) 32%, rgba(214, 170, 78, 0.7) 89%);
-  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-  box-shadow: inset 0 0 22px rgba(255, 246, 222, 0.8), 0 -6px 12px rgba(110, 78, 18, 0.2);
-  opacity: 0; visibility: hidden;
-}
 @media (max-width: 720px) {
   .pt { width: calc(100vw - 16px); height: calc(100dvh - 24px); }
   .pt-folder { inset: 36px 0 0; border-radius: 0 20px 20px 20px; }

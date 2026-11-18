@@ -253,3 +253,15 @@ html body .ts .ts-border::after { background: rgba(12, 15, 18, 0.3); }
 :root[data-theme="light"] body .ts .ts-border::after { background: rgba(250, 244, 230, 0.4); }
 html body .ts .ts-mask { display: none; }
 html body .ts .ts-slider { -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 6%, #000 26%, #000 74%, transparent 94%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0%, transparent 6%, #000 26%, #000 74%, transparent 94%, transparent 100%); }
+
+/* Same see-through treatment for the "What I do" cards and the footer, so the texture runs
+   through them too */
+html body .offer-grid .card { background: linear-gradient(160deg, rgba(23, 29, 35, 0.5), rgba(18, 23, 28, 0.3)); }
+:root[data-theme="light"] body .offer-grid .card { background: linear-gradient(160deg, rgba(251, 245, 230, 0.5), rgba(236, 224, 199, 0.32)); }
+html body .vf, html body .vf .vf-globe, html body .vf .vf-brand { background: transparent; }
+html body .vf .vf-globe::before, html body .vf .vf-links::before, html body .vf .vf-brand::after { display: none; }
+html body .vf .vf-links, html body .vf .vf-bar { background: rgba(18, 23, 28, 0.3); }
+:root[data-theme="light"] body .vf .vf-links, :root[data-theme="light"] body .vf .vf-bar { background: rgba(236, 224, 199, 0.32); }
+html body .vf .vf-globe ellipse[fill^="url"] { opacity: 0.7; }
+html body .vf .vf-globe svg { -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%); mask-image: linear-gradient(to bottom, #000 62%, transparent 100%); }
+@media (max-width: 640px) { html body .vf .vf-globe svg { -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 73%); mask-image: linear-gradient(to bottom, #000 45%, transparent 73%); } }

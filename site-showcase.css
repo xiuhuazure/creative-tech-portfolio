@@ -470,3 +470,21 @@
   .pd .pd-actions a, .pd .pd-actions button { min-height: 34px; padding: 0 14px; font-size: 0.82rem; }
   .pd[data-project="emm-store"] .pd-desc { -webkit-line-clamp: 2; } /* the storefront card has the most text and two links */
 }
+
+/* Phones: the three featured pages sit side by side and you swipe between them (instead of
+   scrolling past three full screens), so the folders come right after one page's height. */
+@media (max-width: 720px) {
+  .fw { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
+  .fw::-webkit-scrollbar { display: none; }
+  .fw-page, .fw-page + .fw-page { position: relative; top: auto; flex: 0 0 100%; margin: 0; height: auto; scroll-snap-align: start; scroll-snap-stop: always; }
+  .fw-page .fw-tab:not(.fw-all) { left: var(--fw-in); } /* each page's own tab in the first slot */
+  .fw-panel { flex: 1; padding-bottom: 26px; }
+  .fw-body, .fw .fw-p3 .fw-body { flex: none; grid-template-rows: auto auto; }
+  .fw-main { height: 56vw; }                         /* the storefront screenshot */
+  .fw-phones { height: 74vw; max-height: 44vh; }     /* two phone screens */
+  .fw .fw-p3 .fw-gallery { height: min(96vw, 52vh); } /* one square design with two small ones under it */
+}
+.fw-dots { display: none; }
+@media (max-width: 720px) { .fw-dots { display: flex; justify-content: center; align-items: center; gap: 8px; padding: 16px 0 0; } }
+.fw-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: var(--text-mute, #888); opacity: 0.45; cursor: pointer; transition: opacity .2s, width .2s, border-radius .2s; }
+.fw-dots button.is-on { opacity: 1; width: 22px; border-radius: 99px; background: var(--gold); }

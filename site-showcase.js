@@ -265,9 +265,9 @@
   window.siteProjects = { add: function (o) { for (var k in o) PROJECTS[k] = o[k]; }, open: openProject };
 
   /* ------------------------------ 3. Inside a folder ------------------------------
-     Clicking a folder goes inside it: the folder grows out of its spot to fill the screen, its
-     glass front falls away past you, and its projects rise out as paper pages (styles: "Inside a
-     folder" in site-showcase.css). A page opens that project's dialog on top. */
+     Clicking a folder goes inside it: its glass front falls open and it moves closer, then its
+     inside opens out from where it sits to fill the screen, and its projects rise out as paper
+     pages (styles: "Inside a folder" in site-showcase.css). A page opens that project's dialog. */
   var pt = document.createElement('dialog');
   pt.className = 'pt'; pt.setAttribute('aria-labelledby', 'pt-title');
   document.body.appendChild(pt);
@@ -276,7 +276,7 @@
   var ROT = [-1.6, 1.1, -0.6, 1.5, -1.2, 0.7, -0.4, 1.3]; // a little crooked, like real paper
   var openFolder = function (f, direct) {
     if (ptClosing) { ptClosing.onfinish = null; ptClosing.cancel(); ptClosing = null; pt.classList.remove('is-closing'); }
-    ptStop();
+    ptStop(); resetPage(ptFrom);
     if (pt.open) pt.close();
     ptFrom = direct ? null : f; // opened from a link elsewhere: no zoom out of the folder
     var label = f.querySelector('.pf-label');
@@ -297,50 +297,85 @@
             '<span class="pt-thumb is-play" aria-hidden="true">▶ ' + esc(x.title) + '</span>' +
             '<strong>' + esc(x.title) + '</strong><span class="pt-sub">' + esc(x.sub) + '</span><p>' + esc(x.desc) + '</p><span class="pt-go">' + esc(x.go) + '</span></a>';
         }).join('') + '</div>' +
-        '<div class="pt-flap" aria-hidden="true"></div>' +
       '</div>';
     pt.querySelector('.pt-x').addEventListener('click', function (e) { e.stopPropagation(); closeFolder(); });
     pt.querySelectorAll('.pt-card[data-project]').forEach(function (c) {
       c.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); openProject(c.dataset.project, c); });
     });
-    pt.showModal();
-    var box = pt.querySelector('.pt-folder'); box.focus({ preventScroll: true });
-    if (reduce || !box.animate) return;
-    var back = !direct && f.querySelector('.pf-back');
+    var box = pt.querySelector('.pt-folder');
+    var show = function () { pt.showModal(); box.focus({ preventScroll: true }); };
+    if (reduce || !box.animate) return show();
     var go = function (el, k, o) { var a = el.animate(k, o); ptAnims.push(a); return a; };
-    // 1. the folder grows from where it sits on the page to fill the screen (like walking up to it)
-    go(box, [{ transform: back ? fromCard(back, box) : 'scale(0.86)', opacity: back ? 1 : 0, borderRadius: '14px' },
-             { transform: 'none', opacity: 1, borderRadius: '0 26px 26px 26px' }],
-       { duration: 720, easing: 'cubic-bezier(.6, .02, .2, 1)' });
-    // 2. the glass front tips toward you and drops out of view, as if you pass through it
-    var flap = box.querySelector('.pt-flap');
-    go(flap, [{ visibility: 'visible', opacity: 1, transform: 'perspective(900px) rotateX(0deg)' },
-              { visibility: 'visible', opacity: 1, transform: 'perspective(900px) rotateX(0deg)', offset: 0.42 },
-              { visibility: 'visible', opacity: 0, transform: 'perspective(900px) rotateX(-58deg) translateY(55%) scale(1.25)' }],
-       { duration: 1100, easing: 'cubic-bezier(.5, 0, .3, 1)' });
-    // 3. the pages rise out of the folder, one after another
-    [].forEach.call(box.querySelectorAll('.pt-card'), function (c, i) {
-      var r = parseFloat(c.style.getPropertyValue('--rot')) || 0;
-      go(c, [{ opacity: 0, transform: 'translateY(90px) rotate(' + (r * 4) + 'deg) scale(0.94)' }, { opacity: 1, transform: 'rotate(' + r + 'deg)' }],
-         { duration: 620, delay: 560 + Math.min(i, 9) * 70, easing: 'cubic-bezier(.2, .8, .2, 1)', fill: 'backwards' });
-    });
+    var rise = function (delay) { // the pages come up out of the folder, one after another
+      [].forEach.call(box.querySelectorAll('.pt-card'), function (c, i) {
+        var r = parseFloat(c.style.getPropertyValue('--rot')) || 0;
+        go(c, [{ opacity: 0, transform: 'translateY(110px) rotate(' + (r * 5) + 'deg) scale(0.92)' }, { opacity: 1, transform: 'rotate(' + r + 'deg)' }],
+           { duration: 650, delay: delay + Math.min(i, 9) * 65, easing: 'cubic-bezier(.2, .8, .2, 1)', fill: 'backwards' });
+      });
+    };
+    if (direct) { // from a link elsewhere: the folder simply opens in the middle of the screen
+      show();
+      go(box, [{ opacity: 0, transform: 'scale(0.94)' }, { opacity: 1, transform: 'none' }], { duration: 380, easing: 'cubic-bezier(.2, .8, .2, 1)' });
+      rise(180);
+      return;
+    }
+    /* Going inside, in three beats:
+       1. on the page, the folder's glass front falls open toward you and the files lift, while the
+          folder moves closer (scales up a little);
+       2. the inside of the folder opens out from exactly where the folder is until it fills the
+          screen (a clip, so nothing stretches), easing in from slightly too close;
+       3. the projects rise out of it as pages. */
+    var move = f.querySelector('.pf-move'), front = f.querySelector('.pf-front'), backEl = f.querySelector('.pf-back');
+    f.classList.add('is-open', 'is-entering');
+    var t1 = 360;
+    pageAnims = [
+      front.animate([{ transform: 'perspective(700px) rotateX(0deg)' }, { transform: 'perspective(700px) rotateX(-62deg) translateY(8%)', opacity: 0.55 }],
+        { duration: t1 + 120, easing: 'cubic-bezier(.5, 0, .3, 1)', fill: 'forwards' }),
+      move.animate([{ scale: 1 }, { scale: 1.14 }], { duration: t1 + 300, easing: 'cubic-bezier(.4, 0, .2, 1)', fill: 'forwards' })
+    ];
+    setTimeout(function () {
+      if (!pt.isConnected || pt.open) return;
+      show();
+      var r = backEl.getBoundingClientRect(), d = pt.getBoundingClientRect();
+      var clip = 'inset(' + Math.max(0, r.top - d.top) + 'px ' + Math.max(0, d.right - r.right) + 'px ' + Math.max(0, d.bottom - r.bottom) + 'px ' + Math.max(0, r.left - d.left) + 'px round 14px)';
+      go(pt, [{ clipPath: clip }, { clipPath: 'inset(0px 0px 0px 0px round 0px)' }], { duration: 640, easing: 'cubic-bezier(.65, 0, .25, 1)' });
+      go(box, [{ transform: 'scale(1.18)', filter: 'brightness(1.08)' }, { transform: 'none', filter: 'none' }], { duration: 760, easing: 'cubic-bezier(.3, 0, .2, 1)' });
+      try { go(pt, [{ opacity: 0 }, { opacity: 1 }], { duration: 420, pseudoElement: '::backdrop' }); } catch (e) {}
+      rise(160);
+    }, t1);
+  };
+  var pageAnims = [];
+  var resetPage = function (f) { // put the folder on the page back as it was
+    pageAnims.forEach(function (a) { a.cancel(); }); pageAnims = [];
+    if (f) f.classList.remove('is-entering');
   };
   var closeFolder = function () {
     if (!pt.open || ptClosing) return;
     var f = ptFrom;
-    var done = function () { pt.classList.remove('is-closing'); pt.close(); pt.innerHTML = ''; if (f) { var a = f.querySelector('.pf-file'); if (a) a.focus({ preventScroll: true }); } };
+    var done = function () {
+      pt.classList.remove('is-closing'); pt.close(); pt.innerHTML = ''; ptStop();
+      if (f && !reduce && pageAnims.length) { // the folder's front swings back up and it settles back into place
+        pageAnims.forEach(function (a) { a.reverse(); });
+        var last = pageAnims[1]; last.onfinish = function () { resetPage(f); };
+      } else resetPage(f);
+      if (f) { var a = f.querySelector('.pf-file'); if (a) a.focus({ preventScroll: true }); }
+    };
     var box = pt.querySelector('.pt-folder');
     if (reduce || !box || !box.animate) return done();
     ptStop();
     pt.classList.add('is-closing');
-    // the pages drop back in, the glass front swings back up, and the folder shrinks back into its spot
-    [].forEach.call(box.querySelectorAll('.pt-card'), function (c) { ptAnims.push(c.animate([{ opacity: 1 }, { opacity: 0, transform: 'translateY(60px)' }], { duration: 220, easing: 'ease-in', fill: 'forwards' })); });
-    ptAnims.push(box.querySelector('.pt-flap').animate([{ visibility: 'visible', opacity: 0, transform: 'perspective(900px) rotateX(-40deg) translateY(30%)' }, { visibility: 'visible', opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out', fill: 'forwards' }));
-    var back = f && f.querySelector('.pf-back');
-    var target = back && back.getBoundingClientRect().width ? fromCard(back, box) : 'scale(0.9)';
-    var a = ptClosing = box.animate([{ transform: 'none', opacity: 1 }, { transform: 'none', opacity: 1, offset: 0.35 }, { transform: target, opacity: back ? 0.4 : 0 }],
-      { duration: 560, easing: 'cubic-bezier(.5, 0, .7, .2)', fill: 'forwards' });
-    a.onfinish = function () { if (ptClosing !== a) return; ptClosing = null; ptStop(); done(); a.cancel(); };
+    [].forEach.call(box.querySelectorAll('.pt-card'), function (c) { ptAnims.push(c.animate([{ opacity: 1 }, { opacity: 0, transform: 'translateY(80px)' }], { duration: 240, easing: 'ease-in', fill: 'forwards' })); });
+    var back = f && f.querySelector('.pf-back'), a;
+    if (back && back.getBoundingClientRect().width) {
+      var r = back.getBoundingClientRect(), d = pt.getBoundingClientRect();
+      var clip = 'inset(' + Math.max(0, r.top - d.top) + 'px ' + Math.max(0, d.right - r.right) + 'px ' + Math.max(0, d.bottom - r.bottom) + 'px ' + Math.max(0, r.left - d.left) + 'px round 14px)';
+      a = pt.animate([{ clipPath: 'inset(0px 0px 0px 0px round 0px)' }, { clipPath: 'inset(0px 0px 0px 0px round 0px)', offset: 0.3 }, { clipPath: clip }], { duration: 620, easing: 'cubic-bezier(.65, 0, .35, 1)', fill: 'forwards' });
+      ptAnims.push(box.animate([{ transform: 'none' }, { transform: 'none', offset: 0.3 }, { transform: 'scale(1.12)' }], { duration: 620, easing: 'cubic-bezier(.65, 0, .35, 1)', fill: 'forwards' }));
+    } else {
+      a = box.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'scale(0.94)' }], { duration: 300, easing: 'ease-in', fill: 'forwards' });
+    }
+    ptClosing = a;
+    a.onfinish = function () { if (ptClosing !== a) return; ptClosing = null; done(); a.cancel(); };
   };
   pt.addEventListener('cancel', function (e) { e.preventDefault(); closeFolder(); });
 
@@ -362,7 +397,7 @@
     openFolder(f, true);
   });
   pt.addEventListener('click', function (e) {
-    if (ptClosing) { var a = ptClosing; ptClosing = null; a.onfinish = null; a.cancel(); ptStop(); pt.classList.remove('is-closing'); pt.close(); pt.innerHTML = ''; return; }
+    if (ptClosing) { var a = ptClosing; ptClosing = null; a.onfinish = null; a.cancel(); ptStop(); pt.classList.remove('is-closing'); pt.close(); pt.innerHTML = ''; resetPage(ptFrom); return; }
     if (e.target === pt) closeFolder(); // tap outside the folder
   });
 

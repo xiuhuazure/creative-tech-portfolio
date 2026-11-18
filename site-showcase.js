@@ -135,21 +135,6 @@
   };
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
 
-  /* Featured work on phones: the pages sit side by side (CSS); dots underneath show which one
-     you're on and jump between them. */
-  (function () {
-    var fw = document.querySelector('.fw'); if (!fw) return;
-    var pages = [].slice.call(fw.querySelectorAll('.fw-page')); if (pages.length < 2) return;
-    var dots = document.createElement('div'); dots.className = 'fw-dots';
-    dots.innerHTML = pages.map(function (pg, i) { return '<button type="button" aria-label="Featured work ' + (i + 1) + '"></button>'; }).join('');
-    fw.parentNode.insertBefore(dots, fw.nextSibling);
-    var btns = [].slice.call(dots.children);
-    var mark = function () { var i = Math.round(fw.scrollLeft / (fw.clientWidth || 1)); btns.forEach(function (b, k) { b.classList.toggle('is-on', k === i); }); };
-    btns.forEach(function (b, i) { b.addEventListener('click', function () { fw.scrollTo({ left: i * fw.clientWidth, behavior: reduce ? 'auto' : 'smooth' }); }); });
-    fw.addEventListener('scroll', function () { requestAnimationFrame(mark); }, { passive: true });
-    mark();
-  })();
-
   /* ------------------------------ 2. Project dialog ------------------------------ */
   var dlg = document.createElement('dialog');
   dlg.className = 'pd'; dlg.setAttribute('aria-labelledby', 'pd-title');

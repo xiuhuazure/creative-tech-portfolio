@@ -7,56 +7,63 @@
 
   /* ------------------------------ Projects (dialog content) ------------------------------ */
   var PROJECTS = {
-    'emm-store': {
+    'emm-store': { group: 'Web & Shopify',
       title: 'Earth Moon Magick: Storefront', date: 'Dec 2025 – Present · Freelance',
       tech: ['Shopify', 'Liquid', 'GemPages', 'HTML / CSS'],
       desc: 'Shopify Technical Specialist for a spiritual and wellness brand. I build blog and new product pages in GemPages, make theme edits in Shopify Liquid, HTML and CSS, and manage product listings, variants and media galleries.',
       media: { img: 'media/emm-site.webp?v=2', alt: 'Earth Moon Magick homepage', contain: true, fit: true },
       links: [['Read the case study', 'case-study.html'], ['Visit the store ↗', 'https://earthmoonmagick.com/']]
     },
-    'emm-ads': { tall: true,
+    'emm-ads': { group: 'Video', tall: true,
       title: 'Earth Moon Magick: Video ads', date: 'Dec 2025 – Present · Freelance',
       tech: ['Premiere Pro', 'Meta Business Suite', 'Canva'],
       desc: 'Meta video ads built from UGC and product footage, with B-roll, motion text and audio design, plus graphic design and feed and story content for Instagram.',
       media: { video: 'media/emm-ad.mp4', poster: 'media/emm-ad.jpg' },
       links: [['Meta Ad Library ↗', 'https://www.facebook.com/ads/library/?id=1704592681676485'], ['Instagram ↗', 'https://www.instagram.com/earthmoonmagick_']]
     },
-    'vsl': {
+    'vsl': { group: 'Video',
       title: 'Soul Oracle Kickstarter launch VSL', date: 'Earth Moon Magick · Freelance',
       tech: ['Premiere Pro', 'Long-form video'],
       desc: 'A video sales letter for Earth Moon Magick’s Soul Oracle Kickstarter launch: a long-form edit that walks viewers through the deck and the offer.',
       media: { yt: 'UuSD2wWrmIg' },
       links: [['Watch on YouTube ↗', 'https://youtu.be/UuSD2wWrmIg']]
     },
-    'saru': {
+    'meta-ads': { tall: true, group: 'Video',
+      title: 'Earth Moon Magick: Meta ads', date: 'Dec 2025 – Present · Freelance',
+      tech: ['Premiere Pro', 'Meta ads', 'Short-form video'],
+      desc: 'Five short-form video ads I edited for Earth Moon Magick’s Facebook and Instagram, plus an Instagram post. Each ad button opens it in Meta’s Ad Library.',
+      media: { img: 'media/emm-ad.jpg', alt: 'A frame from an Earth Moon Magick video ad' },
+      links: [['Ad 1 ↗', 'https://www.facebook.com/ads/library/?id=1704592681676485'], ['Ad 2 ↗', 'https://www.facebook.com/ads/library/?id=2277647252773671'], ['Ad 3 ↗', 'https://www.facebook.com/ads/library/?id=1617862633244058'], ['Ad 4 ↗', 'https://www.facebook.com/ads/library/?id=1074319012100141'], ['Ad 5 ↗', 'https://www.facebook.com/ads/library/?id=2106932693517342'], ['Instagram post ↗', 'https://www.instagram.com/p/DcTGon8yxs2/']]
+    },
+    'saru': { group: 'Video',
       title: 'Dr. Saru Bala’s most viewed', date: 'Doctor’s Making Videos agency',
       tech: ['Video editing', 'Long-form video'],
       desc: 'My most-viewed edit, made while I was with the Doctor’s Making Videos agency.',
       media: { yt: '5hth3DJgcEw' },
       links: [['Watch on YouTube ↗', 'https://youtu.be/5hth3DJgcEw']]
     },
-    'amethyst': {
+    'amethyst': { group: 'Graphic design',
       title: 'Amethyst lamp ad', date: 'Trial design · Crystal brand',
       tech: ['Ad design', 'Instagram'],
       desc: 'A trial design for a crystal brand: a product ad with a bold headline and benefit callouts.',
       media: { img: 'media/design-amethyst.webp', alt: 'Amethyst lamp ad design', contain: true },
       links: []
     },
-    'bracelet': {
+    'bracelet': { group: 'Graphic design',
       title: 'Protection bracelet ad', date: 'Trial design · Crystal brand',
       tech: ['Ad design', 'Instagram'],
       desc: 'A trial design for the same brand: a punchy headline ad with three benefit icons.',
       media: { img: 'media/design-bracelet.webp', alt: 'Protection bracelet ad design', contain: true },
       links: []
     },
-    'agency': {
+    'agency': { group: 'Graphic design',
       title: 'AI agency offer ad', date: 'Test design · AI agency',
       tech: ['Social ad', 'Instagram'],
       desc: 'A test design for an AI agency: a text-led offer ad with a clear call to action.',
       media: { img: 'media/design-agency.webp', alt: 'AI agency offer ad design', contain: true },
       links: []
     },
-    'dailyrituals': {
+    'dailyrituals': { group: 'Graphic design',
       title: 'Daily Rituals carousel', date: 'Trial design · Instagram page',
       tech: ['Instagram carousel', 'Product design'],
       desc: 'A trial two-slide carousel for the Instagram page Daily Rituals: a script-and-serif hook slide, then the product with its benefits laid out around it.',
@@ -119,19 +126,6 @@
       media: { img: 'media/leap-year-app.webp', alt: 'Leap Year Calculator app screen', contain: true },
       links: [['View on GitHub ↗', 'https://github.com/xiuhuazure/Leap-Year-Calculator-App']]
     }
-  };
-  /* Extra cards shown in a folder's dialog after its project files: links that open elsewhere.
-     A folder picks a list with data-extra="…" in index.html. */
-  var AD = 'Short-form video ad for Earth Moon Magick on Facebook and Instagram.';
-  var EXTRAS = {
-    'meta-ads': [
-      { title: 'Meta ad 01', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=1704592681676485' },
-      { title: 'Meta ad 02', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=2277647252773671' },
-      { title: 'Meta ad 03', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=1617862633244058' },
-      { title: 'Meta ad 04', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=1074319012100141' },
-      { title: 'Meta ad 05', sub: 'Earth Moon Magick · Meta ad', desc: AD, go: 'View the ad ↗', href: 'https://www.facebook.com/ads/library/?id=2106932693517342' },
-      { title: 'Instagram post', sub: 'Earth Moon Magick · Instagram', desc: 'A short-form video I edited for Earth Moon Magick’s Instagram.', go: 'View on Instagram ↗', href: 'https://www.instagram.com/p/DcTGon8yxs2/' }
-    ]
   };
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
 
@@ -281,22 +275,26 @@
     ptFrom = direct ? null : f; // opened from a link elsewhere: no zoom out of the folder
     var label = f.querySelector('.pf-label');
     var files = [].filter.call(f.querySelectorAll('.pf-file'), function (a) { return PROJECTS[a.dataset.project]; });
-    var extras = EXTRAS[f.dataset.extra] || [];
-    var n = files.length + extras.length;
+    var n = files.length;
+    var card = function (a, i) {
+      var p = PROJECTS[a.dataset.project], th = a.querySelector('.pf-thumb');
+      var play = th && th.classList.contains('is-play'); // a text tile instead of a picture (e.g. Meta ads)
+      return '<a class="pt-card" href="#projects" data-project="' + a.dataset.project + '" aria-haspopup="dialog" style="--rot:' + ROT[i % ROT.length] + '">' +
+        '<span class="pt-thumb' + (play ? ' is-play' : (p.tall ? ' is-tall' : '') + (p.media.fit ? ' is-fit' : '')) + '">' + (th ? th.innerHTML : '') + '</span>' + // tall (phone) mockups show whole, not cropped
+        '<strong>' + esc(p.title) + '</strong><span class="pt-sub">' + esc(p.date) + '</span><p>' + esc(p.desc) + '</p></a>';
+    };
+    // Projects with a group (Client work: Web & Shopify, Video, Graphic design) sit under small headings,
+    // in the order the groups first appear; each group keeps the folder's newest-first order.
+    var groups = [], byGroup = {};
+    files.forEach(function (a) { var g = PROJECTS[a.dataset.project].group || ''; if (!byGroup[g]) { byGroup[g] = []; groups.push(g); } byGroup[g].push(a); });
+    var i = 0, pages = groups.map(function (g) {
+      return (g && groups.length > 1 ? '<h3 class="pt-group">' + esc(g) + '</h3>' : '') + byGroup[g].map(function (a) { return card(a, i++); }).join('');
+    }).join('');
     pt.innerHTML =
       '<div class="pt-folder" tabindex="-1">' +
         '<div class="pt-tab"><span class="pt-label" id="pt-title">' + esc(label ? label.textContent : 'files') + '</span><span class="pt-count">' + n + (n === 1 ? ' file' : ' files') + '</span></div>' +
         '<button class="pt-x" type="button" aria-label="Close">✕</button>' +
-        '<div class="pt-pages">' + files.map(function (a, i) {
-          var p = PROJECTS[a.dataset.project], th = a.querySelector('.pf-thumb');
-          return '<a class="pt-card" href="#projects" data-project="' + a.dataset.project + '" aria-haspopup="dialog" style="--rot:' + ROT[i % ROT.length] + '">' +
-            '<span class="pt-thumb' + (p.tall ? ' is-tall' : '') + (p.media.fit ? ' is-fit' : '') + '">' + (th ? th.innerHTML : '') + '</span>' + // tall (phone) mockups show whole, not cropped
-            '<strong>' + esc(p.title) + '</strong><span class="pt-sub">' + esc(p.date) + '</span><p>' + esc(p.desc) + '</p></a>';
-        }).join('') + extras.map(function (x, i) {
-          return '<a class="pt-card is-link" href="' + x.href + '" target="_blank" rel="noopener" style="--rot:' + ROT[(files.length + i) % ROT.length] + '">' +
-            '<span class="pt-thumb is-play" aria-hidden="true">▶ ' + esc(x.title) + '</span>' +
-            '<strong>' + esc(x.title) + '</strong><span class="pt-sub">' + esc(x.sub) + '</span><p>' + esc(x.desc) + '</p><span class="pt-go">' + esc(x.go) + '</span></a>';
-        }).join('') + '</div>' +
+        '<div class="pt-pages">' + pages + '</div>' +
       '</div>';
     pt.querySelector('.pt-x').addEventListener('click', function (e) { e.stopPropagation(); closeFolder(); });
     pt.querySelectorAll('.pt-card[data-project]').forEach(function (c) {

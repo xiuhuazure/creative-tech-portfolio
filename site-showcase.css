@@ -349,6 +349,12 @@
 .pt-card strong { font-family: var(--serif); font-size: 1.18rem; line-height: 1.2; }
 .pt-card .pt-sub { font-size: 0.8rem; line-height: 1.35; color: #7a6a4c; }
 .pt-card p { font-size: 0.86rem; line-height: 1.5; color: #4c4438; margin: 4px 0 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.pt-group { /* a category heading inside a folder (Client work) */
+  grid-column: 1 / -1; display: flex; align-items: center; gap: 14px; margin: 6px 0 -10px;
+  font: 600 0.78rem/1 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; color: rgba(78, 56, 14, 0.78);
+}
+.pt-group::after { content: ""; flex: 1; height: 1px; background: rgba(110, 78, 18, 0.28); }
+.pt-group:not(:first-child) { margin-top: 18px; }
 .pt-card .pt-go { margin-top: auto; padding-top: 10px; font: 600 0.74rem/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: #9c7620; }
 @media (max-width: 720px) {
   .pt { width: calc(100vw - 16px); height: calc(100dvh - 24px); }

@@ -7,63 +7,56 @@
 
   /* ------------------------------ Projects (dialog content) ------------------------------ */
   var PROJECTS = {
-    'emm-store': { group: 'Web & Shopify',
+    'emm-store': { name: 'Shopify Storefront', org: 'Earth Moon Magick · 2025 – Present', group: 'Web & Shopify',
       title: 'Earth Moon Magick: Storefront', date: 'Dec 2025 – Present · Freelance',
       tech: ['Shopify', 'Liquid', 'GemPages', 'HTML / CSS'],
       desc: 'Shopify Technical Specialist for a spiritual and wellness brand. I build blog and new product pages in GemPages, make theme edits in Shopify Liquid, HTML and CSS, and manage product listings, variants and media galleries.',
       media: { img: 'media/emm-site.webp?v=2', alt: 'Earth Moon Magick homepage', contain: true, fit: true },
       links: [['Read the case study', 'case-study.html'], ['Visit the store ↗', 'https://earthmoonmagick.com/']]
     },
-    'emm-ads': { group: 'Video', tall: true,
-      title: 'Earth Moon Magick: Video ads', date: 'Dec 2025 – Present · Freelance',
+    'emm-ads': { org: 'Earth Moon Magick · 2025 – Present', group: 'Video', tall: true,
+      title: 'Meta Ads Videos', date: 'Dec 2025 – Present · Freelance',
       tech: ['Premiere Pro', 'Meta Business Suite', 'Canva'],
-      desc: 'Meta video ads built from UGC and product footage, with B-roll, motion text and audio design, plus graphic design and feed and story content for Instagram.',
+      desc: 'Short-form Meta video ads for Earth Moon Magick, built from UGC and product footage with B-roll, motion text and audio design. Five of the ads and an Instagram post are linked below.',
       media: { video: 'media/emm-ad.mp4', poster: 'media/emm-ad.jpg' },
-      links: [['Meta Ad Library ↗', 'https://www.facebook.com/ads/library/?id=1704592681676485'], ['Instagram ↗', 'https://www.instagram.com/earthmoonmagick_']]
+      links: [['Ad 1 ↗', 'https://www.facebook.com/ads/library/?id=1704592681676485'], ['Ad 2 ↗', 'https://www.facebook.com/ads/library/?id=2277647252773671'], ['Ad 3 ↗', 'https://www.facebook.com/ads/library/?id=1617862633244058'], ['Ad 4 ↗', 'https://www.facebook.com/ads/library/?id=1074319012100141'], ['Ad 5 ↗', 'https://www.facebook.com/ads/library/?id=2106932693517342'], ['Instagram post ↗', 'https://www.instagram.com/p/DcTGon8yxs2/']]
     },
-    'vsl': { group: 'Video',
+    'vsl': { org: 'Earth Moon Magick · 2026', group: 'Video',
       title: 'Soul Oracle Kickstarter launch VSL', date: 'Earth Moon Magick · Freelance',
       tech: ['Premiere Pro', 'Long-form video'],
       desc: 'A video sales letter for Earth Moon Magick’s Soul Oracle Kickstarter launch: a long-form edit that walks viewers through the deck and the offer.',
       media: { yt: 'UuSD2wWrmIg' },
       links: [['Watch on YouTube ↗', 'https://youtu.be/UuSD2wWrmIg']]
     },
-    'meta-ads': { tall: true, group: 'Video',
-      title: 'Earth Moon Magick: Meta ads', date: 'Dec 2025 – Present · Freelance',
-      tech: ['Premiere Pro', 'Meta ads', 'Short-form video'],
-      desc: 'Five short-form video ads I edited for Earth Moon Magick’s Facebook and Instagram, plus an Instagram post. Each ad button opens it in Meta’s Ad Library.',
-      media: { img: 'media/emm-ad.jpg', alt: 'A frame from an Earth Moon Magick video ad' },
-      links: [['Ad 1 ↗', 'https://www.facebook.com/ads/library/?id=1704592681676485'], ['Ad 2 ↗', 'https://www.facebook.com/ads/library/?id=2277647252773671'], ['Ad 3 ↗', 'https://www.facebook.com/ads/library/?id=1617862633244058'], ['Ad 4 ↗', 'https://www.facebook.com/ads/library/?id=1074319012100141'], ['Ad 5 ↗', 'https://www.facebook.com/ads/library/?id=2106932693517342'], ['Instagram post ↗', 'https://www.instagram.com/p/DcTGon8yxs2/']]
-    },
-    'saru': { group: 'Video',
+    'saru': { org: 'Doctor’s Making Videos · 2025', group: 'Video',
       title: 'Dr. Saru Bala’s most viewed', date: 'Doctor’s Making Videos agency',
       tech: ['Video editing', 'Long-form video'],
       desc: 'My most-viewed edit, made while I was with the Doctor’s Making Videos agency.',
       media: { yt: '5hth3DJgcEw' },
       links: [['Watch on YouTube ↗', 'https://youtu.be/5hth3DJgcEw']]
     },
-    'amethyst': { group: 'Graphic design',
+    'amethyst': { org: 'Crystal brand · 2025', group: 'Graphic design',
       title: 'Amethyst lamp ad', date: 'Trial design · Crystal brand',
       tech: ['Ad design', 'Instagram'],
       desc: 'A trial design for a crystal brand: a product ad with a bold headline and benefit callouts.',
       media: { img: 'media/design-amethyst.webp', alt: 'Amethyst lamp ad design', contain: true },
       links: []
     },
-    'bracelet': { group: 'Graphic design',
+    'bracelet': { org: 'Crystal brand · 2025', group: 'Graphic design',
       title: 'Protection bracelet ad', date: 'Trial design · Crystal brand',
       tech: ['Ad design', 'Instagram'],
       desc: 'A trial design for the same brand: a punchy headline ad with three benefit icons.',
       media: { img: 'media/design-bracelet.webp', alt: 'Protection bracelet ad design', contain: true },
       links: []
     },
-    'agency': { group: 'Graphic design',
+    'agency': { org: 'AI agency · 2025', group: 'Graphic design',
       title: 'AI agency offer ad', date: 'Test design · AI agency',
       tech: ['Social ad', 'Instagram'],
       desc: 'A test design for an AI agency: a text-led offer ad with a clear call to action.',
       media: { img: 'media/design-agency.webp', alt: 'AI agency offer ad design', contain: true },
       links: []
     },
-    'dailyrituals': { group: 'Graphic design',
+    'dailyrituals': { org: 'Daily Rituals · 2025', group: 'Graphic design',
       title: 'Daily Rituals carousel', date: 'Trial design · Instagram page',
       tech: ['Instagram carousel', 'Product design'],
       desc: 'A trial two-slide carousel for the Instagram page Daily Rituals: a script-and-serif hook slide, then the product with its benefits laid out around it.',
@@ -281,7 +274,7 @@
       var play = th && th.classList.contains('is-play'); // a text tile instead of a picture (e.g. Meta ads)
       return '<a class="pt-card" href="#projects" data-project="' + a.dataset.project + '" aria-haspopup="dialog" style="--rot:' + ROT[i % ROT.length] + '">' +
         '<span class="pt-thumb' + (play ? ' is-play' : (p.tall ? ' is-tall' : '') + (p.media.fit ? ' is-fit' : '')) + '">' + (th ? th.innerHTML : '') + '</span>' + // tall (phone) mockups show whole, not cropped
-        '<strong>' + esc(p.title) + '</strong><span class="pt-sub">' + esc(p.date) + '</span><p>' + esc(p.desc) + '</p></a>';
+        '<strong>' + esc(p.name || p.title) + '</strong><span class="pt-sub">' + esc(p.org || p.date) + '</span><p>' + esc(p.desc) + '</p></a>';
     };
     // Projects with a group (Client work: Web & Shopify, Video, Graphic design) sit under small headings,
     // in the order the groups first appear; each group keeps the folder's newest-first order.

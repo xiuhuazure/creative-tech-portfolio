@@ -16,11 +16,9 @@
   var CX = 700, CY = 430, A = 860, B = 200;
   // Each skill links straight to its work (index.html#folder-… opens that folder; see site-showcase.js)
   var PINS = [
-    { x: 190,  label: '🛍️ Shopify & Liquid', href: 'index.html#folder-client' },
-    { x: 370,  label: '🎬 Video Editing', href: 'index.html#folder-client' },
-    { x: 680,  label: '🛡️ Cybersecurity', href: 'about.html#certs' },
-    { x: 870,  label: '💻 Front-end Development', href: 'index.html#folder-school' },
-    { x: 1180, label: '📱 Android Apps', href: 'index.html#folder-school' }
+    { x: 330,  label: '💻 Front-end Development', href: 'index.html#folder-school' },
+    { x: 700,  label: '🎬 Video Editing', href: 'index.html#folder-client' },
+    { x: 1070, label: '🎨 Graphic Design', href: 'index.html#folder-client' }
   ];
   function arcY(x) { var t = (x - CX) / A; return CY - B * Math.sqrt(1 - t * t); }
   function esc(s) { return s.replace(/&/g, '&amp;'); }
@@ -81,7 +79,6 @@
     '<div class="vf-links">' +
       '<div class="vf-grid">' +
         col('Navigate', [['Home', 'index.html'], ['Works', 'index.html#projects'], ['Case study', 'case-study.html'], ['About me', 'about.html']]) +
-        col('What I do', [['Shopify & Liquid', 'index.html#folder-client'], ['Front-end development', 'index.html#folder-school'], ['Video ads & motion graphics', 'index.html#folder-client'], ['Graphic design', 'index.html#folder-client'], ['Android apps', 'index.html#folder-school'], ['Cybersecurity', 'about.html#certs']]) +
         col('Contact', [['Email', 'index.html#contact'], ['LinkedIn', LINKEDIN], ['GitHub', GITHUB], ['Philippines', null, 'pin']]) +
       '</div>' +
     '</div>' +

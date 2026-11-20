@@ -246,8 +246,17 @@ html body .stat { background: rgba(12, 15, 18, 0.34); outline: 1px solid var(--b
 :root[data-theme="light"] body .stat { background: rgba(250, 244, 230, 0.4); }
 html body .ts, :root[data-theme="light"] body .ts { background: transparent; }
 html body .cta2, :root[data-theme="light"] body .cta2 { background: transparent; }
-html body .cta2 .cta2-card { background: rgb(7 9 11 / 0.42); }
-:root[data-theme="light"] body .cta2 .cta2-card { background: rgb(251 245 230 / 0.38); }
+/* Contact card: the same see-through panel as the About page's "Let's work together" box:
+   a faint red-gold tint, a thin gold line and cut corners, with the page texture showing through */
+html body .cta2 .cta2-card, :root[data-theme="light"] body .cta2 .cta2-card {
+  min-height: 0; border-radius: 0; box-shadow: none; border: 1px solid var(--border-gold);
+  background: linear-gradient(135deg, rgba(200, 80, 58, 0.10), rgba(212, 175, 98, 0.08));
+  clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px);
+}
+html body .cta2 .cta2-corner-lines, html body .cta2 .cta2-grid-floor, html body .cta2 .cta2-grid-glow, html body .cta2 .cta2-stars { display: none; }
+html body .cta2 .cta2-form, :root[data-theme="light"] body .cta2 .cta2-form {
+  background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border: 1px solid var(--border-gold);
+}
 /* Tech stack rail: a see-through pill, and the tiles fade out at the ends with a mask (not a solid fill) */
 html body .ts .ts-border::after { background: rgba(12, 15, 18, 0.3); }
 :root[data-theme="light"] body .ts .ts-border::after { background: rgba(250, 244, 230, 0.4); }

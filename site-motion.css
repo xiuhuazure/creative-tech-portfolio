@@ -324,6 +324,7 @@ body .case-tags span {
   text-transform: uppercase; letter-spacing: 0.14em; line-height: 1.4; color: var(--cinnabar, #c8503a);
 }
 body .case-tags span + span::before { content: "·"; margin: 0 0.6em; color: var(--gold); }
+html:not([data-theme="light"]) body .case-tags span { color: #e2705a; } /* a lighter red on the dark theme so the small text stays readable */
 body .case-tags.is-brush span { font-family: "Kaushan Script", var(--brush), cursive; font-size: 1.35rem; font-weight: 400; text-transform: none; letter-spacing: 0.01em; line-height: 1.2; }
 
 /* Skill and tool chips: see-through glass, like the cards on the homepage */

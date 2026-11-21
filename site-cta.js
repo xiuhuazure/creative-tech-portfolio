@@ -25,9 +25,9 @@
   }
 
   // ---- Contact form ----
-  // 1. Get a free access key at https://web3forms.com (enter the email you want messages sent to).
-  // 2. Paste it here. Messages then arrive in that inbox and your address never appears on the site.
-  var FORM_KEY = '';
+  // Messages go to Formspree, which emails them straight to Kimberly's inbox (her address never
+  // appears on the site). Change the form at formspree.io; this endpoint is meant to be public.
+  var FORM_URL = 'https://formspree.io/f/mljbwbww';
   var form = sec.querySelector('.cta2-form');
   if (form) {
     var status = form.querySelector('.cta2-status'), btn = form.querySelector('.cta2-btn');
@@ -37,23 +37,17 @@
       if (!form.checkValidity()) { form.reportValidity(); return; }
       var f = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; };
       var name = f('name'), email = f('email'), note = f('message');
-      var subject = 'Work opportunity' + (name ? ' from ' + name : '');
-      if (!FORM_KEY) {
-        // Until the key is added: open the visitor's email app (address assembled here so it isn't in the page text)
-        var to = ['kimberlydacucoyu', 'gmail.com'].join('@');
-        window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(note + '\n\n— ' + name + ' (' + email + ')');
-        return;
-      }
-      btn.disabled = true; say('Sending…');
-      fetch('https://api.web3forms.com/submit', {
+      btn.disabled = true; var label = btn.textContent; btn.textContent = 'Sending…'; say('');
+      fetch(FORM_URL, {
         method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ access_key: FORM_KEY, subject: subject, from_name: name, name: name, email: email, message: note, botcheck: '' })
-      }).then(function (r) { return r.json(); }).then(function (res) {
-        if (res && res.success) { form.reset(); say('Thanks! Your message is on its way. I’ll get back to you soon.', true); }
-        else throw new Error('send failed');
+        // "email" becomes the reply-to, so answering the notification replies to the sender; _gotcha catches bots
+        body: JSON.stringify({ name: name, email: email, message: note, _subject: 'Work opportunity' + (name ? ' from ' + name : ''), _gotcha: f('_gotcha') })
+      }).then(function (r) {
+        if (!r.ok) throw new Error('send failed');
+        form.reset(); say('Thanks! Your message is on its way. I’ll get back to you soon.', true);
       }).catch(function () {
         say('Sorry, that didn’t send. Please try again, or message me on LinkedIn.', false);
-      }).then(function () { btn.disabled = false; });
+      }).then(function () { btn.disabled = false; btn.textContent = label; });
     });
   }
 })();

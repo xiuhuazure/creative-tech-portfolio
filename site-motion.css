@@ -370,3 +370,12 @@ html body .cta2 textarea.cta2-input { min-height: 0; height: auto; resize: none;
 html body .cta2 .cta2-form, :root[data-theme="light"] body .cta2 .cta2-form { gap: 22px; }
 .cta2 .cta2-row { gap: 22px 28px; }
 
+/* Send message: the site's own button (Glow in dark, Circle Reveal in light), centred, with room above it */
+.cta2 .cta2-send { justify-self: center; margin-top: 10px; }
+.cta2 .cta2-send button { font: inherit; }
+.cta2 .cta2-send button:disabled { cursor: progress; opacity: 0.75; }
+/* the status line only takes space once there's something to say, so the card ends right under the button */
+.cta2 .cta2-status:empty { display: none; }
+.cta2 .cta2-status { margin: 0; text-align: center; }
+html body .cta2 .cta2-form, :root[data-theme="light"] body .cta2 .cta2-form { padding: 26px 26px 24px; }
+

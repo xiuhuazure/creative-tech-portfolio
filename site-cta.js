@@ -36,14 +36,16 @@
       var fit = function () { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; };
       ta.addEventListener('input', fit); form.addEventListener('reset', function () { setTimeout(fit, 0); });
     }
-    var status = form.querySelector('.cta2-status'), btn = form.querySelector('.cta2-btn');
+    var status = form.querySelector('.cta2-status');
+    var btns = form.querySelectorAll('button[type="submit"]'), labels = form.querySelectorAll('.gbtn-label, .crbtn-label'); // the dark and light versions of the same button
+    var busy = function (on) { btns.forEach(function (b) { b.disabled = on; }); labels.forEach(function (l) { l.textContent = on ? 'Sending…' : 'Send message →'; }); };
     var say = function (msg, ok) { if (status) { status.textContent = msg; status.className = 'cta2-status' + (ok ? ' is-ok' : ok === false ? ' is-err' : ''); } };
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
       var f = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; };
       var name = f('name'), email = f('email'), note = f('message');
-      btn.disabled = true; var label = btn.textContent; btn.textContent = 'Sending…'; say('');
+      busy(true); say('');
       fetch(FORM_URL, {
         method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         // "email" becomes the reply-to, so answering the notification replies to the sender; _gotcha catches bots
@@ -53,7 +55,7 @@
         form.reset(); say('Thanks! Your message is on its way. I’ll get back to you soon.', true);
       }).catch(function () {
         say('Sorry, that didn’t send. Please try again, or message me on LinkedIn.', false);
-      }).then(function () { btn.disabled = false; btn.textContent = label; });
+      }).then(function () { busy(false); });
     });
   }
 })();

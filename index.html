@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kimberly Yu</title>
-  <meta name="description" content="Kimberly D. Yu, front-end developer, video editor and graphic designer in the Philippines. Open for work and available remotely." />
+  <meta name="description" content="Kimberly D. Yu: front-end development, cybersecurity, video editing and graphic design, from the Philippines. Open for work and available remotely." />
   <script>
     /* Apply saved theme before paint (no flash). Default: dark. */
     (function(){ try { var t = sessionStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch(e){} })();
@@ -19,12 +19,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site-footer.css?v=20261120e" />
-  <link rel="stylesheet" href="site-motion.css?v=20261120e" />
-  <link rel="stylesheet" href="site-buttons.css?v=20261120e" />
-  <link rel="stylesheet" href="site-cursor.css?v=20261120e" />
-  <link rel="stylesheet" href="site-cta.css?v=20261120e" />
-  <link rel="stylesheet" href="site-showcase.css?v=20261120e" />
+  <link rel="stylesheet" href="site-footer.css?v=20261121a" />
+  <link rel="stylesheet" href="site-motion.css?v=20261121a" />
+  <link rel="stylesheet" href="site-buttons.css?v=20261121a" />
+  <link rel="stylesheet" href="site-cursor.css?v=20261121a" />
+  <link rel="stylesheet" href="site-cta.css?v=20261121a" />
+  <link rel="stylesheet" href="site-showcase.css?v=20261121a" />
   <style>
     /* ============ THEME TOKENS ============ */
     :root {
@@ -126,6 +126,7 @@
     .js-reveal .is-visible { opacity: 1 !important; transform: none !important; }
     .js-reveal .offer-grid > .card:nth-child(2) { transition-delay: .09s; }
     .js-reveal .offer-grid > .card:nth-child(3) { transition-delay: .18s; }
+    .js-reveal .offer-grid > .card:nth-child(4) { transition-delay: .27s; }
     .js-reveal .work-grid > .work-card:nth-child(2) { transition-delay: .06s; }
     .js-reveal .work-grid > .work-card:nth-child(3) { transition-delay: .12s; }
     .js-reveal .work-grid > .work-card:nth-child(4) { transition-delay: .18s; }
@@ -256,7 +257,8 @@
     .section-head h2 { font-family: var(--serif); font-size: clamp(2rem, 4.6vw, 3rem); letter-spacing: -0.01em; margin-top: 12px; font-weight: 700; }
     .section-head p { color: var(--text-dim); margin-top: 14px; font-size: 1.08rem; }
 
-    .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .offer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+    @media (max-width: 1200px) { .offer-grid { grid-template-columns: repeat(2, 1fr); } }
     .card { position: relative; background: linear-gradient(160deg, var(--surface), var(--ink-2)); border: 1px solid var(--border); padding: 34px 30px; transition: transform .25s, border-color .25s; clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px); }
     .card::before, .card::after { content: ""; position: absolute; width: 22px; height: 22px; pointer-events: none; }
     .card::before { top: 8px; left: 8px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
@@ -397,11 +399,11 @@
   <!-- ===== Hero ===== -->
   <section class="hero">
     <div class="wrap">
-      <span class="eyebrow"><span class="line"></span> <span><span class="typed" aria-hidden="true" data-words="Front-End Developer|Video Editor|Graphic Designer">Front-End Developer</span><span class="sr-only">Front-end developer, video editor, graphic designer</span></span> <span class="line r"></span></span>
+      <span class="eyebrow"><span class="line"></span> <span><span class="typed" aria-hidden="true" data-words="Front-End Developer|Cybersecurity|Video Editor|Graphic Designer">Front-End Developer</span><span class="sr-only">Front-end developer, cybersecurity, video editor, graphic designer</span></span> <span class="line r"></span></span>
       <h1>One person for your website <br class="h1-br"><span class="grad">and your ads.</span></h1>
       <p class="sub">
         Hi, I’m Kimberly, a Computer Science student in the Philippines.<br class="sub-br">
-        I build websites, edit videos, and design graphics.<br class="sub-br">
+        I build and secure websites, edit videos, and design graphics.<br class="sub-br">
         I’m open for work and available for remote work anywhere.
       </p>
       <div class="hero-actions">
@@ -435,7 +437,7 @@
         <span class="zh">藝</span>
         <span class="kicker">What I do</span>
         <h2>Code and content, in one person.</h2>
-        <p>I work between the technical and the creative: I can build the site, edit the video, and design the graphics.</p>
+        <p>I work between the technical and the creative: I can build and secure the site, edit the video, and design the graphics.</p>
       </div>
       <div class="offer-grid">
         <div class="card">
@@ -443,6 +445,12 @@
           <h3>Front-End Development <span class="zh">技</span></h3>
           <p>Responsive websites in HTML, CSS and JavaScript, from landing pages and web apps to Shopify storefronts, built to work on every screen.</p>
           <ul><li>HTML / CSS</li><li>JavaScript</li><li>Responsive design</li><li>Shopify &amp; GemPages</li></ul>
+        </div>
+        <div class="card">
+          <div class="ico">🛡️</div>
+          <h3>Cybersecurity <span class="zh">守</span></h3>
+          <p>Hands-on training in ethical hacking, networking and web security, with certificates from Cisco, IBM and TryHackMe.</p>
+          <ul><li>Ethical hacking</li><li>Networking</li><li>Web security</li><li>Linux</li></ul>
         </div>
         <div class="card">
           <div class="ico">🎬</div>
@@ -643,7 +651,7 @@
       <div class="cta2-content">
 
         <h2 class="cta2-title" id="cta2-title">Looking for someone<br class="cta2-br"> who can code and create?</h2>
-        <p class="cta2-sub">I’m open to front-end development, video editing and graphic design work. I’m available for remote work anywhere. Tell me a little about the role and I’ll get back to you 😉</p>
+        <p class="cta2-sub">I’m open to front-end development, cybersecurity, video editing and graphic design work. I’m available for remote work anywhere. Tell me a little about the role and I’ll get back to you 😉</p>
 
         <div class="cta2-cta">
           <form class="cta2-form" novalidate>
@@ -668,11 +676,11 @@
       <span><a href="index.html#contact">Contact</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
     </div></div>
   </footer>
-  <script src="site-footer.js?v=20261120e"></script>
-  <script src="site-motion.js?v=20261120e"></script>
-  <script src="site-buttons.js?v=20261120e"></script>
-  <script src="site-cta.js?v=20261120e"></script>
-  <script src="site-showcase.js?v=20261120e"></script>
+  <script src="site-footer.js?v=20261121a"></script>
+  <script src="site-motion.js?v=20261121a"></script>
+  <script src="site-buttons.js?v=20261121a"></script>
+  <script src="site-cta.js?v=20261121a"></script>
+  <script src="site-showcase.js?v=20261121a"></script>
 
   <script>
     // Mobile nav

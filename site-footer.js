@@ -16,9 +16,10 @@
   var CX = 700, CY = 430, A = 860, B = 200;
   // Each skill links straight to its work (index.html#folder-… opens that folder; see site-showcase.js)
   var PINS = [
-    { x: 330,  label: '💻 Front-end Development', href: 'index.html#folder-school' },
-    { x: 700,  label: '🎬 Video Editing', href: 'index.html#folder-client' },
-    { x: 1070, label: '🎨 Graphic Design', href: 'index.html#folder-client' }
+    { x: 240,  label: '💻 Front-end Development', href: 'index.html#folder-school' },
+    { x: 540,  label: '🛡️ Cybersecurity', href: 'about.html#certs' },
+    { x: 860,  label: '🎬 Video Editing', href: 'index.html#folder-client' },
+    { x: 1160, label: '🎨 Graphic Design', href: 'index.html#folder-client' }
   ];
   function arcY(x) { var t = (x - CX) / A; return CY - B * Math.sqrt(1 - t * t); }
   function esc(s) { return s.replace(/&/g, '&amp;'); }

@@ -30,6 +30,12 @@
   var FORM_URL = 'https://formspree.io/f/mljbwbww';
   var form = sec.querySelector('.cta2-form');
   if (form) {
+    // the message box grows with the text (for browsers without CSS field-sizing)
+    var ta = form.querySelector('textarea');
+    if (ta && !(window.CSS && CSS.supports('field-sizing', 'content'))) {
+      var fit = function () { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; };
+      ta.addEventListener('input', fit); form.addEventListener('reset', function () { setTimeout(fit, 0); });
+    }
     var status = form.querySelector('.cta2-status'), btn = form.querySelector('.cta2-btn');
     var say = function (msg, ok) { if (status) { status.textContent = msg; status.className = 'cta2-status' + (ok ? ' is-ok' : ok === false ? ' is-err' : ''); } };
     form.addEventListener('submit', function (e) {

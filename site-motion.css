@@ -366,7 +366,7 @@ html body .cta2 .cta2-input, :root[data-theme="light"] body .cta2 .cta2-input {
   transition: border-color .2s ease;
 }
 html body .cta2 .cta2-input:focus { border-bottom-color: var(--gold); box-shadow: 0 1px 0 0 var(--gold); outline: none; }
-html body .cta2 textarea.cta2-input { min-height: 88px; resize: none; }
+html body .cta2 textarea.cta2-input { min-height: 0; height: auto; resize: none; overflow: hidden; field-sizing: content; } /* starts one line tall, grows with the text */
 html body .cta2 .cta2-form, :root[data-theme="light"] body .cta2 .cta2-form { gap: 22px; }
 .cta2 .cta2-row { gap: 22px 28px; }
 

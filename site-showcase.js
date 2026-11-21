@@ -8,56 +8,56 @@
   /* ------------------------------ Projects (dialog content) ------------------------------ */
   var PROJECTS = {
     'emm-store': { name: 'Shopify Storefront', org: 'Earth Moon Magick · 2025 – Present', group: 'Web & Shopify',
-      title: 'Earth Moon Magick: Storefront', date: 'Dec 2025 – Present · Freelance',
+      title: 'Earth Moon Magick: Storefront', date: '2025 – Present · Freelance · Individual project',
       tech: ['Shopify', 'Liquid', 'GemPages', 'HTML / CSS'],
       desc: 'Shopify Technical Specialist for a spiritual and wellness brand. I build blog and new product pages in GemPages, make theme edits in Shopify Liquid, HTML and CSS, and manage product listings, variants and media galleries.',
       media: { img: 'media/emm-site.webp?v=2', alt: 'Earth Moon Magick homepage', contain: true, fit: true },
       links: [['Read the case study', 'case-study.html'], ['Visit the store ↗', 'https://earthmoonmagick.com/']]
     },
-    'emm-ads': { org: 'Earth Moon Magick · 2025 – Present', group: 'Video', tall: true,
-      title: 'Meta Ads Videos', date: 'Dec 2025 – Present · Freelance',
+    'emm-ads': { noPrimary: true, org: 'Earth Moon Magick · 2025 – Present', group: 'Video', tall: true,
+      title: 'Meta Ads Videos', date: '2025 – Present · Freelance · Individual project',
       tech: ['Premiere Pro', 'Meta Business Suite', 'Canva'],
       desc: 'Short-form Meta video ads for Earth Moon Magick, built from UGC and product footage with B-roll, motion text and audio design. Five of the ads and an Instagram post are linked below.',
       media: { video: 'media/emm-ad.mp4', poster: 'media/emm-ad.jpg' },
       links: [['Ad 1 ↗', 'https://www.facebook.com/ads/library/?id=1704592681676485'], ['Ad 2 ↗', 'https://www.facebook.com/ads/library/?id=2277647252773671'], ['Ad 3 ↗', 'https://www.facebook.com/ads/library/?id=1617862633244058'], ['Ad 4 ↗', 'https://www.facebook.com/ads/library/?id=1074319012100141'], ['Ad 5 ↗', 'https://www.facebook.com/ads/library/?id=2106932693517342'], ['Instagram post ↗', 'https://www.instagram.com/p/DcTGon8yxs2/']]
     },
     'vsl': { org: 'Earth Moon Magick · 2026', group: 'Video',
-      title: 'Soul Oracle Kickstarter launch VSL', date: 'Earth Moon Magick · Freelance',
+      title: 'Soul Oracle Kickstarter launch VSL', date: '2026 · Freelance · Individual project',
       tech: ['Premiere Pro', 'Long-form video'],
       desc: 'A video sales letter for Earth Moon Magick’s Soul Oracle Kickstarter launch: a long-form edit that walks viewers through the deck and the offer.',
       media: { yt: 'UuSD2wWrmIg' },
       links: [['Watch on YouTube ↗', 'https://youtu.be/UuSD2wWrmIg']]
     },
     'saru': { org: 'Doctor’s Making Videos · 2025', group: 'Video',
-      title: 'Dr. Saru Bala’s most viewed', date: 'Doctor’s Making Videos agency',
+      title: 'Dr. Saru Bala’s most viewed', date: '2025 · Agency work · Individual project',
       tech: ['Video editing', 'Long-form video'],
       desc: 'My most-viewed edit, made while I was with the Doctor’s Making Videos agency.',
       media: { yt: '5hth3DJgcEw' },
       links: [['Watch on YouTube ↗', 'https://youtu.be/5hth3DJgcEw']]
     },
     'amethyst': { org: 'Crystal brand · 2025', group: 'Graphic design',
-      title: 'Amethyst lamp ad', date: 'Trial design · Crystal brand',
+      title: 'Amethyst lamp ad', date: '2025 · Trial project · Individual project',
       tech: ['Ad design', 'Instagram'],
       desc: 'A trial design for a crystal brand: a product ad with a bold headline and benefit callouts.',
       media: { img: 'media/design-amethyst.webp', alt: 'Amethyst lamp ad design', contain: true },
       links: []
     },
     'bracelet': { org: 'Crystal brand · 2025', group: 'Graphic design',
-      title: 'Protection bracelet ad', date: 'Trial design · Crystal brand',
+      title: 'Protection bracelet ad', date: '2025 · Trial project · Individual project',
       tech: ['Ad design', 'Instagram'],
       desc: 'A trial design for the same brand: a punchy headline ad with three benefit icons.',
       media: { img: 'media/design-bracelet.webp', alt: 'Protection bracelet ad design', contain: true },
       links: []
     },
     'agency': { org: 'AI agency · 2025', group: 'Graphic design',
-      title: 'AI agency offer ad', date: 'Test design · AI agency',
+      title: 'AI agency offer ad', date: '2025 · Test project · Individual project',
       tech: ['Social ad', 'Instagram'],
       desc: 'A test design for an AI agency: a text-led offer ad with a clear call to action.',
       media: { img: 'media/design-agency.webp', alt: 'AI agency offer ad design', contain: true },
       links: []
     },
     'dailyrituals': { org: 'Daily Rituals · 2025', group: 'Graphic design',
-      title: 'Daily Rituals carousel', date: 'Trial design · Instagram page',
+      title: 'Daily Rituals carousel', date: '2025 · Trial project · Individual project',
       tech: ['Instagram carousel', 'Product design'],
       desc: 'A trial two-slide carousel for the Instagram page Daily Rituals: a script-and-serif hook slide, then the product with its benefits laid out around it.',
       media: { img: 'media/design-dailyrituals.webp', alt: 'Daily Rituals carousel: the hook slide and the product benefits slide', contain: true },
@@ -78,7 +78,7 @@
       links: [['View on GitHub ↗', 'https://github.com/NeriVlad21/jonathan-photography']]
     },
     'barangayone': {
-      title: 'BarangayONE: Barangay services platform', date: '2026 · Final requirement · Group project',
+      title: 'BarangayONE: Barangay services platform', date: '2026 · School project · Group project',
       tech: ['HTML', 'CSS', 'JavaScript', 'UI/UX'],
       desc: 'A prototype that lets residents of Brgy. Sinauna request barangay documents, track their status, and find announcements and emergency hotlines in one mobile app. Barangay staff review, approve and release every request from a web dashboard. I was the HTML coder: I built the clickable prototype and the landing page.',
       media: { img: 'media/barangayone/card.jpg', alt: 'BarangayONE staff dashboard on a laptop with the resident app on two phones', contain: true },
@@ -106,14 +106,14 @@
       links: []
     },
     'counter': { tall: true,
-      title: 'Simple Counter Android App', date: '2025 · School activity · Individual project',
+      title: 'Simple Counter Android App', date: '2025 · School project · Individual project',
       tech: ['Kotlin', 'Android Studio'],
       desc: 'A counter app with plus, minus and reset buttons and a quit option, built in Kotlin in Android Studio.',
       media: { img: 'media/counter-app.webp', alt: 'Simple Counter app screen', contain: true },
       links: [['View on GitHub ↗', 'https://github.com/xiuhuazure/Simple-Counter-App']]
     },
     'leapyear': { tall: true,
-      title: 'Leap Year Calculator Android App', date: '2025 · School activity · Individual project',
+      title: 'Leap Year Calculator Android App', date: '2025 · School project · Individual project',
       tech: ['Kotlin', 'Android Studio'],
       desc: 'Type in a year and the app tells you right away if it’s a leap year. I wrote the conditional logic and input handling myself in Kotlin, practising the Android lifecycle and UI design.',
       media: { img: 'media/leap-year-app.webp', alt: 'Leap Year Calculator app screen', contain: true },
@@ -177,8 +177,10 @@
           '<h2 class="pd-title pd-in" id="pd-title">' + esc(p.title) + '</h2>' +
           '<div class="pd-tech pd-in">' + p.tech.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' +
           '<p class="pd-desc pd-in">' + esc(p.desc) + '</p>' +
-          '<div class="pd-actions pd-in">' + nav + p.links.map(function (l) {
-            var ext = /^https?:/.test(l[1]); return '<a href="' + l[1] + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + esc(l[0]) + '</a>';
+          '<div class="pd-actions pd-in">' + nav + p.links.map(function (l, i) {
+            // the first link is the main action (gold); any others are quieter
+            var ext = /^https?:/.test(l[1]), main = i === 0 && !p.noPrimary;
+            return '<a' + (main ? ' class="pd-primary"' : '') + ' href="' + l[1] + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + esc(l[0]) + '</a>';
           }).join('') + '</div>' +
         '</div>' +
       '</div>';

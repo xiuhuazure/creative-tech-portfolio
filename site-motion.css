@@ -315,3 +315,18 @@ html body .vf .vf-globe svg { position: relative; z-index: 1; }
   header .nav-links a.nav-cta, header .nav-links.open a.nav-cta { padding: 5px 7px !important; font-size: 0.7rem; }
   header .nav { padding-right: 56px; }
 }
+
+/* Page labels (About me, Shopify · Video …): plain brush lettering instead of outlined boxes */
+body .case-tags { gap: 0; margin-bottom: 12px; }
+body .case-tags span {
+  border: 0; padding: 0; opacity: 1; text-transform: none; letter-spacing: 0.01em;
+  font-family: "Kaushan Script", var(--brush), cursive; font-size: 1.35rem; line-height: 1.2; color: var(--cinnabar, #c8503a);
+}
+body .case-tags span + span::before { content: "·"; margin: 0 0.45em; color: var(--gold); }
+
+/* Skill and tool chips: see-through glass, like the cards on the homepage */
+html body .tm-chip { background: linear-gradient(160deg, rgba(23, 29, 35, 0.5), rgba(18, 23, 28, 0.3)); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+html body .tm-chip .pic { background: rgba(255, 255, 255, 0.04); }
+:root[data-theme="light"] body .tm-chip { background: linear-gradient(160deg, rgba(251, 245, 230, 0.5), rgba(236, 224, 199, 0.32)); }
+:root[data-theme="light"] body .tm-chip .pic { background: rgba(255, 255, 255, 0.35); }
+

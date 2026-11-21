@@ -360,3 +360,13 @@ header .nav-links a.active:not(.nav-cta)::after { width: 100%; }
 .cv-link:hover { color: var(--gold-bright, #f2d999); background-position: 0 calc(100% - 4px); }
 :root[data-theme="light"] .cv-link:hover { color: #6f5118; }
 
+/* Contact form: underline fields (a single gold line under each) instead of boxes */
+html body .cta2 .cta2-input, :root[data-theme="light"] body .cta2 .cta2-input {
+  background: transparent; border: 0; border-bottom: 1px solid var(--border-gold); border-radius: 0; padding: 10px 2px;
+  transition: border-color .2s ease;
+}
+html body .cta2 .cta2-input:focus { border-bottom-color: var(--gold); box-shadow: 0 1px 0 0 var(--gold); outline: none; }
+html body .cta2 textarea.cta2-input { min-height: 88px; resize: none; }
+html body .cta2 .cta2-form, :root[data-theme="light"] body .cta2 .cta2-form { gap: 22px; }
+.cta2 .cta2-row { gap: 22px 28px; }
+

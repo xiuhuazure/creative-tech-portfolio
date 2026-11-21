@@ -105,6 +105,13 @@
       media: { img: 'media/ueat-mockup.jpg', alt: 'U-Eat app screens: food details, the stalls home screen and the stall owner’s order queue' },
       links: []
     },
+    'phinma': { tall: true,
+      title: 'PHINMA Connect: Student app for PHINMA schools', date: '2025 · School project · Group project',
+      tech: ['Kotlin', 'Firebase Auth', 'Cloud Firestore', 'Android Studio'],
+      desc: 'An Android app connecting PHINMA students across schools: sign up and verify your email, choose your campus, then browse events, campus resources and a campus map from one place. I worked on the backend: Firebase sign-up, login, email verification and password reset, plus the student profile and events data in Firestore.',
+      media: { img: 'media/phinma-connect-mockup.jpg', alt: 'PHINMA Connect app screens: events, choosing your school and the login screen' },
+      links: [['View on GitHub ↗', 'https://github.com/mr-dj123/PHINMACONNECTAPP']]
+    },
     'counter': { tall: true,
       title: 'Simple Counter Android App', date: '2025 · School project · Individual project',
       tech: ['Kotlin', 'Android Studio'],

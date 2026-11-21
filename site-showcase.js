@@ -67,7 +67,7 @@
       title: 'Portfolio website', date: '2026 · Personal project · Individual project',
       tech: ['HTML', 'CSS', 'JavaScript', 'Cloudflare', 'Claude'],
       desc: 'The site you’re on: hand-written HTML, CSS and JavaScript with a lantern dark and light switch, scroll motion, glass folders and layouts that fit phones up to 27-inch screens. Built with Claude and deployed on Cloudflare.',
-      media: { img: 'media/portfolio-site.jpg?v=2', alt: 'Kimberly Yu portfolio website on a laptop and a phone', contain: true },
+      media: { img: 'media/portfolio-site.jpg?v=3', alt: 'Kimberly Yu portfolio website on a laptop and a phone', contain: true },
       links: [['View the code on GitHub ↗', 'https://github.com/xiuhuazure/creative-tech-portfolio']]
     },
     'jonathan': {
@@ -110,7 +110,7 @@
       tech: ['Kotlin', 'Firebase', 'Android Studio'],
       desc: 'An Android campus guide for PHINMA students: choose your school, browse the programs each college offers, and find any room with a floor-by-floor school map, room photos and directions. I handled the backend for the app.',
       media: { img: 'media/phinma-connect.webp', alt: 'PHINMA Connect app screens: choosing a school, the programs offered and the school map', contain: true },
-      links: [['View on GitHub ↗', 'https://github.com/mr-dj123/PHINMACONNECTAPP']]
+      links: []
     },
     'counter': { tall: true,
       title: 'Simple Counter Android App', date: '2025 · School project · Individual project',

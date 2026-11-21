@@ -17,19 +17,21 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&family=Kaushan+Script&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site-footer.css?v=20261121c" />
-  <link rel="stylesheet" href="site-motion.css?v=20261121c" />
-  <link rel="stylesheet" href="site-buttons.css?v=20261121c" />
-  <link rel="stylesheet" href="site-cursor.css?v=20261121c" />
-  <link rel="stylesheet" href="site-showcase.css?v=20261121c" />
-  <link rel="stylesheet" href="site-certs.css?v=20261121c" />
+  <!-- fonts load without holding up the first paint -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&family=Kaushan+Script&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&family=Kaushan+Script&display=swap" /></noscript>
+  <link rel="stylesheet" href="site-footer.css?v=20261121d" />
+  <link rel="stylesheet" href="site-motion.css?v=20261121d" />
+  <link rel="stylesheet" href="site-buttons.css?v=20261121d" />
+  <link rel="stylesheet" href="site-cursor.css?v=20261121d" />
+  <link rel="stylesheet" href="site-showcase.css?v=20261121d" />
+  <link rel="stylesheet" href="site-certs.css?v=20261121d" />
   <style>
     :root {
       --ink: #0c0f12; --ink-2: #12171c; --surface: #171d23; --surface-2: #1c242b;
       --border: #2a343d; --border-gold: rgba(212,175,98,0.28);
       --gold: #d4af62; --gold-bright: #f2d999; --cinnabar: #c8503a; --jade: #79c0a6; --cyan: #7fd7d0;
-      --text: #f4f0e7; --text-dim: #a6adb4; --text-mute: #6f7880;
+      --text: #f4f0e7; --text-dim: #a6adb4; --text-mute: #858e96;
       --btn-ink: #17110a;
       --header-bg: rgba(12,15,18,0.72); --panel-bg: rgba(18,23,28,0.6);
       --thumb-a: #1e262d; --thumb-b: #12171c;
@@ -44,7 +46,7 @@
       --ink: #f3ead6; --ink-2: #ece0c7; --surface: #fbf5e6; --surface-2: #f5ecd7;
       --border: #dccdae; --border-gold: rgba(156,118,32,0.40);
       --gold: #9c7620; --gold-bright: #b6892f; --cinnabar: #bf3d29; --jade: #3f7d68; --cyan: #2b8079;
-      --text: #2b2418; --text-dim: #5e5648; --text-mute: #8a8070;
+      --text: #2b2418; --text-dim: #5e5648; --text-mute: #6b6252;
       --header-bg: rgba(243,234,214,0.80); --panel-bg: rgba(246,238,217,0.72);
       --thumb-a: #e7dbc2; --thumb-b: #f1e8d3;
       --glow-1: rgba(212,175,98,0.20); --glow-2: rgba(43,128,121,0.08); --glow-3: rgba(191,61,41,0.06);
@@ -154,7 +156,7 @@
     .deliv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 24px 0 8px; }
     .deliv .col { position: relative; background: linear-gradient(160deg, var(--surface), var(--ink-2)); border: 1px solid var(--border); padding: 24px; clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px); }
     .deliv .col .ico { font-size: 1.5rem; margin-bottom: 10px; }
-    .deliv .col h4 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 6px; }
+    .deliv .col h3, .deliv .col h4 { font-family: var(--serif); font-size: 1.2rem; margin: 0 0 6px; line-height: 1.3; }
     .deliv .col p { font-size: 0.9rem; color: var(--text-dim); margin: 0; }
 
     .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0; }
@@ -406,9 +408,9 @@
       <span class="kicker"><span class="zh">道</span> How I work</span>
       <h2>My work style</h2>
       <div class="deliv" data-reveal-group>
-        <div class="col"><div class="num">01</div><h4>Quick learner</h4><p>I pick up new tools on the job and back them with courses: six certifications so far, earned while studying and freelancing.</p></div>
-        <div class="col"><div class="num">02</div><h4>Problem solver</h4><p>I like tracking down why something broke, whether it’s a theme edit, an app bug or a video export, and fixing it at the root.</p></div>
-        <div class="col"><div class="num">03</div><h4>Code and creative</h4><p>I move between storefront code and ad edits, so I think about how things work and how they look at the same time.</p></div>
+        <div class="col"><div class="num">01</div><h3>Quick learner</h3><p>I pick up new tools on the job and back them with courses: six certifications so far, earned while studying and freelancing.</p></div>
+        <div class="col"><div class="num">02</div><h3>Problem solver</h3><p>I like tracking down why something broke, whether it’s a theme edit, an app bug or a video export, and fixing it at the root.</p></div>
+        <div class="col"><div class="num">03</div><h3>Code and creative</h3><p>I move between storefront code and ad edits, so I think about how things work and how they look at the same time.</p></div>
       </div>
 
       <div class="quote">
@@ -442,8 +444,8 @@
       <!-- Hobbies. Books & music are placeholders: swap a [Book title] for the title, and put an album or single cover image
            inside a disc's <span class="cover"> as <img src="media/…" alt="">. Game names only (no account names or IDs). -->
       <div class="deliv hb" data-reveal-group>
-        <div class="col"><div class="num">01</div><h4>Gaming</h4><p>Open-world adventures I keep coming back to.</p><div class="hb-art hb-games"><span class="hb-game" style="--g1:#c9a24a;--g2:#3b5c8a"><span class="g-mark" aria-hidden="true">✦</span><span class="g-name">Genshin Impact</span></span><span class="hb-game" style="--g1:#9fd3e6;--g2:#1d3a4a"><span class="g-mark" aria-hidden="true">≋</span><span class="g-name">Wuthering Waves</span></span><span class="hb-game" style="--g1:#e0c38a;--g2:#5a2e22"><span class="g-mark" aria-hidden="true">☵</span><span class="g-name">Where Winds Meet</span></span></div></div>
-        <div class="col"><div class="num">02</div><h4>Learning languages</h4><p>I love picking up new languages: English, Filipino and Chinese so far.</p><div class="hb-art hb-langs"><span class="hb-lang"><span class="flag"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.3" width="30" height="1.54"/><rect y="15.4" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/><g fill="#fff"><circle cx="2.2" cy="2" r=".6"/><circle cx="5.4" cy="2" r=".6"/><circle cx="8.6" cy="2" r=".6"/><circle cx="11" cy="2" r=".6"/><circle cx="3.8" cy="4.2" r=".6"/><circle cx="7" cy="4.2" r=".6"/><circle cx="10" cy="4.2" r=".6"/><circle cx="2.2" cy="6.4" r=".6"/><circle cx="5.4" cy="6.4" r=".6"/><circle cx="8.6" cy="6.4" r=".6"/><circle cx="11" cy="6.4" r=".6"/><circle cx="3.8" cy="8.6" r=".6"/><circle cx="7" cy="8.6" r=".6"/><circle cx="10" cy="8.6" r=".6"/></g></svg></span>English</span><span class="hb-lang"><span class="flag"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="10" fill="#0038a8"/><rect y="10" width="30" height="10" fill="#ce1126"/><path d="M0 0 L17.3 10 L0 20z" fill="#fff"/><g fill="#fcd116"><circle cx="5.8" cy="10" r="2"/><path d="M5.8 6.4v7.2M2.2 10h7.2M3.25 7.45l5.1 5.1M8.35 7.45l-5.1 5.1" stroke="#fcd116" stroke-width=".7"/><circle cx="1.6" cy="2.6" r=".75"/><circle cx="1.6" cy="17.4" r=".75"/><circle cx="14.4" cy="10" r=".75"/></g></svg></span>Filipino</span><span class="hb-lang"><span class="flag"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#de2910"/><g fill="#ffde00"><path d="M5 2.2l1.06 3.27h3.44l-2.78 2.02 1.06 3.27L5 8.74l-2.78 2.02 1.06-3.27L.5 5.47h3.44z"/><circle cx="10.2" cy="2" r=".75"/><circle cx="12.2" cy="4" r=".75"/><circle cx="12.2" cy="7" r=".75"/><circle cx="10.2" cy="9" r=".75"/></g></svg></span>Chinese</span></div></div>
+        <div class="col"><div class="num">01</div><h3>Gaming</h3><p>Open-world adventures I keep coming back to.</p><div class="hb-art hb-games"><span class="hb-game" style="--g1:#c9a24a;--g2:#3b5c8a"><span class="g-mark" aria-hidden="true">✦</span><span class="g-name">Genshin Impact</span></span><span class="hb-game" style="--g1:#9fd3e6;--g2:#1d3a4a"><span class="g-mark" aria-hidden="true">≋</span><span class="g-name">Wuthering Waves</span></span><span class="hb-game" style="--g1:#e0c38a;--g2:#5a2e22"><span class="g-mark" aria-hidden="true">☵</span><span class="g-name">Where Winds Meet</span></span></div></div>
+        <div class="col"><div class="num">02</div><h3>Learning languages</h3><p>I love picking up new languages: English, Filipino and Chinese so far.</p><div class="hb-art hb-langs"><span class="hb-lang"><span class="flag"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.3" width="30" height="1.54"/><rect y="15.4" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/><g fill="#fff"><circle cx="2.2" cy="2" r=".6"/><circle cx="5.4" cy="2" r=".6"/><circle cx="8.6" cy="2" r=".6"/><circle cx="11" cy="2" r=".6"/><circle cx="3.8" cy="4.2" r=".6"/><circle cx="7" cy="4.2" r=".6"/><circle cx="10" cy="4.2" r=".6"/><circle cx="2.2" cy="6.4" r=".6"/><circle cx="5.4" cy="6.4" r=".6"/><circle cx="8.6" cy="6.4" r=".6"/><circle cx="11" cy="6.4" r=".6"/><circle cx="3.8" cy="8.6" r=".6"/><circle cx="7" cy="8.6" r=".6"/><circle cx="10" cy="8.6" r=".6"/></g></svg></span>English</span><span class="hb-lang"><span class="flag"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="10" fill="#0038a8"/><rect y="10" width="30" height="10" fill="#ce1126"/><path d="M0 0 L17.3 10 L0 20z" fill="#fff"/><g fill="#fcd116"><circle cx="5.8" cy="10" r="2"/><path d="M5.8 6.4v7.2M2.2 10h7.2M3.25 7.45l5.1 5.1M8.35 7.45l-5.1 5.1" stroke="#fcd116" stroke-width=".7"/><circle cx="1.6" cy="2.6" r=".75"/><circle cx="1.6" cy="17.4" r=".75"/><circle cx="14.4" cy="10" r=".75"/></g></svg></span>Filipino</span><span class="hb-lang"><span class="flag"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#de2910"/><g fill="#ffde00"><path d="M5 2.2l1.06 3.27h3.44l-2.78 2.02 1.06 3.27L5 8.74l-2.78 2.02 1.06-3.27L.5 5.47h3.44z"/><circle cx="10.2" cy="2" r=".75"/><circle cx="12.2" cy="4" r=".75"/><circle cx="12.2" cy="7" r=".75"/><circle cx="10.2" cy="9" r=".75"/></g></svg></span>Chinese</span></div></div>
         <div class="col"><div class="num">03</div><h4>Books &amp; music</h4><p class="ph">[A line about what you read and listen to.]</p><div class="hb-art hb-shelf"><span class="hb-books"><span class="hb-book" style="--b:#7e2b22" aria-hidden="true"><span>[Book title]</span></span><span class="hb-book" style="--b:#24324a" aria-hidden="true"><span>[Book title]</span></span><span class="hb-book" style="--b:#1f4a3c" aria-hidden="true"><span>[Book title]</span></span></span><span class="hb-discs"><span class="hb-disc" aria-hidden="true"><span class="cover">[Album cover]</span><span class="vinyl"></span></span><span class="hb-disc" aria-hidden="true"><span class="cover">[Album cover]</span><span class="vinyl"></span></span></span></div></div>
       </div>
       </div>
@@ -469,40 +471,40 @@
   <section class="cb" id="certs" aria-labelledby="cb-title">
     <h2 class="cb-word" id="cb-title">certifications<br>&amp; badges</h2>
     <div class="cb-grid">
-      <button class="ch is-top is-ink" type="button" data-cert="ibm-itf" data-tilt="12" style="--tilt: 12" aria-haspopup="dialog" aria-label="IBM SkillsBuild: Information Technology Fundamentals, with a Credly badge">
+      <button class="ch is-top is-ink" type="button" data-cert="ibm-itf" data-tilt="12" style="--tilt: 12" aria-haspopup="dialog" aria-label="Certificate IBM SkillsBuild Information Technology Fundamentals, with a Credly badge">
         <span class="ch-move">
           <span class="ch-paper has-img" aria-hidden="true"><img src="media/certs/ibm-it-fundamentals.jpg" alt="" loading="lazy"></span>
           <span class="ch-cover" aria-hidden="true"><span class="ch-lining"></span><span class="ch-face"><span class="ch-inner"><span class="ch-kicker">Certificate</span><span class="ch-issuer">IBM SkillsBuild</span><span class="ch-rule"></span><span class="ch-name">Information Technology Fundamentals</span></span></span></span>
           <span class="ch-badge" aria-hidden="true"><span>Credly badge</span></span>
         </span>
       </button>
-      <button class="ch" type="button" data-cert="cisco-eh" data-tilt="-10" style="--tilt: -10" aria-haspopup="dialog" aria-label="Cisco: Ethical Hacker, with a Credly badge">
+      <button class="ch" type="button" data-cert="cisco-eh" data-tilt="-10" style="--tilt: -10" aria-haspopup="dialog" aria-label="Certificate Cisco Ethical Hacker, with a Credly badge">
         <span class="ch-move">
           <span class="ch-paper has-img" aria-hidden="true"><img src="media/certs/cisco-ethical-hacker.jpg" alt="" loading="lazy"></span>
           <span class="ch-cover" aria-hidden="true"><span class="ch-lining"></span><span class="ch-face"><span class="ch-inner"><span class="ch-kicker">Certificate</span><span class="ch-issuer">Cisco</span><span class="ch-rule"></span><span class="ch-name">Ethical Hacker</span></span></span></span>
           <span class="ch-badge" aria-hidden="true"><span>Credly badge</span></span>
         </span>
       </button>
-      <button class="ch is-jade" type="button" data-cert="thm-presec" data-tilt="8" style="--tilt: 8" aria-haspopup="dialog" aria-label="TryHackMe: Pre Security">
+      <button class="ch is-jade" type="button" data-cert="thm-presec" data-tilt="8" style="--tilt: 8" aria-haspopup="dialog" aria-label="Learning path TryHackMe Pre Security">
         <span class="ch-move">
           <span class="ch-paper has-img" aria-hidden="true"><img src="media/certs/thm-pre-security.jpg" alt="" loading="lazy"></span>
           <span class="ch-cover" aria-hidden="true"><span class="ch-lining"></span><span class="ch-face"><span class="ch-inner"><span class="ch-kicker">Learning path</span><span class="ch-issuer">TryHackMe</span><span class="ch-rule"></span><span class="ch-name">Pre Security</span></span></span></span>
         </span>
       </button>
-      <button class="ch is-jade" type="button" data-cert="thm-aoc25" data-tilt="-7" style="--tilt: -7" aria-haspopup="dialog" aria-label="TryHackMe: Advent of Cyber 2025">
+      <button class="ch is-jade" type="button" data-cert="thm-aoc25" data-tilt="-7" style="--tilt: -7" aria-haspopup="dialog" aria-label="Certificate TryHackMe Advent of Cyber 2025">
         <span class="ch-move">
           <span class="ch-paper has-img" aria-hidden="true"><img src="media/certs/thm-advent-of-cyber-2025.jpg" alt="" loading="lazy"></span>
           <span class="ch-cover" aria-hidden="true"><span class="ch-lining"></span><span class="ch-face"><span class="ch-inner"><span class="ch-kicker">Certificate</span><span class="ch-issuer">TryHackMe</span><span class="ch-rule"></span><span class="ch-name">Advent of Cyber 2025</span></span></span></span>
         </span>
       </button>
-      <button class="ch" type="button" data-cert="cisco-ds" data-tilt="9" style="--tilt: 9" aria-haspopup="dialog" aria-label="Cisco: Introduction to Data Science, with a Credly badge">
+      <button class="ch" type="button" data-cert="cisco-ds" data-tilt="9" style="--tilt: 9" aria-haspopup="dialog" aria-label="Certificate Cisco Introduction to Data Science, with a Credly badge">
         <span class="ch-move">
           <span class="ch-paper has-img" aria-hidden="true"><img src="media/certs/cisco-intro-data-science.jpg" alt="" loading="lazy"></span>
           <span class="ch-cover" aria-hidden="true"><span class="ch-lining"></span><span class="ch-face"><span class="ch-inner"><span class="ch-kicker">Certificate</span><span class="ch-issuer">Cisco</span><span class="ch-rule"></span><span class="ch-name">Introduction to Data Science</span></span></span></span>
           <span class="ch-badge" aria-hidden="true"><span>Credly badge</span></span>
         </span>
       </button>
-      <button class="ch is-bottom" type="button" data-cert="cisco-ics" data-tilt="0" style="--tilt: 0" aria-haspopup="dialog" aria-label="Cisco: Introduction to Cybersecurity, with a Credly badge">
+      <button class="ch is-bottom" type="button" data-cert="cisco-ics" data-tilt="0" style="--tilt: 0" aria-haspopup="dialog" aria-label="Certificate Cisco Introduction to Cybersecurity, with a Credly badge">
         <span class="ch-move">
           <span class="ch-paper has-img" aria-hidden="true"><img src="media/certs/cisco-intro-cybersecurity.jpg" alt="" loading="lazy"></span>
           <span class="ch-cover" aria-hidden="true"><span class="ch-lining"></span><span class="ch-face"><span class="ch-inner"><span class="ch-kicker">Certificate</span><span class="ch-issuer">Cisco</span><span class="ch-rule"></span><span class="ch-name">Introduction to Cybersecurity</span></span></span></span>
@@ -533,11 +535,11 @@
       <span><a href="index.html#contact">Contact</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
     </div></div>
   </footer>
-  <script src="site-footer.js?v=20261121c"></script>
-  <script src="site-motion.js?v=20261121c"></script>
-  <script src="site-buttons.js?v=20261121c"></script>
-  <script src="site-showcase.js?v=20261121c"></script>
-  <script src="site-certs.js?v=20261121c"></script>
+  <script src="site-footer.js?v=20261121d"></script>
+  <script src="site-motion.js?v=20261121d"></script>
+  <script src="site-buttons.js?v=20261121d"></script>
+  <script src="site-showcase.js?v=20261121d"></script>
+  <script src="site-certs.js?v=20261121d"></script>
 
   <script>
     const toggle = document.getElementById('navToggle');

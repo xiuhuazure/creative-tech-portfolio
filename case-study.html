@@ -17,17 +17,19 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&family=Kaushan+Script&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site-footer.css?v=20261121c" />
-  <link rel="stylesheet" href="site-motion.css?v=20261121c" />
-  <link rel="stylesheet" href="site-buttons.css?v=20261121c" />
-  <link rel="stylesheet" href="site-cursor.css?v=20261121c" />
+  <!-- fonts load without holding up the first paint -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&family=Kaushan+Script&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&family=Kaushan+Script&display=swap" /></noscript>
+  <link rel="stylesheet" href="site-footer.css?v=20261121d" />
+  <link rel="stylesheet" href="site-motion.css?v=20261121d" />
+  <link rel="stylesheet" href="site-buttons.css?v=20261121d" />
+  <link rel="stylesheet" href="site-cursor.css?v=20261121d" />
   <style>
     :root {
       --ink: #0c0f12; --ink-2: #12171c; --surface: #171d23; --surface-2: #1c242b;
       --border: #2a343d; --border-gold: rgba(212,175,98,0.28);
       --gold: #d4af62; --gold-bright: #f2d999; --cinnabar: #c8503a; --jade: #79c0a6; --cyan: #7fd7d0;
-      --text: #f4f0e7; --text-dim: #a6adb4; --text-mute: #6f7880;
+      --text: #f4f0e7; --text-dim: #a6adb4; --text-mute: #858e96;
       --btn-ink: #17110a;
       --header-bg: rgba(12,15,18,0.72); --panel-bg: rgba(18,23,28,0.6);
       --thumb-a: #1e262d; --thumb-b: #12171c;
@@ -42,7 +44,7 @@
       --ink: #f3ead6; --ink-2: #ece0c7; --surface: #fbf5e6; --surface-2: #f5ecd7;
       --border: #dccdae; --border-gold: rgba(156,118,32,0.40);
       --gold: #9c7620; --gold-bright: #b6892f; --cinnabar: #bf3d29; --jade: #3f7d68; --cyan: #2b8079;
-      --text: #2b2418; --text-dim: #5e5648; --text-mute: #8a8070;
+      --text: #2b2418; --text-dim: #5e5648; --text-mute: #6b6252;
       --header-bg: rgba(243,234,214,0.80); --panel-bg: rgba(246,238,217,0.72);
       --thumb-a: #e7dbc2; --thumb-b: #f1e8d3;
       --glow-1: rgba(212,175,98,0.20); --glow-2: rgba(43,128,121,0.08); --glow-3: rgba(191,61,41,0.06);
@@ -205,7 +207,7 @@
     article .kicker { margin-top: 56px; }
     article > .kicker:first-child { margin-top: 0; }
     article .kicker + h2 { margin-top: 10px; }
-    .deliv .col h4 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 6px; }
+    .deliv .col h3, .deliv .col h4 { font-family: var(--serif); font-size: 1.2rem; margin: 0 0 6px; line-height: 1.3; }
     .deliv .col p { font-size: 0.9rem; color: var(--text-dim); margin: 0; }
 
     .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0; }
@@ -389,7 +391,7 @@
         <div class="m"><div class="k">Tools</div><div class="v">Shopify, GemPages, Meta Business Suite, Adobe Premiere Pro</div></div>
       </div>
       <!-- Case media: a browser window around a screenshot of the live store (links to it) -->
-      <a class="case-media site-frame" href="https://earthmoonmagick.com/" target="_blank" rel="noopener" aria-label="Visit earthmoonmagick.com">
+      <a class="case-media site-frame" href="https://earthmoonmagick.com/" target="_blank" rel="noopener">
         <span class="site-bar"><i></i><i></i><i></i><span class="site-url">earthmoonmagick.com</span></span>
         <span class="site-view"><img src="media/emm-site.webp?v=2" alt="Earth Moon Magick homepage: the Black Moon Portal sale, buy one deck and get one free" loading="lazy"></span>
         <span class="site-cta">Visit the live store ↗</span>
@@ -432,15 +434,15 @@
       <div class="deliv">
         <div class="col">
           <a class="deliv-media is-fit" href="https://earthmoonmagick.com/" target="_blank" rel="noopener" aria-label="Visit the Earth Moon Magick store"><span class="deliv-shot"><span class="deliv-dots" aria-hidden="true"><i></i><i></i><i></i></span><img src="media/emm-site.webp?v=2" alt="Earth Moon Magick website" loading="lazy"></span><span class="deliv-go">↗</span></a>
-          <h4>Development</h4><p>GemPages blog and product pages, Liquid / HTML / CSS theme edits, and product listing fixes.</p>
+          <h3>Development</h3><p>GemPages blog and product pages, Liquid / HTML / CSS theme edits, and product listing fixes.</p>
         </div>
         <div class="col">
           <div class="deliv-media"><video data-src="media/emm-ad.mp4" poster="media/emm-ad.jpg" autoplay muted loop playsinline preload="none" aria-label="Video ad edited for Earth Moon Magick"></video></div>
-          <h4>Video</h4><p>Ads from UGC and product footage with B-roll, motion text and audio design.</p>
+          <h3>Video</h3><p>Ads from UGC and product footage with B-roll, motion text and audio design.</p>
         </div>
         <div class="col">
           <a class="deliv-media" href="https://www.instagram.com/earthmoonmagick_/" target="_blank" rel="noopener" aria-label="See Earth Moon Magick on Instagram"><span class="deliv-ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="0.6" fill="currentColor"/></svg><b>@earthmoonmagick_</b><small>Feed &amp; story design</small></span><span class="deliv-go">↗</span></a>
-          <h4>Design &amp; social</h4><p>Graphic design for Instagram, plus feed and story assets.</p>
+          <h3>Design &amp; social</h3><p>Graphic design for Instagram, plus feed and story assets.</p>
         </div>
       </div>
 
@@ -475,9 +477,9 @@
       <span><a href="index.html#contact">Contact</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
     </div></div>
   </footer>
-  <script src="site-footer.js?v=20261121c"></script>
-  <script src="site-motion.js?v=20261121c"></script>
-  <script src="site-buttons.js?v=20261121c"></script>
+  <script src="site-footer.js?v=20261121d"></script>
+  <script src="site-motion.js?v=20261121d"></script>
+  <script src="site-buttons.js?v=20261121d"></script>
 
   <script>
     document.querySelectorAll('.deliv-media video').forEach(v => {

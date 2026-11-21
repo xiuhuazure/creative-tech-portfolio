@@ -68,7 +68,7 @@
       tech: ['HTML', 'CSS', 'JavaScript', 'Cloudflare', 'Claude'],
       desc: 'The site you’re on: hand-written HTML, CSS and JavaScript with a lantern dark and light switch, scroll motion, glass folders and layouts that fit phones up to 27-inch screens. Built with Claude and deployed on Cloudflare.',
       media: { img: 'media/portfolio-site.jpg?v=2', alt: 'Kimberly Yu portfolio website on a laptop and a phone', contain: true },
-      links: []
+      links: [['View the code on GitHub ↗', 'https://github.com/xiuhuazure/creative-tech-portfolio']]
     },
     'jonathan': {
       title: 'Jonathan Photography: Booking & portfolio system', date: '2026 · Capstone · Group project',

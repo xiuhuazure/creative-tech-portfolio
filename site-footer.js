@@ -51,7 +51,7 @@
     '<a class="pill" href="' + PINS[0].href + '">' + esc(PINS[0].label) + '</a><div class="line"></div></div>';
 
   function col(title, items) {
-    return '<div><h4>' + title + '</h4><ul>' + items.map(function (it) {
+    return '<div><h2 class="vf-h">' + title + '</h2><ul>' + items.map(function (it) {
       if (!it[1]) return '<li class="plain">' + (it[2] === 'pin' ? PIN_ICON : '') + esc(it[0]) + '</li>';
       var ext = /^https?:/.test(it[1]) ? ' target="_blank" rel="noopener"' : '';
       return '<li><a href="' + it[1] + '"' + ext + '>' + esc(it[0]) + '</a></li>';

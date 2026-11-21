@@ -443,6 +443,7 @@
 }
 @media (prefers-reduced-motion: reduce) { .pd .pd-in { animation: none; } }
 .pf-thumb img.only-dark, .pf-thumb img.only-light { object-position: 50% 45%; } /* show the middle phone */
+.pf-file[data-project="portfolio"] .pf-thumb img { object-position: 50% 50%; }
 
 /* Featured work 03 (graphic design): show each square design whole, as large as its slot allows */
 .fw-p3 .fw-media { background: none; display: flex; align-items: center; justify-content: center; }

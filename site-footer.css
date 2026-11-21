@@ -216,7 +216,7 @@
 /* ---------- Responsive ---------- */
 @media (min-width: 768px) {
   .vf-links { padding: 40px 64px 36px; }
-  .vf-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 760px; }
+  .vf-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1200px; }
   .vf-grid h4 { margin-bottom: 14px; }
   .vf-grid ul { gap: 4px; }
   .vf-grid li { line-height: 1.8; }
@@ -227,7 +227,9 @@
   .vf-globe { height: 168px; }
   .vf-globe svg { height: 228px; }
   .vf-globe::before { height: 4rem; }
-  /* Links: Navigate and Contact side by side */
+  /* Links: Navigate and Contact side by side, then What I do as one list below */
+  .vf-grid > :nth-child(2) { order: 3; grid-column: 1 / -1; }
+  .vf-grid > :nth-child(2) ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }
   .vf-links { padding: 28px 24px 24px; }
   .vf-links::before { top: -48px; height: 48px; }
   .vf-grid { gap: 26px 20px; }

@@ -207,17 +207,22 @@
 })();
 
 
-/* Homepage menu: "Works" stays highlighted while you're in the featured work or the folders */
+/* Homepage menu: "Works" lights up in the featured work and folders, "About" in the About me section */
 (function () {
-  var link = document.querySelector('header .nav-links a[href="#projects"]');
-  var parts = [document.getElementById('work'), document.getElementById('projects')].filter(Boolean);
-  if (!link || !parts.length || !('IntersectionObserver' in window)) return;
+  if (!('IntersectionObserver' in window)) return;
+  var groups = [
+    { link: document.querySelector('header .nav-links a[href="#projects"]'), ids: ['work', 'projects'] },
+    { link: document.querySelector('header .nav-links a[href="#about"]'), ids: ['about'] }
+  ].filter(function (g) { return g.link; });
   var inView = {};
-  var io = new IntersectionObserver(function (es) {
-    es.forEach(function (e) { inView[e.target.id] = e.isIntersecting; });
-    var on = parts.some(function (p) { return inView[p.id]; });
-    link.classList.toggle('active', on);
-    if (on) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
-  }, { rootMargin: '-45% 0px -45% 0px' }); // counts as "in" when the section crosses the middle of the screen
-  parts.forEach(function (p) { io.observe(p); });
+  var update = function () {
+    groups.forEach(function (g) {
+      var on = g.ids.some(function (id) { return inView[id]; });
+      g.link.classList.toggle('active', on);
+      if (on) g.link.setAttribute('aria-current', 'location'); else g.link.removeAttribute('aria-current');
+    });
+  };
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { inView[e.target.id] = e.isIntersecting; }); update(); },
+    { rootMargin: '-45% 0px -45% 0px' }); // "in" when the section crosses the middle of the screen
+  groups.forEach(function (g) { g.ids.forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); }); });
 })();

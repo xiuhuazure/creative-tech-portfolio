@@ -166,7 +166,7 @@
 .vf-grid { position: relative; z-index: 11; max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, auto); justify-content: center; gap: 48px; } /* the columns sit as one centred group */
 .vf-grid h4, .vf-grid .vf-h { margin: 0 0 24px; color: var(--vf-head); font-family: inherit; font-size: 15px; font-weight: 600; line-height: 1.3; letter-spacing: 0; }
 .vf-grid ul { display: flex; flex-direction: column; gap: 12px; }
-.vf-grid li { font-size: 14px; line-height: 2; color: var(--vf-text); }
+.vf-grid li { font-size: 16px; line-height: 2; color: var(--vf-text); }
 .vf-grid a { transition: color .2s ease; }
 .vf-grid a:hover { color: var(--vf-head); }
 .vf-grid .plain { color: var(--vf-plain); }
@@ -227,22 +227,18 @@
   .vf-globe { height: 168px; }
   .vf-globe svg { height: 228px; }
   .vf-globe::before { height: 4rem; }
-  /* Links: Navigate and Contact side by side, then What I do as one list below */
+  /* Links: Navigate and Contact side by side, then What I do as a single list below */
   .vf-grid > :nth-child(2) { order: 3; grid-column: 1 / -1; }
-  /* What I do: its two columns line up with Navigate and Contact above */
-  .vf-grid > :nth-child(2) { display: grid; grid-template-columns: subgrid; }
-  .vf-grid > :nth-child(2) > .vf-h, .vf-grid > :nth-child(2) > h4 { grid-column: 1 / -1; }
-  .vf-grid > :nth-child(2) ul { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; column-gap: 20px !important; }
   .vf-links { padding: 28px 24px 24px; }
   .vf-links::before { top: -48px; height: 48px; }
-  .vf-grid { gap: 26px 20px; }
+  .vf-grid { gap: 26px 56px; }
   .vf-grid h4, .vf-grid .vf-h { margin: 0 0 10px; font-size: 14px; }
   .vf-grid ul { gap: 4px; }
-  .vf-grid li { font-size: 13.5px; line-height: 1.7; }
+  .vf-grid li { font-size: 15.5px; line-height: 1.7; }
   /* bigger tap areas: each link is a ~40px-tall target, with the rows packed so the list looks about the same */
   .vf-grid ul { gap: 0; }
   .vf-grid li { line-height: 1.4; }
-  .vf-grid li a { display: inline-block; padding: 10px 0; }
+  .vf-grid li a { display: inline-block; padding: 9px 0; }
   .vf-bar-in { padding: 14px 24px; gap: 4px; font-size: 12px; text-align: center; align-items: center; }
   .vf-brand { height: 112px; }
   .vf-brand::after { height: 36px; }

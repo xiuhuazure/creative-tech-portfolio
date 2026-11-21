@@ -349,3 +349,13 @@ header .nav-links a.active:not(.nav-cta)::after { width: 100%; }
   background: rgba(255, 255, 255, 0.16); box-shadow: -1px 1px 2px rgba(110, 78, 18, 0.2);
 }
 
+/* "View my CV": always a gold underlined text link (next to the main button, never a second button) */
+.cv-link {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-family: var(--sans); font-weight: 600; font-size: 1rem;
+  color: var(--gold); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 6px; transition: color .2s ease, text-underline-offset .2s ease;
+}
+.cv-link:hover { color: var(--gold-bright, #f2d999); text-underline-offset: 8px; }
+:root[data-theme="light"] .cv-link:hover { color: #6f5118; }
+.cv-link span { display: inline-block; transition: transform .2s ease; }
+.cv-link:hover span { transform: translate(2px, -2px); }
+

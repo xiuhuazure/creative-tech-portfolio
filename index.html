@@ -21,12 +21,12 @@
   <!-- fonts load without holding up the first paint -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" /></noscript>
-  <link rel="stylesheet" href="site-footer.css?v=20261121j" />
-  <link rel="stylesheet" href="site-motion.css?v=20261121j" />
-  <link rel="stylesheet" href="site-buttons.css?v=20261121j" />
-  <link rel="stylesheet" href="site-cursor.css?v=20261121j" />
-  <link rel="stylesheet" href="site-cta.css?v=20261121j" />
-  <link rel="stylesheet" href="site-showcase.css?v=20261121j" />
+  <link rel="stylesheet" href="site-footer.css?v=20261121k" />
+  <link rel="stylesheet" href="site-motion.css?v=20261121k" />
+  <link rel="stylesheet" href="site-buttons.css?v=20261121k" />
+  <link rel="stylesheet" href="site-cursor.css?v=20261121k" />
+  <link rel="stylesheet" href="site-cta.css?v=20261121k" />
+  <link rel="stylesheet" href="site-showcase.css?v=20261121k" />
   <style>
     /* ============ THEME TOKENS ============ */
     :root {
@@ -141,7 +141,18 @@
     .tm-top { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
     .tm .section-head { margin-bottom: 36px; }
     .tm-host { display: flex; flex-direction: column; align-items: center; margin-bottom: 28px; }
-    .tm-pill { display: inline-flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border-gold); border-radius: 50px; padding: 8px 16px 8px 8px; box-shadow: 0 2px 14px rgba(0,0,0,0.10); }
+    /* Name plaque, like a small Chinese 匾额: a squared double gold frame with fret-pattern (回纹) corners */
+    .tm-pill { position: relative; display: inline-flex; align-items: center; gap: 16px; padding: 14px 30px 14px 16px; border-radius: 0;
+      background: linear-gradient(160deg, rgba(23, 29, 35, 0.5), rgba(18, 23, 28, 0.3)); border: 1px solid var(--border-gold);
+      outline: 1px solid var(--border-gold); outline-offset: -6px; }
+    :root[data-theme="light"] .tm-pill { background: linear-gradient(160deg, rgba(251, 245, 230, 0.6), rgba(236, 224, 199, 0.4)); }
+    .tm-pill::before { content: ""; position: absolute; inset: -4px; pointer-events: none; background: var(--gold);
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg transform='rotate%280 9 9%29' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='square'%3E%3Cpath d='M1 17V1H17'/%3E%3Cpath d='M5 17V5H13V10H9'/%3E%3C/g%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg transform='rotate%2890 9 9%29' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='square'%3E%3Cpath d='M1 17V1H17'/%3E%3Cpath d='M5 17V5H13V10H9'/%3E%3C/g%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg transform='rotate%28270 9 9%29' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='square'%3E%3Cpath d='M1 17V1H17'/%3E%3Cpath d='M5 17V5H13V10H9'/%3E%3C/g%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg transform='rotate%28180 9 9%29' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='square'%3E%3Cpath d='M1 17V1H17'/%3E%3Cpath d='M5 17V5H13V10H9'/%3E%3C/g%3E%3C/svg%3E"); -webkit-mask-position: top left, top right, bottom left, bottom right; -webkit-mask-size: 18px 18px; -webkit-mask-repeat: no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg transform='rotate%280 9 9%29' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='square'%3E%3Cpath d='M1 17V1H17'/%3E%3Cpath d='M5 17V5H13V10H9'/%3E%3C/g%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg transform='rotate%2890 9 9%29' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='square'%3E%3Cpath d='M1 17V1H17'/%3E%3Cpath d='M5 17V5H13V10H9'/%3E%3C/g%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg transform='rotate%28270 9 9%29' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='square'%3E%3Cpath d='M1 17V1H17'/%3E%3Cpath d='M5 17V5H13V10H9'/%3E%3C/g%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg transform='rotate%28180 9 9%29' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='square'%3E%3Cpath d='M1 17V1H17'/%3E%3Cpath d='M5 17V5H13V10H9'/%3E%3C/g%3E%3C/svg%3E"); mask-position: top left, top right, bottom left, bottom right; mask-size: 18px 18px; mask-repeat: no-repeat; }
+    /* the photo sits in a round "moon gate" with a thin gold ring */
+    .tm-pill .tm-ava { box-shadow: 0 0 0 3px var(--ink-2, #12171c), 0 0 0 4px var(--gold); }
+    :root[data-theme="light"] .tm-pill .tm-ava { box-shadow: 0 0 0 3px #f6eedd, 0 0 0 4px var(--gold); }
+    .tm-pill .tm-id { padding-left: 16px; border-left: 1px solid var(--border-gold); }
     .tm-ava { width: 36px; height: 36px; flex: 0 0 36px; border-radius: 50%; display: grid; place-items: center; font-size: 1rem; color: #fff5ea; background: linear-gradient(135deg, var(--cinnabar), var(--gold)); }
     .tm-id { line-height: 1.25; }
     .tm-id .n { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--text); }
@@ -164,7 +175,7 @@
     @keyframes tm-marquee-left { 0% { transform: translateX(0); } 100% { transform: translateX(-25%); } }
     @keyframes tm-marquee-right { 0% { transform: translateX(-25%); } 100% { transform: translateX(0); } }
     @media (min-width: 640px) {
-      .tm-pill { padding: 10px 16px 10px 10px; }
+      .tm-pill { padding: 14px 24px 14px 16px; }
       .tm-ava { width: 44px; height: 44px; flex-basis: 44px; font-size: 1.2rem; }
       .tm-id .n { font-size: 1.08rem; } .tm-id .r { font-size: 0.8rem; }
       .tm-phone { width: 32px; height: 32px; }
@@ -682,11 +693,11 @@
       <span><a href="index.html#contact">Contact</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
     </div></div>
   </footer>
-  <script src="site-footer.js?v=20261121j"></script>
-  <script src="site-motion.js?v=20261121j"></script>
-  <script src="site-buttons.js?v=20261121j"></script>
-  <script src="site-cta.js?v=20261121j"></script>
-  <script src="site-showcase.js?v=20261121j"></script>
+  <script src="site-footer.js?v=20261121k"></script>
+  <script src="site-motion.js?v=20261121k"></script>
+  <script src="site-buttons.js?v=20261121k"></script>
+  <script src="site-cta.js?v=20261121k"></script>
+  <script src="site-showcase.js?v=20261121k"></script>
 
   <script>
     // Mobile nav

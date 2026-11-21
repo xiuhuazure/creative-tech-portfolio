@@ -206,3 +206,18 @@
   vids.forEach(function (v) { io.observe(v); });
 })();
 
+
+/* Homepage menu: "Works" stays highlighted while you're in the featured work or the folders */
+(function () {
+  var link = document.querySelector('header .nav-links a[href="#projects"]');
+  var parts = [document.getElementById('work'), document.getElementById('projects')].filter(Boolean);
+  if (!link || !parts.length || !('IntersectionObserver' in window)) return;
+  var inView = {};
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { inView[e.target.id] = e.isIntersecting; });
+    var on = parts.some(function (p) { return inView[p.id]; });
+    link.classList.toggle('active', on);
+    if (on) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+  }, { rootMargin: '-45% 0px -45% 0px' }); // counts as "in" when the section crosses the middle of the screen
+  parts.forEach(function (p) { io.observe(p); });
+})();

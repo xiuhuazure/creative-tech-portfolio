@@ -19,12 +19,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site-footer.css?v=20261121b" />
-  <link rel="stylesheet" href="site-motion.css?v=20261121b" />
-  <link rel="stylesheet" href="site-buttons.css?v=20261121b" />
-  <link rel="stylesheet" href="site-cursor.css?v=20261121b" />
-  <link rel="stylesheet" href="site-cta.css?v=20261121b" />
-  <link rel="stylesheet" href="site-showcase.css?v=20261121b" />
+  <link rel="stylesheet" href="site-footer.css?v=20261121c" />
+  <link rel="stylesheet" href="site-motion.css?v=20261121c" />
+  <link rel="stylesheet" href="site-buttons.css?v=20261121c" />
+  <link rel="stylesheet" href="site-cursor.css?v=20261121c" />
+  <link rel="stylesheet" href="site-cta.css?v=20261121c" />
+  <link rel="stylesheet" href="site-showcase.css?v=20261121c" />
   <style>
     /* ============ THEME TOKENS ============ */
     :root {
@@ -309,6 +309,7 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Lantern light/dark switch — hangs from the top-right corner -->
   <button class="lantern" id="lantern" aria-label="Switch to light mode" title="Toggle light / dark">
@@ -382,7 +383,7 @@
   <!-- ===== Header ===== -->
   <header>
     <div class="wrap nav">
-      <a href="index.html" class="brand">
+      <a href="#top" class="brand" aria-label="Kimberly Yu, back to top">
         <span class="name">Kimberly <span>Yu</span></span>
       </a>
       <div class="nav-right">
@@ -397,7 +398,7 @@
   </header>
 
   <!-- ===== Hero ===== -->
-  <section class="hero">
+  <section id="main" tabindex="-1" class="hero">
     <div class="wrap">
       <span class="eyebrow"><span class="line"></span> <span><span class="typed" aria-hidden="true" data-words="Front-End Developer|Cybersecurity|Video Editor|Graphic Designer|Android Developer">Front-End Developer</span><span class="sr-only">Front-end developer, cybersecurity, video editor, graphic designer, Android developer</span></span> <span class="line r"></span></span>
       <h1>One person for your website <br class="h1-br"><span class="grad">and your ads.</span></h1>
@@ -548,7 +549,6 @@
        files fan out; click a file to open its details. Files' content lives in PROJECTS (site-showcase.js). ===== -->
   <section class="pf" id="projects" aria-labelledby="pf-title">
     <h2 class="pf-word" id="pf-title">things I’ve<br>built</h2>
-    <p class="pf-hint">Click a folder to open it, or a file to go straight to that project.</p>
     <!-- Three folders. Only the first three files show on a folder; [hidden] ones appear when it is opened.
          Newest project first in each folder. The order here is also the Previous / Next order in the project pop-up. -->
     <div class="pf-grid">
@@ -565,7 +565,7 @@
           <a class="pf-file" hidden href="#projects" data-project="amethyst" aria-haspopup="dialog"><span class="pf-thumb"><img src="media/design-amethyst.webp" alt="" loading="lazy"></span><strong>Amethyst lamp ad</strong><span class="pf-sub">Crystal brand · 2025</span></a>
           <a class="pf-file" hidden href="#projects" data-project="agency" aria-haspopup="dialog"><span class="pf-thumb"><img src="media/design-agency.webp" alt="" loading="lazy"></span><strong>AI agency ad</strong><span class="pf-sub">AI agency · 2025</span></a>
         </div>
-        <div class="pf-front" aria-hidden="true"><span class="pf-glass"><span class="pf-label">client work</span></span></div>
+        <div class="pf-front" aria-hidden="true"><span class="pf-glass"><span class="pf-label">client work</span><span class="pf-count">8 files ›</span></span></div>
       </div>
     </div>
     <div class="pf-folder is-left" data-folder="school" data-tilt="-10" style="--tilt: -10" role="group" aria-label="School projects, 7 projects">
@@ -580,7 +580,7 @@
           <a class="pf-file" hidden href="#projects" data-project="kidzo" aria-haspopup="dialog"><span class="pf-thumb"><img src="media/kidzo-mockup.jpg?v=3" alt="" loading="lazy" style="object-position: 50% 45%"></span><strong>Kidzo</strong><span class="pf-sub">Kotlin · Firebase</span></a>
           <a class="pf-file" hidden href="#projects" data-project="ueat" aria-haspopup="dialog"><span class="pf-thumb"><img src="media/ueat-mockup.jpg" alt="" loading="lazy" style="object-position: 50% 45%"></span><strong>U-Eat</strong><span class="pf-sub">Kotlin · Firebase</span></a>
         </div>
-        <div class="pf-front" aria-hidden="true"><span class="pf-glass"><span class="pf-label">school projects</span></span></div>
+        <div class="pf-front" aria-hidden="true"><span class="pf-glass"><span class="pf-label">school projects</span><span class="pf-count">7 files ›</span></span></div>
       </div>
     </div>
     <div class="pf-folder is-right" data-folder="personal" data-tilt="8" style="--tilt: 8" role="group" aria-label="Personal projects, 1 project">
@@ -589,7 +589,7 @@
         <div class="pf-files n1">
           <a class="pf-file" href="#projects" data-project="portfolio" aria-haspopup="dialog"><span class="pf-thumb"><img src="media/portfolio-site.jpg?v=2" alt="" loading="lazy"></span><strong>Portfolio website</strong><span class="pf-sub">HTML · CSS · JS</span></a>
         </div>
-        <div class="pf-front" aria-hidden="true"><span class="pf-glass"><span class="pf-label">personal projects</span></span></div>
+        <div class="pf-front" aria-hidden="true"><span class="pf-glass"><span class="pf-label">personal projects</span><span class="pf-count">1 file ›</span></span></div>
       </div>
     </div>
     </div>
@@ -676,11 +676,11 @@
       <span><a href="index.html#contact">Contact</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
     </div></div>
   </footer>
-  <script src="site-footer.js?v=20261121b"></script>
-  <script src="site-motion.js?v=20261121b"></script>
-  <script src="site-buttons.js?v=20261121b"></script>
-  <script src="site-cta.js?v=20261121b"></script>
-  <script src="site-showcase.js?v=20261121b"></script>
+  <script src="site-footer.js?v=20261121c"></script>
+  <script src="site-motion.js?v=20261121c"></script>
+  <script src="site-buttons.js?v=20261121c"></script>
+  <script src="site-cta.js?v=20261121c"></script>
+  <script src="site-showcase.js?v=20261121c"></script>
 
   <script>
     // Mobile nav

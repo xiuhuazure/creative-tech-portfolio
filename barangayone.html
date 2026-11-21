@@ -18,10 +18,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600;700&family=Ma+Shan+Zheng&family=Kaushan+Script&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site-footer.css?v=20261121b" />
-  <link rel="stylesheet" href="site-motion.css?v=20261121b" />
-  <link rel="stylesheet" href="site-buttons.css?v=20261121b" />
-  <link rel="stylesheet" href="site-cursor.css?v=20261121b" />
+  <link rel="stylesheet" href="site-footer.css?v=20261121c" />
+  <link rel="stylesheet" href="site-motion.css?v=20261121c" />
+  <link rel="stylesheet" href="site-buttons.css?v=20261121c" />
+  <link rel="stylesheet" href="site-cursor.css?v=20261121c" />
   <style>
     :root {
       --ink: #0c0f12; --ink-2: #12171c; --surface: #171d23; --surface-2: #1c242b;
@@ -294,6 +294,7 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Lantern light/dark switch — hangs from the top-right corner -->
   <button class="lantern" id="lantern" aria-label="Switch to light mode" title="Toggle light / dark">
@@ -367,7 +368,7 @@
   <!-- ===== Header ===== -->
   <header>
     <div class="wrap nav">
-      <a href="index.html" class="brand">
+      <a href="index.html" class="brand" aria-label="Kimberly Yu, home">
         <span class="name">Kimberly <span>Yu</span></span>
       </a>
       <div class="nav-right">
@@ -387,7 +388,7 @@
   </div>
 
   <!-- ===== Project hero ===== -->
-  <section class="case-hero">
+  <section id="main" tabindex="-1" class="case-hero">
     <div class="wrap">
       <div class="case-tags"><span>Mobile app</span><span>Web dashboard</span><span>Prototype</span><span>UI/UX</span></div>
       <h1>BarangayONE: barangay documents, requested from home.</h1>
@@ -498,9 +499,9 @@
       <span><a href="index.html#contact">Contact</a> · <a href="https://linkedin.com/in/kimberly-d-yu">LinkedIn</a> · <a href="https://github.com/xiuhuazure">GitHub</a></span>
     </div></div>
   </footer>
-  <script src="site-footer.js?v=20261121b"></script>
-  <script src="site-motion.js?v=20261121b"></script>
-  <script src="site-buttons.js?v=20261121b"></script>
+  <script src="site-footer.js?v=20261121c"></script>
+  <script src="site-motion.js?v=20261121c"></script>
+  <script src="site-buttons.js?v=20261121c"></script>
 
   <script>
     document.querySelectorAll('.deliv-media video').forEach(v => {

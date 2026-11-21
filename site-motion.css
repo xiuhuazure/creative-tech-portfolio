@@ -316,17 +316,35 @@ html body .vf .vf-globe svg { position: relative; z-index: 1; }
   header .nav { padding-right: 56px; }
 }
 
-/* Page labels (About me, Shopify · Video …): plain brush lettering instead of outlined boxes */
-body .case-tags { gap: 0; margin-bottom: 12px; }
+/* Project labels (Shopify · Video …): plain small text with gold dots, no boxes.
+   Brush lettering is kept for section names like "About me" (.case-tags.is-brush). */
+body .case-tags { gap: 0; margin-bottom: 14px; }
 body .case-tags span {
-  border: 0; padding: 0; opacity: 1; text-transform: none; letter-spacing: 0.01em;
-  font-family: "Kaushan Script", var(--brush), cursive; font-size: 1.35rem; line-height: 1.2; color: var(--cinnabar, #c8503a);
+  border: 0; padding: 0; opacity: 1; font-family: var(--sans); font-size: 0.78rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.14em; line-height: 1.4; color: var(--cinnabar, #c8503a);
 }
-body .case-tags span + span::before { content: "·"; margin: 0 0.45em; color: var(--gold); }
+body .case-tags span + span::before { content: "·"; margin: 0 0.6em; color: var(--gold); }
+body .case-tags.is-brush span { font-family: "Kaushan Script", var(--brush), cursive; font-size: 1.35rem; font-weight: 400; text-transform: none; letter-spacing: 0.01em; line-height: 1.2; }
 
 /* Skill and tool chips: see-through glass, like the cards on the homepage */
 html body .tm-chip { background: linear-gradient(160deg, rgba(23, 29, 35, 0.5), rgba(18, 23, 28, 0.3)); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 html body .tm-chip .pic { background: rgba(255, 255, 255, 0.04); }
 :root[data-theme="light"] body .tm-chip { background: linear-gradient(160deg, rgba(251, 245, 230, 0.5), rgba(236, 224, 199, 0.32)); }
 :root[data-theme="light"] body .tm-chip .pic { background: rgba(255, 255, 255, 0.35); }
+
+/* Keyboard users: a "Skip to content" link (shown when focused) and a clear gold outline on whatever has focus */
+.skip-link { position: fixed; left: 16px; top: -60px; z-index: 1000; padding: 10px 18px; border-radius: 999px; background: var(--gold); color: #1a1408; font: 600 0.9rem/1 var(--sans); text-decoration: none; transition: top .2s ease; }
+.skip-link:focus { top: 12px; }
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* Menu: the section you're in is highlighted (Works on the homepage while you're in the work) */
+header .nav-links a.active:not(.nav-cta) { color: var(--text); }
+header .nav-links a.active:not(.nav-cta)::after { width: 100%; }
+
+/* Folder fronts: how many files are inside, so it's clear the folder opens */
+.pf-count {
+  position: absolute; right: calc(var(--u) * 20); bottom: calc(var(--u) * 21); padding: calc(var(--u) * 4) calc(var(--u) * 10); border-radius: calc(var(--u) * 8);
+  font-size: max(0.72rem, calc(var(--u) * 13)); font-weight: 600; color: #fff; white-space: nowrap; text-shadow: 0 1px 4px rgba(90, 60, 10, 0.4);
+  background: rgba(255, 255, 255, 0.16); box-shadow: -1px 1px 2px rgba(110, 78, 18, 0.2);
+}
 

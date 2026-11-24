@@ -63,6 +63,13 @@
       media: { img: 'media/design-dailyrituals.webp', alt: 'Daily Rituals carousel: the hook slide and the product benefits slide', contain: true },
       links: []
     },
+    'xiuhuazure': {
+      title: 'Xiuhuazure: Side quest diary', date: '2026 · Personal project · Individual project',
+      tech: ['HTML', 'CSS', 'JavaScript', 'Cloudflare Pages', 'Claude'],
+      desc: 'My hobby website, the side of me when I’m not working: a cozy gaming diary of quests, scenery and small moments. I designed my own brand guidelines first, then built the site from them, with colours and type as CSS design tokens, a hand-drawn heart cursor, brush-stroke highlights and a save-file status card. Plain HTML, CSS and JavaScript, deployed on Cloudflare Pages.',
+      media: { img: 'media/xiuhuazure-site.jpg', alt: 'Xiuhuazure side quest diary website on a laptop and a phone', contain: true },
+      links: [['Visit the site ↗', 'https://xiuhuazure.pages.dev/'], ['View the code on GitHub ↗', 'https://github.com/xiuhuazure/xiuhuazure-personal-website']]
+    },
     'portfolio': {
       title: 'Portfolio website', date: '2026 · Personal project · Individual project',
       tech: ['HTML', 'CSS', 'JavaScript', 'Cloudflare', 'Claude'],
